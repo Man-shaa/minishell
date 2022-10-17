@@ -6,15 +6,11 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 19:49:19 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/17 19:50:06 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/17 20:14:45 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void	print_tab(char **tab);
-void	print_cmd(t_cmd	*cmd);
-
 
 void	print_cmd(t_cmd	*cmd)
 {
@@ -37,4 +33,5 @@ void	print_tab(char **tab)
 		printf("%s\n", tab[i]);
 		i++;
 	}
+	printf("\n\n");
 }
