@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   create.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/17 20:20:51 by msharifi         ###   ########.fr       */
+/*   Created: 2022/10/17 20:16:13 by msharifi          #+#    #+#             */
+/*   Updated: 2022/10/17 20:22:07 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minishell.h"
+#include "../includes/minishell.h"
 
-int	main(int ac, char **av)
+t_data	*create_data(void)
 {
 	t_data	*data;
-	(void)ac;
 
-	data = create_data();
+	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
-		return (1);
-	data->cmd = create_cmd(data->cmd, av[1]);
-	data->cmd = create_cmd(data->cmd, av[2]);
-	print_cmd(data->cmd);
-	free_data(data);
-	return (0);
+		return (NULL);
+	data->cmd = NULL;
+	data->redir = NULL;
+	return (data);
+}
+
+t_cmd *create_cmd(t_cmd *cmd, char *str)
+{
+	cmd = add_last_cmd(cmd, str);
+	if (!cmd)
+		return (NULL);
+	return (cmd);
 }
