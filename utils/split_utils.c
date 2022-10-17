@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   split_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/17 17:53:25 by msharifi         ###   ########.fr       */
+/*   Created: 2022/10/17 17:49:25 by msharifi          #+#    #+#             */
+/*   Updated: 2022/10/17 17:53:08 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minishell.h"
+#include "../includes/minishell.h"
 
-int	main(int ac, char **av)
+int redir(char *str)
 {
-	(void)ac;
-	(void)av;
+	(void)str;
 	return (0);
 }

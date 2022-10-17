@@ -6,6 +6,7 @@ ALLOC_DIR	=	alloc_free/
 
 SRCS		=	main.c \
 				${UTILS_DIR}str_utils.c \
+				${UTILS_DIR}split_utils.c \
 				${ALLOC_DIR}alloc_free.c
 
 OBJS		=	${SRCS:.c=.o}
