@@ -27,5 +27,4 @@ int	main(void)
 		i++;
 	}
 	free(tab);
-	return (0);
 }
