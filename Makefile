@@ -4,10 +4,13 @@ UTILS_DIR	=	utils/
 
 ALLOC_DIR	=	alloc_free/
 
+PARSING_DIR	=	parsing/
+
 CREATE_DIR	=	create_init/
 
 SRCS		=	main.c \
 				print/print.c \
+				${PARSING_DIR}parsing.c \
 				${ALLOC_DIR}alloc_free.c \
 				${CREATE_DIR}create.c \
 				${UTILS_DIR}list_utils.c \

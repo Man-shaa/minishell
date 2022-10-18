@@ -3,26 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/17 20:20:51 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/18 23:18:29 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-int	main(int ac, char **av)
+int	main(void)
 {
-	t_data	*data;
-	(void)ac;
+	char *str = "echo     > m mateo";
+	char	**tab;
+	int		i;
 
-	data = create_data();
-	if (!data)
-		return (1);
-	data->cmd = create_cmd(data->cmd, av[1]);
-	data->cmd = create_cmd(data->cmd, av[2]);
-	print_cmd(data->cmd);
-	free_data(data);
+	i = 0;
+	tab = ft_split(str);
+	while (tab[i])
+	{
+		printf("%s\n", tab[i]);
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 	return (0);
 }

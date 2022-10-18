@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/17 20:22:22 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/18 23:19:30 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ void	free_data(t_data *data);
 // create.c
 t_data	*create_data(void);
 t_cmd	*create_cmd(t_cmd *cmd, char *str);
+
+// ******************** PARSING ***********************
+
+// parsing.c
+char	**ft_split(char *str);
 
 // ********************* PRINT ************************
 
