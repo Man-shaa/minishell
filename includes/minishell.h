@@ -6,13 +6,10 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/10/18 23:19:30 by mfroissa         ###   ########.fr       */
-=======
-/*   Updated: 2022/10/18 23:05:57 by msharifi         ###   ########.fr       */
->>>>>>> 4ead86d8b416b3d308ff31fca6d4d17c86afa185
+/*   Updated: 2022/10/18 23:32:32 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
