@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 14:31:06 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/17 20:12:48 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:13:22 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_cmd	*ft_lstlast_cmd(t_cmd *cmd)
 	return (cmd);
 }
 
-t_cmd	*add_last_cmd(t_cmd *cmd, char *av)
+t_cmd	*add_last_cmd(t_cmd *cmd, char *av) //cree et ajoute la cmd recu (av) en dernier dans t_cmd
 {
 	t_cmd	*new;
 	t_cmd	*last;

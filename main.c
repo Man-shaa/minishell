@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/17 20:20:51 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:11:15 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int	main(int ac, char **av)
 {
 	t_data	*data;
-	(void)ac;
 
+	(void)ac;
 	data = create_data();
 	if (!data)
 		return (1);

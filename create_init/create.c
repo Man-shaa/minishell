@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 20:16:13 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/17 20:22:07 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:11:26 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_data	*create_data(void)
 	return (data);
 }
 
-t_cmd *create_cmd(t_cmd *cmd, char *str)
+t_cmd	*create_cmd(t_cmd *cmd, char *str)
 {
 	cmd = add_last_cmd(cmd, str);
 	if (!cmd)
