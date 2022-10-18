@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:32:11 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/18 19:14:34 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/18 23:08:46 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,21 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int	ft_strchr(char *str, int c)
+int	ft_strchr(char *str)
 {
-	int	i;
-
-	i = 0;
 	if (!str)
 		return (0);
-	while (str[i] && str[i] != c)
-		i++;
-	if (str[i] == c)
-		return (1);
+	if (str[0] == '|')
+		return (PIPE);
+	if (str[0] == '<' && str[1] == '<')
+		return (DELIM);
+	if (str[0] == '>' && str[1] == '>')
+		return (APPEND);
+	if (str[0] == '<')
+		return (IN);
+	if (str[0] == '>')
+		return (OUT);	
+	else
+		return (WORD);
 	return (0);
 }

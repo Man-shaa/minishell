@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/18 22:49:19 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/18 23:05:57 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 # include <readline/history.h>
 
 # define WORD	1
-# define IN		2
-# define OUT	3
-# define DELIM	4 // << heredoc
-# define APPEND	5 // >> redirection sortie en mode append
-# define PIPE	6
+# define IN		2 // <	lire dans 
+# define OUT	3 // >	ecrire dans
+# define DELIM	4 // <<	heredoc
+# define APPEND	5 // >>	redirection sortie en mode append
+# define PIPE	6 // |	ET
 
 typedef struct s_cmd
 {
@@ -62,7 +62,7 @@ void	free_data(t_data *data);
 
 // create.c
 t_data	*create_data(void);
-t_list	*create_list(t_data *data, char *str, int type);
+t_list	*add_to_list(t_data *data, char *str);
 
 // ********************* PRINT ************************
 
@@ -75,10 +75,10 @@ void	print_list(t_list *list);
 // list_utils.c
 t_list	*ft_lstnew(char *str, int type);
 t_list	*ft_lstlast(t_list *list);
-t_list	*add_last(t_list *list, char *str, int type);
+t_list	*add_last(t_list *list, char *str);
 
 // str_utils.c
 int		ft_strlen(char *str);
-int		ft_strchr(char *str, int c);
+int		ft_strchr(char *str);
 
 #endif

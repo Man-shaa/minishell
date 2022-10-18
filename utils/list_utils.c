@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 14:31:06 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/18 22:55:34 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/18 23:08:55 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ t_list	*ft_lstlast(t_list *list)
 	return (list);
 }
 
-t_list	*add_last(t_list *list, char *str, int type)
+t_list	*add_last(t_list *list, char *str)
 {
 	t_list	*new;
 	t_list	*last;
-
-	new = ft_lstnew(str, type);
+	
+	new = ft_lstnew(str, ft_strchr(str));
 	if (!new)
 		return (NULL);
 	last = ft_lstlast(list);

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/18 22:54:49 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/18 23:09:15 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int ac, char **av)
 		return (1);
 	while (i < ac)
 	{
-		data->list = create_list(data, av[i], i);
+		data->list = add_to_list(data, av[i]);
 		if (!data->list)
 			return (free_data(data), 2);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 20:16:13 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/18 22:54:53 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/18 23:02:53 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ t_data	*create_data(void)
 	return (data);
 }
 
-t_list	*create_list(t_data *data, char *str, int type)
+t_list	*add_to_list(t_data *data, char *str)
 {
-	data->list = add_last(data->list, str, type);
+	data->list = add_last(data->list, str);
 	if (!data->list)
 		return (NULL);
 	return (data->list);
