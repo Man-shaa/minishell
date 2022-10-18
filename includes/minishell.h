@@ -6,7 +6,11 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/10/18 23:19:30 by mfroissa         ###   ########.fr       */
+=======
+/*   Updated: 2022/10/18 23:05:57 by msharifi         ###   ########.fr       */
+>>>>>>> 4ead86d8b416b3d308ff31fca6d4d17c86afa185
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +21,15 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stddef.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+
+# define WORD	1
+# define IN		2 // <	lire dans 
+# define OUT	3 // >	ecrire dans
+# define DELIM	4 // <<	heredoc
+# define APPEND	5 // >>	redirection sortie en mode append
+# define PIPE	6 // |	ET
 
 typedef struct s_cmd
 {
@@ -27,17 +38,19 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 }				t_cmd;
 
-typedef struct s_redir
+typedef struct s_list
 {
-	char			*type;
-	char			*porte;
-	struct s_redir	*next;
-}				t_redir;
+	char			*str;
+	int				type;
+	struct s_list	*next;
+	struct s_list	*prev;
+	
+}				t_list;
 
 typedef struct s_data
 {
 	t_cmd	*cmd;
-	t_redir	*redir;
+	t_list	*list;
 }				t_data;
 
 // ********************* ALLOC_FREE *******************
@@ -46,14 +59,14 @@ typedef struct s_data
 void	*ft_calloc(size_t n, size_t size);
 void	ft_free(void *addr);
 void	free_tab(char **tab);
-void	free_cmd(t_cmd *cmd);
+void	free_list(t_list *list);
 void	free_data(t_data *data);
 
 // ********************* CREATE ***********************
 
 // create.c
 t_data	*create_data(void);
-t_cmd	*create_cmd(t_cmd *cmd, char *str);
+t_list	*add_to_list(t_data *data, char *str);
 
 // ******************** PARSING ***********************
 
@@ -64,25 +77,17 @@ char	**ft_split(char *str);
 
 // print.c
 void	print_tab(char **tab);
-void	print_cmd(t_cmd	*cmd);
+void	print_list(t_list *list);
 
 // ********************* UTILS ************************
 
 // list_utils.c
-t_redir	*ft_lstnew_redir(void);
-t_cmd	*ft_lstnew_cmd(void);
-t_cmd	*ft_lstlast_cmd(t_cmd *cmd_tbl);
-t_cmd	*add_last_cmd(t_cmd *cmd, char *av);
-
-// slip_normal.c
-int		word_count_normal(char *str, char set);
-int		char_count_normal(char *str, char set, int pos);
-char	*ft_putword_normal(char *str, char *tab, char set, int pos);
-char	**ft_split_normal(char	*str, char set);
-
+t_list	*ft_lstnew(char *str, int type);
+t_list	*ft_lstlast(t_list *list);
+t_list	*add_last(t_list *list, char *str);
 
 // str_utils.c
 int		ft_strlen(char *str);
-int		ft_strchr(char *str, int c);
+int		ft_strchr(char *str);
 
 #endif
