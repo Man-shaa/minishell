@@ -3,32 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/18 23:09:15 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/18 23:18:29 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-int	main(int ac, char **av)
+int	main(void)
 {
-	t_data	*data;
+	char *str = "echo     > m mateo";
+	char	**tab;
 	int		i;
 
-	i = 1;
-	data = create_data();
-	if (!data)
-		return (1);
-	while (i < ac)
+	i = 0;
+	tab = ft_split(str);
+	while (tab[i])
 	{
-		data->list = add_to_list(data, av[i]);
-		if (!data->list)
-			return (free_data(data), 2);
+		printf("%s\n", tab[i]);
+		free(tab[i]);
 		i++;
 	}
-	print_list(data->list);
-	free_data(data);
-	return (0);
+	free(tab);
 }
