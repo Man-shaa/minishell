@@ -6,62 +6,50 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 14:31:06 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/18 19:13:22 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/18 22:55:34 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-t_redir	*ft_lstnew_redir(void)
+t_list	*ft_lstnew(char *str, int type)
 {
-	t_redir	*redir;
+	t_list	*list;
 
-	redir = ft_calloc(1, sizeof(t_cmd));
-	if (!redir)
+	list = ft_calloc(1, sizeof(t_list));
+	if (!list)
 		return (NULL);
-	redir->type = NULL;
-	redir->porte = NULL;
-	redir->next = NULL;
-	return (redir);
+	list->str = str;
+	list->type = type;
+	list->prev = NULL;
+	list->next = NULL;
+	return (list);
 }
 
-t_cmd	*ft_lstnew_cmd(void)
+t_list	*ft_lstlast(t_list *list)
 {
-	t_cmd	*cmd;
-
-	cmd = ft_calloc(1, sizeof(t_cmd));
-	if (!cmd)
+	if (!list)
 		return (NULL);
-	cmd->cmd_args = NULL;
-	cmd->cmd_path = NULL;
-	cmd->next = NULL;
-	return (cmd);
+	while (list->next)
+		list = list->next;
+	return (list);
 }
 
-t_cmd	*ft_lstlast_cmd(t_cmd *cmd)
+t_list	*add_last(t_list *list, char *str, int type)
 {
-	if (!cmd)
-		return (NULL);
-	while (cmd->next)
-		cmd = cmd->next;
-	return (cmd);
-}
+	t_list	*new;
+	t_list	*last;
 
-t_cmd	*add_last_cmd(t_cmd *cmd, char *av) //cree et ajoute la cmd recu (av) en dernier dans t_cmd
-{
-	t_cmd	*new;
-	t_cmd	*last;
-
-	new = ft_lstnew_cmd();
-	new->cmd_args = ft_split_normal(av, ' ');
+	new = ft_lstnew(str, type);
 	if (!new)
 		return (NULL);
-	last = ft_lstlast_cmd(cmd);
+	last = ft_lstlast(list);
 	if (!last)
 	{
-		cmd = new;
-		return (cmd);
+		list = new;
+		return (list);
 	}
 	last->next = new;
-	return (cmd);
+	new->prev = last;
+	return (list);
 }

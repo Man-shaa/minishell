@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/18 19:11:15 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/18 22:54:49 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,20 @@
 int	main(int ac, char **av)
 {
 	t_data	*data;
+	int		i;
 
-	(void)ac;
+	i = 1;
 	data = create_data();
 	if (!data)
 		return (1);
-	data->cmd = create_cmd(data->cmd, av[1]);
-	data->cmd = create_cmd(data->cmd, av[2]);
-	print_cmd(data->cmd);
+	while (i < ac)
+	{
+		data->list = create_list(data, av[i], i);
+		if (!data->list)
+			return (free_data(data), 2);
+		i++;
+	}
+	print_list(data->list);
 	free_data(data);
 	return (0);
 }

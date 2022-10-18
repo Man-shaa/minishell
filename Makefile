@@ -11,7 +11,6 @@ SRCS		=	main.c \
 				${ALLOC_DIR}alloc_free.c \
 				${CREATE_DIR}create.c \
 				${UTILS_DIR}list_utils.c \
-				${UTILS_DIR}split_normal.c \
 				${UTILS_DIR}str_utils.c
 
 OBJS		=	${SRCS:.c=.o}

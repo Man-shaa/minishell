@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:11:04 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/17 20:12:07 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/18 22:54:17 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,31 +49,23 @@ void	free_tab(char **tab)
 		ft_free(tab);
 }
 
-void	free_cmd(t_cmd *cmd)
+void	free_list(t_list *list)
 {
-	t_cmd *save;
+	t_list *save;
 
-	save = cmd;
-	while (cmd)
+	save = list;
+	while (list)
 	{
-		cmd = cmd->next;
-		if (save->cmd_args)
-			free_tab(save->cmd_args);
-		if (save->cmd_path)
-			ft_free(save->cmd_path);
+		list = list->next;
 		ft_free(save);
-		save = cmd;
+		save = list;
 	}
 }
 
-// void	free_redir(t_redir *redir)
-// {
-
-// }
-
 void	free_data(t_data *data)
 {
-	if (data->cmd)
-		free_cmd(data->cmd);
-	ft_free(data);
+	if (data->list)
+		free_list(data->list);
+	if (data)
+		ft_free(data);
 }

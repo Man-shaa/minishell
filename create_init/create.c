@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 20:16:13 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/18 19:11:26 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/18 22:54:53 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ t_data	*create_data(void)
 	if (!data)
 		return (NULL);
 	data->cmd = NULL;
-	data->redir = NULL;
+	data->list = NULL;
 	return (data);
 }
 
-t_cmd	*create_cmd(t_cmd *cmd, char *str)
+t_list	*create_list(t_data *data, char *str, int type)
 {
-	cmd = add_last_cmd(cmd, str);
-	if (!cmd)
+	data->list = add_last(data->list, str, type);
+	if (!data->list)
 		return (NULL);
-	return (cmd);
+	return (data->list);
 }
