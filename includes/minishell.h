@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/19 05:09:25 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/19 06:53:02 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ t_list	*add_last(t_list *list, char *str);
 // str_utils.c
 int		ft_strlen(char *str);
 int		ft_strchr(char *str);
+char	*ft_strcmp(char *str, char *to_find);
 
 #endif
