@@ -8,7 +8,8 @@ PARSING_DIR	=	parsing/
 
 CREATE_DIR	=	create_init/
 
-SRCS		=	main.c \
+SRCS		=	main_mateo.c \
+				main_manu.c \
 				print/print.c \
 				${PARSING_DIR}parsing.c \
 				${ALLOC_DIR}alloc_free.c \
