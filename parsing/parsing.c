@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/10/18 23:20:25 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/10/19 04:06:59 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	count_words(char *str)
 	{
 		while (str[i] && (str[i] == 32 || str[i] == '\t'))
 			i++;
-		while (str[i] && !is_in_charset(str[i]))
+		while (str[i] && !is_in_charset(str[i]) && str[i] != ' ' && str[i] != '\t')
 		{
 			if (is_in_charset(str[i + 1]) || str[i + 1] == '\0' ||
 				str[i + 1] == ' ' || str[i + 1] == '\t')
