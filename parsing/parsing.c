@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/10/18 23:53:36 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/19 04:23:21 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ int	count_chars(char *str, int n)
 	{
 		while (str[i] && !is_in_charset(str[i]))
 		{
-			while (str[i] && (str[i] == 32 || str[i] == '\t'))
-				i++;
 			if (count == n)
 				chars++;
 			if (is_in_charset(str[i + 1]) || str[i + 1] == '\0' ||
 				str[i + 1] == ' ' || str[i + 1] == '\t')
 				count++;
+			while (str[i] && (str[i] == 32 || str[i] == '\t'))
+				i++;
 			i++;
 		}
 		if (is_in_charset(str[i]))
@@ -107,8 +107,6 @@ char	*ft_putwords(char *str, int n, char *mot)
 	{
 		while (str[i] && !is_in_charset(str[i]))
 		{
-			while (str[i] && (str[i] == 32 || str[i] == '\t'))
-				i++;
 			if (count == n)
 			{
 				mot[chars] = str[i];
@@ -117,6 +115,8 @@ char	*ft_putwords(char *str, int n, char *mot)
 			if (is_in_charset(str[i + 1]) || str[i + 1] == '\0' ||
 				str[i + 1] == ' ' || str[i + 1] == '\t')
 				count++;
+			while (str[i] && (str[i] == 32 || str[i] == '\t'))
+				i++;
 			i++;
 		}
 		if (is_in_charset(str[i]))
@@ -146,6 +146,8 @@ char	**ft_split(char *str)
 	int		i;
 
 	i = 0;
+	if (!str)
+		return (NULL);
 	tab = ft_calloc(sizeof(char *), count_words(str) + 1);
 	while (i < count_words(str))
 	{

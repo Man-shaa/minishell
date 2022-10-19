@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/18 23:32:32 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/10/19 05:09:25 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ void	ft_free(void *addr);
 void	free_tab(char **tab);
 void	free_list(t_list *list);
 void	free_data(t_data *data);
+
+// ********************* BUILTINS *********************
+// cd.c
+
 
 // ********************* CREATE ***********************
 
