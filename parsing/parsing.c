@@ -6,14 +6,11 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/10/19 04:12:12 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/10/19 07:04:12 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
 
 // return des valeurs en fonction du charset rencontre
 int	is_in_charset(char c)
@@ -40,6 +37,8 @@ int	count_words(char *str)
 		{
 			while (str[i] && (str[i] == 32 || str[i] == '\t'))
 				i++;
+			if (str[i] == '\0')
+				return (count);
 			if (is_in_charset(str[i + 1]) || str[i + 1] == '\0' ||
 				str[i + 1] == ' ' || str[i + 1] == '\t')
 				count++;
@@ -47,7 +46,7 @@ int	count_words(char *str)
 		}
 		if (is_in_charset(str[i]))
 		{
-			if (str[i + 1] == str[i])
+			if (str[i] != '|' && str[i + 1] == str[i])
 				i++;
 			count++;
 			i++;
@@ -71,6 +70,8 @@ int	count_chars(char *str, int n)
 		{
 			while (str[i] && (str[i] == 32 || str[i] == '\t'))
 				i++;
+			if (str[i] == '\0')
+				return (chars);
 			if (count == n)
 				chars++;
 			if (is_in_charset(str[i + 1]) || str[i + 1] == '\0' ||
@@ -82,7 +83,7 @@ int	count_chars(char *str, int n)
 		{
 			if (count == n)
 				chars++;
-			if (str[i + 1] == str[i])
+			if (str[i] != '|' && str[i + 1] == str[i])
 			{
 				chars++;
 				i++;
@@ -109,6 +110,8 @@ char	*ft_putwords(char *str, int n, char *mot)
 		{
 			while (str[i] && (str[i] == 32 || str[i] == '\t'))
 				i++;
+			if (str[i] == '\0')
+				break;
 			if (count == n)
 			{
 				mot[chars] = str[i];
@@ -126,11 +129,14 @@ char	*ft_putwords(char *str, int n, char *mot)
 				mot[chars] = str[i];
 				chars++;
 			}
-			if (str[i + 1] == str[i])
+			if (str[i] != '|' && str[i + 1] == str[i])
 			{
 				i++;
-				mot[chars] = str[i];
-				chars++;
+				if (count == n)
+				{
+					mot[chars] = str[i];
+					chars++;
+				}
 			}
 			count++;
 			i++;
@@ -145,10 +151,14 @@ char	**ft_split(char *str)
 	char	**tab;
 	int		i;
 
+	if (!str)
+		return (0);
 	i = 0;
 	tab = ft_calloc(sizeof(char *), count_words(str) + 1);
+	// printf("words : %d\n", count_words(str));
 	while (i < count_words(str))
 	{
+		// printf("chars %d : %d\n", i, count_chars(str, i));
 		tab[i] = ft_calloc(sizeof(char), count_chars(str, i) + 1);
 		tab[i] = ft_putwords(str, i, tab[i]);
 		i++;
