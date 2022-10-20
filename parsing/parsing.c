@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/10/19 04:23:21 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/19 10:46:33 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,22 +157,22 @@ char	**ft_split(char *str)
 	}
 	tab[i] = 0;
 	return (tab);
+}	
+
+int	main()
+{
+	char *str = "echo     > m mateo";
+	char	**tab;
+	int		i;
+
+	i = 0;
+	tab = ft_split(str);
+	while (tab[i])
+	{
+		printf("%s\n", tab[i]);
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+	return (0);
 }
-
-// int	main()
-// {
-// 	char *str = "echo     > m mateo";
-// 	char	**tab;
-// 	int		i;
-
-// 	i = 0;
-// 	tab = ft_split(str);
-// 	while (tab[i])
-// 	{
-// 		printf("%s\n", tab[i]);
-// 		free(tab[i]);
-// 		i++;
-// 	}
-// 	free(tab);
-// 	return (0);
-// }

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:32:11 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/19 06:40:43 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/19 10:20:30 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char	*ft_strcmp(char *str, char *to_find)
 	return (NULL);
 }
 
+// Cherche le type de redir
 int	ft_strchr(char *str)
 {
 	if (!str)

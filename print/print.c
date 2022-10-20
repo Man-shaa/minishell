@@ -6,12 +6,13 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 19:49:19 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/18 22:47:43 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/19 10:01:10 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+// print toutes les listes recuperees du split parsing
 void	print_list(t_list *list)
 {
 	int	i;
