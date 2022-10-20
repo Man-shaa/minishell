@@ -19,8 +19,10 @@ SRCS		=	main_mateo.c \
 				${PARSING_DIR}parsing.c \
 				${ALLOC_DIR}alloc_free.c \
 				${CREATE_DIR}create.c \
+				${ENV_DIR}env_utils.c \
 				${ENV_DIR}env.c \
 				${UTILS_DIR}list_utils.c \
+				${UTILS_DIR}split_normal.c \
 				${UTILS_DIR}str_utils.c
 
 OBJS		=	${SRCS:.c=.o}
