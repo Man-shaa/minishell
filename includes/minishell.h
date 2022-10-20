@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/19 06:53:02 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/20 14:10:27 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,11 @@ t_list	*add_to_list(t_data *data, char *str);
 // ******************** PARSING ***********************
 
 // parsing.c
-char	**ft_split(char *str);
+char	**ft_split(char *str, t_data *data);
+
+// parsing_utils.c
+int	count_chars_exp(char *str, int *count, int *n, int *i);
+int	count_words_exp(char *str, int *i);
 
 // ********************* PRINT ************************
 

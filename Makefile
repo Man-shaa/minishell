@@ -12,7 +12,8 @@ BUILTS_DIR	=	builtins/
 
 CREATE_DIR	=	create_init/
 
-SRCS		=	main.c \
+SRCS		=	main_mateo.c \
+				main_manu.c \
 				print/print.c \
 				${BUILTS_DIR}cd.c \
 				${PARSING_DIR}parsing.c \
