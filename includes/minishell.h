@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/22 18:47:12 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/22 20:05:21 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	env(t_envp *envp);
 // exit.c
 
 // export.c
+void	export(t_envp *envp);
 
 // pwd.c
 

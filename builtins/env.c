@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 06:20:44 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/22 18:47:58 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/22 20:01:57 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,17 @@ void	env(t_envp *envp)
 {
 	while (envp)
 	{
-		printf("%s=", envp->tab[0]);
-		printf("%s\n", envp->tab[1]);
+		if (envp->tab[1])
+		{
+			printf("%s=", envp->tab[0]);
+			printf("%s\n", envp->tab[1]);
+		}
+		else
+		{
+			printf("\nSANS VALEUR : ");
+			printf("%s=", envp->tab[0]);
+			printf("%s\n\n", envp->tab[1]);
+		}
 		envp = envp->next;
 	}
 }

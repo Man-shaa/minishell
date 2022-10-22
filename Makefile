@@ -15,8 +15,8 @@ CREATE_DIR	=	create_init/
 SRCS		=	main_mateo.c \
 				main_manu.c \
 				print/print.c \
-				${BUILTS_DIR}cd.c \
 				${BUILTS_DIR}env.c \
+				${BUILTS_DIR}export.c \
 				${PARSING_DIR}parsing.c \
 				${ALLOC_DIR}alloc_free.c \
 				${CREATE_DIR}create.c \
