@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/20 18:23:43 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/20 19:30:38 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ t_envp	*add_last_env(t_data *data, char *str);
 
 // env.c
 int		is_env(char **envp);
+int		create_my_env(t_data *data);
 char	*find_path_in_env(char **envp);
 
 // ********************* PARSING **********************
@@ -121,6 +122,7 @@ char	**ft_split_normal(char	*str, char set);
 // str_utils.c
 int		ft_strlen(char *str);
 int		ft_strchr(char *str);
+char	*ft_strdup(char *str);
 char	*ft_strcmp(char *str, char *to_find);
 
 #endif

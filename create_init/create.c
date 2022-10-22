@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 20:16:13 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/20 18:30:46 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/22 17:36:32 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@ t_data	*create_data(char **envp)
 	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
 		return (NULL);
-	data->envp = NULL;
 	data->cmd = NULL;
 	data->list = NULL;
 	if (!create_env(data, envp))
-		return (NULL);	
+		return (NULL);
 	return (data);
 }
 
@@ -35,18 +34,17 @@ int	create_env(t_data *data, char **envp)
 	int		env_lgt;
 
 	env_lgt = env_lenght(envp);
+	if (env_lgt == 0)
+	{
+		create_my_env(data);	
+		return (1);
+	}
 	i = 0;
 	env = data->envp;
-	if (!*envp)
-		return (0);
-		// create_my_env()
-	else
+	while (i < env_lgt)
 	{
-		while (i < env_lgt)
-		{
-			env = add_last_env(data, envp[i]);
-			i++;
-		}
+		env = add_last_env(data, envp[i]);
+		i++;
 	}
 	return(1);
 }

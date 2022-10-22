@@ -6,18 +6,19 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 06:20:44 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/20 17:07:41 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/22 17:33:58 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// Return 1 si l'environnement exist, 0 si non
-int	is_env(char **envp)
+// pas finit fais le apres pd
+int	create_my_env(t_data *data)
 {
-	if (!envp[0]) // pas d'env
-		return (1);
-	return (0);
+	data->envp = add_last_env(data, "PWD=A CHERCHER");
+	data->envp = add_last_env(data, "OLDPWD (A IMPLEMENTER)");
+	data->envp = add_last_env(data, "SHLVL=1 (A INCREMENTER)");
+	return (1);
 }
 
 // Cherche la variable "PATH=" qui contient tous les chemins possibles de commandes dans envp

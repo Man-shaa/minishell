@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:07:42 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/20 18:39:49 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/22 17:35:17 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	env_lenght(char **envp)
 	int	i;
 
 	i = 0;
+	if (!*envp)
+		return (0);
 	while (envp[i])
 		i++;
 	return (i);
