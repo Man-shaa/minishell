@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 06:20:44 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/22 17:33:58 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/22 18:47:58 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 // pas finit fais le apres pd
 int	create_my_env(t_data *data)
 {
-	data->envp = add_last_env(data, "PWD=A CHERCHER");
-	data->envp = add_last_env(data, "OLDPWD (A IMPLEMENTER)");
-	data->envp = add_last_env(data, "SHLVL=1 (A INCREMENTER)");
+	if (!add_last_env(data, "PWD=A CHERCHER"))
+		return (0);
+	if (!add_last_env(data, "OLDPWD (A IMPLEMENTER)"))
+		return (0);
+	if (!add_last_env(data, "SHLVL=1 (A INCREMENTER)"))
+		return (0);
 	return (1);
 }
 
@@ -39,3 +42,36 @@ char	*find_path_in_env(char **envp)
 	return (NULL);
 }
 
+int	create_env(t_data *data, char **envp)
+{
+	t_envp	*env;
+	int		i;
+	int		env_lgt;
+
+	env_lgt = env_lenght(envp);
+	if (env_lgt == 0)
+	{
+		if (!create_my_env(data))
+			return (0);	
+		return (1);
+	}
+	i = 0;
+	env = data->envp;
+	while (i < env_lgt)
+	{
+		if (!add_last_env(data, envp[i]))
+			return (0);
+		i++;
+	}
+	return(1);
+}
+
+void	env(t_envp *envp)
+{
+	while (envp)
+	{
+		printf("%s=", envp->tab[0]);
+		printf("%s\n", envp->tab[1]);
+		envp = envp->next;
+	}
+}

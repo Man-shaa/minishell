@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:07:42 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/22 17:35:17 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/22 18:19:54 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_envp	*ft_lstnew_env(char *str)
 	return (new);
 }
 
-t_envp	*add_last_env(t_data *data, char *str)
+int	add_last_env(t_data *data, char *str)
 {
 	t_envp	*last;
 	t_envp	*tmp;
@@ -48,10 +48,10 @@ t_envp	*add_last_env(t_data *data, char *str)
 	if (!data->envp)
 	{
 		data->envp = last;
-		return (data->envp);
+		return (1);
 	}
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = last;
-	return (data->envp);
+	return (1);
 }

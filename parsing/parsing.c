@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/10/20 14:15:39 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/22 18:39:54 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ char	**ft_split(char *str, t_data *data)
 		printf("chars %d : %d\n", i, count_chars(str, i) + 1);
 		tab[i] = ft_calloc(sizeof(char), count_chars(str, i) + 1);
 		tab[i] = ft_putwords(str, i, tab[i]);
-		add_to_list(data, tab[i]);
+		add_last_list(data, tab[i]);
 		i++;
 	}
 	tab[i] = 0;

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/20 19:30:38 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/22 18:47:12 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,24 +70,35 @@ void	free_data(t_data *data);
 
 // cd.c
 
+// echo.c
+
+// env.c
+int		create_my_env(t_data *data);
+char	*find_path_in_env(char **envp);
+int		create_env(t_data *data, char **envp);
+void	env(t_envp *envp);
+
+// exit.c
+
+// export.c
+
+// pwd.c
+
+// unset.c
+
 // ******************* CREATE_INIT ********************
 
 // create.c
 t_data	*create_data(char **envp);
-int		create_env(t_data *data, char **envp);
-t_list	*add_to_list(t_data *data, char *str);
+int		add_last_list(t_data *data, char *str);
 
 // *********************** ENV ************************
 
 // env_utils.c
 int		env_lenght(char **envp);
 t_envp	*ft_lstnew_env(char *str);
-t_envp	*add_last_env(t_data *data, char *str);
+int		add_last_env(t_data *data, char *str);
 
-// env.c
-int		is_env(char **envp);
-int		create_my_env(t_data *data);
-char	*find_path_in_env(char **envp);
 
 // ********************* PARSING **********************
 
@@ -110,7 +121,6 @@ void	print_list(t_list *list);
 // list_utils.c
 t_list	*ft_lstnew(char *str, int type);
 t_list	*ft_lstlast(t_list *list);
-t_list	*add_last(t_list *list, char *str);
 
 // split_normal.c
 int		word_count_normal(char *str, char set);

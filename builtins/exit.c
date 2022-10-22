@@ -1,36 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_manu.c                                        :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/19 10:08:53 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/10/22 18:46:45 by msharifi         ###   ########.fr       */
+/*   Created: 2022/10/22 18:04:26 by msharifi          #+#    #+#             */
+/*   Updated: 2022/10/22 18:04:28 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minishell.h"
-
-// ft_atoi avant pour recup d'argument en bash
-// recuperation de variable LS_COLOR pas bonne si env existe
-
-int	main(int ac, char **av, char **envp)
-{
-	t_data *data;
-
-	(void)ac;
-	// (void)av;
-	data = create_data(envp);
-	if (!data)
-		return (1);
-	int	i = 1;
-	while (av[i])
-	{
-		add_last_list(data, av[i]);
-		i++;
-	}
-	env(data->envp);
-	free_data(data);
-	return (0);
-}
+#include "../includes/minishell.h"
