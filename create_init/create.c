@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   create.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mansha <mansha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 20:16:13 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/22 18:43:15 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/23 19:53:02 by mansha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 // Malloc et initialise a NULL la struct t_data
+// Return pointeur sur data si la creation a reussie, sinon NULL
 t_data	*create_data(char **envp)
 {
 	t_data	*data;
@@ -28,7 +29,8 @@ t_data	*create_data(char **envp)
 	return (data);
 }
 
-// Ajouter le resulat du split a la fin de la structure t_list
+// Ajoute le resulat du split a la fin de la structure t_list
+// Return 1 si l'ajout a reussie, sinon 0 
 int	add_last_list(t_data *data, char *str)
 {
 	t_list	*new;

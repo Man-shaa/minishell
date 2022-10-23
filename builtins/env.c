@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mansha <mansha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 06:20:44 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/22 20:01:57 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/23 19:52:20 by mansha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// pas finit fais le apres pd
+// Cree un environnement minial si l'environnement de bash n'existe pas
+// Return 1 si la creation a reussi, sinon 0
 int	create_my_env(t_data *data)
 {
 	if (!add_last_env(data, "PWD=A CHERCHER"))
@@ -24,7 +25,8 @@ int	create_my_env(t_data *data)
 	return (1);
 }
 
-// Cherche la variable "PATH=" qui contient tous les chemins possibles de commandes dans envp
+// Cherche la variable PATH qui contient tous les chemins possibles de commandes dans l'environnement
+// Return la variable PATH de l'environnement ou NULL si elle n'a pas ete trouvee
 char	*find_path_in_env(char **envp)
 {
 	int		i;
@@ -42,6 +44,8 @@ char	*find_path_in_env(char **envp)
 	return (NULL);
 }
 
+// Cree l'environnement dans la structure t_envp a partir de l'environnement bash ou de create_my_env
+// Return 1 si la creation a reussie, sinon 0
 int	create_env(t_data *data, char **envp)
 {
 	t_envp	*env;
@@ -66,7 +70,8 @@ int	create_env(t_data *data, char **envp)
 	return(1);
 }
 
-void	env(t_envp *envp)
+// Print l'environnement dans t_envp
+void	print_env(t_envp *envp)
 {
 	while (envp)
 	{

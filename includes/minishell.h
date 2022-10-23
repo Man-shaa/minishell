@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mansha <mansha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/22 20:05:21 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/23 20:01:35 by mansha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ void	free_data(t_data *data);
 int		create_my_env(t_data *data);
 char	*find_path_in_env(char **envp);
 int		create_env(t_data *data, char **envp);
-void	env(t_envp *envp);
+void	print_env(t_envp *envp);
 
 // exit.c
 
 // export.c
-void	export(t_envp *envp);
+void	print_export(t_envp *envp);
 
 // pwd.c
 
@@ -114,7 +114,6 @@ int		count_words_exp(char *str, int *i);
 
 // print.c
 void	print_tab(char **tab);
-void	print_env(t_envp *envp);
 void	print_list(t_list *list);
 
 // ********************** UTILS ***********************
@@ -124,10 +123,9 @@ t_list	*ft_lstnew(char *str, int type);
 t_list	*ft_lstlast(t_list *list);
 
 // split_normal.c
-int		word_count_normal(char *str, char set);
-int		char_count_normal(char *str, char set, int pos);
-char	*ft_putword(char *str, char *tab, char set, int pos);
-char	**ft_split_normal(char	*str, char set);
+int		char_count_env(char *str, char set, int pos);
+char	*ft_putword_env(char *str, char *tab, char set, int pos);
+char	**ft_split_env(char	*str, char set);
 
 
 // str_utils.c

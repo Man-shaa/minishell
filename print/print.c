@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mansha <mansha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 19:49:19 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/20 19:00:12 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/23 20:00:29 by mansha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,6 @@ void	print_list(t_list *list)
 		list = list->next;
 	}
 	printf("\n");
-}
-
-// print tout l'environnement recup avec envp du main ou cree manuellement
-void	print_env(t_envp *envp)
-{
-	while (envp)
-	{
-		printf("%s=", envp->tab[0]);
-		printf("%s\n", envp->tab[1]);
-		envp = envp->next;
-	}
 }
 
 void	print_tab(char **tab)

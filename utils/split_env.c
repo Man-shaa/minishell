@@ -1,39 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_normal.c                                     :+:      :+:    :+:   */
+/*   split_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mansha <mansha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:01:49 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/22 20:28:27 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/23 19:59:50 by mansha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// int	word_count_normal(char *str, char set)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	j = 0;
-// 	while (str[i])
-// 	{
-// 		while (str[i] && str[i] == set)
-// 			i++;
-// 		while (str[i] && str[i] != set)
-// 		{
-// 			if (str[i + 1] == set || str[i + 1] == '\0')
-// 				j++;
-// 			i++;
-// 		}
-// 	}
-// 	return (j);
-// }
-
-int	char_count_normal(char *str, char set, int pos)
+int	char_count_env(char *str, char set, int pos)
 {
 	int	i;
 	int	j;
@@ -66,7 +45,7 @@ int	char_count_normal(char *str, char set, int pos)
 	return (k);
 }
 
-char	*ft_putword(char *str, char *tab, char set, int pos)
+char	*ft_putword_env(char *str, char *tab, char set, int pos)
 {
 	int	i;
 	int	j;
@@ -106,7 +85,7 @@ char	*ft_putword(char *str, char *tab, char set, int pos)
 	return (tab);
 }
 
-char	**ft_split_normal(char	*str, char set)
+char	**ft_split_env(char	*str, char set)
 {
 	int		i;
 	int		j;
@@ -121,10 +100,10 @@ char	**ft_split_normal(char	*str, char set)
 		return (ft_free(tab), NULL);
 	while (j < 2)
 	{
-		tab[j] = ft_calloc(1, char_count_normal(str, set, j) + 1);
+		tab[j] = ft_calloc(1, char_count_env(str, set, j) + 1);
 		if (!tab[j])
 			return (free_tab(tab), NULL);
-		tab[j] = ft_putword(str, tab[j], set, j);
+		tab[j] = ft_putword_env(str, tab[j], set, j);
 		j++;
 	}
 	tab[j] = 0;
