@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alloc_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mansha <mansha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:11:04 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/20 18:45:06 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/23 20:27:34 by mansha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,14 @@ void	free_tab(char **tab)
 	int	i;
 
 	i = 0;
+	if (!tab)
+		return ;
 	while (tab[i])
 	{
 		ft_free(tab[i]);
 		i++;
 	}
-	if (tab)
-		ft_free(tab);
+	ft_free(tab);
 }
 
 // Free seulement la structure t_list de t_data

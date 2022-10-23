@@ -6,7 +6,7 @@
 /*   By: mansha <mansha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/23 20:01:35 by mansha           ###   ########.fr       */
+/*   Updated: 2022/10/23 20:34:52 by mansha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	free_data(t_data *data);
 // env.c
 int		create_my_env(t_data *data);
 char	*find_path_in_env(char **envp);
-int		create_env(t_data *data, char **envp);
 void	print_env(t_envp *envp);
 
 // exit.c
@@ -89,17 +88,19 @@ void	print_export(t_envp *envp);
 
 // ******************* CREATE_INIT ********************
 
-// create.c
+// create_data.c
 t_data	*create_data(char **envp);
-int		add_last_list(t_data *data, char *str);
 
-// *********************** ENV ************************
-
-// env_utils.c
+// create_env.c
+int		create_env(t_data *data, char **envp);
 int		env_lenght(char **envp);
 t_envp	*ft_lstnew_env(char *str);
 int		add_last_env(t_data *data, char *str);
 
+// create_list.c
+int		add_last_list(t_data *data, char *str);
+t_list	*ft_lstnew(char *str, int type);
+t_list	*ft_lstlast(t_list *list);
 
 // ********************* PARSING **********************
 
@@ -117,10 +118,6 @@ void	print_tab(char **tab);
 void	print_list(t_list *list);
 
 // ********************** UTILS ***********************
-
-// list_utils.c
-t_list	*ft_lstnew(char *str, int type);
-t_list	*ft_lstlast(t_list *list);
 
 // split_normal.c
 int		char_count_env(char *str, char set, int pos);

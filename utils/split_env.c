@@ -6,7 +6,7 @@
 /*   By: mansha <mansha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:01:49 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/23 19:59:50 by mansha           ###   ########.fr       */
+/*   Updated: 2022/10/23 20:25:37 by mansha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	**ft_split_env(char	*str, char set)
 		return (NULL);
 	tab = ft_calloc(sizeof(char *), 3);
 	if (!tab)
-		return (ft_free(tab), NULL);
+		return (NULL);
 	while (j < 2)
 	{
 		tab[j] = ft_calloc(1, char_count_env(str, set, j) + 1);
