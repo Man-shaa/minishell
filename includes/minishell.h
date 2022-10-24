@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mansha <mansha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/23 20:34:52 by mansha           ###   ########.fr       */
+/*   Updated: 2022/10/24 17:57:42 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -41,7 +40,6 @@ typedef struct s_list
 	int				type;
 	struct s_list	*next;
 	struct s_list	*prev;
-	
 }				t_list;
 
 typedef struct s_envp
@@ -57,13 +55,13 @@ typedef struct s_data
 	t_envp	*envp;
 }				t_data;
 
-// ********************* ALLOC_FREE *******************
+// *********************** FREE ***********************
 
-// alloc_free.c
-void	*ft_calloc(size_t n, size_t size);
+// free.c
 void	ft_free(void *addr);
 void	free_tab(char **tab);
 void	free_list(t_list *list);
+void	free_envp(t_envp *envp);
 void	free_data(t_data *data);
 
 // ********************* BUILTINS *********************
@@ -124,11 +122,13 @@ int		char_count_env(char *str, char set, int pos);
 char	*ft_putword_env(char *str, char *tab, char set, int pos);
 char	**ft_split_env(char	*str, char set);
 
-
 // str_utils.c
 int		ft_strlen(char *str);
 int		ft_strchr(char *str);
 char	*ft_strdup(char *str);
 char	*ft_strcmp(char *str, char *to_find);
+
+// utils.c
+void	*ft_calloc(size_t n, size_t size);
 
 #endif

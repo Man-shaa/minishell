@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mansha <mansha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 06:20:44 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/23 20:33:10 by mansha           ###   ########.fr       */
+/*   Updated: 2022/10/24 17:58:37 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ int	create_my_env(t_data *data)
 	return (1);
 }
 
-// Cherche la variable PATH qui contient tous les chemins possibles de commandes dans l'environnement
-// Return la variable PATH de l'environnement ou NULL si elle n'a pas ete trouvee
+// Cherche la variable PATH qui contient tous les chemins possibles de
+// commandes dans l'environnement
+// Return PATH de l'environnement ou NULL si elle n'a pas ete trouvee
 char	*find_path_in_env(char **envp)
 {
 	int		i;

@@ -1,33 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alloc_free.c                                       :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mansha <mansha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:11:04 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/23 20:27:34 by mansha           ###   ########.fr       */
+/*   Updated: 2022/10/24 17:54:12 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void	*ft_calloc(size_t n, size_t size)
-{
-	void	*tab;
-	char	*str;
-
-	tab = malloc(n * size);
-	if (!tab)
-		return (NULL);
-	str = tab;
-	while (n > 0)	
-	{
-		n--;
-		str[n] = '\0';
-	}
-	return (tab);
-}
 
 void	ft_free(void *addr)
 {
@@ -53,7 +36,7 @@ void	free_tab(char **tab)
 // Free seulement la structure t_list de t_data
 void	free_list(t_list *list)
 {
-	t_list *save;
+	t_list	*save;
 
 	save = list;
 	while (list)
@@ -66,7 +49,7 @@ void	free_list(t_list *list)
 
 void	free_envp(t_envp *envp)
 {
-	t_envp *save;
+	t_envp	*save;
 
 	save = envp;
 	while (envp)

@@ -2,7 +2,7 @@ NAME		=	minishell
 
 UTILS_DIR	=	utils/
 
-ALLOC_DIR	=	alloc_free/
+FREE_DIR	=	free/
 
 PARSING_DIR	=	parsing/
 
@@ -16,12 +16,13 @@ SRCS		=	main_mateo.c \
 				${BUILTS_DIR}env.c \
 				${BUILTS_DIR}export.c \
 				${PARSING_DIR}parsing.c \
-				${ALLOC_DIR}alloc_free.c \
 				${CREATE_DIR}create_data.c \
 				${CREATE_DIR}create_list.c \
 				${CREATE_DIR}create_env.c \
+				${FREE_DIR}free.c \
 				${UTILS_DIR}split_env.c \
-				${UTILS_DIR}str_utils.c
+				${UTILS_DIR}str_utils.c \
+				${UTILS_DIR}utils.c
 
 OBJS		=	${SRCS:.c=.o}
 
