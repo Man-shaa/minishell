@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/24 23:41:28 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/25 01:11:12 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,20 @@ t_list	*ft_lstlast(t_list *list);
 // ********************* PARSING **********************
 
 // parsing.c
+int		count_words(char *str);
+int		count_chars(char *str, int n);
+char	*ft_putwords(char *str, int n, char *mot);
+// char	*get_word(char *str, int index, char *mot, int n);
 char	**ft_split(char *str, t_data *data);
 
 // parsing_utils.c
 int		count_chars_exp(char *str, int *count, int *n, int *i);
 int		count_words_exp(char *str, int *i);
+// int		ft_putwords_exp(char *str, int *i);
+int		is_in_charset(char c);
+int		get_index(char *str, int n);
+int		get_index_exp(char *str, int *count, int *i, int n);
+
 
 // ********************** PRINT ***********************
 
