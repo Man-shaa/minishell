@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/10/24 22:51:40 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/10/24 22:54:36 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,27 +234,9 @@ char	**ft_split(char *str, t_data *data)
 		printf("chars %d : %d\n", i, count_chars(str, i));
 		tab[i] = ft_calloc(sizeof(char), count_chars(str, i) + 1);
 		tab[i] = ft_putwords(str, i, tab[i]);
-		add_to_list(data, tab[i]);
+		add_last_list(data, tab[i]);
 		i++;
 	}
 	tab[i] = 0;
 	return (tab);
-}	
-
-int	main()
-{
-	char *str = "echo     > m mateo";
-	char	**tab;
-	int		i;
-
-	i = 0;
-	tab = ft_split(str);
-	while (tab[i])
-	{
-		printf("%s\n", tab[i]);
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-	return (0);
 }
