@@ -13,13 +13,15 @@ CREATE_DIR	=	create/
 SRCS		=	main_mateo.c \
 				main_manu.c \
 				print/print.c \
-				${BUILTS_DIR}env.c \
 				${BUILTS_DIR}export.c \
+				${BUILTS_DIR}env.c \
+				${BUILTS_DIR}pwd.c \
 				${PARSING_DIR}parsing.c \
 				${CREATE_DIR}create_data.c \
 				${CREATE_DIR}create_list.c \
 				${CREATE_DIR}create_env.c \
 				${FREE_DIR}free.c \
+				${UTILS_DIR}list_utils.c \
 				${UTILS_DIR}split_env.c \
 				${UTILS_DIR}str_utils.c \
 				${UTILS_DIR}utils.c
