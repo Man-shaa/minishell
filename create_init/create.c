@@ -6,12 +6,13 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 20:16:13 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/18 23:02:53 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/19 10:21:50 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+// Malloc et initialise a NULL la struct t_data
 t_data	*create_data(void)
 {
 	t_data	*data;
@@ -24,6 +25,7 @@ t_data	*create_data(void)
 	return (data);
 }
 
+// Ajouter le resulat du split dans la structure t_list
 t_list	*add_to_list(t_data *data, char *str)
 {
 	data->list = add_last(data->list, str);

@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/10/20 19:13:53 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/10/24 22:51:40 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ int	count_chars(char *str, int n)
 			if (is_in_charset(str[i + 1]) || str[i + 1] == '\0'
 				|| str[i + 1] == ' ' || str[i + 1] == '\t')
 				count++;
+			while (str[i] && (str[i] == 32 || str[i] == '\t'))
+				i++;
 			i++;
 		}
 		chars += count_chars_exp(str, &count, &n, &i);
@@ -175,55 +177,38 @@ char	*ft_putwords(char *str, int n, char *mot)
 	count = 0;
 	while (str[i] && count != n)
 	{
-		while (str[i] == ' ' || str[i] == '\t')
+		while (str[i] && !is_in_charset(str[i]))
+		{
+			while (str[i] && (str[i] == 32 || str[i] == '\t'))
+				i++;
+			if (str[i] == '\0')
+				break;
+			if (count == n)
+			{
+				mot[chars] = str[i];
+				chars++;
+			}
+			if (is_in_charset(str[i + 1]) || str[i + 1] == '\0' ||
+				str[i + 1] == ' ' || str[i + 1] == '\t')
+				count++;
 			i++;
-		if (!is_in_charset(str[i]))
-		{
-			index = i;
-			count += ft_putwords_exp(str, &i);
-			if (count == n)
-				return (get_word(str, index, mot, count));
 		}
-		else
+		if (is_in_charset(str[i]))
 		{
-			index = i;
-			count += count_words_exp(str, &i);
 			if (count == n)
-				return (get_word(str, index, mot, count));
-		}
-	}
-	return (get_word(str, index, mot, count));
-}
-
-char	*get_word(char *str, int index, char *mot, int n)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (i < index)
-		i++;
-	while (i < index + count_chars(str, n))
-	{
-		mot[j] = str[i];
-		i++;
-		j++;
-	}
-	mot[j] = '\0';
-	return (mot);
-}
-
-int	ft_putwords_exp(char *str, int *i)
-{
-	int	count;
-
-	count = 0;
-	while (str[(*i)] && !is_in_charset(str[(*i)]))
-	{
-		if (is_in_charset(str[(*i) + 1]) || str[(*i) + 1] == '\0'
-			|| str[(*i) + 1] == ' ' || str[(*i) + 1] == '\t')
-		{
+			{
+				mot[chars] = str[i];
+				chars++;
+			}
+			if (str[i] != '|' && str[i + 1] == str[i])
+			{
+				i++;
+				if (count == n)
+				{
+					mot[chars] = str[i];
+					chars++;
+				}
+			}
 			count++;
 			return (count);
 		}
@@ -240,6 +225,8 @@ char	**ft_split(char *str, t_data *data)
 	if (!str)
 		return (0);
 	i = 0;
+	if (!str)
+		return (NULL);
 	tab = ft_calloc(sizeof(char *), count_words(str) + 1);
 	printf("words : %d\n", count_words(str));
 	while (i < count_words(str))
@@ -252,22 +239,22 @@ char	**ft_split(char *str, t_data *data)
 	}
 	tab[i] = 0;
 	return (tab);
+}	
+
+int	main()
+{
+	char *str = "echo     > m mateo";
+	char	**tab;
+	int		i;
+
+	i = 0;
+	tab = ft_split(str);
+	while (tab[i])
+	{
+		printf("%s\n", tab[i]);
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+	return (0);
 }
-
-// int	main()
-// {
-// 	char *str = "echo     > m mateo";
-// 	char	**tab;
-// 	int		i;
-
-// 	i = 0;
-// 	tab = ft_split(str);
-// 	while (tab[i])
-// 	{
-// 		printf("%s\n", tab[i]);
-// 		free(tab[i]);
-// 		i++;
-// 	}
-// 	free(tab);
-// 	return (0);
-// }

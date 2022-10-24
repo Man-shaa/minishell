@@ -4,16 +4,22 @@ UTILS_DIR	=	utils/
 
 ALLOC_DIR	=	alloc_free/
 
+ENV_DIR		=	env/
+
 PARSING_DIR	=	parsing/
+
+BUILTS_DIR	=	builtins/
 
 CREATE_DIR	=	create_init/
 
 SRCS		=	main_mateo.c \
 				main_manu.c \
 				print/print.c \
+				${BUILTS_DIR}cd.c \
 				${PARSING_DIR}parsing.c \
 				${ALLOC_DIR}alloc_free.c \
 				${CREATE_DIR}create.c \
+				${ENV_DIR}env.c \
 				${UTILS_DIR}list_utils.c \
 				${UTILS_DIR}str_utils.c
 

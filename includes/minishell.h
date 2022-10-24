@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/20 18:53:38 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/10/24 22:50:42 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ void	free_tab(char **tab);
 void	free_list(t_list *list);
 void	free_data(t_data *data);
 
+// ********************* BUILTINS *********************
+// cd.c
+
+
 // ********************* CREATE ***********************
 
 // create.c
@@ -96,5 +100,6 @@ t_list	*add_last(t_list *list, char *str);
 // str_utils.c
 int		ft_strlen(char *str);
 int		ft_strchr(char *str);
+char	*ft_strcmp(char *str, char *to_find);
 
 #endif
