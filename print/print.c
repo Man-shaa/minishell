@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mansha <mansha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 19:49:19 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/23 20:28:40 by mansha           ###   ########.fr       */
+/*   Updated: 2022/10/24 18:45:32 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ void	print_tab(char **tab)
 	i = 0;
 	if (!tab)
 		return ;
+	printf("\n");
 	while (tab[i])
 	{
 		printf("%s\n", tab[i]);
 		i++;
 	}
-	printf("\n\n");
+	printf("\n");
 }

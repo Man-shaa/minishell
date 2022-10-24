@@ -3,44 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   split_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mansha <mansha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:01:49 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/23 20:25:37 by mansha           ###   ########.fr       */
+/*   Updated: 2022/10/24 19:37:32 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+int	first_sep(char *str, char sep)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != sep)
+		i++;
+	return (i);
+}
+
 int	char_count_env(char *str, char set, int pos)
 {
 	int	i;
-	int	j;
 	int	k;
 
 	i = 0;
-	j = 0;
 	k = 0;
+	if (pos == 0)
+		return (first_sep(str, set));
+	i = first_sep(str, set);
 	while (str[i])
 	{
-		while (str[i] && str[i] == set)
-			i++;
-		while (str[i] && str[i] != set)
-		{
-			if (pos == 0)
-			{
-				if (j == pos)
-					k++;
-			}
-			else if (pos == 1)
-			{
-				if (j >= pos)
-					k++;
-			}
-			if (str[i + 1] == set || str[i + 1] == '\0')
-				j++;
-			i++;
-		}
+		i++;
+		k++;
 	}
 	return (k);
 }
@@ -48,37 +43,25 @@ int	char_count_env(char *str, char set, int pos)
 char	*ft_putword_env(char *str, char *tab, char set, int pos)
 {
 	int	i;
-	int	j;
 	int	k;
 
-	i = 0;
-	j = 0;
+	i = -1;
 	k = 0;
-	while (str[i])
+	if (pos == 0)
 	{
-		while (str[i] && str[i] == set)
-			i++;
-		while (str[i] && str[i] != set)
+		while (++i < first_sep(str, set))
 		{
-			if (pos == 0)
-			{
-				if (j == pos)
-				{
-					tab[k] = str[i];
-					k++;
-				}
-			}
-			else if (pos == 1)
-			{
-				if (j >= pos)
-				{
-					tab[k] = str[i];
-					k++;
-				}
-			}
-			if (str[i + 1] == set || str[i + 1] == '\0')
-				j++;
-			i++;
+			tab[k] = str[i];
+			k++;
+		}
+	}
+	else
+	{
+		i = first_sep(str, set);
+		while (str[i++])
+		{
+			tab[k] = str[i];
+			k++;
 		}
 	}
 	tab[k] = '\0';
