@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/10/24 22:54:36 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/10/25 00:55:28 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@ int	count_words(char *str)
 				return (count);
 			if (is_in_charset(str[i + 1]) || str[i + 1] == '\0'
 				|| str[i + 1] == ' ' || str[i + 1] == '\t')
+			{
 				count++;
+				if (str[i] != '|' && str[i + 1] == str[i])
+					i++;
+			}
 			i++;
 		}
 		count += count_words_exp(str, &i);
@@ -85,10 +89,14 @@ int	count_chars(char *str, int n)
 				chars++;
 			if (is_in_charset(str[i + 1]) || str[i + 1] == '\0'
 				|| str[i + 1] == ' ' || str[i + 1] == '\t')
+			{
 				count++;
+				if (str[i] != '|' && str[i + 1] == str[i])
+					i++;
+			}
+			i++;
 			while (str[i] && (str[i] == 32 || str[i] == '\t'))
 				i++;
-			i++;
 		}
 		chars += count_chars_exp(str, &count, &n, &i);
 	}
@@ -100,7 +108,7 @@ int	count_chars_exp(char *str, int *count, int *n, int *i)
 	int	chars;
 
 	chars = 0;
-	if (is_in_charset(str[(*i)]))
+	while (str[(*i)] && is_in_charset(str[(*i)]) && (*count) != (*n))
 	{
 		if ((*count) == (*n))
 			chars++;
@@ -167,54 +175,64 @@ int	count_chars_exp(char *str, int *count, int *n, int *i)
 // 	return (mot);
 // }
 
-char	*ft_putwords(char *str, int n, char *mot)
+int	get_index(char *str, int n)
 {
 	int	i;
 	int	count;
-	int	index;
+	int	chars;
 
 	i = 0;
 	count = 0;
-	while (str[i] && count != n)
+	chars = 0;
+	while (str[i])
 	{
 		while (str[i] && !is_in_charset(str[i]))
 		{
-			while (str[i] && (str[i] == 32 || str[i] == '\t'))
+			while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 				i++;
-			if (str[i] == '\0')
-				break;
 			if (count == n)
-			{
-				mot[chars] = str[i];
-				chars++;
-			}
-			if (is_in_charset(str[i + 1]) || str[i + 1] == '\0' ||
-				str[i + 1] == ' ' || str[i + 1] == '\t')
+				return (i);
+			if (is_in_charset(str[i + 1]) || str[i + 1] == '\0'
+				|| str[i + 1] == ' ' || str[i + 1] == '\t')
 				count++;
 			i++;
 		}
-		if (is_in_charset(str[i]))
-		{
-			if (count == n)
-			{
-				mot[chars] = str[i];
-				chars++;
-			}
-			if (str[i] != '|' && str[i + 1] == str[i])
-			{
-				i++;
-				if (count == n)
-				{
-					mot[chars] = str[i];
-					chars++;
-				}
-			}
-			count++;
-			return (count);
-		}
+		if (get_index_exp(str, &count, &i, n))
+			return (i);
+	}
+	return (0);
+}
+
+int	get_index_exp(char *str, int *count, int *i, int n)
+{
+	while (str[*i] && (str[*i] == ' ' || str[*i] == '\t'))
+		(*i)++;
+	if (is_in_charset(str[(*i)]))
+	{
+		if ((*count) == n)
+			return (1);
+		if (str[(*i)] != '|' && str[(*i) + 1] == str[(*i)])
+			(*i)++;
+		(*count)++;
 		(*i)++;
 	}
-	return (count);
+	return (0);
+}
+
+char	*ft_putwords(char *str, int n, char *mot)
+{
+	int	i;
+	int	index;
+
+	index = get_index(str, n);
+	i = 0;
+	while (i < count_chars(str, n))
+	{
+		mot[i] = str[index];
+		i++;
+		index++;
+	}
+	return (mot);
 }
 
 char	**ft_split(char *str, t_data *data)
