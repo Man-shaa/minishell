@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 06:20:44 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/24 17:58:37 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/25 03:56:53 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 // Return 1 si la creation a reussi, sinon 0
 int	create_my_env(t_data *data)
 {
-	if (!add_last_env(data, "PWD=A CHERCHER"))
+	if (!add_last_env(data, "OLDPWD"))
 		return (0);
-	if (!add_last_env(data, "OLDPWD (A IMPLEMENTER)"))
+	if (!add_last_env(data, "PWD"))
 		return (0);
 	if (!add_last_env(data, "SHLVL=1 (A INCREMENTER)"))
 		return (0);
@@ -50,17 +50,17 @@ void	print_env(t_envp *envp)
 {
 	while (envp)
 	{
-		if (envp->tab[1])
+		if (envp->tab[1][0] != '\0')
 		{
 			printf("%s=", envp->tab[0]);
 			printf("%s\n", envp->tab[1]);
 		}
 		else
 		{
-			printf("\nSANS VALEUR : ");
-			printf("%s=", envp->tab[0]);
-			printf("%s\n\n", envp->tab[1]);
+			printf("  SANS VALEUR : ");
+			printf("%s\n", envp->tab[0]);
 		}
 		envp = envp->next;
 	}
+	printf("\n");
 }
