@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/25 07:42:55 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/10/25 07:49:16 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,9 @@ void	print_env(t_envp *envp);
 void	print_export(t_envp *envp);
 
 // pwd.c
+void	print_pwd(void);
+void	replace_pwd_my_env(t_envp *envp);
+void	replace_oldpwd_my_env(t_envp *envp);
 
 // unset.c
 
@@ -129,6 +132,9 @@ void	print_tab(char **tab);
 void	print_list(t_list *list);
 
 // ********************** UTILS ***********************
+
+// list_utils.c
+t_envp	*search_node(t_envp *envp, char *str);
 
 // split_normal.c
 int		char_count_env(char *str, char set, int pos);

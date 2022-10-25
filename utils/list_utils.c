@@ -1,15 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/19 05:07:52 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/25 00:26:30 by msharifi         ###   ########.fr       */
+/*   Created: 2022/10/24 22:12:58 by msharifi          #+#    #+#             */
+/*   Updated: 2022/10/24 23:42:55 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// changer oldpwd et pwd avec replace...
+// Cherche un node de t_envp grace au NOM de la variable (envp->tab[0])
+// Return un pointeur sur la premiere occurence, sinon NULL
+t_envp	*search_node(t_envp *envp, char *str)
+{
+	t_envp	*travel;
+
+	travel = envp;
+	while (travel)
+	{
+		if (ft_strcmp(travel->tab[0], str))
+			return (travel);
+		travel = travel->next;
+	}
+	return (NULL);
+}
