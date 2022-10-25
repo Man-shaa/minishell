@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/10/25 06:56:53 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/10/25 07:22:28 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,54 +97,118 @@ int	count_chars(char *str, int n)
 	chars = 0;
 	while (str[i])
 	{
-		while (str[i] && (str[i] == 32 || str[i] == '\t'))
+		if (is_in_charset(str[i]) == 3)
 			i++;
-		while (str[i] && !is_in_charset(str[i]))
-		{
-			// while (str[i] && (str[i] == 32 || str[i] == '\t'))
-			// 	i++;
-			if (str[i] == '\0')
-				return (chars);
-			if (count == n)
-				chars++;
-			if (is_in_charset(str[i + 1]) || str[i + 1] == '\0'
-				|| str[i + 1] == ' ' || str[i + 1] == '\t')
-			{
-				count++;
-				if (str[i] != '|' && str[i + 1] == str[i])
-					i++;
-			}
-			i++;
-			while (str[i] && (str[i] == 32 || str[i] == '\t'))
-				i++;
-		}
-		chars += count_chars_exp(str, &count, &n, &i);
+		else if (!is_in_charset(str[i]))
+			chars += count_chars_cmd(str, &i, &count, n);
+		else if (is_in_charset(str[i]) == 1)
+			chars += count_chars_redir(str, &i, &count, n);
+		else if (is_in_charset(str[i]) == 2)
+			chars += count_chars_pipe(&i, &count, n);
 	}
 	return (chars);
 }
 
-int	count_chars_exp(char *str, int *count, int *n, int *i)
+int	count_chars_cmd(char *str, int *i, int *count, int n)
 {
 	int	chars;
 
 	chars = 0;
-	while (is_in_charset(str[(*i)]))
-	{
-		if ((*count) == (*n))
-			chars++;
-		if (str[(*i)] != '|' && str[(*i) + 1] == str[(*i)])
-		{
-			if ((*count) == (*n))
-				chars++;
-			(*i)++;
-		}
+	if ((*count) == n)
+		chars++;
+	if (is_in_charset(str[(*i) + 1]) || str[(*i) + 1] == '\0')
 		(*count)++;
-		(*i)++;
-						while (str[*i] && (str[*i] == ' ' || str[*i] == '\t'))
-			(*i)++;
-	}
+	(*i)++;
 	return (chars);
 }
+
+int	count_chars_redir(char *str, int *i, int *count, int n)
+{
+	int	chars;
+
+	chars = 0;
+	if ((*count) == n)
+		chars++;
+	if (str[(*i) + 1] == str[(*i)])
+	{
+		if ((*count) == n)
+			chars++;
+		(*i)++;
+	}
+	(*count)++;
+	(*i)++;
+	return (chars);
+}
+
+int	count_chars_pipe(int *i, int *count, int n)
+{
+	int	chars;
+
+	chars = 0;
+	if ((*count) == n)
+		chars++;
+	(*count)++;
+	(*i)++;
+	return (chars);
+}
+
+// int	count_charsd(char *str, int n)
+// {
+// 	int	i;
+// 	int	count;
+// 	int	chars;
+
+// 	i = 0;
+// 	count = 0;
+// 	chars = 0;
+// 	while (str[i])
+// 	{
+// 		while (str[i] && (str[i] == 32 || str[i] == '\t'))
+// 			i++;
+// 		while (str[i] && !is_in_charset(str[i]))
+// 		{
+// 			if (str[i] == '\0')
+// 				return (chars);
+// 			if (count == n)
+// 				chars++;
+// 			if (is_in_charset(str[i + 1]) || str[i + 1] == '\0'
+// 				|| str[i + 1] == ' ' || str[i + 1] == '\t')
+// 			{
+// 				count++;
+// 				if (str[i] != '|' && str[i + 1] == str[i])
+// 					i++;
+// 			}
+// 			i++;
+// 			while (str[i] && (str[i] == 32 || str[i] == '\t'))
+// 				i++;
+// 		}
+// 		chars += count_chars_exp(str, &count, &n, &i);
+// 	}
+// 	return (chars);
+// }
+
+// int	count_chars_exp(char *str, int *count, int *n, int *i)
+// {
+// 	int	chars;
+
+// 	chars = 0;
+// 	while (is_in_charset(str[(*i)]))
+// 	{
+// 		if ((*count) == (*n))
+// 			chars++;
+// 		if (str[(*i)] != '|' && str[(*i) + 1] == str[(*i)])
+// 		{
+// 			if ((*count) == (*n))
+// 				chars++;
+// 			(*i)++;
+// 		}
+// 		(*count)++;
+// 		(*i)++;
+// 						while (str[*i] && (str[*i] == ' ' || str[*i] == '\t'))
+// 			(*i)++;
+// 	}
+// 	return (chars);
+// }
 
 // char	*ft_putwords(char *str, int n, char *mot)
 // {
