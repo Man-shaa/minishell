@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/24 23:44:54 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/10/25 06:38:56 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ int		count_words_exp(char *str, int *i);
 int		is_in_charset(char c);
 int		get_index(char *str, int n);
 int		get_index_exp(char *str, int *count, int *i, int n);
+int		count_words_cmd(char *str, int *i);
+int		count_words_redir(char *str, int *i);
 
 
 // ********************** PRINT ***********************

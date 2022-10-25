@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/24 23:52:37 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/10/25 03:24:45 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	i = 0;
+	printf(" string : \"%s\"\n", av[1]);
 	tab = ft_split(av[1], data);
 	while (tab[i])
 	{

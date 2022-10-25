@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/10/25 00:55:28 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/10/25 06:56:53 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 // return des valeurs en fonction du charset rencontre
 int	is_in_charset(char c)
 {
-	if (c == '<')
+	if (c == '<' || c == '>')
 		return (1);
-	if (c == '>')
-		return (2);
 	if (c == '|')
+		return (2);
+	if (c == ' ' || c == '\t')
 		return (3);
 	return (0);
 }
@@ -33,40 +33,58 @@ int	count_words(char *str)
 	count = 0;
 	while (str[i])
 	{
-		while (str[i] && !is_in_charset(str[i]))
+		if (is_in_charset(str[i]) == 3)
+			i++;
+		else if (!is_in_charset(str[i]))
+			count += count_words_cmd(str, &i);
+		else if (is_in_charset(str[i]) == 1)
+			count += count_words_redir(str, &i);
+		else if (is_in_charset(str[i]) == 2)
 		{
-			while (str[i] && (str[i] == 32 || str[i] == '\t'))
-				i++;
-			if (str[i] == '\0')
-				return (count);
-			if (is_in_charset(str[i + 1]) || str[i + 1] == '\0'
-				|| str[i + 1] == ' ' || str[i + 1] == '\t')
-			{
-				count++;
-				if (str[i] != '|' && str[i + 1] == str[i])
-					i++;
-			}
+			count++;
 			i++;
 		}
-		count += count_words_exp(str, &i);
 	}
 	return (count);
 }
 
-int	count_words_exp(char *str, int *i)
+int	count_words_cmd(char *str, int *i)
 {
 	int	count;
 
 	count = 0;
-	if (is_in_charset(str[(*i)]))
-	{
-		if (str[(*i)] != '|' && str[(*i) + 1] == str[(*i)])
-			(*i)++;
+	if (is_in_charset(str[(*i) + 1]) || str[(*i) + 1] == '\0')
 		count++;
-		(*i)++;
-	}
+	(*i)++;
 	return (count);
 }
+
+int	count_words_redir(char *str, int *i)
+{
+	int	count;
+
+	count = 0;
+	if (str[(*i) + 1] == str[(*i)])
+		(*i)++;
+	count++;
+	(*i)++;
+	return (count);
+}
+
+// int	count_words_exp(char *str, int *i)
+// {
+// 	int	count;
+
+// 	count = 0;
+// 	if (is_in_charset(str[(*i)]))
+// 	{
+// 		if (str[(*i)] != '|' && str[(*i) + 1] == str[(*i)])
+// 			(*i)++;
+// 		count++;
+// 		(*i)++;
+// 	}
+// 	return (count);
+// }
 
 int	count_chars(char *str, int n)
 {
@@ -79,10 +97,12 @@ int	count_chars(char *str, int n)
 	chars = 0;
 	while (str[i])
 	{
+		while (str[i] && (str[i] == 32 || str[i] == '\t'))
+			i++;
 		while (str[i] && !is_in_charset(str[i]))
 		{
-			while (str[i] && (str[i] == 32 || str[i] == '\t'))
-				i++;
+			// while (str[i] && (str[i] == 32 || str[i] == '\t'))
+			// 	i++;
 			if (str[i] == '\0')
 				return (chars);
 			if (count == n)
@@ -108,7 +128,7 @@ int	count_chars_exp(char *str, int *count, int *n, int *i)
 	int	chars;
 
 	chars = 0;
-	while (str[(*i)] && is_in_charset(str[(*i)]) && (*count) != (*n))
+	while (is_in_charset(str[(*i)]))
 	{
 		if ((*count) == (*n))
 			chars++;
@@ -120,6 +140,8 @@ int	count_chars_exp(char *str, int *count, int *n, int *i)
 		}
 		(*count)++;
 		(*i)++;
+						while (str[*i] && (str[*i] == ' ' || str[*i] == '\t'))
+			(*i)++;
 	}
 	return (chars);
 }
@@ -186,6 +208,8 @@ int	get_index(char *str, int n)
 	chars = 0;
 	while (str[i])
 	{
+		while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+			i++;
 		while (str[i] && !is_in_charset(str[i]))
 		{
 			while (str[i] && (str[i] == ' ' || str[i] == '\t'))
