@@ -15,7 +15,10 @@ SRCS		=	main_mateo.c \
 				print/print.c \
 				${BUILTS_DIR}env.c \
 				${BUILTS_DIR}export.c \
-				${PARSING_DIR}parsing.c \
+				${PARSING_DIR}split.c \
+				${PARSING_DIR}split_utils.c \
+				${PARSING_DIR}words_utils.c \
+				${PARSING_DIR}chars_utils.c \
 				${CREATE_DIR}create_data.c \
 				${CREATE_DIR}create_list.c \
 				${CREATE_DIR}create_env.c \
