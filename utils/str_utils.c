@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:32:11 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/24 23:35:45 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/26 17:36:20 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,13 @@ char	*ft_strdup(char *str)
 	}
 	dup[i] = '\0';
 	return (dup);
+}
+
+void	ft_putstr(char *str)
+{
+	if (!str)
+		return ;
+	write(1, str, ft_strlen(str));
 }
 
 // Cherche le type de redir

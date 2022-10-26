@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/26 17:08:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/26 18:50:20 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	free_data(t_data *data);
 // cd.c
 
 // echo.c
+void	echo(char *str);
 
 // env.c
 char	*find_path_in_env(char **envp);
@@ -150,6 +151,7 @@ char	**ft_split_env(char	*str, char set);
 // str_utils.c
 int		ft_strlen(char *str);
 int		ft_strchr(char *str);
+void	ft_putstr(char *str);
 char	*ft_strdup(char *str);
 char	*ft_strcmp(char *str, char *to_find);
 
