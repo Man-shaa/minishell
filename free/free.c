@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:11:04 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/24 17:54:12 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:06:30 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	free_tab(char **tab)
 	ft_free(tab);
 }
 
-// Free seulement la structure t_list de t_data
+// Free la structure t_list de t_data
 void	free_list(t_list *list)
 {
 	t_list	*save;
@@ -47,6 +47,7 @@ void	free_list(t_list *list)
 	}
 }
 
+// Free la structure t_envp de t_data
 void	free_envp(t_envp *envp)
 {
 	t_envp	*save;

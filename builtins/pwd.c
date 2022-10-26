@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:03 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/25 03:50:10 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:56:28 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	print_pwd(void)
 	ft_free(buf);
 }
 
+// Met a jour la variable $OLDPWD dans t_envp
 void	replace_oldpwd_my_env(t_envp *envp)
 {
 	t_envp	*tmp;
@@ -36,6 +37,7 @@ void	replace_oldpwd_my_env(t_envp *envp)
 	tmp->tab[1] = ft_strdup(search_node(envp, "PWD")->tab[1]);
 }
 
+// Met a jour les variables $OLDPWD et $PWD et dans t_envp
 void	replace_pwd_my_env(t_envp *envp)
 {
 	t_envp	*tmp;

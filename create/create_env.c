@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:07:42 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/24 23:31:14 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:27:38 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	create_env(t_data *data, char **envp)
 	int		env_lgt;
 
 	env_lgt = env_lenght(envp);
-	if (env_lgt == 0)
+	if (env_lgt != 0)
 	{
 		if (!create_my_env(data))
 			return (0);
@@ -36,6 +36,21 @@ int	create_env(t_data *data, char **envp)
 			return (0);
 		i++;
 	}
+	return (1);
+}
+
+// Cree un environnement minial si l'environnement de bash n'existe pas
+// Return 1 si la creation a reussi, sinon 0
+int	create_my_env(t_data *data)
+{
+	if (!add_last_env(data, "OLDPWD"))
+		return (0);
+	// replace_oldpwd_my_env(data->envp);
+	if (!add_last_env(data, "PWD"))
+		return (0);
+	replace_pwd_my_env(data->envp);
+	if (!add_last_env(data, "SHLVL=1"))
+		return (0);
 	return (1);
 }
 

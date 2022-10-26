@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/25 11:35:42 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:28:02 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	free_data(t_data *data);
 // echo.c
 
 // env.c
-int		create_my_env(t_data *data);
 char	*find_path_in_env(char **envp);
 void	print_env(t_envp *envp);
 
@@ -94,6 +93,7 @@ t_data	*create_data(char **envp);
 
 // create_env.c
 int		create_env(t_data *data, char **envp);
+int		create_my_env(t_data *data);
 int		env_lenght(char **envp);
 t_envp	*ft_lstnew_env(char *str);
 int		add_last_env(t_data *data, char *str);
