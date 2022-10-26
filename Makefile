@@ -10,13 +10,18 @@ BUILTS_DIR	=	builtins/
 
 CREATE_DIR	=	create/
 
+CORE_DIR	=	core/
+
 SRCS		=	main_mateo.c \
 				main_manu.c \
 				print/print.c \
+				${CORE_DIR}core.c \
 				${BUILTS_DIR}export.c \
 				${BUILTS_DIR}env.c \
-				${BUILTS_DIR}pwd.c \
-				${PARSING_DIR}parsing.c \
+				${PARSING_DIR}split.c \
+				${PARSING_DIR}split_utils.c \
+				${PARSING_DIR}words_utils.c \
+				${PARSING_DIR}chars_utils.c \
 				${CREATE_DIR}create_data.c \
 				${CREATE_DIR}create_list.c \
 				${CREATE_DIR}create_env.c \
@@ -36,13 +41,13 @@ GREEN		=	\033[1;32m
 
 DEFAULT		=	\033[0m
 
-CFLAGS		=	-Wall -Werror -Wextra -g3
+CFLAGS		=	-Wall -Werror -Wextra -g3 
 
 .c.o:
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 $(NAME):	${OBJS}
-		${CC} ${CFLAGS} ${OBJS} -o ${NAME}
+		${CC} ${CFLAGS} ${OBJS} -o ${NAME} -lreadline
 
 all:		${NAME}
 
