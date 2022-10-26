@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:08:53 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/10/26 16:37:20 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/26 17:13:12 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ int	main(int ac, char **av, char **envp)
 	if (!data)
 		return (1);
 	print_export(data->envp);
-	add_last_env(data, "truc");
-	printf("\nAFTER :\n\n");
+	export(data, "a=truc");
+	printf("\nAFTER ADD :\n\n");
+	print_export(data->envp);
+	printf("\nAFTER DELETE :\n\n");
+	unset(data->envp, "a");
 	print_export(data->envp);
 	free_data(data);
 	return (0);

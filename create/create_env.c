@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:07:42 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/26 16:27:38 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/26 17:08:09 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	create_env(t_data *data, char **envp)
 	env = data->envp;
 	while (i < env_lgt)
 	{
-		if (!add_last_env(data, envp[i]))
+		if (!export(data, envp[i]))
 			return (0);
 		i++;
 	}
@@ -43,13 +43,13 @@ int	create_env(t_data *data, char **envp)
 // Return 1 si la creation a reussi, sinon 0
 int	create_my_env(t_data *data)
 {
-	if (!add_last_env(data, "OLDPWD"))
+	if (!export(data, "OLDPWD"))
 		return (0);
 	// replace_oldpwd_my_env(data->envp);
-	if (!add_last_env(data, "PWD"))
+	if (!export(data, "PWD"))
 		return (0);
 	replace_pwd_my_env(data->envp);
-	if (!add_last_env(data, "SHLVL=1"))
+	if (!export(data, "SHLVL=1"))
 		return (0);
 	return (1);
 }
@@ -79,26 +79,4 @@ t_envp	*ft_lstnew_env(char *str)
 	new->tab = ft_split_env(str, '=');
 	new->next = NULL;
 	return (new);
-}
-
-// Ajoute un node a la fin de la structure t_envp
-// Return 1 si l'operation a reussie, sinon 0
-int	add_last_env(t_data *data, char *str)
-{
-	t_envp	*last;
-	t_envp	*tmp;
-
-	tmp = data->envp;
-	last = ft_lstnew_env(str);
-	if (!last)
-		return (0);
-	if (!data->envp)
-	{
-		data->envp = last;
-		return (1);
-	}
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = last;
-	return (1);
 }

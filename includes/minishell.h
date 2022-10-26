@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/26 16:28:02 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/26 17:08:09 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	replace_pwd_my_env(t_envp *envp);
 void	replace_oldpwd_my_env(t_envp *envp);
 
 // unset.c
+void	unset(t_envp *envp, char *str);
 
 // ******************* CREATE_INIT ********************
 
@@ -96,7 +97,7 @@ int		create_env(t_data *data, char **envp);
 int		create_my_env(t_data *data);
 int		env_lenght(char **envp);
 t_envp	*ft_lstnew_env(char *str);
-int		add_last_env(t_data *data, char *str);
+int		export(t_data *data, char *str);
 
 // create_list.c
 int		add_last_list(t_data *data, char *str);

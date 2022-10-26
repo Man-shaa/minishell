@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 06:20:44 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/26 16:45:22 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:54:05 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ char	*find_path_in_env(char **envp)
 	}
 	return (NULL);
 }
-
-
 
 // Print l'environnement dans t_envp
 void	print_env(t_envp *envp)
