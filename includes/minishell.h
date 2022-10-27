@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/26 18:50:20 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/27 16:47:09 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,9 @@ void	print_env(t_envp *envp);
 // exit.c
 
 // export.c
+int		export(t_data *data, char *str);
+int		replace_value(t_envp *node, char *value);
+int		already_exist(t_envp *envp, char *str);
 void	print_export(t_envp *envp);
 
 // pwd.c
@@ -86,7 +89,7 @@ void	replace_pwd_my_env(t_envp *envp);
 void	replace_oldpwd_my_env(t_envp *envp);
 
 // unset.c
-void	unset(t_envp *envp, char *str);
+void	unset(t_data *data, char *str);
 
 // ******************* CREATE_INIT ********************
 
@@ -98,7 +101,6 @@ int		create_env(t_data *data, char **envp);
 int		create_my_env(t_data *data);
 int		env_lenght(char **envp);
 t_envp	*ft_lstnew_env(char *str);
-int		export(t_data *data, char *str);
 
 // create_list.c
 int		add_last_list(t_data *data, char *str);
@@ -154,6 +156,9 @@ int		ft_strchr(char *str);
 void	ft_putstr(char *str);
 char	*ft_strdup(char *str);
 char	*ft_strcmp(char *str, char *to_find);
+
+// str_utils_2.c
+int	is_same(char *s1, char *s2);
 
 // utils.c
 void	*ft_calloc(size_t n, size_t size);

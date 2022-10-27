@@ -32,6 +32,7 @@ SRCS		=	main_mateo.c \
 				${UTILS_DIR}list_utils.c \
 				${UTILS_DIR}split_env.c \
 				${UTILS_DIR}str_utils.c \
+				${UTILS_DIR}str_utils_2.c \
 				${UTILS_DIR}utils.c
 
 OBJS		=	${SRCS:.c=.o}
