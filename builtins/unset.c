@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:59 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/26 17:04:47 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/27 15:51:07 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ void	unset(t_envp *envp, char *str)
 		before = before->next;
 	before->next = node->next;
 	free_tab(node->tab);
+	ft_free(node);
 }
