@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:08:53 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/10/29 17:38:14 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/29 18:20:36 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 // export HA="""" doit ignore TOUS les "" pour en afficher que deux lors du print
 // export HA='' chelou (donne HA="")
-// export += a gerer
 
 int	main(int ac, char **av, char **envp)
 {
@@ -31,13 +30,17 @@ int	main(int ac, char **av, char **envp)
 	data = create_data(envp);
 	if (!data)
 		return (1);
-	export(data, "HA=premier");
+	if (!export(data, "HA=premier"))
+		return (free_data(data), 1);
 	print_export(data->envp);
 	printf("\nAFTER ADD :\n\n");
-	export(data, "HA+=deuxieme");
+	if (!export(data, "HA++=deuxieme"))
+		return (free_data(data), 2);
 	print_export(data->envp);
 	printf("\nAFTER REPLACE :\n\n");
-	export(data, "HA=troisieme");
+	if (!export(data, "HA=troisieme"))
+		return (free_data(data), 3);
+	print_export(data->envp);
 	printf("\nAFTER UNSET :\n\n");
 	unset(data, "HA");
 	print_export(data->envp);

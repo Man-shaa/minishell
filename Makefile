@@ -35,6 +35,7 @@ SRCS		=	main_mateo.c \
 				${PARSING_DIR}words_utils.c \
 				${PARSING_DIR}chars_utils.c \
 				\
+				${UTILS_DIR}export_utils.c \
 				${UTILS_DIR}list_utils.c \
 				${UTILS_DIR}split_env.c \
 				${UTILS_DIR}str_utils.c \

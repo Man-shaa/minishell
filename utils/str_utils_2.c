@@ -6,11 +6,19 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:39:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/29 17:33:14 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/29 17:58:40 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	ft_isalnum(int a)
+{
+	if ((a >= 'a' && a <= 'z') || (a >= 'A' && a <= 'Z')
+		|| (a >= '0' && a <= '9'))
+		return (1);
+	return (0);
+}
 
 // Compare 2 chaines de caracteres
 // Return 1 si elles sont identiques, sinon 0

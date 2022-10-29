@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/29 16:45:02 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/29 18:12:03 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	print_env(t_envp *envp);
 
 // export.c
 int		export(t_data *data, char *str);
-int		replace_value(t_envp *node, char *value);
 int		already_exist(t_envp *envp, char *str);
 void	print_export(t_envp *envp);
 
@@ -142,6 +141,11 @@ void	print_list(t_list *list);
 
 // ********************** UTILS ***********************
 
+// export_utis.c
+int		is_concat(t_envp *node, char **tab);
+int		is_valid_name(char *str);
+int		replace_value(t_envp *node, char *value);
+
 // list_utils.c
 t_envp	*search_node(t_envp *envp, char *str);
 
@@ -158,7 +162,8 @@ char	*ft_strdup(char *str);
 char	*ft_strcmp(char *str, char *to_find);
 
 // str_utils_2.c
-int	is_same(char *s1, char *s2);
+int		ft_isalnum(int a);
+int		is_same(char *s1, char *s2);
 char	*ft_strjoin(char *s1, char *s2);
 
 // utils.c
