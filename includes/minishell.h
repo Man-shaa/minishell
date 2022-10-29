@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/27 16:47:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/29 16:45:02 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ char	*ft_strcmp(char *str, char *to_find);
 
 // str_utils_2.c
 int	is_same(char *s1, char *s2);
+char	*ft_strjoin(char *s1, char *s2);
 
 // utils.c
 void	*ft_calloc(size_t n, size_t size);
