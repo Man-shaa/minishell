@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:32:11 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/29 20:27:41 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/30 18:59:23 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_putstr(char *str)
 
 // Cherche le type de redir
 // Return le type ou 0 si str ne correspond a aucun connu
-int	ft_strchr(char *str)
+int	redir_type(char *str)
 {
 	if (!str)
 		return (0);

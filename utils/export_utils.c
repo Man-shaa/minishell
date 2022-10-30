@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 17:49:30 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/29 20:23:27 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/30 19:15:24 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,3 @@ int	replace_value(t_envp *node, char *value)
 		return (0);
 	return (1);
 }
-

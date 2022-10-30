@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:39:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/29 20:18:59 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/30 19:15:36 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,47 @@ char	*ft_strjoin(char *s1, char *s2)
 		j++;
 	}
 	return (dest);
+}
+
+// Cherche la premiere occurence de c dans str
+// Return 1 si aucune occurence a ete trouvee, sinon return 0
+int	ft_strchr(char *str, char c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != c)
+		i++;
+	if (!str[i])
+		return (1);
+	return (0);
+}
+
+// Remplace tous les caracteres de charset dans str puis free str
+// Return une chaine de caractere sans charset ou NULL (probelem malloc)
+char	*ignore_charset(char *str, char *charset)
+{
+	int		i;
+	int		j;
+	char	*dup;
+	
+	i = 0;
+	j = 0;
+	if (!str)
+		return (NULL);
+	while (str[i++])
+		if (ft_strchr(charset, str[i]))
+			j++;
+	dup = ft_calloc(j + 1, 1);
+	if (!dup)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if (ft_strchr(charset, str[i]))
+			dup[j++] = str[i];
+		i++;
+	}
+	return (ft_free(str), dup);
 }

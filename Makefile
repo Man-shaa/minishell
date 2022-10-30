@@ -16,7 +16,7 @@ SRCS		=	main_mateo.c \
 				main_manu.c \
 				print/print.c \
 				\
-				${BUILTS_DIR}echo.c \
+				${BUILTS_DIR}cd.c \
 				${BUILTS_DIR}env.c \
 				${BUILTS_DIR}export.c \
 				${BUILTS_DIR}pwd.c \
@@ -35,8 +35,8 @@ SRCS		=	main_mateo.c \
 				${PARSING_DIR}words_utils.c \
 				${PARSING_DIR}chars_utils.c \
 				\
+				${UTILS_DIR}env_list_utils.c \
 				${UTILS_DIR}export_utils.c \
-				${UTILS_DIR}list_utils.c \
 				${UTILS_DIR}split_env.c \
 				${UTILS_DIR}str_utils.c \
 				${UTILS_DIR}str_utils_2.c \

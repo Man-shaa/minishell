@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:08:53 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/10/29 20:07:41 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/30 19:29:46 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,16 @@ int	main(int ac, char **av, char **envp)
 	data = create_data(envp);
 	if (!data)
 		return (1);
-	if (!export(data, "HA+=premier"))
-		return (free_data(data), 1);
-	print_export(data->envp);
-	printf("\nAFTER ADD :\n\n");
-	if (!export(data, "HA+=deuxieme"))
+	if (!export(data, "HA=\"premier\""))
 		return (free_data(data), 2);
-	print_export(data->envp);
-	printf("\nAFTER REPLACE :\n\n");
-	if (!export(data, "HA=troisieme"))
-		return (free_data(data), 3);
-	print_export(data->envp);
-	printf("\nAFTER UNSET :\n\n");
-	unset(data, "HA");
-	unset(data, "HA");
-	print_export(data->envp);
+	print_env(data->envp);
+	// if (!export(data, "HA+=deuxieme"))
+	// 	return (3);
+	// print_env(data->envp);
+	// if (!export(data, "HA=troisieme"))
+	// 	return (4);
+	// print_env(data->envp);
+	// unset(data, "HA");
 	free_data(data);
 	return (0);
 }

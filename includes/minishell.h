@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/29 20:19:25 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/30 19:05:19 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ int		is_concat(char *str);
 int		concat(t_envp *node, char **tab);
 int		is_valid_name(char *str);
 int		replace_value(t_envp *node, char *value);
+char	*ignore_charset(char *str, char *charset);
 
 // list_utils.c
 t_envp	*search_node(t_envp *envp, char *str);
@@ -157,7 +158,7 @@ char	**ft_split_env(char	*str, char set);
 
 // str_utils.c
 int		ft_strlen(char *str);
-int		ft_strchr(char *str);
+int		redir_type(char *str);
 void	ft_putstr(char *str);
 char	*ft_strndup(char *str, int n);
 char	*ft_strcmp(char *str, char *to_find);
@@ -166,6 +167,7 @@ char	*ft_strcmp(char *str, char *to_find);
 int		ft_isalnum(int a);
 int		is_same(char *s1, char *s2);
 char	*ft_strjoin(char *s1, char *s2);
+int		ft_strchr(char *str, char c);
 
 // utils.c
 void	*ft_calloc(size_t n, size_t size);

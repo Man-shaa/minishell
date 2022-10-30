@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_utils.c                                       :+:      :+:    :+:   */
+/*   env_list_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 22:12:58 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/29 20:22:20 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/30 19:29:07 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ t_envp	*ft_lstnew_env(char *str)
 	{
 		var = ft_strndup(tab[0], 0);
 		ft_free(tab[0]);
-		tab[0] = ft_strndup(var, ft_strlen(var) - 1);
+		// var = ignore_charset(var, "\"");
+		tab[0] = ft_strndup(var, ft_strlen(var) - 10000);
 		ft_free(var);
 	}
 	new->tab = tab;
