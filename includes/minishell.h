@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/25 11:35:42 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/10/29 16:45:02 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,18 @@ void	free_data(t_data *data);
 // cd.c
 
 // echo.c
+void	echo(char *str);
 
 // env.c
-int		create_my_env(t_data *data);
 char	*find_path_in_env(char **envp);
 void	print_env(t_envp *envp);
 
 // exit.c
 
 // export.c
+int		export(t_data *data, char *str);
+int		replace_value(t_envp *node, char *value);
+int		already_exist(t_envp *envp, char *str);
 void	print_export(t_envp *envp);
 
 // pwd.c
@@ -86,6 +89,7 @@ void	replace_pwd_my_env(t_envp *envp);
 void	replace_oldpwd_my_env(t_envp *envp);
 
 // unset.c
+void	unset(t_data *data, char *str);
 
 // ******************* CREATE_INIT ********************
 
@@ -94,9 +98,9 @@ t_data	*create_data(char **envp);
 
 // create_env.c
 int		create_env(t_data *data, char **envp);
+int		create_my_env(t_data *data);
 int		env_lenght(char **envp);
 t_envp	*ft_lstnew_env(char *str);
-int		add_last_env(t_data *data, char *str);
 
 // create_list.c
 int		add_last_list(t_data *data, char *str);
@@ -149,8 +153,13 @@ char	**ft_split_env(char	*str, char set);
 // str_utils.c
 int		ft_strlen(char *str);
 int		ft_strchr(char *str);
+void	ft_putstr(char *str);
 char	*ft_strdup(char *str);
 char	*ft_strcmp(char *str, char *to_find);
+
+// str_utils_2.c
+int	is_same(char *s1, char *s2);
+char	*ft_strjoin(char *s1, char *s2);
 
 // utils.c
 void	*ft_calloc(size_t n, size_t size);
