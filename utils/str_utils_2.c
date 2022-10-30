@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:39:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/29 17:58:40 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/29 20:18:59 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ char	*ft_strjoin(char *s1, char *s2)
 	i = 0;
 	j = 0;
 	if (!s1)
-		return (ft_strdup(s1));
+		return (ft_strndup(s1, 0));
 	if (!s2)
-		return (ft_strdup(s2));
+		return (ft_strndup(s2, 0));
 	dest = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, 1);
 	if (!dest)
 		return (0);

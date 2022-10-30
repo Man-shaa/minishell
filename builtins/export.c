@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:43 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/29 18:15:07 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/29 20:09:40 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int	already_exist(t_envp *envp, char *str)
 	{
 		if (is_same(travel->tab[0], tab[0]))
 		{
-			if (is_concat(travel, tab))
+			if (concat(travel, tab))
 				return (free_tab(tab), 1);
 			if (!replace_value(travel, tab[1]))
-				return (free_tab(tab), 0);
+				return (free_tab(tab), 1);
 			return (free_tab(tab), 1);
 		}
 		travel = travel->next;

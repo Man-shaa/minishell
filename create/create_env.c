@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:07:42 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/27 17:01:55 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/29 20:12:14 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,4 @@ int	env_lenght(char **envp)
 	while (envp[i])
 		i++;
 	return (i);
-}
-
-// Cree un nouveau node pour la structure t_envp
-// Return un pointeur sur t_envp ou NULL si l'allocation a rate 
-t_envp	*ft_lstnew_env(char *str)
-{
-	t_envp	*new;
-
-	new = ft_calloc(1, sizeof(t_envp));
-	if (!new)
-		return (0);
-	new->tab = ft_split_env(str, '=');
-	new->next = NULL;
-	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/29 18:12:03 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/29 20:19:25 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ t_data	*create_data(char **envp);
 int		create_env(t_data *data, char **envp);
 int		create_my_env(t_data *data);
 int		env_lenght(char **envp);
-t_envp	*ft_lstnew_env(char *str);
 
 // create_list.c
 int		add_last_list(t_data *data, char *str);
@@ -142,12 +141,14 @@ void	print_list(t_list *list);
 // ********************** UTILS ***********************
 
 // export_utis.c
-int		is_concat(t_envp *node, char **tab);
+int		is_concat(char *str);
+int		concat(t_envp *node, char **tab);
 int		is_valid_name(char *str);
 int		replace_value(t_envp *node, char *value);
 
 // list_utils.c
 t_envp	*search_node(t_envp *envp, char *str);
+t_envp	*ft_lstnew_env(char *str);
 
 // split_normal.c
 int		char_count_env(char *str, char set, int pos);
@@ -158,7 +159,7 @@ char	**ft_split_env(char	*str, char set);
 int		ft_strlen(char *str);
 int		ft_strchr(char *str);
 void	ft_putstr(char *str);
-char	*ft_strdup(char *str);
+char	*ft_strndup(char *str, int n);
 char	*ft_strcmp(char *str, char *to_find);
 
 // str_utils_2.c
