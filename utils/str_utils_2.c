@@ -78,7 +78,7 @@ int	ft_strchr(char *str, char c)
 }
 
 // Remplace tous les caracteres de charset dans str puis free str
-// Return une chaine de caractere sans charset ou NULL (probelem malloc)
+// Return une chaine de caractere sans charset ou NULL (probleme malloc)
 char	*ignore_charset(char *str, char *charset)
 {
 	int		i;

@@ -58,7 +58,7 @@ CFLAGS		=	-Wall -Werror -Wextra -g3
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 $(NAME):	${OBJS}
-		${CC} ${CFLAGS} ${OBJS} -o ${NAME} -lreadline
+		${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 
 all:		${NAME}
 

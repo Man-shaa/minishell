@@ -29,11 +29,10 @@ t_envp	*search_node(t_envp *envp, char *str)
 }
 
 // Cree un nouveau node pour la structure t_envp
-// Return un pointeur sur t_envp ou NULL si l'allocation a rate 
+// Return un pointeur sur t_envp ou NULL si l'allocation a rate
 t_envp	*ft_lstnew_env(char *str)
 {
 	t_envp	*new;
-	char	*var;
 	char	**tab;
 
 	tab = ft_split_env(str, '=');
@@ -42,14 +41,7 @@ t_envp	*ft_lstnew_env(char *str)
 	new = ft_calloc(1, sizeof(t_envp));
 	if (!new)
 		return (0);
-	if (is_concat(tab[0]))
-	{
-		var = ft_strndup(tab[0], 0);
-		ft_free(tab[0]);
-		// var = ignore_charset(var, "\"");
-		tab[0] = ft_strndup(var, ft_strlen(var) - 10000);
-		ft_free(var);
-	}
+	tab[1] = ignore_charset(tab[1], "\'\"");
 	new->tab = tab;
 	new->next = NULL;
 	return (new);

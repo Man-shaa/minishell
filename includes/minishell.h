@@ -17,8 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stddef.h>
-# include <readline/readline.h>
-# include <readline/history.h>
+// # include <readline/readline.h>
+// # include <readline/history.h>
 
 # define WORD	1
 # define IN		2 // <	lire dans 
@@ -168,6 +168,7 @@ int		ft_isalnum(int a);
 int		is_same(char *s1, char *s2);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strchr(char *str, char c);
+char	*ignore_charset(char *str, char *charset);
 
 // utils.c
 void	*ft_calloc(size_t n, size_t size);

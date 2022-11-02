@@ -44,6 +44,7 @@ int	concat(t_envp *node, char **tab)
 		if (!tab_1)
 			return (0);
 		ft_free(node->tab[1]);
+		tab[1] = ignore_charset(tab[1], "\'\"");
 		node->tab[1] = ft_strjoin(tab_1, tab[1]);
 		ft_free(tab_1);
 		if (!node->tab[1])
@@ -53,14 +54,14 @@ int	concat(t_envp *node, char **tab)
 	return (0);
 }
 
-// parsing de ce la variable d'env que veut definir l'utilisateur
+// parsing de la variable d'env que veut definir l'utilisateur
 // Return 1 si c'est conforme, sinon 0 + msg d'erreur
 int	is_valid_name(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (str[i] && str[i] != '=')
 	{
 		if (!ft_isalnum((int)str[i]))
 			if (str[i] != '=' && (str[i] != '+' || str[i + 1] != '='))
