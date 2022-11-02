@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/30 19:05:19 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:54:19 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	free_data(t_data *data);
 // cd.c
 
 // echo.c
-void	echo(char *str);
+void	echo(t_data *data, char *str);
 
 // env.c
 char	*find_path_in_env(char **envp);

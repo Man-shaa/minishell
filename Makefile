@@ -17,6 +17,7 @@ SRCS		=	main_mateo.c \
 				print/print.c \
 				\
 				${BUILTS_DIR}cd.c \
+				${BUILTS_DIR}echo.c \
 				${BUILTS_DIR}env.c \
 				${BUILTS_DIR}export.c \
 				${BUILTS_DIR}pwd.c \
