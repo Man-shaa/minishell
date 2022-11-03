@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:39:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/02 18:59:57 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/03 16:39:45 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	ft_strchr(char *str, char c)
 }
 
 // Remplace tous les caracteres de charset dans str puis free str
-// Return une chaine de caractere sans charset ou NULL (probleme malloc)
+// Return une chaine de caractere sans charset ou NULL
 char	*ignore_charset(char *str, char *charset)
 {
 	int		i;
@@ -103,5 +103,6 @@ char	*ignore_charset(char *str, char *charset)
 			dup[j++] = str[i];
 		i++;
 	}
-	return (ft_free(str), dup);
+	ft_free(str);
+	return (dup);
 }
