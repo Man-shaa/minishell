@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:08:53 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/03 16:49:21 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/03 17:58:05 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,16 @@
 // Quand export [VAR]=  le split tej le '=' donc pas moyen d'afficher juste "VAR="
 // Comment gerer echo $(pwd), echo ${PWD}, bref echo d'une variable d'env ????
 
-// echo $(pwd)
-// echo $PWD
-// echo ${PWD}
-
 int	main(int ac, char **av, char **envp)
 {
 	t_data	*data;
-	char	*str;
 
-	str = ft_strndup("${HA)", 0);
 	(void)ac;
 	(void)av;
 	data = create_data(envp);
 	if (!data)
 		return (1);
-	if (!export(data, "HA=hello !"))
-		return (free_data(data), 2);
-	echo(data, str);
+	cd(data, "..");
 	free_data(data);
 	return (0);
 }

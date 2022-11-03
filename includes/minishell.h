@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/02 18:54:19 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/03 17:57:59 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	free_data(t_data *data);
 // ********************* BUILTINS *********************
 
 // cd.c
+int		cd(t_data *data, char *str);
 
 // echo.c
 void	echo(t_data *data, char *str);
