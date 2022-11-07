@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 07:33:48 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/10/25 07:40:04 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:37:40 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,17 @@ int	count_words_redir(char *str, int *i)
 	count++;
 	(*i)++;
 	return (count);
+}
+
+int	count_words_quote(char *str, int *i, int *count)
+{
+	while (str[*i] && str[(*i)] != '"')
+		(*i)++;
+	if (str[(*i)] == '"')
+	{
+		(*i)++;
+		(*count)++;
+		return (1);
+	}
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/29 16:45:02 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:13:26 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,11 +123,15 @@ int		get_index_exp(char *str, int *count, int *i, int n);
 // words_utils.c
 int		count_words_cmd(char *str, int *i);
 int		count_words_redir(char *str, int *i);
+int		count_words_quote(char *str, int *i, int *count);
+
 
 // chars_utils.c
 int		count_chars_cmd(char *str, int *i, int *count, int n);
 int		count_chars_redir(char *str, int *i, int *count, int n);
 int		count_chars_pipe(int *i, int *count, int n);
+int		count_chars_quote(char *str, int *i, int *count, int n);
+
 
 // ********************** CORE ************************
 

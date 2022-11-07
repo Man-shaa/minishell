@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:07:42 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/27 17:01:55 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:37:23 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // Return 1 si la creation a reussie, sinon 0
 int	create_env(t_data *data, char **envp)
 {
-	t_envp	*env;
+	// t_envp	*env;/
 	int		i;
 	int		env_lgt;
 
@@ -29,7 +29,7 @@ int	create_env(t_data *data, char **envp)
 		return (1);
 	}
 	i = 0;
-	env = data->envp;
+	// env = data->envp;
 	while (i < env_lgt)
 	{
 		if (!export(data, envp[i]))

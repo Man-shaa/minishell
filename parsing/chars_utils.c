@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 07:33:16 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/10/25 07:40:21 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:12:17 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,23 @@ int	count_chars_pipe(int *i, int *count, int n)
 		chars++;
 	(*count)++;
 	(*i)++;
+	return (chars);
+}
+
+int	count_chars_quote(char *str, int *i, int *count, int n)
+{
+	int	chars;
+
+	chars = 0;
+	while (str[(*i)] != '"')
+	{
+		(*i)++;
+		if ((*count) == n)
+			chars++;
+	}
+	if ((*count) == n)
+		chars++;
+	(*i)++;
+	(*count)++;
 	return (chars);
 }

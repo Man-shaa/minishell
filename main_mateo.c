@@ -3,18 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   main_mateo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/26 15:58:11 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:36:38 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-// int	main(void)
-// {
-// 	while (42)
-// 		get_prompt();
-// 	return (0);
-// }
+int	main(int ac, char **av)
+{
+	char *str;
+	char	**tab;
+	t_data	*data;
+	int	i;
+	
+	data = ft_calloc(1, sizeof(t_data));
+	if (ac != 2)
+		ft_putstr("2 args pls");
+	i = 0;
+	str = av[1];
+	tab = ft_split(str, data);
+	while (tab[i])
+	{
+		ft_putstr(tab[i]);
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+	return (0);
+}
