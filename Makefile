@@ -53,13 +53,13 @@ GREEN		=	\033[1;32m
 
 DEFAULT		=	\033[0m
 
-CFLAGS		=	-Wall -Werror -Wextra -g3 
+CFLAGS		=	-Wall -Werror -Wextra -g3
 
 .c.o:
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 $(NAME):	${OBJS}
-		${CC} ${CFLAGS} ${OBJS} -o ${NAME}
+		${CC} ${CFLAGS} ${OBJS} -o ${NAME} -lreadline
 
 all:		${NAME}
 

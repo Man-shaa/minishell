@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_data.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mansha <mansha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 20:16:13 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/23 20:31:37 by mansha           ###   ########.fr       */
+/*   Updated: 2022/11/07 13:57:21 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ t_data	*create_data(char **envp)
 	data->envp = NULL;
 	if (!create_env(data, envp))
 		return (free_data(data), NULL);
+	data->list = ft_calloc(1, sizeof(t_list));
 	return (data);
 }

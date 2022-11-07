@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/03 17:57:59 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/07 12:01:25 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stddef.h>
-// # include <readline/readline.h>
-// # include <readline/history.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 # define WORD	1
 # define IN		2 // <	lire dans 
@@ -131,7 +131,7 @@ int		count_chars_pipe(int *i, int *count, int n);
 // ********************** CORE ************************
 
 // core.c
-void	get_prompt(void);
+void	get_prompt(t_data *data);
 
 // ********************** PRINT ***********************
 

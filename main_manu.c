@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:08:53 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/03 17:58:05 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/07 16:32:25 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ int	main(int ac, char **av, char **envp)
 	data = create_data(envp);
 	if (!data)
 		return (1);
-	cd(data, "..");
-	free_data(data);
+	while (42)
+	{
+		get_prompt(data);
+	}
 	return (0);
 }
