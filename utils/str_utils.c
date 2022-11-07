@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:32:11 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/27 16:39:36 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/30 18:59:23 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ char	*ft_strcmp(char *str, char *to_find)
 	return (NULL);
 }
 
-char	*ft_strdup(char *str)
+// Duplique n caratcere de str
+// Si n = 0 duplique l'entierte de str
+// Return la chaine de caractere dupliquee
+char	*ft_strndup(char *str, int n)
 {
 	int		i;
 	char *dup;
@@ -48,10 +51,21 @@ char	*ft_strdup(char *str)
 	dup = ft_calloc(1, ft_strlen(str) + 1);
 	if (!dup)
 		return (NULL);
-	while (str[i])
+	if (n == 0)
 	{
-		dup[i] = str[i];
-		i++;
+		while (str[i])
+		{
+			dup[i] = str[i];
+			i++;
+		}
+	}
+	else
+	{
+		while (str[i] && i < n)
+		{
+			dup[i] = str[i];
+			i++;
+		}
 	}
 	dup[i] = '\0';
 	return (dup);
@@ -66,7 +80,7 @@ void	ft_putstr(char *str)
 
 // Cherche le type de redir
 // Return le type ou 0 si str ne correspond a aucun connu
-int	ft_strchr(char *str)
+int	redir_type(char *str)
 {
 	if (!str)
 		return (0);

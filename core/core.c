@@ -12,21 +12,21 @@
 
 #include "../includes/minishell.h"
 
-void	get_prompt(void)
-{
-	char	*str;
-	char	**tab;
-	int		i;
-	t_data	*data;
+// void	get_prompt(void)
+// {
+// 	char	*str;
+// 	char	**tab;
+// 	int		i;
+// 	t_data	*data;
 
-	data = malloc(sizeof(t_data));
-	str = readline("Manuo 🤔 ✖✖ ");
-	i = 0;
-	tab = ft_split(str, data);
-	while (tab[i])
-	{
-		printf("SPLIT : %s\n", tab[i]);
-		free(tab[i]);
-		i++;
-	}	
-}
+// 	data = malloc(sizeof(t_data));
+// 	str = readline("Manuo 🤔 ✖✖ ");
+// 	i = 0;
+// 	tab = ft_split(str, data);
+// 	while (tab[i])
+// 	{
+// 		printf("SPLIT : %s\n", tab[i]);
+// 		free(tab[i]);
+// 		i++;
+// 	}	
+// }

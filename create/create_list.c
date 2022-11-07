@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 20:31:39 by mansha            #+#    #+#             */
-/*   Updated: 2022/10/24 17:58:17 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/30 18:59:23 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	add_last_list(t_data *data, char *str)
 	t_list	*new;
 	t_list	*last;
 
-	new = ft_lstnew(str, ft_strchr(str));
+	new = ft_lstnew(str, redir_type(str));
 	if (!new)
 		return (0);
 	last = ft_lstlast(data->list);

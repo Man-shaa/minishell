@@ -16,6 +16,7 @@ SRCS		=	main_mateo.c \
 				main_manu.c \
 				print/print.c \
 				\
+				${BUILTS_DIR}cd.c \
 				${BUILTS_DIR}echo.c \
 				${BUILTS_DIR}env.c \
 				${BUILTS_DIR}export.c \
@@ -35,7 +36,8 @@ SRCS		=	main_mateo.c \
 				${PARSING_DIR}words_utils.c \
 				${PARSING_DIR}chars_utils.c \
 				\
-				${UTILS_DIR}list_utils.c \
+				${UTILS_DIR}env_list_utils.c \
+				${UTILS_DIR}export_utils.c \
 				${UTILS_DIR}split_env.c \
 				${UTILS_DIR}str_utils.c \
 				${UTILS_DIR}str_utils_2.c \
@@ -57,7 +59,7 @@ CFLAGS		=	-Wall -Werror -Wextra -g3
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 $(NAME):	${OBJS}
-		${CC} ${CFLAGS} ${OBJS} -o ${NAME} -lreadline
+		${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 
 all:		${NAME}
 

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:43 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/29 17:37:26 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/03 16:59:39 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ int	export(t_data *data, char *str)
 	t_envp	*last;
 	t_envp	*tmp;
 
-	if (!str || !str[0] || str[0] == '=')
-		return (1);
+	if (!str || !str[0] || str[0] == '=' || !is_valid_name(str))
+	{
+		printf("export : '%s': not a valid identifier\n", str);
+		return (0);
+	}
 	if (already_exist(data->envp, str))
 		return (1);
 	tmp = data->envp;
@@ -35,41 +38,6 @@ int	export(t_data *data, char *str)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = last;
-	return (1);
-}
-
-int	is_concat(t_envp *node, char **tab)
-{
-	int		i;
-	char	*tab_1;
-
-	i = 0;
-	tab_1 = ft_strdup(node->tab[1]);
-	if (!tab_1)
-		return (0);
-	while (tab[0][i])
-	{
-		if (tab[0][i] == '+' && !tab[0][i + 1])
-		{
-			ft_free(node->tab[1]);
-			node->tab[1] = ft_strjoin(tab_1, tab[1]);
-			ft_free(tab_1);
-			if (!node->tab[1])
-				return (0);
-			return (1);
-		}
-		i++;
-	}
-	ft_free(tab_1);
-	return (0);
-}
-
-int	replace_value(t_envp *node, char *value)
-{
-	ft_free(node->tab[1]);
-	node->tab[1] = ft_strdup(value);
-	if (!node->tab[1])
-		return (0);
 	return (1);
 }
 
@@ -89,10 +57,10 @@ int	already_exist(t_envp *envp, char *str)
 	{
 		if (is_same(travel->tab[0], tab[0]))
 		{
-			if (is_concat(travel, tab))
+			if (concat(travel, tab))
 				return (free_tab(tab), 1);
 			if (!replace_value(travel, tab[1]))
-				return (free_tab(tab), 0);
+				return (free_tab(tab), 1);
 			return (free_tab(tab), 1);
 		}
 		travel = travel->next;
