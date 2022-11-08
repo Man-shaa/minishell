@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:07:42 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/29 20:12:14 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:02:31 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 // Return 1 si la creation a reussie, sinon 0
 int	create_env(t_data *data, char **envp)
 {
-	t_envp	*env;
 	int		i;
 	int		env_lgt;
 
@@ -29,7 +28,6 @@ int	create_env(t_data *data, char **envp)
 		return (1);
 	}
 	i = 0;
-	env = data->envp;
 	while (i < env_lgt)
 	{
 		if (!export(data, envp[i]))

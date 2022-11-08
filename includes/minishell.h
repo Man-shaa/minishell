@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/07 12:01:25 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:01:56 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ char	*ft_strndup(char *str, int n);
 char	*ft_strcmp(char *str, char *to_find);
 
 // str_utils_2.c
-int		ft_isalnum(int a);
+int		ft_isprint(int a);
 int		is_same(char *s1, char *s2);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strchr(char *str, char c);

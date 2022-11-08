@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 20:16:13 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/07 13:57:21 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:55:32 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@ t_data	*create_data(char **envp)
 	data->envp = NULL;
 	if (!create_env(data, envp))
 		return (free_data(data), NULL);
-	data->list = ft_calloc(1, sizeof(t_list));
 	return (data);
 }

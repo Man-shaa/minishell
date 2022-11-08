@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:01:49 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/24 23:17:43 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:30:34 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,9 @@ char	*ft_putword_env(char *str, char *tab, char set, int pos)
 
 char	**ft_split_env(char	*str, char set)
 {
-	int		i;
 	int		j;
 	char	**tab;
 
-	i = 0;
 	j = 0;
 	if (!str)
 		return (NULL);

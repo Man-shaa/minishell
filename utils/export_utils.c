@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 17:49:30 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/30 19:15:24 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:01:17 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,8 @@ int	is_concat(char *str)
 // Return 1 si la valeur de la variable dans t_envp a ete concatenee, sinon 0
 int	concat(t_envp *node, char **tab)
 {
-	int		i;
 	char	*tab_1;
 
-	i = 0;
 	if (is_concat(tab[0]))
 	{
 		tab_1 = ft_strndup(node->tab[1], 0);
@@ -55,7 +53,7 @@ int	concat(t_envp *node, char **tab)
 }
 
 // parsing de la variable d'env que veut definir l'utilisateur
-// Return 1 si c'est conforme, sinon 0 + msg d'erreur
+// Return 1 si c'est conforme, sinon 0
 int	is_valid_name(char *str)
 {
 	int	i;
@@ -63,7 +61,7 @@ int	is_valid_name(char *str)
 	i = 0;
 	while (str[i] && str[i] != '=')
 	{
-		if (!ft_isalnum((int)str[i]))
+		if (!ft_isprint((int)str[i]))
 			if (str[i] != '=' && (str[i] != '+' || str[i + 1] != '='))
 				return (0);
 		i++;		
