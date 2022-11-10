@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:43 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/03 16:59:39 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/10 20:58:36 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // Ajoute un node a la fin de la structure t_envp
 // Return 1 si l'operation a reussie, sinon 0
-int	export(t_data *data, char *str)
+int	ft_export(t_data *data, char *str)
 {
 	t_envp	*last;
 	t_envp	*tmp;
@@ -46,7 +46,7 @@ int	export(t_data *data, char *str)
 // Return 1 en cas de changement de valeur, sinon 0 
 int	already_exist(t_envp *envp, char *str)
 {
-	char 	**tab;
+	char	**tab;
 	t_envp	*travel;
 
 	tab = ft_split_env(str, '=');

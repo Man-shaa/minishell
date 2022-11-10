@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:39:45 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/03 16:44:57 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/10 20:53:40 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "../includes/minishell.h"
 
-void	echo(t_data *data, char *str)
+void	ft_echo(t_data *data, char *str)
 {
 	t_envp	*node;
 	char	*res;

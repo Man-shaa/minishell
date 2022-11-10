@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:07:42 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/08 16:02:31 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/10 20:59:54 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	create_env(t_data *data, char **envp)
 	i = 0;
 	while (i < env_lgt)
 	{
-		if (!export(data, envp[i]))
+		if (!ft_export(data, envp[i]))
 			return (0);
 		i++;
 	}
@@ -41,13 +41,12 @@ int	create_env(t_data *data, char **envp)
 // Return 1 si la creation a reussi, sinon 0
 int	create_my_env(t_data *data)
 {
-	if (!export(data, "OLDPWD"))
+	if (!ft_export(data, "OLDPWD"))
 		return (0);
-	// replace_oldpwd_my_env(data->envp);
-	if (!export(data, "PWD"))
+	if (!ft_export(data, "PWD"))
 		return (0);
 	replace_pwd_my_env(data->envp);
-	if (!export(data, "SHLVL=1"))
+	if (!ft_export(data, "SHLVL=1"))
 		return (0);
 	return (1);
 }

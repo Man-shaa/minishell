@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:39:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/08 16:01:06 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/10 20:57:30 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	*ignore_charset(char *str, char *charset)
 	int		i;
 	int		j;
 	char	*dup;
-	
+
 	i = 0;
 	j = 0;
 	if (!str)

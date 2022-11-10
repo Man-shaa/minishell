@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/08 16:01:56 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/10 20:56:51 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,23 @@ void	free_data(t_data *data);
 
 // ********************* BUILTINS *********************
 
+// builtins.c
+int		is_builtin(char *str);
+
 // cd.c
-int		cd(t_data *data, char *str);
+int		ft_cd(t_data *data, char *str);
 
 // echo.c
-void	echo(t_data *data, char *str);
+void	ft_echo(t_data *data, char *str);
 
 // env.c
-char	*find_path_in_env(char **envp);
 void	print_env(t_envp *envp);
+char	*find_path_in_env(char **envp);
 
 // exit.c
 
 // export.c
-int		export(t_data *data, char *str);
+int		ft_export(t_data *data, char *str);
 int		already_exist(t_envp *envp, char *str);
 void	print_export(t_envp *envp);
 
@@ -89,7 +92,7 @@ void	replace_pwd_my_env(t_envp *envp);
 void	replace_oldpwd_my_env(t_envp *envp);
 
 // unset.c
-void	unset(t_data *data, char *str);
+void	ft_unset(t_data *data, char *str);
 
 // ******************* CREATE_INIT ********************
 

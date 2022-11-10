@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/08 15:29:28 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/10 20:59:11 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ void	get_prompt(t_data *data)
 	data = malloc(sizeof(t_data));
 	str = readline("Manuo 🤔 ✖✖ ");
 	ft_split(str, data);
-		print_list(data->list);
+	print_list(data->list);
 	free_data(data);
 }
