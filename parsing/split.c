@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/07 14:47:38 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/07 16:40:48 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,10 @@ char	**ft_split(char *str, t_data *data)
 	if (!count_words(str))
 		return (ft_putstr("No instructions or missing double quote"), NULL);
 	tab = ft_calloc(sizeof(char *), count_words(str) + 1);
-	// printf("words : %d\n", count_words(str));
+	printf("words : %d\n", count_words(str));
 	while (i < count_words(str))
 	{
-		// printf("chars %d : %d\n", i, count_chars(str, i));
+		printf("chars %d : %d\n", i, count_chars(str, i));
 		tab[i] = ft_calloc(sizeof(char), count_chars(str, i) + 1);
 		tab[i] = ft_putwords(str, i, tab[i]);
 		add_last_list(data, tab[i]);
