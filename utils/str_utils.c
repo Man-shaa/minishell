@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:32:11 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/10 20:58:19 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/14 12:53:02 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,4 @@ int	redir_type(char *str)
 		return (OUT);
 	else
 		return (WORD);
-	return (0);
 }

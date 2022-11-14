@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/10 20:56:51 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/14 13:25:43 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ typedef struct s_data
 // *********************** FREE ***********************
 
 // free.c
-void	ft_free(void *addr);
 void	free_tab(char **tab);
 void	free_list(t_list *list);
 void	free_envp(t_envp *envp);
@@ -115,7 +114,7 @@ t_list	*ft_lstlast(t_list *list);
 int		count_words(char *str);
 int		count_chars(char *str, int n);
 char	*ft_putwords(char *str, int n, char *mot);
-char	**ft_split(char *str, t_data *data);
+void	ft_split(char *str, t_data *data);
 
 // split_utils.c
 int		is_in_charset(char c);
@@ -175,6 +174,7 @@ int		ft_strchr(char *str, char c);
 char	*ignore_charset(char *str, char *charset);
 
 // utils.c
+void	ft_free(void *addr);
 void	*ft_calloc(size_t n, size_t size);
 
 #endif

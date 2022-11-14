@@ -6,17 +6,11 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:11:04 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/08 15:54:57 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/14 13:28:10 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void	ft_free(void *addr)
-{
-	free(addr);
-	addr = NULL;
-}
 
 void	free_tab(char **tab)
 {
@@ -42,6 +36,7 @@ void	free_list(t_list *list)
 	while (list)
 	{
 		list = list->next;
+		ft_free(save->str);
 		ft_free(save);
 		save = list;
 	}

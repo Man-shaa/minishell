@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:08:53 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/10 21:01:15 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/14 13:23:17 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,11 @@ int	main(int ac, char **av, char **envp)
 	t_data	*data;
 
 	(void)ac;
-	(void)av;
 	data = create_data(envp);
 	if (!data)
 		return (1);
-	print_env(data->envp);
-	replace_pwd_my_env(data->envp);
-	print_env(data->envp);
+	ft_split(av[1], data);
+	print_list(data->list);
 	free_data(data);
 	return (0);
 }
