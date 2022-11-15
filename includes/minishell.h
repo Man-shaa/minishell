@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/07 15:43:33 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:05:39 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int		get_index_exp(char *str, int *count, int *i, int n);
 // words_utils.c
 int		count_words_cmd(char *str, int *i);
 int		count_words_redir(char *str, int *i);
-int		count_words_quote(char *str, int *i, int *count);
+void	count_words_quote(char *str, int *i, int *count);
 
 
 // chars_utils.c
