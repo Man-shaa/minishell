@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/14 14:39:59 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:22:25 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,24 +111,27 @@ t_list	*ft_lstlast(t_list *list);
 // ********************* PARSING **********************
 
 // split.c
-int		count_words(char *str);
-int		count_chars(char *str, int n);
-char	*ft_putwords(char *str, int n, char *mot);
-void	ft_split(char *str, t_data *data);
+int        count_words(char *str);
+int        count_chars(char *str, int n);
+char    *ft_putwords(char *str, int n, char *mot);
+void    ft_split(char *str, t_data *data);
 
 // split_utils.c
-int		is_in_charset(char c);
-int		get_index(char *str, int n);
-int		get_index_exp(char *str, int *count, int *i, int n);
+int        is_in_charset(char c);
+int        get_index(char *str, int n);
+int        get_index_exp(char *str, int *count, int *i, int n);
 
 // words_utils.c
-int		count_words_cmd(char *str, int *i);
-int		count_words_redir(char *str, int *i);
+int        count_words_cmd(char *str, int *i);
+int        count_words_redir(char *str, int *i);
+void    count_words_quote(char *str, int *i, int *count);
+
 
 // chars_utils.c
-int		count_chars_cmd(char *str, int *i, int *count, int n);
-int		count_chars_redir(char *str, int *i, int *count, int n);
-int		count_chars_pipe(int *i, int *count, int n);
+int        count_chars_cmd(char *str, int *i, int *count, int n);
+int        count_chars_redir(char *str, int *i, int *count, int n);
+int        count_chars_pipe(int *i, int *count, int n);
+int        count_chars_quote(char *str, int *i, int *count, int n);
 
 // ********************** CORE ************************
 
