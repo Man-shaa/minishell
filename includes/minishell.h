@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/15 16:22:25 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:24:18 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ t_list	*ft_lstlast(t_list *list);
 int        count_words(char *str);
 int        count_chars(char *str, int n);
 char    *ft_putwords(char *str, int n, char *mot);
-void    ft_split(char *str, t_data *data);
+char	**ft_split(char *str, t_data *data);
 
 // split_utils.c
 int        is_in_charset(char c);
