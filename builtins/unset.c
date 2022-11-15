@@ -6,13 +6,13 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:59 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/27 16:16:49 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/10 20:56:32 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	unset(t_data *data, char *str)
+void	ft_unset(t_data *data, char *str)
 {
 	t_envp	*before;
 	t_envp	*node;

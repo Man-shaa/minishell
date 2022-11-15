@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:07:42 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/07 15:43:53 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:53:52 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 // Return 1 si la creation a reussie, sinon 0
 int	create_env(t_data *data, char **envp)
 {
-	// t_envp	*env;/
 	int		i;
 	int		env_lgt;
 
@@ -29,10 +28,9 @@ int	create_env(t_data *data, char **envp)
 		return (1);
 	}
 	i = 0;
-	// env = data->envp;
 	while (i < env_lgt)
 	{
-		if (!export(data, envp[i]))
+		if (!ft_export(data, envp[i]))
 			return (0);
 		i++;
 	}
@@ -43,13 +41,12 @@ int	create_env(t_data *data, char **envp)
 // Return 1 si la creation a reussi, sinon 0
 int	create_my_env(t_data *data)
 {
-	if (!export(data, "OLDPWD"))
+	if (!ft_export(data, "OLDPWD"))
 		return (0);
-	// replace_oldpwd_my_env(data->envp);
-	if (!export(data, "PWD"))
+	if (!ft_export(data, "PWD"))
 		return (0);
 	replace_pwd_my_env(data->envp);
-	if (!export(data, "SHLVL=1"))
+	if (!ft_export(data, "SHLVL=1"))
 		return (0);
 	return (1);
 }

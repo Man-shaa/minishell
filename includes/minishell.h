@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/07 15:43:33 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:54:16 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stddef.h>
-// # include <readline/readline.h>
-// # include <readline/history.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 # define WORD	1
 # define IN		2 // <	lire dans 
@@ -58,7 +58,6 @@ typedef struct s_data
 // *********************** FREE ***********************
 
 // free.c
-void	ft_free(void *addr);
 void	free_tab(char **tab);
 void	free_list(t_list *list);
 void	free_envp(t_envp *envp);
@@ -66,20 +65,23 @@ void	free_data(t_data *data);
 
 // ********************* BUILTINS *********************
 
+// builtins.c
+int		is_builtin(char *str);
+
 // cd.c
-int		cd(t_data *data, char *str);
+int		ft_cd(t_data *data, char *str);
 
 // echo.c
-void	echo(t_data *data, char *str);
+void	ft_echo(t_data *data, char *str);
 
 // env.c
-char	*find_path_in_env(char **envp);
 void	print_env(t_envp *envp);
+char	*find_path_in_env(char **envp);
 
 // exit.c
 
 // export.c
-int		export(t_data *data, char *str);
+int		ft_export(t_data *data, char *str);
 int		already_exist(t_envp *envp, char *str);
 void	print_export(t_envp *envp);
 
@@ -89,7 +91,7 @@ void	replace_pwd_my_env(t_envp *envp);
 void	replace_oldpwd_my_env(t_envp *envp);
 
 // unset.c
-void	unset(t_data *data, char *str);
+void	ft_unset(t_data *data, char *str);
 
 // ******************* CREATE_INIT ********************
 
@@ -109,33 +111,32 @@ t_list	*ft_lstlast(t_list *list);
 // ********************* PARSING **********************
 
 // split.c
-int		count_words(char *str);
-int		count_chars(char *str, int n);
-char	*ft_putwords(char *str, int n, char *mot);
+int        count_words(char *str);
+int        count_chars(char *str, int n);
+char    *ft_putwords(char *str, int n, char *mot);
 char	**ft_split(char *str, t_data *data);
 
 // split_utils.c
-int		is_in_charset(char c);
-int		get_index(char *str, int n);
-int		get_index_exp(char *str, int *count, int *i, int n);
+int        is_in_charset(char c);
+int        get_index(char *str, int n);
+int        get_index_exp(char *str, int *count, int *i, int n);
 
 // words_utils.c
-int		count_words_cmd(char *str, int *i);
-int		count_words_redir(char *str, int *i);
-int		count_words_quote(char *str, int *i, int *count);
+int        count_words_cmd(char *str, int *i);
+int        count_words_redir(char *str, int *i);
+void    count_words_quote(char *str, int *i, int *count);
 
 
 // chars_utils.c
-int		count_chars_cmd(char *str, int *i, int *count, int n);
-int		count_chars_redir(char *str, int *i, int *count, int n);
-int		count_chars_pipe(int *i, int *count, int n);
-int		count_chars_quote(char *str, int *i, int *count, int n);
-
+int        count_chars_cmd(char *str, int *i, int *count, int n);
+int        count_chars_redir(char *str, int *i, int *count, int n);
+int        count_chars_pipe(int *i, int *count, int n);
+int        count_chars_quote(char *str, int *i, int *count, int n);
 
 // ********************** CORE ************************
 
 // core.c
-void	get_prompt(void);
+void	get_prompt(t_data *data);
 
 // ********************** PRINT ***********************
 
@@ -169,13 +170,14 @@ char	*ft_strndup(char *str, int n);
 char	*ft_strcmp(char *str, char *to_find);
 
 // str_utils_2.c
-int		ft_isalnum(int a);
+int		ft_isprint(int a);
 int		is_same(char *s1, char *s2);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strchr(char *str, char c);
 char	*ignore_charset(char *str, char *charset);
 
 // utils.c
+void	ft_free(void *addr);
 void	*ft_calloc(size_t n, size_t size);
 
 #endif

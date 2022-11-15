@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:32:11 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/30 18:59:23 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/14 12:53:02 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_strcmp(char *str, char *to_find)
 char	*ft_strndup(char *str, int n)
 {
 	int		i;
-	char *dup;
+	char	*dup;
 
 	i = 0;
 	dup = ft_calloc(1, ft_strlen(str) + 1);
@@ -86,9 +86,9 @@ int	redir_type(char *str)
 		return (0);
 	if (str[0] == '|')
 		return (PIPE);
-	if (str[0] == '<' && str[1] == '<')
+	if (str[0] == '<' && str[1] && str[1] == '<')
 		return (DELIM);
-	if (str[0] == '>' && str[1] == '>')
+	if (str[0] == '>' && str[1] && str[1] == '>')
 		return (APPEND);
 	if (str[0] == '<')
 		return (IN);
@@ -96,5 +96,4 @@ int	redir_type(char *str)
 		return (OUT);
 	else
 		return (WORD);
-	return (0);
 }

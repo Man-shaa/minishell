@@ -3,34 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   main_mateo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/07 15:36:38 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:53:43 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-int	main(int ac, char **av)
+int    main(int ac, char **av, char **envp)
 {
-	char *str;
+	char	*str;
 	char	**tab;
 	t_data	*data;
-	int	i;
+	int		i;
 	
-	data = ft_calloc(1, sizeof(t_data));
+	data = create_data(envp);
 	if (ac != 2)
-		ft_putstr("2 args pls");
+		return (ft_putstr("2 args pls\n"), 1);
 	i = 0;
 	str = av[1];
 	tab = ft_split(str, data);
 	while (tab[i])
 	{
 		ft_putstr(tab[i]);
-		free(tab[i]);
+		ft_putstr("\n");
 		i++;
 	}
-	free(tab);
+	free_data(data);
+	ft_free(tab);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chars_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 07:33:16 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/07 15:12:17 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:54:28 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	count_chars_quote(char *str, int *i, int *count, int n)
 	int	chars;
 
 	chars = 0;
+	(*i)++;
 	while (str[(*i)] != '"')
 	{
 		(*i)++;

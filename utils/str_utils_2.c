@@ -6,16 +6,15 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:39:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/03 16:39:45 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/10 20:57:30 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	ft_isalnum(int a)
+int	ft_isprint(int a)
 {
-	if ((a >= 'a' && a <= 'z') || (a >= 'A' && a <= 'Z')
-		|| (a >= '0' && a <= '9'))
+	if (a > 32 && a < 127)
 		return (1);
 	return (0);
 }
@@ -84,7 +83,7 @@ char	*ignore_charset(char *str, char *charset)
 	int		i;
 	int		j;
 	char	*dup;
-	
+
 	i = 0;
 	j = 0;
 	if (!str)
