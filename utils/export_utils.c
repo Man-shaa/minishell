@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 17:49:30 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/30 19:15:24 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:42:05 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ int	is_concat(char *str)
 // Return 1 si la valeur de la variable dans t_envp a ete concatenee, sinon 0
 int	concat(t_envp *node, char **tab)
 {
-	int		i;
+	// int		i;
 	char	*tab_1;
 
-	i = 0;
+	// i = 0;
 	if (is_concat(tab[0]))
 	{
 		tab_1 = ft_strndup(node->tab[1], 0);

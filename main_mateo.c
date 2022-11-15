@@ -6,20 +6,20 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/07 15:36:38 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/15 15:13:19 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-int	main(int ac, char **av)
+int	main(int ac, char **av, char **envp)
 {
 	char *str;
 	char	**tab;
 	t_data	*data;
 	int	i;
 	
-	data = ft_calloc(1, sizeof(t_data));
+	data = create_data(envp);
 	if (ac != 2)
 		ft_putstr("2 args pls");
 	i = 0;
@@ -28,9 +28,11 @@ int	main(int ac, char **av)
 	while (tab[i])
 	{
 		ft_putstr(tab[i]);
+		ft_putstr("\n");
 		free(tab[i]);
 		i++;
 	}
-	free(tab);
+	free_data(data);
+	ft_free(tab);
 	return (0);
 }
