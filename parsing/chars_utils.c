@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 07:33:16 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/15 16:04:31 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:09:47 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	count_chars_quote(char *str, int *i, int *count, int n)
 	int	chars;
 
 	chars = 0;
+	(*i)++;
 	(*i)++;
 	while (str[(*i)] != '"')
 	{
