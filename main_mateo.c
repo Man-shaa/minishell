@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/15 16:25:28 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:35:52 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int    main(int ac, char **av, char **envp)
 	
 	data = create_data(envp);
 	if (ac != 2)
-		ft_putstr("2 args pls");
+		return (ft_putstr("2 args pls\n"), 1);
 	i = 0;
 	str = av[1];
 	tab = ft_split(str, data);
@@ -29,7 +29,6 @@ int    main(int ac, char **av, char **envp)
 	{
 		ft_putstr(tab[i]);
 		ft_putstr("\n");
-		free(tab[i]);
 		i++;
 	}
 	free_data(data);
