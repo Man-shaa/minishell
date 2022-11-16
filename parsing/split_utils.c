@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 07:33:41 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/15 16:28:32 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/16 19:04:26 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	is_in_charset(char c)
 		return (2);
 	if (c == ' ' || c == '\t')
 		return (3);
+	if (c == '"')
+		return (4);
 	return (0);
 }
 
@@ -61,6 +63,12 @@ int	get_index_exp(char *str, int *count, int *i, int n)
 	{
 		if ((*count) == n)
 			return (1);
+		if (str[(*i)] == '"')
+		{
+			(*i)++;
+			while (str[(*i)] != '"')
+				(*i)++;
+		}
 		if (str[(*i)] != '|' && str[(*i) + 1] == str[(*i)])
 			(*i)++;
 		(*count)++;

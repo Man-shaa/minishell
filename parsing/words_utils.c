@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   words_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 07:33:48 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/15 16:27:50 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:15:29 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ int	count_words_redir(char *str, int *i)
 	return (count);
 }
 
+int	count_words_pipe(int *i)
+{
+	(*i)++;
+	return (1);
+}
+
 void	count_words_quote(char *str, int *i, int *count)
 {
 	(*i)++;
@@ -46,4 +52,6 @@ void	count_words_quote(char *str, int *i, int *count)
 		(*i)++;
 		(*count)++;
 	}
+	else if (str[(*i)] == '\0')
+		(*count) = -1;
 }

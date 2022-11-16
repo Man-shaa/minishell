@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chars_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 07:33:16 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/15 16:26:27 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:36:29 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ int	count_chars_quote(char *str, int *i, int *count, int n)
 		if ((*count) == n)
 			chars++;
 	}
-	if ((*count) == n)
-		chars++;
+	// if ((*count) == n)
+	// 	chars++;
 	(*i)++;
 	(*count)++;
 	return (chars);
