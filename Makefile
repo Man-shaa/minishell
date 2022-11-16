@@ -46,7 +46,7 @@ SRCS		=	main_mateo.c \
 
 OBJS		=	${SRCS:.c=.o}
 
-CC			=	cc
+CC			=	clang
 
 RM			=	rm -rf
 
