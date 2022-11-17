@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/16 18:16:35 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/17 17:55:13 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,13 @@ int		add_last_list(t_data *data, char *str);
 t_list	*ft_lstnew(char *str, int type);
 t_list	*ft_lstlast(t_list *list);
 
-// ********************* PARSING **********************
+// ********************** SPLIT ************************
 
 // split.c
 int		count_words(char *str);
 int		count_chars(char *str, int n);
 char	*ft_putwords(char *str, int n, char *mot);
-char	**ft_split(char *str, t_data *data);
+void	ft_split(char *str, t_data *data);
 
 // split_utils.c
 int		is_in_charset(char c);
@@ -127,12 +127,17 @@ int		count_words_redir(char *str, int *i);
 int		count_words_pipe(int *i);
 void	count_words_quote(char *str, int *i, int *count);
 
-
 // chars_utils.c
 int		count_chars_cmd(char *str, int *i, int *count, int n);
 int		count_chars_redir(char *str, int *i, int *count, int n);
 int		count_chars_pipe(int *i, int *count, int n);
 int		count_chars_quote(char *str, int *i, int *count, int n);
+
+// ********************* PARSING **********************
+
+// parsing.c
+int		check_dup(t_data *data);
+
 
 // ********************** CORE ************************
 

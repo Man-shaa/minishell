@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/17 17:22:43 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/17 18:06:46 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,18 @@ char	*ft_putwords(char *str, int n, char *mot)
 	return (mot);
 }
 
-char	**ft_split(char *str, t_data *data)
+void	ft_split(char *str, t_data *data)
 {
 	char	**tab;
 	int		i;
 
-	if (!str)
-		return (NULL);
+	// if (!str)
+	// 	return (NULL);
 	i = 0;
 	if (!count_words(str))
-		return (ft_putstr("No instructions or missing double quote"), NULL);
+	{
+		ft_putstr("No instructions or missing double quote");
+	}
 	tab = ft_calloc(count_words(str) + 1, sizeof(char *));
 	// printf("words : %d\n", count_words(str));
 	while (i < count_words(str))
@@ -104,5 +106,4 @@ char	**ft_split(char *str, t_data *data)
 		i++;
 	}
 	tab[i] = 0;
-	return (tab);
 }

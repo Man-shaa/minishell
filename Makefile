@@ -4,6 +4,8 @@ UTILS_DIR	=	utils/
 
 FREE_DIR	=	free/
 
+SPLIT_DIR	=	split/
+
 PARSING_DIR	=	parsing/
 
 BUILTS_DIR	=	builtins/
@@ -32,10 +34,12 @@ SRCS		=	main_mateo.c \
 				\
 				${FREE_DIR}free.c \
 				\
-				${PARSING_DIR}split.c \
-				${PARSING_DIR}split_utils.c \
-				${PARSING_DIR}words_utils.c \
-				${PARSING_DIR}chars_utils.c \
+				${SPLIT_DIR}split.c \
+				${SPLIT_DIR}split_utils.c \
+				${SPLIT_DIR}words_utils.c \
+				${SPLIT_DIR}chars_utils.c \
+				\
+				${PARSING_DIR}parsing.c \
 				\
 				${UTILS_DIR}env_list_utils.c \
 				${UTILS_DIR}export_utils.c \
