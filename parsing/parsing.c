@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_mateo.c                                       :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/17 17:49:48 by mfroissa         ###   ########.fr       */
+/*   Created: 2022/11/17 17:15:26 by mfroissa          #+#    #+#             */
+/*   Updated: 2022/11/17 17:54:16 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minishell.h"
+#include "../includes/minishell.h"
 
-int    main(int ac, char **av, char **envp)
+int	check_dup(t_data *data)
 {
-	char	*str;
-	t_data	*data;
-	int		i;
-	
-	data = create_data(envp);
-	if (ac != 2)
-		return (ft_putstr("2 args pls\n"), 1);
-	i = 0;
-	str = av[1];
-	ft_split(str, data);
-	if (!check_dup(data))
-		return (ft_putstr("2 tokens following each other"), 2);
-	free_data(data);
-	return (0);
+	t_list	*tmp;
+
+	tmp = data->list;
+	while (tmp)
+	{
+		if (tmp->type != 1 && tmp->next->type != 1)
+		{
+			if (tmp->next->type != 6)
+				return (0);
+		}
+		if (tmp->type == 6 && tmp->next->type == 6)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
 }

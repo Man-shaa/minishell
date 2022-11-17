@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/16 18:17:54 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/17 17:55:18 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,26 +83,27 @@ char	*ft_putwords(char *str, int n, char *mot)
 	return (mot);
 }
 
-char	**ft_split(char *str, t_data *data)
+void	ft_split(char *str, t_data *data)
 {
 	char	**tab;
 	int		i;
 
-	if (!str)
-		return (NULL);
+	// if (!str)
+	// 	return (NULL);
 	i = 0;
 	if (!count_words(str))
-		return (ft_putstr("No instructions or missing double quote"), NULL);
+	{
+		ft_putstr("No instructions or missing double quote");
+	}
 	tab = ft_calloc(count_words(str) + 1, sizeof(char *));
-	printf("words : %d\n", count_words(str));
+	// printf("words : %d\n", count_words(str));
 	while (i < count_words(str))
 	{
-		printf("chars %d : %d\n", i, count_chars(str, i));
+		// printf("chars %d : %d\n", i, count_chars(str, i));
 		tab[i] = ft_calloc(count_chars(str, i) + 1, sizeof(char));
 		tab[i] = ft_putwords(str, i, tab[i]);
 		add_last_list(data, tab[i]);
 		i++;
 	}
 	tab[i] = 0;
-	return (tab);
 }
