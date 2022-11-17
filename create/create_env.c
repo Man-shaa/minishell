@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:07:42 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/15 16:53:52 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/17 17:30:06 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	create_env(t_data *data, char **envp)
 	int		env_lgt;
 
 	env_lgt = env_lenght(envp);
-	if (env_lgt != 0)
+	if (env_lgt == 0)
 	{
 		if (!create_my_env(data))
 			return (0);
