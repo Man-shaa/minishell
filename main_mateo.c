@@ -6,32 +6,32 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/16 19:28:31 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/17 16:47:50 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-int    main(int ac, char **av, char **envp)
-{
-	char	*str;
-	char	**tab;
-	t_data	*data;
-	int		i;
+// int    main(int ac, char **av, char **envp)
+// {
+// 	char	*str;
+// 	char	**tab;
+// 	t_data	*data;
+// 	int		i;
 	
-	data = create_data(envp);
-	if (ac != 2)
-		return (ft_putstr("2 args pls\n"), 1);
-	i = 0;
-	str = av[1];
-	tab = ft_split(str, data);
-	while (tab[i])
-	{
-		ft_putstr(tab[i]);
-		ft_putstr("\n");
-		i++;
-	}
-	free_data(data);
-	ft_free(tab);
-	return (0);
-}
+// 	data = create_data(envp);
+// 	if (ac != 2)
+// 		return (ft_putstr("2 args pls\n"), 1);
+// 	i = 0;
+// 	str = av[1];
+// 	tab = ft_split(str, data);
+// 	while (tab[i])
+// 	{
+// 		ft_putstr(tab[i]);
+// 		ft_putstr("\n");
+// 		i++;
+// 	}
+// 	free_data(data);
+// 	ft_free(tab);
+// 	return (0);
+// }

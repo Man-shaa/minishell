@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/16 18:17:54 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/17 17:22:43 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ char	**ft_split(char *str, t_data *data)
 	if (!count_words(str))
 		return (ft_putstr("No instructions or missing double quote"), NULL);
 	tab = ft_calloc(count_words(str) + 1, sizeof(char *));
-	printf("words : %d\n", count_words(str));
+	// printf("words : %d\n", count_words(str));
 	while (i < count_words(str))
 	{
-		printf("chars %d : %d\n", i, count_chars(str, i));
+		// printf("chars %d : %d\n", i, count_chars(str, i));
 		tab[i] = ft_calloc(count_chars(str, i) + 1, sizeof(char));
 		tab[i] = ft_putwords(str, i, tab[i]);
 		add_last_list(data, tab[i]);
