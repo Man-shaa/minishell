@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 15:36:08 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:50:49 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct s_data
 	char	*path_env;
 	int		return_val;
 }				t_data;
-
 
 // *************************** BUILTINS ***************************
 
@@ -126,8 +125,8 @@ int		err_msg(char *str, int fd, int ret_val);
 char	*find_path_in_env(char **envp);
 
 // exec.c
-int	exec_binary(t_data *data);
-int	send_cmd(t_data *data);
+int		exec_binary(t_data *data);
+int		send_cmd(t_data *data);
 
 // ********************************* FREE *********************************
 
@@ -137,7 +136,6 @@ void	free_list(t_list *list);
 void	free_envp(t_envp *envp);
 void	free_cmd(t_cmd *cmd);
 void	free_data(t_data *data);
-
 
 // ******************************* PARSING ********************************
 
@@ -179,7 +177,7 @@ int		count_chars_quote(char *str, int *i, int *count, int n);
 // ******************************** UTILS *********************************
 
 // cmd_utils.c
-int		words_to_pipe(t_data *data, int	n);
+int		words_to_pipe(t_data *data, int n);
 t_cmd	*ft_cmdnew(int index);
 void	add_back(t_data *data, t_cmd *cmd);
 t_cmd	*ft_cmdlast(t_cmd *cmd);
