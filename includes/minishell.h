@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 15:50:49 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:27:00 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int		exec_builtin(t_data *data, char *cmd, char **args);
 int		ft_cd(t_data *data, char *str);
 
 // echo.c
+int		is_option_n(char *str);
+void	echo_env_var(t_data *data, char **args, int i);
 void	ft_echo(t_data *data, char **args);
 
 // env.c
@@ -78,7 +80,7 @@ void	print_env(t_envp *envp);
 // exit.c
 
 // export.c
-int		ft_export(t_data *data, char *str);
+int		ft_export(t_data *data, char **args);
 int		already_exist(t_envp *envp, char *str);
 void	print_export(t_envp *envp);
 
@@ -117,7 +119,7 @@ t_list	*ft_lstlast(t_list *list);
 // ********************************* ERROR ********************************
 
 // error.c
-int		err_msg(char *str, int fd, int ret_val);
+void	err_msg(char *start, char *str, char *end, int fd);
 
 // ********************************* EXEC *********************************
 
@@ -126,7 +128,7 @@ char	*find_path_in_env(char **envp);
 
 // exec.c
 int		exec_binary(t_data *data);
-int		send_cmd(t_data *data);
+int		send_cmd(t_data *data, t_cmd *cmd);
 
 // ********************************* FREE *********************************
 

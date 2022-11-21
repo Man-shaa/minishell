@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:08:53 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/21 13:56:03 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:46:32 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 int	main(int ac, char **av, char **envp)
 {
 	t_data	*data;
+	t_cmd	*cmd;
 
 	(void)ac;
 	data = create_data(envp);
@@ -28,7 +29,14 @@ int	main(int ac, char **av, char **envp)
 	ft_split(av[1], data);
 	get_cmd_struct(data);
 	print_struct_cmd(data);
-	send_cmd(data);
+	cmd = data->cmd;
+	while (cmd)
+	{
+		send_cmd(data, cmd);
+		sleep(1);
+		cmd = cmd->next;
+	}
+	print_env(data->envp);
 	free_data(data);
 	return (0);
 }

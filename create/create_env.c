@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:07:42 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 11:56:19 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:29:28 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,17 @@
 // Return 1 si la creation a reussie, sinon 0
 int	create_env(t_data *data, char **envp)
 {
-	int		i;
 	int		env_lgt;
 
 	env_lgt = env_lenght(envp);
-	if (env_lgt == 0)
+	if (env_lgt != 0)
 	{
 		if (!create_my_env(data))
 			return (0);
 		return (1);
 	}
-	i = 0;
-	while (i < env_lgt)
-	{
-		if (!ft_export(data, envp[i]))
-			return (0);
-		i++;
-	}
+	if (!ft_export(data, envp))
+		return (0);
 	data->path_env = find_path_in_env(envp);
 	return (1);
 }
@@ -42,13 +36,17 @@ int	create_env(t_data *data, char **envp)
 // Return 1 si la creation a reussi, sinon 0
 int	create_my_env(t_data *data)
 {
-	if (!ft_export(data, "OLDPWD"))
-		return (0);
-	if (!ft_export(data, "PWD"))
+	char **tab;
+
+	tab = ft_calloc(4, sizeof(char *));
+	tab[0] = ft_strndup("OLDPWD", 0);
+	tab[1] = ft_strndup("PWD", 0);
+	tab[2] = ft_strndup("SHLVL=1", 0);
+	tab[3] = 0;
+	if (!ft_export(data, tab))
 		return (0);
 	replace_pwd_my_env(data->envp);
-	if (!ft_export(data, "SHLVL=1"))
-		return (0);
+	free_tab(tab);
 	return (1);
 }
 

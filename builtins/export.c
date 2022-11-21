@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:43 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/10 20:58:36 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:15:16 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,35 @@
 
 // Ajoute un node a la fin de la structure t_envp
 // Return 1 si l'operation a reussie, sinon 0
-int	ft_export(t_data *data, char *str)
+int	ft_export(t_data *data, char **args)
 {
 	t_envp	*last;
 	t_envp	*tmp;
+	int		i;
 
-	if (!str || !str[0] || str[0] == '=' || !is_valid_name(str))
-	{
-		printf("export : '%s': not a valid identifier\n", str);
+	i = 0;
+	if (!args || !args[i] || !args[i][0])
 		return (0);
-	}
-	if (already_exist(data->envp, str))
-		return (1);
-	tmp = data->envp;
-	last = ft_lstnew_env(str);
-	if (!last)
-		return (0);
-	if (!data->envp)
+	while (args[i])
 	{
-		data->envp = last;
-		return (1);
+		if (!args[i] || !args[i][0] || args[i][0] == '=' || !is_valid_name(args[i]))
+			return (err_msg("export: ", args[i], ": not a valid identifier\n", 2), 0);
+		if (already_exist(data->envp, args[i]))
+			return (1);
+		tmp = data->envp;
+		last = ft_lstnew_env(args[i]);
+		if (!last)
+			return (0);
+		if (!data->envp)
+			data->envp = last;
+		else
+		{
+			while (tmp->next)
+				tmp = tmp->next;
+			tmp->next = last;
+		}
+		i++;
 	}
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = last;
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:39:45 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 15:46:36 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:52:27 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	is_option_n(char *str)
 		return (1);
 	return (0);
 }
-
+// Cherche la variable d'env correspondant a args[i] sans "${}()" et la print
+// si elle existe, sinon ne print rien
 void	echo_env_var(t_data *data, char **args, int i)
 {
 	char	*res;

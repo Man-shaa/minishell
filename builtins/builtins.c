@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:48:44 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 15:42:43 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:00:09 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	exec_builtin(t_data *data, char *cmd, char **args)
 	else if (is_same(cmd, "exit"))
 		return (200); // a rajouter
 	else if (is_same(cmd, "export"))
-		ft_export(data, args[0]);
+		ft_export(data, args);
 	else if (is_same(cmd, "pwd"))
 		print_pwd();
 	else if (is_same(cmd, "unset"))

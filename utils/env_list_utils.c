@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 22:12:58 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/30 19:29:07 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:03:49 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,3 +46,5 @@ t_envp	*ft_lstnew_env(char *str)
 	new->next = NULL;
 	return (new);
 }
+
+// t_envp	*add_last()
