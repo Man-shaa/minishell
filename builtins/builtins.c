@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:48:44 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 16:00:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:33:11 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,19 @@ int	is_builtin(char *str)
 // envoies a la fonction correspondante
 int	exec_builtin(t_data *data, char *cmd, char **args)
 {
-	int	return_val;
-
-	return_val = 1;
 	if (is_same(cmd, "cd"))
-		ft_cd(data, args[0]);
+		data->return_val = ft_cd(data, args[0]);
 	else if (is_same(cmd, "echo"))
 		ft_echo(data, args);
 	else if (is_same(cmd, "env"))
 		print_env(data->envp);
 	else if (is_same(cmd, "exit"))
-		return (200); // a rajouter
+		exit(ft_exit(data, args));
 	else if (is_same(cmd, "export"))
-		ft_export(data, args);
+		data->return_val = ft_export(data, args);
 	else if (is_same(cmd, "pwd"))
 		print_pwd();
 	else if (is_same(cmd, "unset"))
 		ft_unset(data, args[1]);
-	return (return_val); // a remplacer par valeur de retour de builtin
+	return (data->return_val); // a remplacer par valeur de retour de builtin
 }

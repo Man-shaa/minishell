@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:07:42 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 16:29:28 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:21:35 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	create_env(t_data *data, char **envp)
 			return (0);
 		return (1);
 	}
-	if (!ft_export(data, envp))
+	if (ft_export(data, envp))
 		return (0);
 	data->path_env = find_path_in_env(envp);
 	return (1);
@@ -43,7 +43,7 @@ int	create_my_env(t_data *data)
 	tab[1] = ft_strndup("PWD", 0);
 	tab[2] = ft_strndup("SHLVL=1", 0);
 	tab[3] = 0;
-	if (!ft_export(data, tab))
+	if (ft_export(data, tab))
 		return (0);
 	replace_pwd_my_env(data->envp);
 	free_tab(tab);

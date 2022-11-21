@@ -6,14 +6,14 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:43 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 16:15:16 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:21:26 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 // Ajoute un node a la fin de la structure t_envp
-// Return 1 si l'operation a reussie, sinon 0
+// Return 0 si l'operation a reussie, sinon 1
 int	ft_export(t_data *data, char **args)
 {
 	t_envp	*last;
@@ -22,17 +22,17 @@ int	ft_export(t_data *data, char **args)
 
 	i = 0;
 	if (!args || !args[i] || !args[i][0])
-		return (0);
+		return (1);
 	while (args[i])
 	{
 		if (!args[i] || !args[i][0] || args[i][0] == '=' || !is_valid_name(args[i]))
-			return (err_msg("export: ", args[i], ": not a valid identifier\n", 2), 0);
+			return (err_msg("export: ", args[i], ": not a valid identifier\n", 2), 1);
 		if (already_exist(data->envp, args[i]))
-			return (1);
+			return (0);
 		tmp = data->envp;
 		last = ft_lstnew_env(args[i]);
 		if (!last)
-			return (0);
+			return (1);
 		if (!data->envp)
 			data->envp = last;
 		else
@@ -43,7 +43,7 @@ int	ft_export(t_data *data, char **args)
 		}
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 // Determine si le nom de variable dans str existe deja dans t_envp
