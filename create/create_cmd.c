@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:03:31 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 11:03:43 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:17:46 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	get_cmd_struct(t_data *data)
 		j = 0;
 		cmd = ft_cmdnew(i);
 		cmd->opt = ft_calloc(words_to_pipe(data, i) + 1, sizeof(char *));
+		cmd->opt[words_to_pipe(data, i)] = 0;
 		if (!cmd->opt)
 			return ; //Rajouter valeur de retour d'erreur
 		while (tmp && tmp->type != 6)

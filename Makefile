@@ -28,6 +28,7 @@ SRCS		=	main_mateo.c \
 				\
 				${CORE_DIR}core.c \
 				\
+				${CREATE_DIR}create_cmd.c \
 				${CREATE_DIR}create_data.c \
 				${CREATE_DIR}create_list.c \
 				${CREATE_DIR}create_env.c \
@@ -40,8 +41,8 @@ SRCS		=	main_mateo.c \
 				${SPLIT_DIR}chars_utils.c \
 				\
 				${PARSING_DIR}parsing.c \
-				${PARSING_DIR}create_cmd.c \
 				\
+				${UTILS_DIR}cmd_utils.c \
 				${UTILS_DIR}env_list_utils.c \
 				${UTILS_DIR}export_utils.c \
 				${UTILS_DIR}split_env.c \

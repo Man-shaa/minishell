@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 11:03:10 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:10:09 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,6 @@ typedef struct s_data
 	t_envp	*envp;
 }				t_data;
 
-// *********************** FREE ***********************
-
-// free.c
-void	free_tab(char **tab);
-void	free_list(t_list *list);
-void	free_envp(t_envp *envp);
-void	free_data(t_data *data);
 
 // ********************* BUILTINS *********************
 
@@ -96,6 +89,11 @@ void	replace_oldpwd_my_env(t_envp *envp);
 // unset.c
 void	ft_unset(t_data *data, char *str);
 
+// ********************** CORE ************************
+
+// core.c
+void	get_prompt(t_data *data);
+
 // ******************* CREATE_INIT ********************
 
 // create_cmd.c
@@ -114,6 +112,28 @@ int		env_lenght(char **envp);
 int		add_last_list(t_data *data, char *str);
 t_list	*ft_lstnew(char *str, int type);
 t_list	*ft_lstlast(t_list *list);
+
+// *********************** FREE ***********************
+
+// free.c
+void	free_tab(char **tab);
+void	free_list(t_list *list);
+void	free_envp(t_envp *envp);
+void	free_cmd(t_cmd *cmd);
+void	free_data(t_data *data);
+
+
+// ********************* PARSING **********************
+
+// parsing.c
+int		check_dup(t_data *data);
+
+// ********************** PRINT ***********************
+
+// print.c
+void	print_list(t_list *list);
+void	print_struct_cmd(t_data *data);
+void	print_tab(char **tab);
 
 // ********************** SPLIT ************************
 
@@ -139,24 +159,6 @@ int		count_chars_cmd(char *str, int *i, int *count, int n);
 int		count_chars_redir(char *str, int *i, int *count, int n);
 int		count_chars_pipe(int *i, int *count, int n);
 int		count_chars_quote(char *str, int *i, int *count, int n);
-
-// ********************* PARSING **********************
-
-// parsing.c
-int		check_dup(t_data *data);
-
-
-// ********************** CORE ************************
-
-// core.c
-void	get_prompt(t_data *data);
-
-// ********************** PRINT ***********************
-
-// print.c
-void	print_list(t_list *list);
-void	print_struct_cmd(t_data *data);
-void	print_tab(char **tab);
 
 // ********************** UTILS ***********************
 

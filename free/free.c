@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:11:04 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/14 13:28:10 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:15:31 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	free_list(t_list *list)
 	while (list)
 	{
 		list = list->next;
-		ft_free(save->str);
+		if (save->str)
+			ft_free(save->str);
 		ft_free(save);
 		save = list;
 	}
@@ -51,19 +52,38 @@ void	free_envp(t_envp *envp)
 	while (envp)
 	{
 		envp = envp->next;
-		free_tab(save->tab);
+		if (save->tab)
+			free_tab(save->tab);
 		ft_free(save);
 		save = envp;
 	}
 }
 
-// Free tout t_dada
+// Free la structure t_cmd de t_data
+void	free_cmd(t_cmd *cmd)
+{
+	t_cmd	*save;
+
+	save = cmd;
+	while (cmd)
+	{
+		cmd = cmd->next;
+		if (save->opt)
+			ft_free(save->opt);
+		ft_free(save);
+		save = cmd;
+	}
+}
+
+// Free tout t_data
 void	free_data(t_data *data)
 {
 	if (!data)
 		return ;
 	if (data->list)
 		free_list(data->list);
+	if (data->cmd)
+		free_cmd(data->cmd);
 	if (data->envp)
 		free_envp(data->envp);
 	ft_free(data);

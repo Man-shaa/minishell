@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 02:39:44 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/21 11:02:22 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:20:16 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_cmd	*ft_cmdnew(int index)
 	cmd = ft_calloc(1, sizeof(t_cmd));
 	if (!cmd)
 		return (NULL);
+	cmd->cmd = NULL;
 	cmd->index = index;
 	cmd->opt = NULL;
 	cmd->token = NULL;
