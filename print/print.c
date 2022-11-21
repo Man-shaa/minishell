@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 19:49:19 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 10:58:19 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:22:35 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	print_struct_cmd(t_data *data)
 	{
 		printf("CMD : %s	TOKEN : %s	TYPE : %d	I : %d\n", tmp->cmd, tmp->token, tmp->type, tmp->index);
 		print_tab(tmp->opt);
+		printf("\n");
 		tmp = tmp->next;
 	}
 }
@@ -54,7 +55,7 @@ void	print_tab(char **tab)
 	// printf("\n");
 	while (tab[i])
 	{
-		printf("%s\n", tab[i]);
+		printf("tab[%d] : %s\n", i, tab[i]);
 		i++;
 	}
 	// printf("\n");

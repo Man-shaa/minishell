@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:08:53 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/21 11:05:16 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:54:06 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int ac, char **av, char **envp)
 	ft_split(av[1], data);
 	get_cmd_struct(data);
 	print_struct_cmd(data);
+	printf("\n%s\n\n", data->path_env);
 	free_data(data);
 	return (0);
 }

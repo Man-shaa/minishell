@@ -6,12 +6,13 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 02:39:44 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/21 11:20:16 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:30:26 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+// Return le nombre d'options de la commande dans un bloc separe par des '|'
 int	words_to_pipe(t_data *data, int	n)
 {
 	t_list	*tmp;
@@ -39,7 +40,6 @@ int	words_to_pipe(t_data *data, int	n)
 }
 
 // Ajoute le resulat du split a la fin de la structure t_list
-// Return 1 si l'ajout a reussie, sinon 0 
 void	add_back(t_data *data, t_cmd *cmd)
 {
 	t_cmd	*tmp;

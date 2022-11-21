@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:48:44 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/14 14:44:31 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:46:00 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,11 @@ int	is_builtin(char *str)
 
 // Compare str avec les builtins et si str en est un,
 // envoies a la fonction correspondante
-int	send_to_builtin(t_data *data, char **args)
+int	exec_builtin(t_data *data, char **args)
 {
+	int	return_val;
+
+	return_val = 1;
 	if (is_same(args[0], "cd"))
 		ft_cd(data, args[1]);
 	else if (is_same(args[0], "echo"))
@@ -52,5 +55,5 @@ int	send_to_builtin(t_data *data, char **args)
 		print_pwd();
 	else if (is_same(args[0], "unset"))
 		ft_unset(data, args[1]);
-	return (1); // a remplacer par valeur de retour de builtin
+	return (return_val); // a remplacer par valeur de retour de builtin
 }

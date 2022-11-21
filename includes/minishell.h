@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 11:10:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:57:53 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,15 @@ typedef struct s_data
 	t_cmd	*cmd;
 	t_list	*list;
 	t_envp	*envp;
+	char	*path_env;
 }				t_data;
 
 
-// ********************* BUILTINS *********************
+// *************************** BUILTINS ***************************
 
 // builtins.c
 int		is_builtin(char *str);
+int		exec_builtin(t_data *data, char **args);
 
 // cd.c
 int		ft_cd(t_data *data, char *str);
@@ -72,7 +74,6 @@ void	ft_echo(t_data *data, char *str);
 
 // env.c
 void	print_env(t_envp *envp);
-char	*find_path_in_env(char **envp);
 
 // exit.c
 
@@ -89,12 +90,12 @@ void	replace_oldpwd_my_env(t_envp *envp);
 // unset.c
 void	ft_unset(t_data *data, char *str);
 
-// ********************** CORE ************************
+// ******************************** CORE **********************************
 
 // core.c
 void	get_prompt(t_data *data);
 
-// ******************* CREATE_INIT ********************
+// ***************************** CREATE_INIT ******************************
 
 // create_cmd.c
 void	get_cmd_struct(t_data *data);
@@ -113,7 +114,12 @@ int		add_last_list(t_data *data, char *str);
 t_list	*ft_lstnew(char *str, int type);
 t_list	*ft_lstlast(t_list *list);
 
-// *********************** FREE ***********************
+// ********************************* EXEC *********************************
+
+// path.c
+char	*find_path_in_env(char **envp);
+
+// ********************************* FREE *********************************
 
 // free.c
 void	free_tab(char **tab);
@@ -123,19 +129,19 @@ void	free_cmd(t_cmd *cmd);
 void	free_data(t_data *data);
 
 
-// ********************* PARSING **********************
+// ******************************* PARSING ********************************
 
 // parsing.c
 int		check_dup(t_data *data);
 
-// ********************** PRINT ***********************
+// ******************************** PRINT *********************************
 
 // print.c
 void	print_list(t_list *list);
 void	print_struct_cmd(t_data *data);
 void	print_tab(char **tab);
 
-// ********************** SPLIT ************************
+// ******************************** SPLIT **********************************
 
 // split.c
 int		count_words(char *str);
@@ -160,7 +166,7 @@ int		count_chars_redir(char *str, int *i, int *count, int n);
 int		count_chars_pipe(int *i, int *count, int n);
 int		count_chars_quote(char *str, int *i, int *count, int n);
 
-// ********************** UTILS ***********************
+// ******************************** UTILS *********************************
 
 // cmd_utils.c
 int		words_to_pipe(t_data *data, int	n);

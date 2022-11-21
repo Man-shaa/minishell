@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:03:31 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 11:17:46 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:24:18 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	get_cmd_struct(t_data *data)
 	while (tmp)
 	{
 		j = 0;
-		cmd = ft_cmdnew(i);
+		cmd = ft_cmdnew(i); // Rajouter valeur de retour si malloc cmd fail ici
 		cmd->opt = ft_calloc(words_to_pipe(data, i) + 1, sizeof(char *));
-		cmd->opt[words_to_pipe(data, i)] = 0;
 		if (!cmd->opt)
-			return ; //Rajouter valeur de retour d'erreur
+			return ; // Rajouter valeur de retour d'erreur
+		cmd->opt[words_to_pipe(data, i)] = 0;
 		while (tmp && tmp->type != 6)
 		{
 			tmp = fill_cmd_struct(cmd, tmp, &j);
@@ -47,7 +47,7 @@ t_list	*fill_cmd_struct(t_cmd *cmd, t_list *tmp, int *j)
 {
 	if (tmp->type == 1)
 	{
-		if (is_builtin(tmp->str)) //premier seulement
+		if (is_builtin(tmp->str)) // premier seulement
 			cmd->cmd = tmp->str;
 		else if (tmp->next && tmp->next->type == 2)
 		{

@@ -12,6 +12,8 @@ BUILTS_DIR	=	builtins/
 
 CREATE_DIR	=	create/
 
+EXEC_DIR	=	exec/
+
 CORE_DIR	=	core/
 
 SRCS		=	main_mateo.c \
@@ -32,6 +34,8 @@ SRCS		=	main_mateo.c \
 				${CREATE_DIR}create_data.c \
 				${CREATE_DIR}create_list.c \
 				${CREATE_DIR}create_env.c \
+				\
+				${EXEC_DIR}path.c \
 				\
 				${FREE_DIR}free.c \
 				\
