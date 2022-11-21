@@ -5,52 +5,67 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 02:39:44 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/21 10:56:27 by msharifi         ###   ########.fr       */
+/*   Created: 2022/11/21 11:03:31 by msharifi          #+#    #+#             */
+/*   Updated: 2022/11/21 11:03:43 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// Ajoute le resulat du split a la fin de la structure t_list
-// Return 1 si l'ajout a reussie, sinon 0 
-void	add_back(t_data *data, t_cmd *cmd)
+void	get_cmd_struct(t_data *data)
 {
-	t_cmd	*tmp;
-
-	tmp = ft_cmdlast(data->cmd);
-	if (!tmp)
-	{
-		data->cmd = cmd;
-		return ;
-	}
-	tmp->next = cmd;
-}
-
-// Cree un nouveau node dans la structure t_list et initialise a NULL
-// Return un pointeur sur t_list ou NULL si le malloc a rate
-t_cmd	*ft_cmdnew(int index)
-{
+	t_list	*tmp;
 	t_cmd	*cmd;
+	int		i;
+	int		j;
 
-	cmd = ft_calloc(1, sizeof(t_cmd));
-	if (!cmd)
-		return (NULL);
-	cmd->index = index;
-	cmd->opt = NULL;
-	cmd->token = NULL;
-	cmd->type = 0;
-	cmd->next = NULL;
-	return (cmd);
+	tmp = data->list;
+	i = 0;
+	// cmd = NULL;
+	// data->cmd = cmd;
+	while (tmp)
+	{
+		j = 0;
+		cmd = ft_cmdnew(i);
+		cmd->opt = ft_calloc(words_to_pipe(data, i) + 1, sizeof(char *));
+		if (!cmd->opt)
+			return ; //Rajouter valeur de retour d'erreur
+		while (tmp && tmp->type != 6)
+		{
+			tmp = fill_cmd_struct(cmd, tmp, &j);
+			tmp = tmp->next;
+		}
+		add_back(data, cmd);
+		i++;
+		if (tmp)
+			tmp = tmp->next;
+	}
 }
 
-// Cherche le dernier node dans la strucure t_list
-// Return le dernier node ou NULL si la structure n'existe pas
-t_cmd	*ft_cmdlast(t_cmd *cmd)
+t_list	*fill_cmd_struct(t_cmd *cmd, t_list *tmp, int *j)
 {
-	if (!cmd)
-		return (NULL);
-	while (cmd->next)
-		cmd = cmd->next;
-	return (cmd);
+	if (tmp->type == 1)
+	{
+		if (is_builtin(tmp->str)) //premier seulement
+			cmd->cmd = tmp->str;
+		else if (tmp->next && tmp->next->type == 2)
+		{
+			cmd->token = tmp->str;
+			tmp = tmp->next;
+			cmd->type = tmp->type;
+		}
+		else
+		{
+			cmd->opt[(*j)] = tmp->str;
+			(*j)++;
+		}
+	}
+	else
+	{
+		cmd->type = tmp->type;
+		tmp = tmp->next;
+		cmd->token = tmp->str;
+		// fill_cmd_struct_exp(cmd, tmp);
+	}
+	return (tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 19:49:19 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 10:57:14 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 10:58:19 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ void	print_tab(char **tab)
 	i = 0;
 	if (!tab)
 		return ;
-	printf("\n");
+	// printf("\n");
 	while (tab[i])
 	{
 		printf("%s\n", tab[i]);
 		i++;
 	}
-	printf("\n");
+	// printf("\n");
 }
