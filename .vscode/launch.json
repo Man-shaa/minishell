@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/minishell",
-			"args": [],
+			"args": ["echo > mat mat | truc mat > echoe is | tansbul echo cafe clope | all   < dni"],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"environment": [],

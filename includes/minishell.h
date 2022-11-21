@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/17 17:55:13 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/21 05:44:38 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@
 
 typedef struct s_cmd
 {
-	char			**cmd_args;
-	char			*cmd_path;
+	char			*cmd;
+	char			**opt;
+	char			*token;
+	int				type;
+	int				index;
 	struct s_cmd	*next;
 }				t_cmd;
 
@@ -137,7 +140,15 @@ int		count_chars_quote(char *str, int *i, int *count, int n);
 
 // parsing.c
 int		check_dup(t_data *data);
+int		words_to_pipe(t_data *data, int	n);
+void	get_cmd_struct(t_data *data);
+t_list	*fill_cmd_struct(t_cmd *cmd, t_list *tmp, int *j);
 
+// create_cmd.c
+t_cmd	*ft_cmdnew(int index);
+void	print_struct_cmd(t_data *data);
+void	add_back(t_data *data, t_cmd *cmd);
+t_cmd	*ft_cmdlast(t_cmd *cmd);
 
 // ********************** CORE ************************
 
