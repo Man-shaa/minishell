@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 16:26:03 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:24:09 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	exec_binary(t_data *data)
 int	send_cmd(t_data *data, t_cmd *cmd)
 {
 	if (cmd->cmd && is_builtin(cmd->cmd))
-		data->return_val = exec_builtin(data, cmd->cmd, cmd->opt); // Return_val a MAJ
+		data->return_val = exec_builtin(data, cmd->cmd, cmd->opt);
 	else if (cmd->cmd)
 		data->return_val = exec_binary(data); // Return_val a MAJ
 	return (1);

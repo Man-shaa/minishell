@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 16:27:00 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:33:40 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	ft_echo(t_data *data, char **args);
 void	print_env(t_envp *envp);
 
 // exit.c
+int		ft_exit(t_data *data, char **args);
 
 // export.c
 int		ft_export(t_data *data, char **args);

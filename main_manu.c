@@ -6,20 +6,20 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:08:53 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/21 16:46:32 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:23:52 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
 // ft_atoi avant pour recup d'argument du prompt (avec tab et 32)
-// Ajouter les valeurs de retour de chaque builtin + cmd binaires
+// Ajouter les valeurs de retour de chaque cmd binaire
 // nouvelle structure t_pipex ? pour les pid, char *cmd_path
-// echo -n -n -n -n va annuler la nezline mais aussi zapper tous les autres -n
 
 int	main(int ac, char **av, char **envp)
 {
 	t_data	*data;
+	int		exit_status;
 	t_cmd	*cmd;
 
 	(void)ac;
@@ -37,6 +37,7 @@ int	main(int ac, char **av, char **envp)
 		cmd = cmd->next;
 	}
 	print_env(data->envp);
+	exit_status = data->return_val;
 	free_data(data);
-	return (0);
+	return (exit_status);
 }

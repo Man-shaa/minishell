@@ -26,6 +26,7 @@ SRCS		=	main_mateo.c \
 				${BUILTS_DIR}cd.c \
 				${BUILTS_DIR}echo.c \
 				${BUILTS_DIR}env.c \
+				${BUILTS_DIR}exit.c \
 				${BUILTS_DIR}export.c \
 				${BUILTS_DIR}pwd.c \
 				${BUILTS_DIR}unset.c \
