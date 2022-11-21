@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 19:49:19 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/17 17:32:58 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 10:57:14 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,20 @@ void	print_list(t_list *list)
 		list = list->next;
 	}
 	printf("\n");
+}
+
+// print toutes les commandes/redirections de t_cmd recuperee de t_list
+void	print_struct_cmd(t_data *data)
+{
+	t_cmd	*tmp;
+
+	tmp = data->cmd;
+	while (tmp)
+	{
+		printf("CMD : %s	TOKEN : %s	TYPE : %d	I : %d\n", tmp->cmd, tmp->token, tmp->type, tmp->index);
+		print_tab(tmp->opt);
+		tmp = tmp->next;
+	}
 }
 
 void	print_tab(char **tab)

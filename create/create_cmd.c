@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 02:39:44 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/21 06:06:53 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/21 10:56:27 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,6 @@ t_cmd	*ft_cmdnew(int index)
 	return (cmd);
 }
 
-void	print_struct_cmd(t_data *data)
-{
-	t_cmd	*tmp;
-
-	tmp = data->cmd;
-	while (tmp)
-	{
-		printf("CMD : %s	TOKEN : %s	TYPE : %d	I : %d\n", tmp->cmd, tmp->token, tmp->type, tmp->index);
-		print_tab(tmp->opt);
-		tmp = tmp->next;
-	}
-}
 // Cherche le dernier node dans la strucure t_list
 // Return le dernier node ou NULL si la structure n'existe pas
 t_cmd	*ft_cmdlast(t_cmd *cmd)

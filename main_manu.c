@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:08:53 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/17 17:31:58 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 10:55:18 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ int	main(int ac, char **av, char **envp)
 	data = create_data(envp);
 	if (!data)
 		return (1);
-	ft_split(av[1], data);
-	print_list(data->list);
 	free_data(data);
 	return (0);
 }

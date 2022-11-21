@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 05:44:38 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/21 10:55:50 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,12 @@ void	ft_unset(t_data *data, char *str);
 
 // ******************* CREATE_INIT ********************
 
+// create_cmd.c
+t_cmd	*ft_cmdnew(int index);
+void	print_struct_cmd(t_data *data);
+void	add_back(t_data *data, t_cmd *cmd);
+t_cmd	*ft_cmdlast(t_cmd *cmd);
+
 // create_data.c
 t_data	*create_data(char **envp);
 
@@ -144,11 +150,6 @@ int		words_to_pipe(t_data *data, int	n);
 void	get_cmd_struct(t_data *data);
 t_list	*fill_cmd_struct(t_cmd *cmd, t_list *tmp, int *j);
 
-// create_cmd.c
-t_cmd	*ft_cmdnew(int index);
-void	print_struct_cmd(t_data *data);
-void	add_back(t_data *data, t_cmd *cmd);
-t_cmd	*ft_cmdlast(t_cmd *cmd);
 
 // ********************** CORE ************************
 
