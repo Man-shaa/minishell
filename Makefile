@@ -40,6 +40,7 @@ SRCS		=	main_mateo.c \
 				${SPLIT_DIR}chars_utils.c \
 				\
 				${PARSING_DIR}parsing.c \
+				${PARSING_DIR}create_cmd.c \
 				\
 				${UTILS_DIR}env_list_utils.c \
 				${UTILS_DIR}export_utils.c \
