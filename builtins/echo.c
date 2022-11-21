@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:39:45 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 01:32:10 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:46:36 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,59 @@
 
 #include "../includes/minishell.h"
 
-void	ft_echo(t_data *data, char *str)
+// Return 1 si l'option -n est trouvee dans str, sinon 0
+int	is_option_n(char *str)
 {
-	t_envp	*node;
-	char	*res;
+	int	i;
 
+	i = 1;
+	if (!str)
+		return (0);
+	if (str[0] != '-')
+		return (0);
+	while (str[i] && str[i] == 'n')
+		i++;
+	if (!str[i])
+		return (1);
+	return (0);
+}
+
+void	echo_env_var(t_data *data, char **args, int i)
+{
+	char	*res;
+	t_envp	*node;
+
+	res = ignore_charset(args[i], "$(){}");
 	node = data->envp;
-	if (ft_strchr(str, '$'))
-		ft_putstr(str);
-	else
+	node = search_node(data->envp, res);
+	ft_free(res);
+	ft_putstr(node->tab[1]);
+}
+
+void	ft_echo(t_data *data, char **args)
+{
+	int		i;
+	int		boule;
+
+	boule = 0;
+	i = 0;
+	if (!args)
+		return ;
+	while (args[i] && is_option_n(args[i]))
 	{
-		res = ignore_charset(str, "$(){}");
-		node = search_node(data->envp, res);
-		ft_free(res);
-		ft_putstr(node->tab[1]);
+		i++;
+		boule = 1;
 	}
-	write(1, "\n", 1);
+	while (args[i])
+	{
+		if (args[i][0] != '$')
+			ft_putstr(args[i]);
+		else
+			echo_env_var(data, args, i);
+		i++;
+		if (args[i])
+			write(1, " ", 1);
+	}
+	if (boule == 0)
+		write(1, "\n", 1);
 }

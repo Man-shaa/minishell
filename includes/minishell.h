@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 11:57:53 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:36:08 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_data
 	t_list	*list;
 	t_envp	*envp;
 	char	*path_env;
+	int		return_val;
 }				t_data;
 
 
@@ -64,13 +65,13 @@ typedef struct s_data
 
 // builtins.c
 int		is_builtin(char *str);
-int		exec_builtin(t_data *data, char **args);
+int		exec_builtin(t_data *data, char *cmd, char **args);
 
 // cd.c
 int		ft_cd(t_data *data, char *str);
 
 // echo.c
-void	ft_echo(t_data *data, char *str);
+void	ft_echo(t_data *data, char **args);
 
 // env.c
 void	print_env(t_envp *envp);
@@ -114,10 +115,19 @@ int		add_last_list(t_data *data, char *str);
 t_list	*ft_lstnew(char *str, int type);
 t_list	*ft_lstlast(t_list *list);
 
+// ********************************* ERROR ********************************
+
+// error.c
+int		err_msg(char *str, int fd, int ret_val);
+
 // ********************************* EXEC *********************************
 
 // path.c
 char	*find_path_in_env(char **envp);
+
+// exec.c
+int	exec_binary(t_data *data);
+int	send_cmd(t_data *data);
 
 // ********************************* FREE *********************************
 
