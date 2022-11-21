@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_mateo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/17 18:06:35 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/21 06:10:30 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ int    main(int ac, char **av, char **envp)
 	ft_split(str, data);
 	if (!check_dup(data))
 		return (ft_putstr("2 tokens following each other"), 2);
+	get_cmd_struct(data);
+	print_struct_cmd(data);
+	printf("COUNT = %d", words_to_pipe(data, 4));
 	free_data(data);
 	return (0);
 }
