@@ -1,22 +1,24 @@
 NAME		=	minishell
 
-UTILS_DIR	=	utils/
-
-FREE_DIR	=	free/
-
-SPLIT_DIR	=	split/
-
-PARSING_DIR	=	parsing/
-
 BUILTS_DIR	=	builtins/
+
+CORE_DIR	=	core/
 
 CREATE_DIR	=	create/
 
-EXEC_DIR	=	exec/
-
 ERROR_DIR	=	error/
 
-CORE_DIR	=	core/
+EXEC_DIR	=	exec/
+
+FREE_DIR	=	free/
+
+HISTORY_DIR	=	history/
+
+PARSING_DIR	=	parsing/
+
+SPLIT_DIR	=	split/
+
+UTILS_DIR	=	utils/
 
 SRCS		=	main_mateo.c \
 				main_manu.c \
@@ -44,6 +46,8 @@ SRCS		=	main_mateo.c \
 				${EXEC_DIR}path.c \
 				\
 				${FREE_DIR}free.c \
+				\
+				${HISTORY_DIR}history.c \
 				\
 				${SPLIT_DIR}split.c \
 				${SPLIT_DIR}split_utils.c \

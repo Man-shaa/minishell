@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/22 16:07:45 by msharifi         ###   ########.fr       */
+/*   Created: 2022/11/22 17:24:47 by msharifi          #+#    #+#             */
+/*   Updated: 2022/11/22 18:06:44 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	exec_binary(t_data *data)
+void	add_to_history(char **av)
 {
-	(void)data;
-	return (1);
-}
+	char	*line;
+	char	*save;
+	int		i;
 
-int	send_cmd(t_data *data, t_cmd *cmd)
-{
-	if (cmd->cmd && is_builtin(cmd->cmd))
-		data->return_val = exec_builtin(data, cmd->cmd, cmd->opt);
-	else if (cmd->cmd)
-		data->return_val = exec_binary(data); // valeur retour a MAJ
-	return (1);
+	i = 1;
+	line = NULL;
+	if (!av || !av[1])
+		return ;
+	while (av[i])
+	{
+		save = ft_strndup(line, 0);
+		ft_free(line);
+		line = ft_strjoin(save, av[i]);
+		ft_free(save);
+		i++;
+	}
+	printf("line : %s\n", line);
+	add_history(line);
+	ft_free(line);
 }

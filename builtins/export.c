@@ -6,41 +6,53 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:43 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 17:21:26 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/22 19:05:16 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+int	add_last_env(t_data *data, char *arg)
+{
+	t_envp	*tmp;
+	t_envp	*last;
+
+	tmp = data->envp;
+	last = ft_lstnew_env(arg);
+	if (!last)
+		return (0);
+	if (!data->envp)
+		data->envp = last;
+	else
+	{
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = last;
+	}
+	return (1);
+}
+
 // Ajoute un node a la fin de la structure t_envp
 // Return 0 si l'operation a reussie, sinon 1
 int	ft_export(t_data *data, char **args)
 {
-	t_envp	*last;
-	t_envp	*tmp;
 	int		i;
 
 	i = 0;
-	if (!args || !args[i] || !args[i][0])
-		return (1);
+	if (!args || !args[0])
+		return (print_export(data->envp), 0);
 	while (args[i])
 	{
-		if (!args[i] || !args[i][0] || args[i][0] == '=' || !is_valid_name(args[i]))
-			return (err_msg("export: ", args[i], ": not a valid identifier\n", 2), 1);
+		if (!args[i] || !args[i][0] || args[i][0] == '='
+			|| !is_valid_name(args[i]))
+		{
+			err_msg("export: `", args[i], "': not a valid identifier\n", 2);
+			return (1);
+		}
 		if (already_exist(data->envp, args[i]))
 			return (0);
-		tmp = data->envp;
-		last = ft_lstnew_env(args[i]);
-		if (!last)
+		if (!add_last_env(data, args[i]))
 			return (1);
-		if (!data->envp)
-			data->envp = last;
-		else
-		{
-			while (tmp->next)
-				tmp = tmp->next;
-			tmp->next = last;
-		}
 		i++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:32:11 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/14 12:53:02 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:41:24 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,27 +47,22 @@ char	*ft_strndup(char *str, int n)
 	int		i;
 	char	*dup;
 
-	i = 0;
-	dup = ft_calloc(1, ft_strlen(str) + 1);
+	i = -1;
+	if (!str)
+		return (NULL);
+	dup = ft_calloc(ft_strlen(str) + 1, 1);
 	if (!dup)
 		return (NULL);
 	if (n == 0)
 	{
-		while (str[i])
-		{
+		while (str[++i])
 			dup[i] = str[i];
-			i++;
-		}
 	}
 	else
 	{
-		while (str[i] && i < n)
-		{
+		while (++i < n && str[i])
 			dup[i] = str[i];
-			i++;
-		}
 	}
-	dup[i] = '\0';
 	return (dup);
 }
 
