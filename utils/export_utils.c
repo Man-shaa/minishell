@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 17:49:30 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/10 20:58:06 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:51:23 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	is_valid_name(char *str)
 	i = 0;
 	while (str[i] && str[i] != '=')
 	{
-		if (!ft_isprint((int)str[i]))
+		if (!ft_isalpha((int)str[i]))
 			if (str[i] != '=' && (str[i] != '+' || str[i + 1] != '='))
 				return (0);
 		i++;

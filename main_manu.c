@@ -6,15 +6,19 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:08:53 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/22 19:22:59 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/22 19:29:38 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
+// history
 // ft_atoi avant pour recup d'argument du prompt (avec tab et 32)
 // Ajouter les valeurs de retour de chaque cmd binaire
 // nouvelle structure t_pipex ? pour les pid, char *cmd_path
+// Valeur de eretour quand cmd not found : [127]
+
+// ft_export +25 lignes avec 2 qui se repetent
 
 // int	main(int ac, char **av, char **envp)
 // {
