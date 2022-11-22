@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/22 19:49:49 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/22 20:50:54 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ void	add_to_history(char **av);
 
 // parsing.c
 int		check_dup(t_data *data);
+int		check_cmd(t_data *data);
 
 // ******************************** PRINT *********************************
 

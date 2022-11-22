@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/22 19:59:19 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/22 20:52:09 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ int    main(int ac, char **av, char **envp)
 	str = av[1];
 	ft_split(str, data);
 	if (!check_dup(data))
-		return (ft_putstr("2 tokens following each other"), 2);
+		return (ft_putstr("2 tokens following each other\n"), 2);
+	if (!check_cmd(data))
+		return (ft_putstr("Pls put a command\n"), 3);
 	if (!get_cmd_struct(data))
 		return (1);
 	print_struct_cmd(data);
