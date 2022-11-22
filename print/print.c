@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 19:49:19 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 11:22:35 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/22 20:00:08 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,18 @@ void	print_list(t_list *list)
 void	print_struct_cmd(t_data *data)
 {
 	t_cmd	*tmp;
+	int	i;
 
 	tmp = data->cmd;
+	i = 0;
 	while (tmp)
 	{
 		printf("CMD : %s	TOKEN : %s	TYPE : %d	I : %d\n", tmp->cmd, tmp->token, tmp->type, tmp->index);
 		print_tab(tmp->opt);
+		printf("COUNT = %d\n", words_to_pipe(data, i));
 		printf("\n");
 		tmp = tmp->next;
+		i++;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/22 19:29:46 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/22 19:49:49 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	get_prompt(t_data *data);
 // create_cmd.c
 int		get_cmd_struct(t_data *data);
 t_list	*fill_cmd_struct(t_cmd *cmd, t_list *tmp, int *j);
-int	set_up_cmd(t_data *data, t_cmd *cmd, int *i);
+t_cmd	*set_up_cmd(t_data *data, int *i);
 
 // create_data.c
 t_data	*create_data(char **envp);

@@ -6,20 +6,22 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:03:31 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/22 19:23:55 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/22 20:06:48 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	set_up_cmd(t_data *data, t_cmd *cmd, int *i)
+t_cmd	*set_up_cmd(t_data *data, int *i)
 {
+	t_cmd	*cmd;
+
 	cmd = ft_cmdnew(*i);
 	cmd->opt = ft_calloc(words_to_pipe(data, (*i)) + 1, sizeof(char *));
 	if (!cmd->opt)
-		return (0);
+		return (NULL);
 	cmd->opt[words_to_pipe(data, (*i))] = 0;
-	return (1);
+	return (cmd);
 }
 
 int	get_cmd_struct(t_data *data)
@@ -35,7 +37,8 @@ int	get_cmd_struct(t_data *data)
 	while (tmp)
 	{
 		j = 0;
-		if (!set_up_cmd(data, cmd, &i))
+		cmd = set_up_cmd(data, &i);
+		if (!cmd)
 			return (0);
 		while (tmp && tmp->type != 6)
 		{
@@ -54,7 +57,7 @@ t_list	*fill_cmd_struct(t_cmd *cmd, t_list *tmp, int *j)
 {
 	if (tmp->type == 1)
 	{
-		if (is_builtin(tmp->str)) // premier seulement
+		if (is_builtin(tmp->str) && cmd->cmd == NULL)
 			cmd->cmd = tmp->str;
 		else if (tmp->next && tmp->next->type == 2)
 		{
@@ -73,7 +76,6 @@ t_list	*fill_cmd_struct(t_cmd *cmd, t_list *tmp, int *j)
 		cmd->type = tmp->type;
 		tmp = tmp->next;
 		cmd->token = tmp->str;
-		// fill_cmd_struct_exp(cmd, tmp);
 	}
 	return (tmp);
 }

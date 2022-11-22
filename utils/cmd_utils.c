@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 02:39:44 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/21 11:30:26 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/22 20:08:15 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 // Return le nombre d'options de la commande dans un bloc separe par des '|'
-int	words_to_pipe(t_data *data, int	n)
+int	words_to_pipe(t_data *data, int n)
 {
 	t_list	*tmp;
-	int	count;
-	int	cappuccino;
-	int	moccha;
+	int		count;
+	int		cappuccino;
+	int		moccha;
 
 	tmp = data->list;
 	count = 0;
@@ -26,7 +26,8 @@ int	words_to_pipe(t_data *data, int	n)
 	cappuccino = 0;
 	while (tmp)
 	{
-		if (tmp->type == 1 && is_builtin(tmp->str) && cappuccino == 0 && moccha == n)
+		if (tmp->type == 1 && is_builtin(tmp->str)
+			&& cappuccino == 0 && moccha == n)
 			cappuccino++;
 		else if (tmp->type == 1 && moccha == n)
 			count++;
