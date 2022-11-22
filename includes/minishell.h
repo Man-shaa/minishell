@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 17:33:40 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:51:23 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@
 # define DELIM	4 // <<	heredoc
 # define APPEND	5 // >>	redirection sortie en mode append
 # define PIPE	6 // |	ET
+
+typedef struct s_jsp
+{
+	int		fd_in;
+	int		fd_out;
+	pid_t	pid;
+}				t_jsp;
 
 typedef struct s_cmd
 {
@@ -140,6 +147,10 @@ void	free_envp(t_envp *envp);
 void	free_cmd(t_cmd *cmd);
 void	free_data(t_data *data);
 
+// ******************************* HISTORY ********************************
+
+void	add_to_history(char **av);
+
 // ******************************* PARSING ********************************
 
 // parsing.c
@@ -209,7 +220,7 @@ char	*ft_strndup(char *str, int n);
 char	*ft_strcmp(char *str, char *to_find);
 
 // str_utils_2.c
-int		ft_isprint(int a);
+int		ft_isalpha(int a);
 int		is_same(char *s1, char *s2);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strchr(char *str, char c);
@@ -218,5 +229,6 @@ char	*ignore_charset(char *str, char *charset);
 // utils.c
 void	ft_free(void *addr);
 void	*ft_calloc(size_t n, size_t size);
+long	ft_atoi(const char *str);
 
 #endif

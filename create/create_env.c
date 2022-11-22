@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:07:42 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 17:21:35 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/22 19:06:05 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	create_env(t_data *data, char **envp)
 // Return 1 si la creation a reussi, sinon 0
 int	create_my_env(t_data *data)
 {
-	char **tab;
+	char	**tab;
 
 	tab = ft_calloc(4, sizeof(char *));
 	tab[0] = ft_strndup("OLDPWD", 0);

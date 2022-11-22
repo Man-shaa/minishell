@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/19 05:07:52 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/22 15:33:56 by msharifi         ###   ########.fr       */
+/*   Created: 2022/11/22 17:24:47 by msharifi          #+#    #+#             */
+/*   Updated: 2022/11/22 18:06:44 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// changer oldpwd et pwd avec replace...
-
-int	ft_cd(t_data *data, char *str)
+void	add_to_history(char **av)
 {
-	(void)data;
-	str = getcwd(NULL, 0);
-	printf("AVANT : %s\n", str);
-	chdir("../../../../../../../../../../../..");
-	ft_free(str);
-	str = getcwd(NULL, 0);
-	printf("APRES : %s\n", str);
-	ft_free(str);
-	return (1);
+	char	*line;
+	char	*save;
+	int		i;
+
+	i = 1;
+	line = NULL;
+	if (!av || !av[1])
+		return ;
+	while (av[i])
+	{
+		save = ft_strndup(line, 0);
+		ft_free(line);
+		line = ft_strjoin(save, av[i]);
+		ft_free(save);
+		i++;
+	}
+	printf("line : %s\n", line);
+	add_history(line);
+	ft_free(line);
 }

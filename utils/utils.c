@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:53:54 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/14 13:25:28 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/22 15:30:55 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,29 @@ void	*ft_calloc(size_t n, size_t size)
 		str[n] = '\0';
 	}
 	return (tab);
+}
+
+long	ft_atoi(const char *str)
+{
+	int		i;
+	long	result;
+	int		sign;
+
+	result = 0;
+	i = 0;
+	sign = 1;
+	while ((str[i] && str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = -sign;
+		i++;
+	}
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + str[i] - 48;
+		i++;
+	}
+	return (result * sign);
 }
