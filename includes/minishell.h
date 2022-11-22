@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 17:33:40 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/22 15:31:12 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,5 +218,6 @@ char	*ignore_charset(char *str, char *charset);
 // utils.c
 void	ft_free(void *addr);
 void	*ft_calloc(size_t n, size_t size);
+long	ft_atoi(const char *str);
 
 #endif
