@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/23 17:14:42 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:33:30 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int	send_cmd(t_data *data, t_cmd *cmd)
 	if (cmd->cmd && is_builtin(cmd->cmd))
 		data->return_val = exec_builtin(data, cmd->cmd, cmd->opt);
 	else if (cmd->opt && cmd->opt[0])
-		data->return_val = exec_binary(data, cmd); // valeur retour a MAJ
+		data->return_val = exec_binary(data, cmd); // valeur retour a set
 	return (1);
 }

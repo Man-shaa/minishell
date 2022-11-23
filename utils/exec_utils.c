@@ -6,12 +6,14 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:06:08 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/23 17:12:36 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:35:03 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+// Test l'acces a av
+// Return 1 si le chemin est absolu ou l'acces a reussi, sinon return 0
 int	is_path(t_data *data, char *av)
 {
 	if (!av)
@@ -26,6 +28,29 @@ int	is_path(t_data *data, char *av)
 	return (1);
 }
 
+// Cherche la variable PATH qui contient tous les chemins possibles de
+// commandes dans l'environnement
+// Return PATH de l'environnement ou NULL si elle n'a pas ete trouvee
+char	*find_path_in_env(char **envp)
+{
+	int		i;
+	char	*path;
+
+	i = 0;
+	path = NULL;
+	while (envp[i])
+	{
+		path = ft_strcmp(envp[i], "PATH=");
+		if (path)
+			return (path);
+		i++;
+	}
+	return (NULL);
+}
+
+// Test tous les paths possibles de la variable d'environnement PATH
+// Return 1 si un path est valide et le set dans cmd->cmd_path,
+// sinon return 0
 int	find_cmd_path(t_data *data, t_cmd *cmd)
 {
 	char	**all_paths;

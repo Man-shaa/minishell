@@ -43,7 +43,6 @@ SRCS		=	main_mateo.c \
 				${ERROR_DIR}error.c \
 				\
 				${EXEC_DIR}exec.c \
-				${EXEC_DIR}path.c \
 				\
 				${FREE_DIR}free.c \
 				\

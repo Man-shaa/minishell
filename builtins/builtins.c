@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:48:44 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 17:33:11 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:35:40 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	is_builtin(char *str)
 }
 
 // Compare str avec les builtins et si str en est un,
-// envoies a la fonction correspondante
+// envoies a la fonction correspondante pour l'executer
 int	exec_builtin(t_data *data, char *cmd, char **args)
 {
 	if (is_same(cmd, "cd"))
