@@ -6,89 +6,108 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:25:37 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/23 16:34:25 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:18:37 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h" 
 
-int	count_words_normal(char *str, char c)
+int	word_count_normal(char *str, char set)
 {
 	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == c)
-			i++;
-		else
-		{
-			count++;
-			while (str[i] && str[i] != c)
-				i++;
-		}
-	}
-	return (count);
-}
-
-char	*putword_normal(char *word, char *s, int i, int word_len)
-{
 	int	j;
 
+	i = 0;
 	j = 0;
-	while (word_len > 0)
+	while (str[i])
 	{
-		word[j] = s[i - word_len];
-		j++;
-		word_len--;
+		while (str[i] && str[i] == set)
+			i++;
+		while (str[i] && str[i] != set)
+		{
+			if (str[i + 1] == set || str[i + 1] == '\0')
+				j++;
+			i++;
+		}
 	}
-	word[j] = '\0';
-	return (word);
+	return (j);
 }
 
-char	**split_words_normal(char *s, char c, char **tab, int word_count)
+int	char_count_normal(char *str, char set, int pos)
 {
 	int	i;
-	int	word;
-	int	word_len;
+	int	j;
+	int	k;
 
 	i = 0;
-	word = 0;
-	word_len = 0;
-	while (word < word_count)
+	j = 0;
+	k = 0;
+	while (str[i])
 	{
-		while (s[i] && s[i] == c)
+		while (str[i] && str[i] == set)
 			i++;
-		while (s[i] && s[i] != c)
+		while (str[i] && str[i] != set)
 		{
+			if (j == pos)
+				k++;
+			if (str[i + 1] == set || str[i + 1] == '\0')
+				j++;
 			i++;
-			word_len++;
 		}
-		tab[word] = ft_calloc(word_len + 1, 1);
-		if (!tab)
-			return (0);
-		putword_normal(tab[word], s, i, word_len);
-		word_len = 0;
-		word++;
 	}
-	tab[word] = 0;
+	return (k);
+}
+
+char	*putword_normal(char *str, char *tab, char set, int pos)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	while (str[i])
+	{
+		while (str[i] && str[i] == set)
+			i++;
+		while (str[i] && str[i] != set)
+		{
+			if (j == pos)
+			{
+				tab[k] = str[i];
+				k++;
+			}
+			if (str[i + 1] == set || str[i + 1] == '\0')
+				j++;
+			i++;
+		}
+	}
+	tab[k] = '\0';
 	return (tab);
 }
 
-char	**ft_split_normal(char *s, char c)
+char	**ft_split_normal(char	*str, char set)
 {
+	int		i;
+	int		j;
 	char	**tab;
-	int		word_count;
 
-	if (!s)
-		return (0);
-	word_count = count_words_normal(s, c);
-	tab = ft_calloc(word_count + 1, sizeof(char *));
+	i = 0;
+	j = 0;
+	if (!str)
+		return (NULL);
+	tab = ft_calloc(word_count_normal(str, set) + 1, sizeof(char *));
 	if (!tab)
-		return (0);
-	if (!split_words_normal(s, c, tab, word_count))
-	free_tab(tab);
+		return (ft_free(tab), NULL);
+	while (j < word_count_normal(str, set))
+	{
+		tab[j] = ft_calloc(char_count_normal(str, set, j) + 1, 1);
+		if (!tab[j])
+			return (free_tab(tab), NULL);
+		tab[j] = putword_normal(str, tab[j], set, j);
+		j++;
+	}
+	tab[j] = 0;
 	return (tab);
 }

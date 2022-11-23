@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/23 17:14:56 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:18:32 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,10 +221,11 @@ char	*ft_putword_env(char *str, char *tab, char set, int pos);
 char	**ft_split_env(char	*str, char set);
 
 // split_normal.c
-int		count_words_normal(char *str, char c);
-char	*putword_normal(char *word, char *s, int i, int word_len);
-char	**split_words_normal(char *s, char c, char **s2, int word_count);
-char	**ft_split_normal(char *s, char c);
+int		word_count_normal(char *str, char set);
+int		char_count_normal(char *str, char set, int pos);
+char	*putword_normal(char *str, char *tab, char set, int pos);
+char	**ft_split_normal(char	*str, char set);
+
 
 // str_utils_2.c
 int		ft_isalpha(int a);
