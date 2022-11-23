@@ -58,8 +58,10 @@ SRCS		=	main_mateo.c \
 				\
 				${UTILS_DIR}cmd_utils.c \
 				${UTILS_DIR}env_list_utils.c \
+				${UTILS_DIR}exec_utils.c \
 				${UTILS_DIR}export_utils.c \
 				${UTILS_DIR}split_env.c \
+				${UTILS_DIR}split_normal.c \
 				${UTILS_DIR}str_utils.c \
 				${UTILS_DIR}str_utils_2.c \
 				${UTILS_DIR}utils.c

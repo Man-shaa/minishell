@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/22 20:50:54 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:14:56 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,17 @@
 # define APPEND	5 // >>	redirection sortie en mode append
 # define PIPE	6 // |	ET
 
-typedef struct s_jsp
+typedef struct s_proc
 {
 	int		fd_in;
 	int		fd_out;
 	pid_t	pid;
-}				t_jsp;
+}				t_proc;
 
 typedef struct s_cmd
 {
 	char			*cmd;
+	char			*cmd_path;
 	char			**opt;
 	char			*token;
 	int				type;
@@ -63,6 +64,7 @@ typedef struct s_data
 	t_cmd	*cmd;
 	t_list	*list;
 	t_envp	*envp;
+	t_proc	*proc;
 	char	*path_env;
 	int		return_val;
 }				t_data;
@@ -136,7 +138,7 @@ void	err_msg(char *start, char *str, char *end, int fd);
 char	*find_path_in_env(char **envp);
 
 // exec.c
-int		exec_binary(t_data *data);
+int		exec_binary(t_data *data, t_cmd *cmd);
 int		send_cmd(t_data *data, t_cmd *cmd);
 
 // ********************************* FREE *********************************
@@ -205,21 +207,24 @@ int		is_valid_name(char *str);
 int		replace_value(t_envp *node, char *value);
 char	*ignore_charset(char *str, char *charset);
 
-// list_utils.c
+// env_list_utils.c
 t_envp	*search_node(t_envp *envp, char *str);
 t_envp	*ft_lstnew_env(char *str);
 
-// split_normal.c
+// exec_utils.c
+int	is_path(t_data *data, char *av);
+int	find_cmd_path(t_data *data, t_cmd *cmd);
+
+// split_env.c
 int		char_count_env(char *str, char set, int pos);
 char	*ft_putword_env(char *str, char *tab, char set, int pos);
 char	**ft_split_env(char	*str, char set);
 
-// str_utils.c
-int		ft_strlen(char *str);
-int		redir_type(char *str);
-void	ft_putstr(char *str);
-char	*ft_strndup(char *str, int n);
-char	*ft_strcmp(char *str, char *to_find);
+// split_normal.c
+int		count_words_normal(char *str, char c);
+char	*putword_normal(char *word, char *s, int i, int word_len);
+char	**split_words_normal(char *s, char c, char **s2, int word_count);
+char	**ft_split_normal(char *s, char c);
 
 // str_utils_2.c
 int		ft_isalpha(int a);
@@ -227,6 +232,13 @@ int		is_same(char *s1, char *s2);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strchr(char *str, char c);
 char	*ignore_charset(char *str, char *charset);
+
+// str_utils.c
+int		ft_strlen(char *str);
+int		redir_type(char *str);
+void	ft_putstr(char *str);
+char	*ft_strndup(char *str, int n);
+char	*ft_strcmp(char *str, char *to_find);
 
 // utils.c
 void	ft_free(void *addr);

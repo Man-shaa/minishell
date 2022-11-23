@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 02:39:44 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/22 20:08:15 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/23 16:16:28 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_cmd	*ft_cmdnew(int index)
 	if (!cmd)
 		return (NULL);
 	cmd->cmd = NULL;
+	cmd->cmd_path = NULL;
 	cmd->index = index;
 	cmd->opt = NULL;
 	cmd->token = NULL;
