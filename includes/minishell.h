@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/23 17:32:40 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/25 20:44:44 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stddef.h>
+# include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -105,7 +106,7 @@ void	ft_unset(t_data *data, char *str);
 // ******************************** CORE **********************************
 
 // core.c
-void	get_prompt(t_data *data);
+void	get_prompt(t_data *data, char **envp);
 
 // ***************************** CREATE_INIT ******************************
 
@@ -155,6 +156,7 @@ void	add_to_history(char **av);
 // ******************************* PARSING ********************************
 
 // parsing.c
+int		parsing(t_data *data);
 int		check_dup(t_data *data);
 int		check_cmd(t_data *data);
 
@@ -164,6 +166,13 @@ int		check_cmd(t_data *data);
 void	print_list(t_list *list);
 void	print_struct_cmd(t_data *data);
 void	print_tab(char **tab);
+
+// ******************************** SIGNAL *********************************
+
+// signal.c
+void	handle_sigsegv(int sig_segv);
+void	handle_sigint(int sig_int);
+void	handle_signal(void);
 
 // ******************************** SPLIT **********************************
 
@@ -224,7 +233,6 @@ int		word_count_normal(char *str, char set);
 int		char_count_normal(char *str, char set, int pos);
 char	*putword_normal(char *str, char *tab, char set, int pos);
 char	**ft_split_normal(char	*str, char set);
-
 
 // str_utils_2.c
 int		ft_isalpha(int a);

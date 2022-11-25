@@ -6,11 +6,20 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:15:26 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/22 20:51:13 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/25 20:30:50 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	parsing(t_data *data)
+{
+	if (!check_dup(data))
+		return (err_msg("Doublons of redirections\n", NULL, NULL, 2), 0);
+	if (!check_cmd(data))
+		return (err_msg("Missing a command\n", NULL, NULL, 2), 0);
+	return (1);
+}
 
 int	check_dup(t_data *data)
 {

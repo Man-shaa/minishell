@@ -3,22 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/16 16:02:12 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/25 20:38:44 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// void	get_prompt(t_data *data)
-// {
-// 	char	*str;
+void	get_prompt(t_data *data, char **envp)
+{
+	char	*str;
+	int		exit_status;
+	t_cmd	*cmd;
 
-// 	data = malloc(sizeof(t_data));
-// 	str = readline("Manuo 🤔 ✖✖ ");
-// 	ft_split(str, data);
-// 	print_list(data->list);
-// 	free_data(data);
-// }
+	while (42)
+	{
+		str = readline("Manuo ✖✖ ");
+		data = create_data(envp);
+		if (!data)
+			return ;
+		ft_split(str, data);
+		get_cmd_struct(data);
+		if (!parsing(data))
+			return ;
+		print_struct_cmd(data);
+		cmd = data->cmd;
+		while (cmd)
+		{
+			send_cmd(data, cmd);
+			cmd = cmd->next;
+		}
+		free(str);
+		exit_status = data->return_val;
+		free_data(data);
+	}
+}
