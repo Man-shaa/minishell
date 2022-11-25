@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:15:26 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/25 17:42:10 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/25 20:30:50 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	parsing(t_data *data)
 {
 	if (!check_dup(data))
-		return (0);
+		return (err_msg("Doublons of redirections\n", NULL, NULL, 2), 0);
 	if (!check_cmd(data))
-		return (0);
+		return (err_msg("Missing a command\n", NULL, NULL, 2), 0);
 	return (1);
 }
 

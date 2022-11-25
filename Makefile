@@ -16,6 +16,8 @@ HISTORY_DIR	=	history/
 
 PARSING_DIR	=	parsing/
 
+SIGNAL_DIR	=	signal/
+
 SPLIT_DIR	=	split/
 
 UTILS_DIR	=	utils/
@@ -55,6 +57,8 @@ SRCS		=	main_mateo.c \
 				${SPLIT_DIR}chars_utils.c \
 				\
 				${PARSING_DIR}parsing.c \
+				\
+				${SIGNAL_DIR}signal.c \
 				\
 				${UTILS_DIR}cmd_utils.c \
 				${UTILS_DIR}env_list_utils.c \

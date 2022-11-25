@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/21 11:36:19 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/25 20:37:58 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,7 @@ void	ft_split(char *str, t_data *data)
 	// 	return (NULL);
 	i = 0;
 	if (!count_words(str))
-	{
-		ft_putstr("No instructions or missing double quote");
-	}
+		return (ft_putstr("No instructions or missing double quote\n"));
 	tab = ft_calloc(count_words(str) + 1, sizeof(char *));
 	// printf("words : %d\n", count_words(str));
 	while (i < count_words(str))

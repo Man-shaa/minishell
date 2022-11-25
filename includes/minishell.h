@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/25 17:58:56 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/25 20:18:46 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stddef.h>
+# include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -168,6 +169,13 @@ void	print_list(t_list *list);
 void	print_struct_cmd(t_data *data);
 void	print_tab(char **tab);
 
+// ******************************** SIGNAL *********************************
+
+// signal.c
+void	handle_sigsegv(int sig_segv);
+void	handle_sigint(int sig_int);
+void	handle_signal(void);
+
 // ******************************** SPLIT **********************************
 
 // split.c
@@ -213,8 +221,8 @@ t_envp	*search_node(t_envp *envp, char *str);
 t_envp	*ft_lstnew_env(char *str);
 
 // exec_utils.c
-int	is_path(t_data *data, char *av);
-int	find_cmd_path(t_data *data, t_cmd *cmd);
+int		is_path(t_data *data, char *av);
+int		find_cmd_path(t_data *data, t_cmd *cmd);
 
 // split_env.c
 int		char_count_env(char *str, char set, int pos);
@@ -226,7 +234,6 @@ int		word_count_normal(char *str, char set);
 int		char_count_normal(char *str, char set, int pos);
 char	*putword_normal(char *str, char *tab, char set, int pos);
 char	**ft_split_normal(char	*str, char set);
-
 
 // str_utils_2.c
 int		ft_isalpha(int a);
