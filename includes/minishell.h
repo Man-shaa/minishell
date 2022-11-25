@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/23 17:18:32 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/25 17:58:56 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	ft_unset(t_data *data, char *str);
 // ******************************** CORE **********************************
 
 // core.c
-void	get_prompt(t_data *data);
+void	get_prompt(t_data *data, char **envp);
 
 // ***************************** CREATE_INIT ******************************
 
@@ -157,6 +157,7 @@ void	add_to_history(char **av);
 // ******************************* PARSING ********************************
 
 // parsing.c
+int		parsing(t_data *data);
 int		check_dup(t_data *data);
 int		check_cmd(t_data *data);
 
