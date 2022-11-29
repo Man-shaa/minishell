@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/25 20:38:44 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/29 04:51:51 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,13 @@ void	get_prompt(t_data *data, char **envp)
 		get_cmd_struct(data);
 		if (!parsing(data))
 			return ;
-		print_struct_cmd(data);
 		cmd = data->cmd;
 		while (cmd)
 		{
 			send_cmd(data, cmd);
 			cmd = cmd->next;
 		}
-		free(str);
+		ft_free(str);
 		exit_status = data->return_val;
 		free_data(data);
 	}

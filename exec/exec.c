@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/23 17:33:30 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/28 23:54:21 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 	(void)cmd;
 	if (!data->path_env)
 	{
-		err_msg("env not found, specify a absolute path", NULL, NULL, 2);
+		err_msg("env not found, specify an absolute path\n", NULL, NULL, 2);
 		return (0);
 	}
 	if (!find_cmd_path(data, cmd))
 		return (0);
 	data->proc->pid = fork();
 	if (data->proc->pid < 0)
-		return (err_msg("minishell: Fork failed", NULL, NULL, 2), 0);
+		return (err_msg("minishell: Fork failed\n", NULL, NULL, 2), 0);
 	if (data->proc->pid == 0)
 	{
 		

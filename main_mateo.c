@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   main_mateo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/25 20:33:08 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/11/28 23:42:12 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-int	main(int ac, char **av, char **envp)
-{
-	t_data	*data;
+// int	main(int ac, char **av, char **envp)
+// {
+// 	t_data	*data;
 
-	(void)ac;
-	(void)av;
-	handle_signal();
-	data = create_data(envp);
-	get_prompt(data, envp);
-	free_data(data);
-	return (0);
-}
+// 	(void)ac;
+// 	(void)av;
+// 	handle_signal();
+// 	data = create_data(envp);
+// 	get_prompt(data, envp);
+// 	free_data(data);
+// 	return (0);
+// }
 
 // int    main(int ac, char **av, char **envp)
 // {

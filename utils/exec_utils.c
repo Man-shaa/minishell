@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:06:08 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/23 17:35:03 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/11/29 01:15:51 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,14 @@ char	*find_path_in_env(char **envp)
 int	find_cmd_path(t_data *data, t_cmd *cmd)
 {
 	char	**all_paths;
+	t_envp	*tmp;
 	int		i;
 
+	tmp = search_node(data->envp, "PATH=");
+	if (!tmp)
+		return (0);
 	i = 0;
-	all_paths = ft_split_normal(search_node(data->envp, "PATH=")->tab[1], ':');
+	all_paths = ft_split_normal(tmp->tab[1], ':');
 	if (!all_paths)
 		return (0);
 	while (all_paths[i])
