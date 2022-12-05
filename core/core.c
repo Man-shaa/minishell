@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/05 17:40:13 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/05 18:31:37 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ void	reset_data(t_data *data)
 	{
 		free_list(data->list);
 		data->list = NULL;
+	}
+	if (data->cmd)
+	{
+		free_cmd(data->cmd);
+		data->cmd = NULL;
 	}
 }
 
