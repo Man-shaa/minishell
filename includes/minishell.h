@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/25 20:44:44 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/05 15:38:09 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	ft_unset(t_data *data, char *str);
 // ******************************** CORE **********************************
 
 // core.c
-void	get_prompt(t_data *data, char **envp);
+void	get_prompt(char **envp);
 
 // ***************************** CREATE_INIT ******************************
 
@@ -212,7 +212,6 @@ int		is_concat(char *str);
 int		concat(t_envp *node, char **tab);
 int		is_valid_name(char *str);
 int		replace_value(t_envp *node, char *value);
-char	*ignore_charset(char *str, char *charset);
 
 // env_list_utils.c
 t_envp	*search_node(t_envp *envp, char *str);
@@ -239,7 +238,7 @@ int		ft_isalpha(int a);
 int		is_same(char *s1, char *s2);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strchr(char *str, char c);
-char	*ignore_charset(char *str, char *charset);
+char	*ignore_charset(char *str, char *charset, int n);
 
 // str_utils.c
 int		ft_strlen(char *str);

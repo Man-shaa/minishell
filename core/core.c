@@ -6,22 +6,23 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/29 04:51:51 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/05 15:40:09 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	get_prompt(t_data *data, char **envp)
+void	get_prompt(char **envp)
 {
 	char	*str;
 	int		exit_status;
 	t_cmd	*cmd;
+	t_data	*data;
 
 	while (42)
 	{
-		str = readline("Manuo ✖✖ ");
 		data = create_data(envp);
+		str = readline("Manuo ✖✖ ");
 		if (!data)
 			return ;
 		ft_split(str, data);

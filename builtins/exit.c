@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:04:26 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/22 19:05:02 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/05 15:41:03 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_exit(t_data *data, char **args)
 	int		return_val;
 
 	if (args[0] && args[1])
-		return_val = 1;
+		return_val = 1; //msg erreur too many machin
 	else if (args[0])
 		return_val = ft_atoi(args[0]);
 	else

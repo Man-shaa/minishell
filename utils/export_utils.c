@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 17:49:30 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/28 23:47:47 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/05 15:37:54 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	concat(t_envp *node, char **tab)
 		if (!tab_1)
 			return (0);
 		ft_free(node->tab[1]);
-		tab[1] = ignore_charset(tab[1], "\'\"");
+		tab[1] = ignore_charset(tab[1], "\'\"", 1);
 		node->tab[1] = ft_strjoin(tab_1, tab[1]);
 		ft_free(tab_1);
 		if (!node->tab[1])

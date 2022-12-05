@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 22:12:58 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/23 17:33:38 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/05 15:37:50 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_envp	*ft_lstnew_env(char *str)
 	new = ft_calloc(1, sizeof(t_envp));
 	if (!new)
 		return (0);
-	tab[1] = ignore_charset(tab[1], "\'\"");
+	tab[1] = ignore_charset(tab[1], "\'\"", 1);
 	new->tab = tab;
 	new->next = NULL;
 	return (new);
