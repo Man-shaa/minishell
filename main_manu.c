@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:08:53 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/05 17:01:20 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/05 17:07:47 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // Ajouter les valeurs de retour de chaque cmd bin
 // nouvelle structure t_pipex ? pour les pid, char *cmd_path
 // Valeur de retour quand cmd not found : [127]
-
+// "echo $dsdg(pas dans env) hello" met un espace avant hello (qui devrait pas)
 int	main(int ac, char **av, char **envp)
 {
 	(void)ac;

@@ -6,11 +6,20 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/05 15:56:51 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/05 17:40:13 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	reset_data(t_data *data)
+{
+	if (data->list)
+	{
+		free_list(data->list);
+		data->list = NULL;
+	}
+}
 
 void	get_prompt(char **envp)
 {
@@ -18,9 +27,9 @@ void	get_prompt(char **envp)
 	t_cmd	*cmd;
 	t_data	*data;
 
+	data = create_data(envp);
 	while (42)
 	{
-		data = create_data(envp);
 		str = readline("Manuo ✖✖ ");
 		if (!data)
 			return ;
@@ -35,10 +44,7 @@ void	get_prompt(char **envp)
 			cmd = cmd->next;
 		}
 		ft_free(str);
-		// if (cmd)
-		// 	free_cmd(cmd);
-		// if (cmd)
-		// 	free_cmd(cmd);
-		 free_data(data);
+		reset_data(data);
 	}
+	free_data(data);
 }
