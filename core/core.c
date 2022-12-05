@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/05 15:40:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/05 15:56:51 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	get_prompt(char **envp)
 {
 	char	*str;
-	int		exit_status;
 	t_cmd	*cmd;
 	t_data	*data;
 
@@ -36,7 +35,10 @@ void	get_prompt(char **envp)
 			cmd = cmd->next;
 		}
 		ft_free(str);
-		exit_status = data->return_val;
-		free_data(data);
+		// if (cmd)
+		// 	free_cmd(cmd);
+		// if (cmd)
+		// 	free_cmd(cmd);
+		 free_data(data);
 	}
 }
