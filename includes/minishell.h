@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/05 15:38:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/05 19:38:31 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_data
 	t_list	*list;
 	t_envp	*envp;
 	t_proc	*proc;
-	char	*path_env;
+	char	*env_path;
 	int		return_val;
 }				t_data;
 
@@ -220,7 +220,7 @@ t_envp	*ft_lstnew_env(char *str);
 // exec_utils.c
 int		is_path(t_data *data, char *av);
 char	*find_path_in_env(char **envp);
-int		find_cmd_path(t_data *data, t_cmd *cmd);
+int		find_cmd_path(t_data *data, t_cmd *cmd, char *env_path);
 
 // split_env.c
 int		char_count_env(char *str, char set, int pos);

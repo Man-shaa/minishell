@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 20:16:13 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/05 16:30:46 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/05 19:38:31 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_data	*create_data(char **envp)
 	if (!data)
 		return (NULL);
 	data->return_val = 0;
-	data->path_env = NULL;
+	data->env_path = NULL;
 	data->cmd = NULL;
 	data->list = NULL;
 	data->envp = NULL;

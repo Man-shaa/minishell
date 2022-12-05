@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:06:08 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/05 17:08:13 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/05 19:44:24 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,32 +51,58 @@ char	*find_path_in_env(char **envp)
 // Test tous les paths possibles de la variable d'environnement PATH
 // Return 1 si un path est valide et le set dans cmd->cmd_path,
 // sinon return 0
-int	find_cmd_path(t_data *data, t_cmd *cmd)
+int	find_cmd_path(t_data *data, t_cmd *cmd, char *env_path)
 {
-	char	**all_paths;
-	t_envp	*tmp;
 	int		i;
+	char	**all_paths;
 
-	tmp = search_node(data->envp, "PATH=");
-	if (!tmp)
-		return (0);
 	i = 0;
-	all_paths = ft_split_normal(tmp->tab[1], ':');
-	if (!all_paths)
-		return (0);
+	all_paths = ft_split_normal(env_path, ':');
+	if (!all_paths && is_path(data, cmd->cmd))
+		return (err_msg("env not found, please specify a path directly", NULL, NULL, 2), 0);
+	if (!is_path(data, cmd->cmd))
+		return (free_tab(all_paths), 1);
 	while (all_paths[i])
 	{
-		cmd->cmd_path = ft_strjoin(cmd->cmd_path, all_paths[i]);
-		cmd->cmd_path = ft_strjoin(cmd->cmd_path, "/");
-		cmd->cmd_path = ft_strjoin(cmd->cmd_path, cmd->cmd);
-		if (is_path(data, cmd->cmd_path))
-		{
-			printf("%s\n", cmd->cmd_path);
-			return (1);
-		}
+		cmd->cmd_path = ft_strjoin(all_paths[i], "/");
+		cmd->cmd_path = ft_strjoin(all_paths[i], cmd->cmd);
+		if (access(cmd->cmd_path, F_OK | X_OK) == 0)
+			return (free_tab(all_paths), 1);
+		ft_free(cmd->cmd_path);
 		i++;
 	}
-	cmd->cmd_path = NULL;
-	printf("%s\n", cmd->cmd_path);
-	return (0);
+	free_tab(all_paths);
+	return (err_msg("No such file or directory", NULL, NULL, 2), 0);
 }
+
+// int	find_cmd_path(t_data *data, t_cmd *cmd)
+// {
+// 	char	**all_paths;
+// 	char	*path;
+// 	t_envp	*tmp;
+// 	int		i;
+
+// 	tmp = search_node(data->envp, "PATH");
+// 	if (!tmp)
+// 		return (0);
+// 	i = 0;
+// 	all_paths = ft_split_normal(tmp->tab[1], ':');
+// 	if (!all_paths)
+// 		return (0);
+// 	while (all_paths[i])
+// 	{
+// 		cmd->cmd_path = ft_strjoin(cmd->cmd_path, all_paths[i]);
+// 		cmd->cmd_path = ft_strjoin(cmd->cmd_path, "/");
+// 		cmd->cmd_path = ft_strjoin(cmd->cmd_path, cmd->cmd);
+// 		if (!access(cmd->cmd_path, F_OK | X_OK))
+// 		{
+// 			printf("%s\n", cmd->cmd_path);
+// 			return (1);
+// 		}
+// 		ft_free(cmd->cmd_path);
+// 		i++;
+// 	}
+// 	// cmd->cmd_path = NULL;
+// 	printf("%s\n", cmd->cmd_path);
+// 	return (0);
+// }

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:07:42 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/05 18:44:15 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/05 19:38:31 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	create_env(t_data *data, char **envp)
 	}
 	if (ft_export(data, envp))
 		return (0);
-	data->path_env = find_path_in_env(envp);
+	data->env_path = find_path_in_env(envp);
 	return (1);
 }
 
