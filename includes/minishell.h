@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/05 19:38:31 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/06 19:53:10 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	get_prompt(char **envp);
 
 // create_cmd.c
 int		get_cmd_struct(t_data *data);
-t_list	*fill_cmd_struct(t_cmd *cmd, t_list *tmp, int *j);
+t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j);
 t_cmd	*set_up_cmd(t_data *data, int *i);
 
 // create_data.c
@@ -221,6 +221,7 @@ t_envp	*ft_lstnew_env(char *str);
 int		is_path(t_data *data, char *av);
 char	*find_path_in_env(char **envp);
 int		find_cmd_path(t_data *data, t_cmd *cmd, char *env_path);
+int		is_cmd(t_data *data, char *str, char *env_path);
 
 // split_env.c
 int		char_count_env(char *str, char set, int pos);

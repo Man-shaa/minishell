@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:03:31 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/24 21:31:15 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/06 20:08:54 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	get_cmd_struct(t_data *data)
 			return (0);
 		while (tmp && tmp->type != 6)
 		{
-			tmp = fill_cmd_struct(cmd, tmp, &j);
+			tmp = fill_cmd_struct(data, cmd, tmp, &j);
 			tmp = tmp->next;
 		}
 		add_back(data, cmd);
@@ -53,12 +53,15 @@ int	get_cmd_struct(t_data *data)
 	return (1);
 }
 
-t_list	*fill_cmd_struct(t_cmd *cmd, t_list *tmp, int *j)
+t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j)
 {
 	if (tmp->type == 1)
 	{
-		if (is_builtin(tmp->str) && cmd->cmd == NULL)
+		if ((is_cmd(data, tmp->str, data->env_path) || is_builtin(tmp->str)) && cmd->cmd == NULL)
+		{
 			cmd->cmd = tmp->str;
+			find_cmd_path(data, cmd, data->env_path);
+		}
 		else if (tmp->next && tmp->next->type == 2)
 		{
 			cmd->token = tmp->str;
@@ -70,12 +73,10 @@ t_list	*fill_cmd_struct(t_cmd *cmd, t_list *tmp, int *j)
 			cmd->opt[(*j)] = tmp->str;
 			(*j)++;
 		}
+		return (tmp);
 	}
-	else
-	{
-		cmd->type = tmp->type;
-		tmp = tmp->next;
-		cmd->token = tmp->str;
-	}
+	cmd->type = tmp->type;
+	tmp = tmp->next;
+	cmd->token = tmp->str;
 	return (tmp);
 }

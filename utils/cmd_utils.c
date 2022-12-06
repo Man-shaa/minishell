@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 02:39:44 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/24 18:10:08 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/06 20:13:32 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	words_to_pipe(t_data *data, int n)
 	cappuccino = 0;
 	while (tmp)
 	{
-		if (tmp->type == 1 && is_builtin(tmp->str)
+		if (tmp->type == 1 && is_cmd(data, tmp->str, data->env_path)
 			&& cappuccino == 0 && moccha == n)
 			cappuccino++;
 		else if (tmp->type == 1 && moccha == n)
