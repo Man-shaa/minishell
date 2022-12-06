@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:06:08 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/06 20:06:26 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/06 21:04:56 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	find_cmd_path(t_data *data, t_cmd *cmd, char *env_path)
 	return (err_msg("No such file or directory\n", NULL, NULL, 2), 0);
 }
 
+// Return 1 si str est uen commande (access), sinon 0
 int	is_cmd(t_data *data, char *str, char *env_path)
 {
 	int		i;
@@ -86,6 +87,8 @@ int	is_cmd(t_data *data, char *str, char *env_path)
 	char	*save;
 
 	i = 0;
+	if (is_builtin(str))
+		return (1);
 	all_paths = ft_split_normal(env_path, ':');
 	if (!all_paths && is_path(data, str))
 		return (err_msg("env not found, please specify a path directly\n", NULL, NULL, 2), 0);
