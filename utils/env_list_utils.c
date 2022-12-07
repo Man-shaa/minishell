@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 22:12:58 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/05 19:23:54 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/07 17:27:19 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,70 @@ t_envp	*ft_lstnew_env(char *str)
 	new->tab = tab;
 	new->next = NULL;
 	return (new);
+}
+
+void	ft_env_copy(char *dest, char *s1, char *s2)
+{
+	
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (s1[i])
+	{
+		dest[i] = s1[i];
+		i++;
+	}
+	dest[i++] = '=';
+	while (s2[j])
+	{
+		dest[i] = s2[j];
+		i++;
+		j++;
+	}
+	dest[i] = '\n';
+}
+
+char	**fill_env_tab(t_envp *envp, char **env_tab)
+{
+	size_t	i;
+	size_t	len_str;
+	t_envp	*tmp;
+
+	tmp = envp;
+	len_str = 0;
+	i = 0;
+	while (tmp)
+	{
+		len_str = ft_strlen(tmp->tab[0]) + ft_strlen(tmp->tab[1]) + 1;
+		env_tab[i] = ft_calloc(len_str + 2, 1);
+		if (!env_tab[i])
+			return (free_tab(env_tab), NULL);
+		ft_env_copy(env_tab[i], tmp->tab[0], tmp->tab[1]);
+		tmp = tmp->next;
+		i++;
+	}
+	env_tab[i] = 0;
+	return (env_tab);
+}
+
+char	**get_env_tab(t_envp *envp)
+{
+	size_t	i;
+	t_envp	*tmp;
+	char	**env;
+	
+	tmp = envp;
+	i = 0;
+	while (tmp)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	env = ft_calloc(i + 1, sizeof(char *));
+	if (!env)
+		return (NULL);
+	env = fill_env_tab(envp, env);
+	return (env);
 }

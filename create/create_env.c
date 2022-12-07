@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:07:42 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/05 19:38:31 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/07 16:27:56 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	create_env(t_data *data, char **envp)
 {
 	int		env_lgt;
 
-	env_lgt = env_lenght(envp);
+	env_lgt = env_length(envp);
 	if (env_lgt == 0)
 	{
 		if (!create_my_env(data))
@@ -51,7 +51,7 @@ int	create_my_env(t_data *data)
 }
 
 // Return le nombre de variable de l'environnement bash ou 0 si il n'y en a pas
-int	env_lenght(char **envp)
+int	env_length(char **envp)
 {
 	int	i;
 

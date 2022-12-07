@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:48:44 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/06 19:55:54 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/07 15:43:43 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	is_builtin(char *str)
 // envoies a la fonction correspondante pour l'executer
 int	exec_builtin(t_data *data, char *cmd, char **args)
 {
+	data->return_val = 0;
 	if (is_same(cmd, "cd"))
 		data->return_val = ft_cd(data, args[0]);
 	else if (is_same(cmd, "echo"))

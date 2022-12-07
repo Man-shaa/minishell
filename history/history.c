@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:24:47 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/22 18:06:44 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/07 14:22:38 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	add_to_history(char **av)
 
 	i = 1;
 	line = NULL;
-	if (!av || !av[1])
+	if (!av || !av[0])
 		return ;
 	while (av[i])
 	{

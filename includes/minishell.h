@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/06 19:53:10 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/07 17:03:05 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stddef.h>
 # include <signal.h>
+# include <wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -121,7 +122,7 @@ t_data	*create_data(char **envp);
 // create_env.c
 int		create_env(t_data *data, char **envp);
 int		create_my_env(t_data *data);
-int		env_lenght(char **envp);
+int		env_length(char **envp);
 
 // create_list.c
 int		add_last_list(t_data *data, char *str);
@@ -216,6 +217,8 @@ int		replace_value(t_envp *node, char *value);
 // env_list_utils.c
 t_envp	*search_node(t_envp *envp, char *str);
 t_envp	*ft_lstnew_env(char *str);
+char	**fill_env_tab(t_envp *envp, char **env_tab);
+char	**get_env_tab(t_envp *envp);
 
 // exec_utils.c
 int		is_path(t_data *data, char *av);
@@ -242,7 +245,7 @@ int		ft_strchr(char *str, char c);
 char	*ignore_charset(char *str, char *charset, int n);
 
 // str_utils.c
-int		ft_strlen(char *str);
+size_t	ft_strlen(char *str);
 int		redir_type(char *str);
 void	ft_putstr(char *str);
 char	*ft_strndup(char *str, int n);
