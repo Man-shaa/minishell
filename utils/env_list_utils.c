@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 22:12:58 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/07 17:27:19 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/07 18:50:08 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	ft_env_copy(char *dest, char *s1, char *s2)
 		i++;
 		j++;
 	}
-	dest[i] = '\n';
 }
 
 char	**fill_env_tab(t_envp *envp, char **env_tab)
@@ -82,7 +81,7 @@ char	**fill_env_tab(t_envp *envp, char **env_tab)
 	while (tmp)
 	{
 		len_str = ft_strlen(tmp->tab[0]) + ft_strlen(tmp->tab[1]) + 1;
-		env_tab[i] = ft_calloc(len_str + 2, 1);
+		env_tab[i] = ft_calloc(len_str + 1, 1);
 		if (!env_tab[i])
 			return (free_tab(env_tab), NULL);
 		ft_env_copy(env_tab[i], tmp->tab[0], tmp->tab[1]);
