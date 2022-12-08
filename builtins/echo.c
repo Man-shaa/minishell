@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:39:45 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/05 18:52:56 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/08 14:30:46 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,19 @@ void	echo_env_var(t_data *data, char **args, int i)
 	char	*res;
 	t_envp	*node;
 
-	res = ignore_charset(args[i], "$(){}", 0);
-	node = data->envp;
-	node = search_node(data->envp, res);
-	if (res)
-		ft_free(res);
-	if (!node)
-		return ;
-	ft_putstr(node->tab[1]);
+	if (is_same(args[i], "$?"))
+		ft_putnbr(data->return_val);
+	else
+	{
+		res = ignore_charset(args[i], "$(){}", 0);
+		node = data->envp;
+		node = search_node(data->envp, res);
+		if (res)
+			ft_free(res);
+		if (!node)
+			return ;
+		ft_putstr(node->tab[1]);
+	}
 }
 
 void	ft_echo(t_data *data, char **args)
@@ -55,8 +60,6 @@ void	ft_echo(t_data *data, char **args)
 
 	boule = 0;
 	i = 0;
-	if (!args)
-		return ;
 	while (args[i] && is_option_n(args[i]))
 	{
 		i++;
@@ -74,4 +77,5 @@ void	ft_echo(t_data *data, char **args)
 	}
 	if (boule == 0)
 		write(1, "\n", 1);
+	data->return_val = 0;	
 }

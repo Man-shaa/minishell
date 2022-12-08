@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/07 18:52:06 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/08 14:11:29 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	get_prompt(char **envp)
 		while (cmd)
 		{
 			data->return_val = send_cmd(data, cmd);
-			printf("Retour : %i\n", data->return_val);
+			// printf("Retour : %i\n", data->return_val);
 			cmd = cmd->next;
 		}
 		ft_free(str);

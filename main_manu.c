@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:08:53 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/07 19:00:56 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/08 14:30:09 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ int	main(int ac, char **av, char **envp)
 {
 	(void)ac;
 	(void)av;
-	// handle_signal();
-	// get_prompt(envp);
-	// return (0);
+	(void)envp;
+	handle_signal();
+	get_prompt(envp);
+	return (0);
 }
 
 // int	main(int ac, char **av, char **envp)

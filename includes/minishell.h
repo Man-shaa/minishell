@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/07 17:03:05 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/08 14:21:23 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,5 +255,6 @@ char	*ft_strcmp(char *str, char *to_find);
 void	ft_free(void *addr);
 void	*ft_calloc(size_t n, size_t size);
 long	ft_atoi(const char *str);
+void	ft_putnbr(int n);
 
 #endif
