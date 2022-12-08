@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_manu.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:08:53 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/08 14:30:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/08 14:51:13 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@ int	main(int ac, char **av, char **envp)
 {
 	(void)ac;
 	(void)av;
-	(void)envp;
-	handle_signal();
-	get_prompt(envp);
-	return (0);
+	// handle_signal();
+	// get_prompt(envp);
+	// return (0);
 }
 
 // int	main(int ac, char **av, char **envp)

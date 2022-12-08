@@ -3,16 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 02:39:44 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/06 20:13:32 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/08 14:28:20 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 // Return le nombre d'options de la commande dans un bloc separe par des '|'
+// int	words_to_pipe(t_data *data, int n)
+// {
+// 	t_list	*tmp;
+// 	int		count;
+// 	int		cappuccino;
+// 	int		moccha;
+
+// 	tmp = data->list;
+// 	count = 0;
+// 	moccha = 0;
+// 	cappuccino = 0;
+// 	while (tmp)
+// 	{
+// 		if (tmp->type == 1 && is_cmd(data, tmp->str, data->env_path)
+// 			&& cappuccino == 0 && moccha == n && !is_builtin(tmp->str))
+// 		{
+// 			count++;
+// 			cappuccino++;
+// 		}
+// 		else if (tmp->type == 1 && moccha == n)
+// 			count++;
+// 		else if (tmp->type != 1 && tmp->type != 6 && moccha == n)
+// 			count -= 1;
+// 		else if (tmp->type == 6)
+// 			moccha++;
+// 		tmp = tmp->next;
+// 	}
+// 	printf("words to pipe : %d\n", count);
+// 	return (count);
+// }
+
 int	words_to_pipe(t_data *data, int n)
 {
 	t_list	*tmp;
@@ -26,10 +57,9 @@ int	words_to_pipe(t_data *data, int n)
 	cappuccino = 0;
 	while (tmp)
 	{
-		if (tmp->type == 1 && is_cmd(data, tmp->str, data->env_path)
-			&& cappuccino == 0 && moccha == n)
-			cappuccino++;
-		else if (tmp->type == 1 && moccha == n)
+		if (tmp->type == 1 && is_cmd(data, tmp->str, data->env_path) && cappuccino == 0 && moccha == n)
+			count += command_or_builtin(tmp->str, &cappuccino);
+		else if (tmp->type == 1 && moccha == n && cappuccino > 0)
 			count++;
 		else if (tmp->type != 1 && tmp->type != 6 && moccha == n)
 			count -= 1;
@@ -37,7 +67,21 @@ int	words_to_pipe(t_data *data, int n)
 			moccha++;
 		tmp = tmp->next;
 	}
+	printf("words to pipe : %d\n", count);
 	return (count);
+}
+
+//return 0 si str est une commande return 1 si str est un builtin
+int	command_or_builtin(char *str, int *cappuccino)
+{
+	int	count;
+
+	count = 0;
+	(*cappuccino)++;
+	if (is_builtin(str))
+		return (0);
+	else
+		return (1);
 }
 
 // Ajoute le resulat du split a la fin de la structure t_list

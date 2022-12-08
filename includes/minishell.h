@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/08 14:21:23 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/08 14:50:50 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,7 @@ int		count_chars_quote(char *str, int *i, int *count, int n);
 
 // cmd_utils.c
 int		words_to_pipe(t_data *data, int n);
+int		command_or_builtin(char *str, int *cappuccino);
 t_cmd	*ft_cmdnew(int index);
 void	add_back(t_data *data, t_cmd *cmd);
 t_cmd	*ft_cmdlast(t_cmd *cmd);

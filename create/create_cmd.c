@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:03:31 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/08 13:35:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/08 14:50:44 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,11 @@ t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j)
 		{
 			cmd->cmd = tmp->str;
 			if (!is_builtin(tmp->str))
+			{
+				cmd->opt[(*j)] = tmp->str;
+				(*j)++;
 				find_cmd_path(data, cmd, data->env_path);
+			}
 		}
 		else if (tmp->next && tmp->next->type == 2)
 		{
