@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:06:08 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/06 21:04:56 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/08 17:02:08 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	find_cmd_path(t_data *data, t_cmd *cmd, char *env_path)
 		return (0);
 	all_paths = ft_split_normal(env_path, ':');
 	if (!all_paths && is_path(data, cmd->cmd))
-		return (err_msg("env not found, please specify a path directly\n", NULL, NULL, 2), 0);
+		return (err_msg("Env not found, specify a path\n", NULL, NULL, 2), 0);
 	if (!is_path(data, cmd->cmd))
 		return (free_tab(all_paths), 1);
 	while (all_paths[i])
@@ -91,7 +91,7 @@ int	is_cmd(t_data *data, char *str, char *env_path)
 		return (1);
 	all_paths = ft_split_normal(env_path, ':');
 	if (!all_paths && is_path(data, str))
-		return (err_msg("env not found, please specify a path directly\n", NULL, NULL, 2), 0);
+		return (err_msg("Env not found, specify a path\n", NULL, NULL, 2), 0);
 	if (!is_path(data, str))
 		return (free_tab(all_paths), 1);
 	while (all_paths[i])

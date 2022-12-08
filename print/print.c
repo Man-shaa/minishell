@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 19:49:19 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/07 16:56:49 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/08 17:03:58 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	print_list(t_list *list)
 void	print_struct_cmd(t_data *data)
 {
 	t_cmd	*tmp;
-	int	i;
+	int		i;
 
 	tmp = data->cmd;
 	i = 0;

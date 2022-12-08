@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:39:45 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/08 14:30:46 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/08 17:02:33 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,5 @@ void	ft_echo(t_data *data, char **args)
 	}
 	if (boule == 0)
 		write(1, "\n", 1);
-	data->return_val = 0;	
+	data->return_val = 0;
 }
