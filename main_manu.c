@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_manu.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:08:53 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/08 14:51:13 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:17:18 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,42 @@ int	main(int ac, char **av, char **envp)
 {
 	(void)ac;
 	(void)av;
-	// handle_signal();
-	// get_prompt(envp);
-	// return (0);
+	handle_signal();
+	get_prompt(envp);
+	// char	**tab1;
+	// char	**tab2;
+	// tab1 = ft_calloc(2, sizeof(char *));
+	// tab2 = ft_calloc(3, sizeof(char *));
+	// tab1[0] = ft_strndup("ls", 0);
+	// tab1[1] = 0;
+	// tab2[0] = ft_strndup("wc", 0);
+	// tab2[1] = ft_strndup("-l", 0);
+	// tab2[2] = 0;
+
+
+	// int	i = 0;
+	// int	fd[2];
+	// int	pid;
+	// while (i < 2)
+	// {
+	// 	pid = fork();
+	// 	if (pipe (fd) == -1)
+	// 		return (1);
+	// 	if (pid == 0)
+	// 	{
+	// 		dup2(fd[1], STDOUT_FILENO);
+	// 		close(fd[0]);
+	// 		close(fd[1]);
+	// 		if (execve("/usr/bin/ls", tab1, envp) == -1)
+	// 			return (2);
+	// 	}
+	// }
+	// close (fd[0]);
+	// close (fd[1]);
+	// waitpid(pid, NULL, 0);
+	// free_tab(tab1);
+	// free_tab(tab2);
+	return (0);
 }
 
 // int	main(int ac, char **av, char **envp)
