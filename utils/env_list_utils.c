@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_list_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 22:12:58 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/07 18:50:08 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/08 17:00:33 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ t_envp	*ft_lstnew_env(char *str)
 
 void	ft_env_copy(char *dest, char *s1, char *s2)
 {
-	
 	int	i;
 	int	j;
 
@@ -97,7 +96,7 @@ char	**get_env_tab(t_envp *envp)
 	size_t	i;
 	t_envp	*tmp;
 	char	**env;
-	
+
 	tmp = envp;
 	i = 0;
 	while (tmp)
