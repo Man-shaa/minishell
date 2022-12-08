@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_manu.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:08:53 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/07 19:00:56 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/08 14:01:34 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 // "echo $dsdg(pas dans env) hello" met un espace avant hello (qui devrait pas)
 // Manuo "clear" msg d'erreur automatique + retour data->return_val chelou
 
-int	main(int ac, char **av, char **envp)
-{
-	(void)ac;
-	(void)av;
+// int	main(int ac, char **av, char **envp)
+// {
+// 	(void)ac;
+// 	(void)av;
 	// handle_signal();
 	// get_prompt(envp);
 	// return (0);
-}
+// }
 
 // int	main(int ac, char **av, char **envp)
 // {
