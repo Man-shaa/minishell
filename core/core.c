@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/09 17:25:50 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/09 20:09:05 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	get_prompt(char **envp)
 			str = readline("✖ Manuo ✖ ");
 		if (!data)
 			return ;
+		if (!str)
+			ft_exit(data, NULL);
 		ft_split(str, data);
 		if (!parsing(data))
 			return ;

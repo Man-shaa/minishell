@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 02:39:44 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/09 17:30:24 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/09 20:13:05 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	words_to_pipe(t_data *data, int n)
 			moccha++;
 		tmp = tmp->next;
 	}
-	printf("words to pipe : %d\n", count);
+	// printf("words to pipe : %d\n", count);
 	return (count);
 }
 
