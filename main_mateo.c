@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_mateo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/08 14:54:47 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:37:14 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 // 	char	*str;
 // 	t_data	*data;
 // 	int		i;
-	
+//	
 // 	data = create_data(envp);
 // 	if (ac != 2)
 // 		return (ft_putstr("2 args pls\n"), 1);
