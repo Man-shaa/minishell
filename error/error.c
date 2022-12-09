@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:19:29 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 17:31:56 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:32:44 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,5 @@ void	err_msg(char *start, char *str, char *end, int fd)
 		write(fd, str, ft_strlen(str));
 	if (end)
 		write(fd, end, ft_strlen(end));
+	write(2, "\n", 1);
 }

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 02:39:44 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/08 19:28:26 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:30:24 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	words_to_pipe(t_data *data, int n)
 		if (tmp->type == 1 && is_cmd(data, tmp->str, data->env_path)
 			&& cappuccino == 0 && moccha == n)
 			count += command_or_builtin(tmp->str, &cappuccino);
-		else if (tmp->type == 1 && moccha == n && cappuccino > 0)
+		else if (tmp->type == 1 && moccha == n)
 			count++;
 		else if (tmp->type != 1 && tmp->type != 6 && moccha == n)
 			count -= 1;
@@ -36,7 +36,7 @@ int	words_to_pipe(t_data *data, int n)
 			moccha++;
 		tmp = tmp->next;
 	}
-	// printf("words to pipe : %d\n", count);
+	printf("words to pipe : %d\n", count);
 	return (count);
 }
 

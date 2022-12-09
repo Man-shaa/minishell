@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/09 15:38:39 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:34:25 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 
 	if (!data->env_path)
 	{
-		err_msg("env not found, specify an absolute path\n", NULL, NULL, 2);
+		err_msg("env not found, specify an absolute path", NULL, NULL, 2);
 		return (1);
 	}
 	if (!cmd->cmd_path)
@@ -42,7 +42,7 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 int	send_cmd(t_data *data, t_cmd *cmd)
 {
 	if (!cmd->cmd)
-		return (err_msg("minishell: command not found: ", cmd->opt[0], "\n", 2), 127);
+		return (err_msg("minishell: command not found: ", cmd->opt[0], NULL, 2), 127);
 	else if (is_builtin(cmd->cmd))
 		return (exec_builtin(data, cmd->cmd, cmd->opt));
 	else if (is_cmd(data, cmd->cmd, data->env_path))
