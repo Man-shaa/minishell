@@ -60,6 +60,7 @@ SRCS		=	main_mateo.c \
 				${SIGNAL_DIR}signal.c \
 				\
 				${UTILS_DIR}cmd_utils.c \
+				${UTILS_DIR}echo_utils.c \
 				${UTILS_DIR}env_list_utils.c \
 				${UTILS_DIR}exec_utils.c \
 				${UTILS_DIR}export_utils.c \

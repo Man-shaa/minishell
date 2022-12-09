@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/08 17:41:25 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:38:22 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	get_prompt(char **envp)
 		while (cmd)
 		{
 			data->return_val = send_cmd(data, cmd);
-			// printf("Retour : %i\n", data->return_val);
 			cmd = cmd->next;
 		}
 		ft_free(str);

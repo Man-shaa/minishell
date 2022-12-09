@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/08 16:28:36 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:38:39 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 	if (data->proc->pid == 0)
 	{
 		env_tab = get_env_tab(data->envp);
-		print_tab(cmd->opt);
+		// print_tab(cmd->opt);
 		if (execve(cmd->cmd_path, cmd->opt, env_tab) == -1)
 			return (err_msg("execve failed !", NULL, NULL, 2), 2);
 	}

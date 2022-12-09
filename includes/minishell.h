@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/08 19:28:14 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:54:29 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ int		exec_builtin(t_data *data, char *cmd, char **args);
 int		ft_cd(t_data *data, char *str);
 
 // echo.c
-int		is_option_n(char *str);
-void	echo_env_var(t_data *data, char **args, int i);
 void	ft_echo(t_data *data, char **args);
 
 // env.c
@@ -210,6 +208,11 @@ int		command_or_builtin(char *str, int *cappuccino);
 t_cmd	*ft_cmdnew(int index);
 void	add_back(t_data *data, t_cmd *cmd);
 t_cmd	*ft_cmdlast(t_cmd *cmd);
+
+// echo_utils.c
+void	ft_putstr_echo(t_data *data, char **str, int i);
+int		is_option_n(char *str);
+void	echo_env_var(t_data *data, char **args, int i, int j);
 
 // export_utis.c
 int		is_concat(char *str);
