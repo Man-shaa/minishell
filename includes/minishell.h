@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/08 17:09:14 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:19:58 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,12 +194,14 @@ int		count_words_cmd(char *str, int *i);
 int		count_words_redir(char *str, int *i);
 int		count_words_pipe(int *i);
 void	count_words_quote(char *str, int *i, int *count);
+void	count_words_single(char *str, int *i, int *count);
 
 // chars_utils.c
 int		count_chars_cmd(char *str, int *i, int *count, int n);
 int		count_chars_redir(char *str, int *i, int *count, int n);
 int		count_chars_pipe(int *i, int *count, int n);
 int		count_chars_quote(char *str, int *i, int *count, int n);
+int		count_chars_single(char *str, int *i, int *count, int n);
 
 // ******************************** UTILS *********************************
 

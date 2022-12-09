@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 07:33:48 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/16 18:15:29 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:15:52 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,20 @@ void	count_words_quote(char *str, int *i, int *count)
 	while (str[*i] && str[(*i)] != '"')
 		(*i)++;
 	if (str[(*i)] == '"')
+	{
+		(*i)++;
+		(*count)++;
+	}
+	else if (str[(*i)] == '\0')
+		(*count) = -1;
+}
+
+void	count_words_single(char *str, int *i, int *count)
+{
+	(*i)++;
+	while (str[*i] && str[(*i)] != 39)
+		(*i)++;
+	if (str[(*i)] == 39)
 	{
 		(*i)++;
 		(*count)++;

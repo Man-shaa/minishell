@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/29 04:46:32 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:19:10 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	count_words(char *str)
 			i++;
 		else if (str[i] == '"')
 			count_words_quote(str, &i, &count);
+		else if (str[i] == 39)
+			count_words_single(str, &i, &count);
 		else if (!is_in_charset(str[i]))
 			count += count_words_cmd(str, &i);
 		else if (is_in_charset(str[i]) == 1)
@@ -54,6 +56,8 @@ int	count_chars(char *str, int n)
 			i++;
 		else if (str[i] == '"')
 			chars += count_chars_quote(str, &i, &count, n);
+		else if (str[i] == 39)
+			chars += count_chars_single(str, &i, &count, n);
 		else if (!is_in_charset(str[i]))
 			chars += count_chars_cmd(str, &i, &count, n);
 		else if (is_in_charset(str[i]) == 1)
@@ -76,6 +80,8 @@ char	*ft_putwords(char *str, int n, char *mot)
 	{
 		if (str[index] == '"')
 			index++;
+		if (str[index] == 39)
+			index++;
 		mot[i] = str[index];
 		i++;
 		index++;
@@ -94,10 +100,8 @@ void	ft_split(char *str, t_data *data)
 	if (!count_words(str))
 		return (ft_putstr("No instructions or missing double quote\n"));
 	tab = ft_calloc(count_words(str) + 1, sizeof(char *));
-	// printf("words : %d\n", count_words(str));
 	while (i < count_words(str))
 	{
-		// printf("chars %d : %d\n", i, count_chars(str, i));
 		tab[i] = ft_calloc(count_chars(str, i) + 1, sizeof(char));
 		tab[i] = ft_putwords(str, i, tab[i]);
 		add_last_list(data, tab[i]);

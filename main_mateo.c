@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/08 13:59:42 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:33:21 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av, char **envp)
 // 	char	*str;
 // 	t_data	*data;
 // 	int		i;
-	
+//	
 // 	data = create_data(envp);
 // 	if (ac != 2)
 // 		return (ft_putstr("2 args pls\n"), 1);

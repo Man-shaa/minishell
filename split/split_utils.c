@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 07:33:41 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/11/16 19:04:26 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:17:43 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,12 @@ int	get_index_exp(char *str, int *count, int *i, int n)
 		{
 			(*i)++;
 			while (str[(*i)] != '"')
+				(*i)++;
+		}
+		if (str[(*i)] == 39)
+		{
+			(*i)++;
+			while (str[(*i)] != 39)
 				(*i)++;
 		}
 		if (str[(*i)] != '|' && str[(*i) + 1] == str[(*i)])
