@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/09 20:13:11 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/10 16:36:34 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,10 @@ void	ft_unset(t_data *data, char *str);
 // ******************************** CORE **********************************
 
 // core.c
+void	reset_data(t_data *data);
 void	get_prompt(char **envp);
+char	*get_readline(t_data *data, char *str);
+
 
 // ***************************** CREATE_INIT ******************************
 
