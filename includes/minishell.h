@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/09 17:37:26 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/12 13:30:03 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	ft_unset(t_data *data, char *str);
 // ******************************** CORE **********************************
 
 // core.c
+void	reset_data(t_data *data, char *str);
 void	get_prompt(char **envp);
 
 // ***************************** CREATE_INIT ******************************

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:08:53 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/08 19:28:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/12 13:32:32 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,21 +61,3 @@ int	main(int ac, char **av, char **envp)
 	// free_tab(tab2);
 	return (0);
 }
-
-// int	main(int ac, char **av, char **envp)
-// {
-// 	t_data	*data;
-
-// 	(void)ac;
-// 	(void)av;
-// 	data = create_data(envp);
-// 	if (!data)
-// 		return (1);
-// 	ft_split(av[1], data);
-// 	// printf("%i\n", find_cmd_path(data, av[1], data->env_path));
-// 	get_cmd_struct(data);
-// 	// is_cmd(data, data->cmd, data->env_path);
-// 	print_struct_cmd(data);
-// 	free_data(data);
-// 	return (0);
-// }

@@ -6,17 +6,17 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:06:08 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/09 17:34:54 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/12 13:20:55 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 // Test l'acces a av
-// Return 1 si le chemin est absolu ou l'acces a reussi, sinon return 0
+// Return 0 si le chemin est absolu ou l'acces a reussi, sinon return 1
 int	is_path(t_data *data, char *av)
 {
-	if (!av)
+	if (!av || !data->cmd)
 		return (1);
 	if (!ft_strchr(av, '/'))
 		return (1);

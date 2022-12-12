@@ -6,14 +6,15 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/09 17:25:50 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/12 13:33:07 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	reset_data(t_data *data)
+void	reset_data(t_data *data, char *str)
 {
+	ft_free(str);
 	if (data->list)
 	{
 		free_list(data->list);
@@ -51,8 +52,7 @@ void	get_prompt(char **envp)
 			data->return_val = send_cmd(data, cmd);
 			cmd = cmd->next;
 		}
-		ft_free(str);
-		reset_data(data);
+		reset_data(data, str);
 	}
 	free_data(data);
 }

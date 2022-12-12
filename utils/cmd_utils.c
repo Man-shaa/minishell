@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 02:39:44 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/09 17:30:24 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/12 13:25:55 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	words_to_pipe(t_data *data, int n)
 			moccha++;
 		tmp = tmp->next;
 	}
-	printf("words to pipe : %d\n", count);
+	// printf("words to pipe : %d\n", count);
 	return (count);
 }
 
