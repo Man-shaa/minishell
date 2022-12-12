@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:08:53 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/12 13:32:32 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/12 15:31:30 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 // "echo $dsdg(pas dans env) hello" met un espace avant hello (qui devrait pas)
 // Manuo "clear" msg d'erreur automatique + retour data->return_val chelou
 
-int	main(int ac, char **av, char **envp)
-{
-	(void)ac;
-	(void)av;
-	handle_signal();
-	get_prompt(envp);
+// int	main(int ac, char **av, char **envp)
+// {
+// 	(void)ac;
+// 	(void)av;
+// 	handle_signal();
+// 	get_prompt(envp);
 	// char	**tab1;
 	// char	**tab2;
 	// tab1 = ft_calloc(2, sizeof(char *));
