@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/13 16:14:04 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/13 17:12:17 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_cmd
 	char			*cmd;
 	char			*cmd_path;
 	char			**opt;
-	char			*token;
+	char			**token;
 	int				type;
 	int				index;
 	struct s_cmd	*next;
@@ -208,6 +208,7 @@ int		count_chars_single(char *str, int *i, int *count, int n);
 // ******************************** UTILS *********************************
 
 // cmd_utils.c
+int		count_tokens(t_data *data, int n);
 int		words_to_pipe(t_data *data, int n);
 int		command_or_builtin(char *str, int *cappuccino);
 t_cmd	*ft_cmdnew(int index);

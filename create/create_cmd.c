@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:03:31 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/13 16:11:57 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/13 17:38:19 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ t_cmd	*set_up_cmd(t_data *data, int *i)
 	if (!cmd->opt)
 		return (NULL);
 	cmd->opt[words_to_pipe(data, (*i))] = 0;
+	cmd->token = ft_calloc(count_tokens(data, (*i)) + 1, sizeof(char *));
+	if (!cmd->token)
+		return (NULL);
+	cmd->token[count_tokens(data, (*i))] = 0;
 	return (cmd);
 }
 
@@ -58,7 +62,7 @@ t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j)
 	if (tmp->type == 1)
 	{
 		if (is_cmd(data, tmp->str, data->env_path) && cmd->cmd == NULL)
-			handle_cmd(data, cmd, tmp, &(*j));
+			handle_cmd(data, cmd, tmp, j);
 		else
 		{
 			cmd->opt[(*j)] = tmp->str;
