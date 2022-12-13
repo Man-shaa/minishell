@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 19:49:19 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/08 17:03:58 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/13 19:34:21 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,14 @@ void	print_struct_cmd(t_data *data)
 	i = 0;
 	while (tmp)
 	{
-		printf("CMD : %s	TOKEN : %s	TYPE : %d	I : %d\n", tmp->cmd, tmp->token, tmp->type, tmp->index);
+		printf("CMD : %s	I : %d\n", tmp->cmd, tmp->index);
+		printf("// CMD->TOKEN //\n");
+		print_tab(tmp->token);
+		printf("// CMD->TYPE //\n");
+		print_int_tab(data, tmp->type);
+		printf("// CMD->OPT //\n");
 		print_tab(tmp->opt);
-		printf("COUNT = %d\n", words_to_pipe(data, i));
+		// printf("COUNT = %d\n", words_to_pipe(data, i));
 		printf("\n");
 		tmp = tmp->next;
 		i++;
@@ -56,11 +61,26 @@ void	print_tab(char **tab)
 	i = 0;
 	if (!tab)
 		return ;
-	// printf("\n");
 	while (tab[i])
 	{
 		printf("tab[%d] : %s\n", i, tab[i]);
 		i++;
 	}
-	// printf("\n");
+}
+
+void	print_int_tab(t_data *data, int *tab)
+{
+	int	n;
+	int	i;
+
+	if (!tab)
+		return ;
+	n = count_tokens(data, 0);
+	i = 0;
+	printf("INT TAB SIZE : %d\n", n);
+	while (i < n)
+	{
+		printf("tab[%d] : %d\n", i, tab[i]);
+		i++; 
+	}
 }

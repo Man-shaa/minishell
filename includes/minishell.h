@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/13 17:12:17 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/13 19:33:55 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_cmd
 	char			*cmd_path;
 	char			**opt;
 	char			**token;
-	int				type;
+	int				*type;
 	int				index;
 	struct s_cmd	*next;
 }				t_cmd;
@@ -115,7 +115,9 @@ char	*get_readline(t_data *data, char *str);
 
 // create_cmd.c
 int		get_cmd_struct(t_data *data);
+int 	start_cmd_struct(t_data *data, t_list *tmp, t_cmd *cmd);
 t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j);
+t_list	*fill_cmd_tokens(t_cmd *cmd, t_list *tmp, int *k);
 void	handle_cmd(t_data *data, t_cmd *cmd, t_list *tmp, int *j);
 t_cmd	*set_up_cmd(t_data *data, int *i);
 
@@ -170,6 +172,7 @@ int		check_cmd(t_data *data);
 void	print_list(t_list *list);
 void	print_struct_cmd(t_data *data);
 void	print_tab(char **tab);
+void	print_int_tab(t_data *data, int *tab);
 
 // ******************************** SIGNAL *********************************
 

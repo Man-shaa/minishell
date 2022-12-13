@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 02:39:44 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/13 17:32:30 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/13 19:31:15 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	count_tokens(t_data *data, int n)
 			index++;
 		tmp = tmp->next;
 	}
-	printf("count_tokens : %d\n", count);
+	// printf("count_tokens : %d\n", count);
 	return (count);
 }
 
@@ -61,7 +61,7 @@ int	words_to_pipe(t_data *data, int n)
 			index++;
 		tmp = tmp->next;
 	}
-	printf("words to pipe : %d\n", count);
+	// printf("words to pipe : %d\n", count);
 	return (count);
 }
 
