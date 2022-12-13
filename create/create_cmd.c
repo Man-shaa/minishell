@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:03:31 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/09 17:38:42 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/13 16:11:57 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,6 @@ t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j)
 	{
 		if (is_cmd(data, tmp->str, data->env_path) && cmd->cmd == NULL)
 			handle_cmd(data, cmd, tmp, &(*j));
-		else if (tmp->next && tmp->next->type == 2)
-		{
-			cmd->token = tmp->str;
-			tmp = tmp->next;
-			cmd->type = tmp->type;
-		}
 		else
 		{
 			cmd->opt[(*j)] = tmp->str;

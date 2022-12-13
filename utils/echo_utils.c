@@ -6,13 +6,14 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:27:16 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/09 15:58:22 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/13 16:27:29 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_putstr_echo(t_data *data, char **str, int i)
+// Return 1 si l'affichage de la variable d'environnement a reussi, sinon 0
+int	ft_putstr_echo(t_data *data, char **str, int i)
 {
 	int	j;
 
@@ -21,7 +22,8 @@ void	ft_putstr_echo(t_data *data, char **str, int i)
 	{
 		if (str[i][j] == '$')
 		{
-			echo_env_var(data, str, i, j);
+			if (!echo_env_var(data, str, i, j))
+				return (0);
 			while (str[i][j] && str[i][j] != ' ')
 				j++;
 		}
@@ -31,11 +33,13 @@ void	ft_putstr_echo(t_data *data, char **str, int i)
 			j++;
 		}
 	}
+	return (1);
 }
 
 // Cherche la variable d'env correspondant a args[i] sans "${}()" et la print
 // si elle existe, sinon ne print rien
-void	echo_env_var(t_data *data, char **args, int i, int j)
+// Return 1 si la variable d'environnement existe, sinon 0
+int	echo_env_var(t_data *data, char **args, int i, int j)
 {
 	char	*res;
 	t_envp	*node;
@@ -50,9 +54,10 @@ void	echo_env_var(t_data *data, char **args, int i, int j)
 		if (res)
 			ft_free(res);
 		if (!node)
-			return ;
+			return (0);
 		ft_putstr(node->tab[1]);
 	}
+	return (1);
 }
 
 // Return 1 si l'option -n est trouvee dans str, sinon 0

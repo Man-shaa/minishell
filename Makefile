@@ -22,8 +22,7 @@ SPLIT_DIR	=	split/
 
 UTILS_DIR	=	utils/
 
-SRCS		=	main_mateo.c \
-				main_manu.c \
+SRCS		=	main.c \
 				print/print.c \
 				\
 				${BUILTS_DIR}builtins.c \

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/12 15:31:42 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/13 16:20:49 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,13 @@ void	get_prompt(char **envp)
 	while (42)
 	{
 		str = get_readline(data, str);
+		if (!str)
+			return ;
 		ft_split(str, data);
 		if (!parsing(data))
 			return ;
 		get_cmd_struct(data);
+		// print_struct_cmd(data);
 		cmd = data->cmd;
 		while (cmd)
 		{
