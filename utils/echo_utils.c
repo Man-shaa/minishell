@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:27:16 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/13 17:46:02 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/13 18:52:48 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_putstr_echo(t_data *data, char **str, int i)
 	{
 		if (str[i][j] == '$')
 		{
-			if (!echo_env_var(data, &str[i][j]))
+			if (!echo_env_var(data, &str[i][j]) && !str[i + 1])
 				return (0);
 			j++;
 			while (str[i][j] && str[i][j] != '$' && str[i][j] != ' ')
