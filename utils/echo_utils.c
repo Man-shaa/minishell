@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:27:16 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/13 16:27:29 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/13 18:52:48 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ int	ft_putstr_echo(t_data *data, char **str, int i)
 	{
 		if (str[i][j] == '$')
 		{
-			if (!echo_env_var(data, str, i, j))
+			if (!echo_env_var(data, &str[i][j]) && !str[i + 1])
 				return (0);
-			while (str[i][j] && str[i][j] != ' ')
+			j++;
+			while (str[i][j] && str[i][j] != '$' && str[i][j] != ' ')
 				j++;
 		}
 		else
@@ -39,16 +40,16 @@ int	ft_putstr_echo(t_data *data, char **str, int i)
 // Cherche la variable d'env correspondant a args[i] sans "${}()" et la print
 // si elle existe, sinon ne print rien
 // Return 1 si la variable d'environnement existe, sinon 0
-int	echo_env_var(t_data *data, char **args, int i, int j)
+int	echo_env_var(t_data *data, char *args)
 {
 	char	*res;
 	t_envp	*node;
 
-	if (is_same(args[i], "$?"))
+	if (is_same(args, "$?"))
 		ft_putnbr(data->return_val);
 	else
 	{
-		res = ignore_charset(&args[i][j], "$(){}", 0);
+		res = ignore_charset(args, "(){}", 0);
 		node = data->envp;
 		node = search_node(data->envp, res);
 		if (res)

@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/13 19:33:55 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/13 19:41:39 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,7 +221,7 @@ t_cmd	*ft_cmdlast(t_cmd *cmd);
 // echo_utils.c
 int		ft_putstr_echo(t_data *data, char **str, int i);
 int		is_option_n(char *str);
-int		echo_env_var(t_data *data, char **args, int i, int j);
+int		echo_env_var(t_data *data, char *args);
 
 // export_utis.c
 int		is_concat(char *str);

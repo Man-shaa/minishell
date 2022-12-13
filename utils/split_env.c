@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:01:49 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/14 13:11:43 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/13 18:04:59 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,10 @@ char	*ft_putword_env(char *str, char *tab, char set, int pos)
 	else
 	{
 		i = first_sep(str, set);
-		while (str[i++])
+		while (str[i])
 		{
 			tab[k] = str[i];
+			i++;
 			k++;
 		}
 	}
