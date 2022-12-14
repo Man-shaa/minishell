@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:11:04 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/07 14:18:50 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/13 19:50:13 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ void	free_cmd(t_cmd *cmd)
 			ft_free(save->cmd_path);
 		if (save->opt)
 			ft_free(save->opt);
+		if (save->type)
+			ft_free(save->type);
+		if (save->token)
+			ft_free(save->token);
 		ft_free(save);
 		save = cmd;
 	}

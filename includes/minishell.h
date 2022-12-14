@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/14 14:56:52 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:08:15 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ typedef struct s_cmd
 	char			*cmd;
 	char			*cmd_path;
 	char			**opt;
-	char			*token;
-	int				type;
+	char			**token;
+	int				*type;
 	int				index;
 	struct s_cmd	*next;
 }				t_cmd;
@@ -114,13 +114,11 @@ void	reset_data(t_data *data, char *str);
 void	get_prompt(char **envp);
 char	*get_readline(t_data *data, char *str);
 
-
 // ***************************** CREATE_INIT ******************************
 
 // create_cmd.c
 int		get_cmd_struct(t_data *data);
-t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j);
-void	handle_cmd(t_data *data, t_cmd *cmd, t_list *tmp, int *j);
+int		start_cmd_struct(t_data *data, t_list *tmp, t_cmd *cmd);
 t_cmd	*set_up_cmd(t_data *data, int *i);
 
 // create_data.c
@@ -135,6 +133,11 @@ int		env_length(char **envp);
 int		add_last_list(t_data *data, char *str);
 t_list	*ft_lstnew(char *str, int type);
 t_list	*ft_lstlast(t_list *list);
+
+// fill_cmd.c
+t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j);
+t_list	*fill_cmd_tokens(t_cmd *cmd, t_list *tmp, int *k);
+void	handle_cmd(t_data *data, t_cmd *cmd, t_list *tmp, int *j);
 
 // ********************************* ERROR ********************************
 
@@ -174,6 +177,7 @@ int		check_cmd(t_data *data);
 void	print_list(t_list *list);
 void	print_struct_cmd(t_data *data);
 void	print_tab(char **tab);
+void	print_int_tab(t_data *data, int *tab);
 
 // ******************************** SIGNAL *********************************
 
@@ -211,12 +215,15 @@ int		count_chars_single(char *str, int *i, int *count, int n);
 
 // ******************************** UTILS *********************************
 
+// cmd_utils_two.c
+void	add_back(t_data *data, t_cmd *cmd);
+t_cmd	*ft_cmdnew(int index);
+t_cmd	*ft_cmdlast(t_cmd *cmd);
+
 // cmd_utils.c
+int		count_tokens(t_data *data, int n);
 int		words_to_pipe(t_data *data, int n);
 int		command_or_builtin(char *str, int *cappuccino);
-t_cmd	*ft_cmdnew(int index);
-void	add_back(t_data *data, t_cmd *cmd);
-t_cmd	*ft_cmdlast(t_cmd *cmd);
 
 // echo_utils.c
 int		ft_putstr_echo(t_data *data, char **str, int i);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/13 17:03:21 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/14 14:58:23 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	get_prompt(char **envp)
 		if (!parsing(data))
 			return ;
 		get_cmd_struct(data);
-		// print_struct_cmd(data);
+		print_struct_cmd(data);
 		cmd = data->cmd;
 		while (cmd)
 		{

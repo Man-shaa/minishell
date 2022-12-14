@@ -40,6 +40,7 @@ SRCS		=	main.c \
 				${CREATE_DIR}create_data.c \
 				${CREATE_DIR}create_list.c \
 				${CREATE_DIR}create_env.c \
+				${CREATE_DIR}fill_cmd.c \
 				\
 				${ERROR_DIR}error.c \
 				\
@@ -58,6 +59,7 @@ SRCS		=	main.c \
 				\
 				${SIGNAL_DIR}signal.c \
 				\
+				${UTILS_DIR}cmd_utils_two.c \
 				${UTILS_DIR}cmd_utils.c \
 				${UTILS_DIR}echo_utils.c \
 				${UTILS_DIR}env_list_utils.c \

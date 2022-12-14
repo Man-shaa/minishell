@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   create_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 11:03:31 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/13 16:11:57 by msharifi         ###   ########.fr       */
+/*   Created: 2022/12/14 14:53:43 by mfroissa          #+#    #+#             */
+/*   Updated: 2022/12/14 14:59:48 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+//calloc les char** et int* de data->cmd, return t_cmd
 t_cmd	*set_up_cmd(t_data *data, int *i)
 {
 	t_cmd	*cmd;
@@ -21,29 +22,47 @@ t_cmd	*set_up_cmd(t_data *data, int *i)
 	if (!cmd->opt)
 		return (NULL);
 	cmd->opt[words_to_pipe(data, (*i))] = 0;
+	cmd->token = ft_calloc(count_tokens(data, (*i)) + 1, sizeof(char *));
+	if (!cmd->token)
+		return (NULL);
+	cmd->token[count_tokens(data, (*i))] = 0;
+	if (count_tokens(data, (*i)) > 0)
+		cmd->type = ft_calloc(count_tokens(data, (*i)), sizeof(int));
 	return (cmd);
 }
 
+//initialise la creation de data->cmd
 int	get_cmd_struct(t_data *data)
 {
 	t_list	*tmp;
 	t_cmd	*cmd;
-	int		i;
-	int		j;
 
 	tmp = data->list;
-	i = 0;
 	cmd = NULL;
+	if (!start_cmd_struct(data, tmp, cmd))
+		return (0);
+	return (1);
+}
+
+//return 1 si la creation de data->cmd abouti
+int	start_cmd_struct(t_data *data, t_list *tmp, t_cmd *cmd)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	i = 0;
 	while (tmp)
 	{
 		j = 0;
+		k = 0;
 		cmd = set_up_cmd(data, &i);
 		if (!cmd)
 			return (0);
 		while (tmp && tmp->type != 6)
 		{
 			tmp = fill_cmd_struct(data, cmd, tmp, &j);
-			tmp = tmp->next;
+			tmp = fill_cmd_tokens(cmd, tmp, &k);
 		}
 		add_back(data, cmd);
 		i++;
@@ -51,34 +70,4 @@ int	get_cmd_struct(t_data *data)
 			tmp = tmp->next;
 	}
 	return (1);
-}
-
-t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j)
-{
-	if (tmp->type == 1)
-	{
-		if (is_cmd(data, tmp->str, data->env_path) && cmd->cmd == NULL)
-			handle_cmd(data, cmd, tmp, &(*j));
-		else
-		{
-			cmd->opt[(*j)] = tmp->str;
-			(*j)++;
-		}
-		return (tmp);
-	}
-	cmd->type = tmp->type;
-	tmp = tmp->next;
-	cmd->token = tmp->str;
-	return (tmp);
-}
-
-void	handle_cmd(t_data *data, t_cmd *cmd, t_list *tmp, int *j)
-{
-	cmd->cmd = tmp->str;
-	if (!is_builtin(tmp->str))
-	{
-		cmd->opt[(*j)] = tmp->str;
-		(*j)++;
-		find_cmd_path(data, cmd, data->env_path);
-	}
 }
