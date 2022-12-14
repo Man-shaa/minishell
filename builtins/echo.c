@@ -6,11 +6,9 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:39:45 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/13 18:05:52 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/14 12:47:04 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// gerer option -n (newline)
 
 #include "../includes/minishell.h"
 

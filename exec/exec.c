@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/13 17:48:57 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:00:10 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,31 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 	return (0);
 }
 
+int	error_cmd(char **cmd)
+{
+	int	fd;
+
+	if (cmd && cmd[0])
+	{
+		fd = open(cmd[0], __O_DIRECTORY);
+		if (fd >= 0)
+		{
+			close(fd);
+			err_msg("minishell: : ", cmd[0], " is a directory", 2);
+			return (126);
+		}
+		// close(fd);
+	}
+	err_msg("minishell: command not found: ", cmd[0], NULL, 2);
+	return (127);
+}
+
 // Envoies la commande a la fonction de builtins ou d'exec bin
 // Return le retour de chaque commande effectuee
 int	send_cmd(t_data *data, t_cmd *cmd)
 {
 	if (!cmd->cmd)
-		return (err_msg("minishell: command not found: ", cmd->opt[0], NULL, 2), 127);
+		return (error_cmd(cmd->opt));
 	else if (is_builtin(cmd->cmd))
 		return (exec_builtin(data, cmd->cmd, cmd->opt));
 	else if (is_cmd(data, cmd->cmd, data->env_path))
