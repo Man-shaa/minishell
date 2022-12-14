@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:27:16 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/13 18:52:48 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:37:29 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_putstr_echo(t_data *data, char **str, int i)
 		}
 		else
 		{
-			write(1, &str[i][j], 1);
+			write(STDOUT_FILENO, &str[i][j], 1);
 			j++;
 		}
 	}

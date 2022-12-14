@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:04:26 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/12 15:50:40 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:37:45 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_exit(t_data *data, char **args)
 		return_val = ft_atoi(args[0]);
 	else
 		return_val = 0;
-	err_msg("exit ", NULL, NULL, 2);
+	err_msg("exit ", NULL, NULL);
 	free_data(data);
 	return (return_val);
 }

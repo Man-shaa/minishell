@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/14 15:08:10 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/14 17:48:22 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 
 	if (!data->env_path)
 	{
-		err_msg("env not found, specify an absolute path", NULL, NULL, 2);
+		err_msg("env not found, specify an absolute path", NULL, NULL);
 		return (1);
 	}
 	if (!cmd->cmd_path)
@@ -31,7 +31,7 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 		env_tab = get_env_tab(data->envp);
 		// print_tab(cmd->opt);
 		if (execve(cmd->cmd_path, cmd->opt, env_tab) == -1)
-			return (err_msg("execve failed !", NULL, NULL, 2), 2);
+			return (err_msg("execve failed !", NULL, NULL), 1);
 	}
 	waitpid(-1, NULL, 0);
 	return (0);
@@ -47,12 +47,11 @@ int	error_cmd(char **cmd)
 		if (fd >= 0)
 		{
 			close(fd);
-			err_msg("minishell: : ", cmd[0], " is a directory", 2);
+			err_msg("minishell: : ", cmd[0], " is a directory");
 			return (126);
 		}
-		// close(fd);
 	}
-	err_msg("minishell: command not found: ", cmd[0], NULL, 2);
+	err_msg("minishell: command not found: ", cmd[0], NULL);
 	return (127);
 }
 
@@ -60,11 +59,11 @@ int	error_cmd(char **cmd)
 // Return le retour de chaque commande effectuee
 int	send_cmd(t_data *data, t_cmd *cmd)
 {
-	if (!cmd->cmd)
+	if (!cmd->cmd || is_same(cmd->cmd, ".."))
 		return (error_cmd(cmd->opt));
 	else if (is_builtin(cmd->cmd))
 		return (exec_builtin(data, cmd->cmd, cmd->opt));
 	else if (is_cmd(data, cmd->cmd, data->env_path))
-		return (exec_binary(data, cmd)); // valeur retour a set
+		return (exec_binary(data, cmd));
 	return (1);
 }

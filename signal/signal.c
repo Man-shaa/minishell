@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:34:48 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/09 20:13:15 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:39:07 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	handle_sigsegv(int sig_segv)
 {
 	(void)sig_segv;
-	err_msg(NULL, "exit", NULL, 2);
+	err_msg(NULL, "exit", NULL);
 	exit(1);
 }
 

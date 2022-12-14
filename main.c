@@ -6,13 +6,14 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/13 18:54:08 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:16:59 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
 // echo "skdf$PWDsfd     jkhsd" split zap les espaces et en mettre qu'un seul
+// ".." pete un cable
 
 int	main(int ac, char **av, char **envp)
 {
