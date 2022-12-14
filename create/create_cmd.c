@@ -5,13 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 11:03:31 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/13 19:31:08 by mfroissa         ###   ########.fr       */
+/*   Created: 2022/12/14 14:53:43 by mfroissa          #+#    #+#             */
+/*   Updated: 2022/12/14 14:59:48 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+//calloc les char** et int* de data->cmd, return t_cmd
 t_cmd	*set_up_cmd(t_data *data, int *i)
 {
 	t_cmd	*cmd;
@@ -30,6 +31,7 @@ t_cmd	*set_up_cmd(t_data *data, int *i)
 	return (cmd);
 }
 
+//initialise la creation de data->cmd
 int	get_cmd_struct(t_data *data)
 {
 	t_list	*tmp;
@@ -42,7 +44,8 @@ int	get_cmd_struct(t_data *data)
 	return (1);
 }
 
-int start_cmd_struct(t_data *data, t_list *tmp, t_cmd *cmd)
+//return 1 si la creation de data->cmd abouti
+int	start_cmd_struct(t_data *data, t_list *tmp, t_cmd *cmd)
 {
 	int	i;
 	int	j;
@@ -67,45 +70,4 @@ int start_cmd_struct(t_data *data, t_list *tmp, t_cmd *cmd)
 			tmp = tmp->next;
 	}
 	return (1);
-}
-
-t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j)
-{
-	if (tmp->type == 1)
-	{
-		if (is_cmd(data, tmp->str, data->env_path) && cmd->cmd == NULL)
-			handle_cmd(data, cmd, tmp, j);
-		else
-		{
-			cmd->opt[(*j)] = tmp->str;
-			(*j)++;
-		}
-		tmp = tmp->next;
-		return (tmp);
-	}
-	return (tmp);
-}
-
-t_list	*fill_cmd_tokens(t_cmd *cmd, t_list *tmp, int *k)
-{
-	if (tmp && tmp->type != 1 && tmp->type != 6)
-	{
-		cmd->type[(*k)] = tmp->type;
-		tmp = tmp->next;
-		cmd->token[(*k)] = tmp->str;
-		(*k)++;
-		tmp = tmp->next;
-	}
-	return (tmp);
-}
-
-void	handle_cmd(t_data *data, t_cmd *cmd, t_list *tmp, int *j)
-{
-	cmd->cmd = tmp->str;
-	if (!is_builtin(tmp->str))
-	{
-		cmd->opt[(*j)] = tmp->str;
-		(*j)++;
-		find_cmd_path(data, cmd, data->env_path);
-	}
 }

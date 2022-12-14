@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 19:49:19 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/13 19:34:21 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:02:16 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,6 @@ void	print_int_tab(t_data *data, int *tab)
 	while (i < n)
 	{
 		printf("tab[%d] : %d\n", i, tab[i]);
-		i++; 
+		i++;
 	}
 }

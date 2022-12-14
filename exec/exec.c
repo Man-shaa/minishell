@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/13 17:48:57 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:03:17 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 int	send_cmd(t_data *data, t_cmd *cmd)
 {
 	if (!cmd->cmd)
-		return (err_msg("minishell: command not found: ", cmd->opt[0], NULL, 2), 127);
+		return (err_msg("minishell: command not found: ",
+				cmd->opt[0], NULL, 2), 127);
 	else if (is_builtin(cmd->cmd))
 		return (exec_builtin(data, cmd->cmd, cmd->opt));
 	else if (is_cmd(data, cmd->cmd, data->env_path))
