@@ -6,15 +6,20 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 06:20:44 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/21 11:37:51 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/15 13:09:09 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 // Print l'environnement dans t_envp
-void	print_env(t_envp *envp)
+int	print_env(t_envp *envp, char **args)
 {
+	if (args && args[0])
+	{
+		err_msg("env: '", args[0], "' No such file or directory");
+		return (127);
+	}
 	while (envp)
 	{
 		if (envp->tab[1][0] != '\0')
@@ -27,4 +32,5 @@ void	print_env(t_envp *envp)
 		envp = envp->next;
 	}
 	printf("\n");
+	return (0);
 }
