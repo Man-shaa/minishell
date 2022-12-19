@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 14:35:39 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/19 18:10:53 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,7 +251,7 @@ int		is_cmd(t_data *data, char *str, char *env_path);
 
 // split_env.c
 int		char_count_env(char *str, char set, int pos);
-char	*ft_putword_env(char *str, char *tab, char set, int pos);
+void	ft_putword_env(char *str, char *tab, char set, int pos);
 char	**ft_split_env(char	*str, char set);
 
 // split_normal.c

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:43 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 14:36:10 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/19 18:31:42 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int	already_exist(t_envp *envp, char *str)
 	char	**tab;
 	t_envp	*travel;
 
+	if (!envp)
+		return (0);
 	tab = ft_split_env(str, '=');
 	if (!tab)
 		return (0);

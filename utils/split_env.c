@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:01:49 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/13 18:04:59 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/19 18:28:27 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	char_count_env(char *str, char set, int pos)
 	return (k);
 }
 
-char	*ft_putword_env(char *str, char *tab, char set, int pos)
+void	ft_putword_env(char *str, char *tab, char set, int pos)
 {
 	int	i;
 	int	k;
@@ -65,8 +65,6 @@ char	*ft_putword_env(char *str, char *tab, char set, int pos)
 			k++;
 		}
 	}
-	tab[k] = '\0';
-	return (tab);
 }
 
 char	**ft_split_env(char	*str, char set)
@@ -85,7 +83,8 @@ char	**ft_split_env(char	*str, char set)
 		tab[j] = ft_calloc(char_count_env(str, set, j) + 1, 1);
 		if (!tab[j])
 			return (free_tab(tab), NULL);
-		tab[j] = ft_putword_env(str, tab[j], set, j);
+		ft_putword_env(str, tab[j], set, j);
+		// ft_free(tab[j]);
 		j++;
 	}
 	tab[j] = 0;

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:39:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/13 17:54:25 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/19 18:32:54 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ char	*ignore_charset(char *str, char *charset, int n)
 	i = 1;
 	j = 0;
 	if (!str || !str[0])
-		return (NULL);
+		return (str);
 	while (str[i++] && str[i] != '$')
 		if (ft_strchr(charset, str[i]))
 			j++;

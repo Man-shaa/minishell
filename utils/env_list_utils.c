@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_list_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 22:12:58 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/08 17:00:33 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/19 18:04:35 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ char	**get_env_tab(t_envp *envp)
 	t_envp	*tmp;
 	char	**env;
 
+	if (!envp)
+		return (NULL);
 	tmp = envp;
 	i = 0;
 	while (tmp)
