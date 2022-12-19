@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 14:00:56 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/19 14:19:16 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ void	handle_cmd(t_data *data, t_cmd *cmd, t_list *tmp, int *j);
 // ********************************* ERROR ********************************
 
 // error.c
-int		err_msg(char *start, char *str, char *end, int ret);
+void	err_msg(char *start, char *str, char *end);
 int		error_cmd(char **cmd);
 
 // ********************************* EXEC *********************************

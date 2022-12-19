@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 14:00:37 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/19 14:22:49 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 
 	if (!data->env_path)
 	{
-		err_msg("env not found, specify an absolute path", NULL, NULL, 1);
+		err_msg("env not found, specify an absolute path", NULL, NULL);
 		return (1);
 	}
 	if (!cmd->cmd_path)
