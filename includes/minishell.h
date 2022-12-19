@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 13:11:14 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/19 13:59:07 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		ft_cd(t_data *data, char *str);
 void	ft_echo(t_data *data, char **args);
 
 // env.c
-int	print_env(t_envp *envp, char **args);
+void	print_env(t_envp *envp);
 
 // exit.c
 int		ft_exit(t_data *data, char **args);

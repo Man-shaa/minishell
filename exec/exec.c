@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 13:50:54 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/19 13:59:03 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,30 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 	if (data->proc->pid == 0)
 	{
 		env_tab = get_env_tab(data->envp);
-		if (!env_tab)
-			return (1);
-		// print_tab(env_tab);
-		execve(cmd->cmd_path, cmd->opt, env_tab);
-		// err_msg("execve failed !", NULL, NULL, 1);
-		return (error_cmd(cmd->opt));
+		// print_tab(cmd->opt);
+		if (execve(cmd->cmd_path, cmd->opt, env_tab) == -1)
+			return (err_msg("execve failed !", NULL, NULL), 1);
 	}
-	waitpid(data->proc->pid, NULL, 0);
-	return (error_cmd(cmd->opt));
+	waitpid(-1, NULL, 0);
+	return (0);
+}
+
+int	error_cmd(char **cmd)
+{
+	int	fd;
+
+	if (cmd && cmd[0])
+	{
+		fd = open(cmd[0], __O_DIRECTORY);
+		if (fd >= 0)
+		{
+			close(fd);
+			err_msg("minishell: : ", cmd[0], " is a directory");
+			return (126);
+		}
+	}
+	err_msg("minishell: command not found: ", cmd[0], NULL);
+	return (127);
 }
 
 // Envoies la commande a la fonction de builtins ou d'exec bin
