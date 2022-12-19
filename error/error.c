@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:19:29 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 15:38:22 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/19 15:58:36 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	error_cmd(char **cmd)
 	if (ft_strchr(cmd[0], '/'))
 		ret = err_msg("minishell: ", cmd[0], ": command not found", 127);
 	else if (fd == -1 && dir == NULL)
-		ret = err_msg("minishell: ", cmd[0], ": No such file or directory", 127);
+		ret = err_msg("minishell: ", cmd[0], ": No such file or directory",
+				127);
 	else if (fd == -1 && dir != NULL)
 		ret = err_msg("minishell: ", cmd[0], ": is a directory", 126);
 	else if (fd != -1 && dir == NULL)

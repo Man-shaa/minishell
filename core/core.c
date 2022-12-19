@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/14 15:32:14 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/19 16:07:24 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	get_prompt(char **envp)
 		if (!parsing(data))
 			return ;
 		get_cmd_struct(data);
-		// print_struct_cmd(data);
 		cmd = data->cmd;
 		while (cmd)
 		{
