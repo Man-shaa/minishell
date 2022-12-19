@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:06:08 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 14:24:10 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/19 14:37:35 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	find_cmd_path(t_data *data, t_cmd *cmd, char *env_path)
 		return (0);
 	all_paths = ft_split_normal(env_path, ':');
 	if (!all_paths && is_path(data, cmd->cmd))
-		return (err_msg("Env not found, specify a path", NULL, NULL), 0);
+		return (err_msg("Env not found, specify a path", NULL, NULL, 0));
 	if (!is_path(data, cmd->cmd))
 		return (free_tab(all_paths), 1);
 	while (all_paths[i])
@@ -75,7 +75,7 @@ int	find_cmd_path(t_data *data, t_cmd *cmd, char *env_path)
 		i++;
 	}
 	free_tab(all_paths);
-	return (err_msg("No such file or directory", NULL, NULL), 0);
+	return (err_msg("No such file or directory", NULL, NULL, 0));
 }
 
 // Return 1 si str est uen commande (access), sinon 0
@@ -91,7 +91,7 @@ int	is_cmd(t_data *data, char *str, char *env_path)
 		return (1);
 	all_paths = ft_split_normal(env_path, ':');
 	if (!all_paths && is_path(data, str))
-		return (err_msg("Env not found, specify a path", NULL, NULL), 0);
+		return (err_msg("Env not found, specify a path", NULL, NULL, 0));
 	if (!is_path(data, str))
 		return (free_tab(all_paths), 1);
 	while (all_paths[i])

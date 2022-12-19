@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:34:48 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/19 14:23:29 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/19 14:37:17 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	handle_sigsegv(int sig_segv)
 {
 	(void)sig_segv;
-	err_msg(NULL, "exit", NULL);
+	err_msg(NULL, "exit", NULL , 1);
 	exit(1);
 }
 
