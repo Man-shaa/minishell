@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:01:49 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 18:28:27 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/19 19:06:21 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ char	**ft_split_env(char	*str, char set)
 		if (!tab[j])
 			return (free_tab(tab), NULL);
 		ft_putword_env(str, tab[j], set, j);
-		// ft_free(tab[j]);
 		j++;
 	}
 	tab[j] = 0;

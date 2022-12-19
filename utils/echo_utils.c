@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:27:16 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 14:29:29 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/19 21:32:56 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,16 @@ int	echo_env_var(t_data *data, char *args)
 		res = ignore_charset(args, "(){}", 0);
 		node = data->envp;
 		node = search_node(data->envp, res);
+		if (!node)
+		{
+			if (!res || !res[0])
+				ft_putstr(args);
+			if (res)
+				ft_free(res);
+			return (0);
+		}
 		if (res)
 			ft_free(res);
-		if (!node)
-			return (0);
 		ft_putstr(node->tab[1]);
 	}
 	return (1);

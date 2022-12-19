@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 22:12:58 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 18:04:35 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/19 21:33:23 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_envp	*search_node(t_envp *envp, char *str)
 	t_envp	*travel;
 
 	travel = envp;
+	if (!str)
+		return (NULL);
 	while (travel)
 	{
 		if (is_same(travel->tab[0], str))
