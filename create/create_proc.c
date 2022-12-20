@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 15:06:50 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/20 15:09:42 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:12:04 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ int	create_proc(t_data *data)
 		return (0);
 	data->proc->fd_in = 0;
 	data->proc->fd_out = 0;
-	data->proc->pid = -1
+	data->proc->pid = -1;
+	return (1);
 }
-

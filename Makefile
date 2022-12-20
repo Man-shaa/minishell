@@ -38,8 +38,9 @@ SRCS		=	main.c \
 				\
 				${CREATE_DIR}create_cmd.c \
 				${CREATE_DIR}create_data.c \
-				${CREATE_DIR}create_list.c \
 				${CREATE_DIR}create_env.c \
+				${CREATE_DIR}create_list.c \
+				${CREATE_DIR}create_proc.c \
 				${CREATE_DIR}fill_cmd.c \
 				\
 				${ERROR_DIR}error.c \
