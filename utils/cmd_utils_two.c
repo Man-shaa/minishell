@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_utils_two.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:50:36 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/14 14:51:08 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/20 20:36:03 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,19 @@ t_cmd	*ft_cmdlast(t_cmd *cmd)
 	while (cmd->next)
 		cmd = cmd->next;
 	return (cmd);
+}
+
+int	pipe_count(t_cmd *cmd)
+{
+	int	i;
+
+	i = 0;
+	if (!cmd)
+		return (0);
+	while (cmd)
+	{
+		i++;
+		cmd = cmd->next;
+	}
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:06:08 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 18:02:23 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/20 20:06:32 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	find_cmd_path(t_data *data, t_cmd *cmd, char *env_path)
 		return (1);
 	}
 	all_paths = ft_split_normal(env_path, ':');
-	if (!all_paths && is_path(data, cmd->cmd))
+	if (!all_paths)
 		return (0);
 	while (all_paths[i])
 	{

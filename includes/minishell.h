@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/20 15:09:32 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/20 21:29:55 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ typedef struct s_proc
 {
 	int		fd_in;
 	int		fd_out;
-	int		fd[2];
+	int		*pipe_fd;
+	int		n_pipes;
 	pid_t	pid;
 }				t_proc;
 
@@ -135,7 +136,7 @@ t_list	*ft_lstnew(char *str, int type);
 t_list	*ft_lstlast(t_list *list);
 
 // create_proc.c
-int	create_proc(t_data *data);
+t_proc	*create_proc(void);
 
 // fill_cmd.c
 t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j);
@@ -152,7 +153,17 @@ int		error_cmd(char **cmd);
 
 // exec.c
 int		exec_binary(t_data *data, t_cmd *cmd);
+int		execution(t_data *data);
 int		send_cmd(t_data *data, t_cmd *cmd);
+
+// pipe.c
+int		create_pipes(t_data *data);
+void	close_pipes(t_proc *proc);
+
+// redirections.c
+int		handle_redir(t_data *data, t_cmd *cmd);
+int		open_fd(t_proc *proc, char *token, int type);
+void		redirect_pipe(t_proc *proc);
 
 // ********************************* FREE *********************************
 
@@ -223,6 +234,7 @@ int		count_chars_single(char *str, int *i, int *count, int n);
 void	add_back(t_data *data, t_cmd *cmd);
 t_cmd	*ft_cmdnew(int index);
 t_cmd	*ft_cmdlast(t_cmd *cmd);
+int		pipe_count(t_cmd *cmd);
 
 // cmd_utils.c
 int		count_tokens(t_data *data, int n);

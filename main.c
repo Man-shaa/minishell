@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/20 16:17:32 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/20 19:54:48 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,18 @@
 
 // wc -l >>out ne gere pas standard input (stdin) | cat >>out Pareil
 // "> out" pete un cable
+
 // ------ Mateo ------
+
+// Juste [return] met un message a voir si on enleve
+
+// "ls | cat" renvoies missing a command -> changer un is_builtin pour is_cmd
+// qq part  dans le parsing
 
 // Return 0 si str est une commande return 1 si str est un builtin -- inverse ?
 // Manuo ✖✖ <in wc -l >>> out
 
-// Doublons of redirections leaks de fou a regler (Mateo)
+// "Doublons of redirections" leaks
 
 int	main(int ac, char **av, char **envp)
 {
