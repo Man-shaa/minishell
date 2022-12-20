@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 20:16:13 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 16:07:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:10:00 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ t_data	*create_data(char **envp)
 	data->cmd = NULL;
 	data->list = NULL;
 	data->envp = NULL;
-	data->proc = ft_calloc(1, sizeof(t_proc));
 	if (!create_env(data, envp))
+		return (free_data(data), NULL);
+	if (!create_proc(data));
 		return (free_data(data), NULL);
 	return (data);
 }

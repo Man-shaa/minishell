@@ -6,13 +6,13 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 02:39:44 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/19 16:01:32 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/20 14:24:12 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-//return le compteur de token dans une commande avec n pour l'index du pipe
+// Return le compteur de token dans une commande avec n pour l'index du pipe
 int	count_tokens(t_data *data, int n)
 {
 	t_list	*tmp;
@@ -37,7 +37,7 @@ int	count_tokens(t_data *data, int n)
 	return (count);
 }
 
-//return le compteur de type1 dans une commande avec n pour l'index du pipe
+// Return le compteur de type1 dans une commande avec n pour l'index du pipe
 int	words_to_pipe(t_data *data, int n)
 {
 	t_list	*tmp;
@@ -65,7 +65,7 @@ int	words_to_pipe(t_data *data, int n)
 	return (count);
 }
 
-//return 0 si str est une commande return 1 si str est un builtin
+// Return 0 si str est une commande return 1 si str est un builtin
 int	command_or_builtin(char *str, int *cappuccino)
 {
 	int	count;

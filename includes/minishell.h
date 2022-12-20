@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 18:10:53 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:09:32 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	reset_data(t_data *data, char *str);
 void	get_prompt(char **envp);
 char	*get_readline(t_data *data, char *str);
 
-// ***************************** CREATE_INIT ******************************
+// ******************************* CREATE *********************************
 
 // create_cmd.c
 int		get_cmd_struct(t_data *data);
@@ -133,6 +133,9 @@ int		env_length(char **envp);
 int		add_last_list(t_data *data, char *str);
 t_list	*ft_lstnew(char *str, int type);
 t_list	*ft_lstlast(t_list *list);
+
+// create_proc.c
+int	create_proc(t_data *data);
 
 // fill_cmd.c
 t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j);
