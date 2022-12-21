@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:06:08 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/20 20:06:32 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:13:25 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 // Return 0 si le chemin est absolu ou l'acces a reussi, sinon return 1
 int	is_path(t_data *data, char *av)
 {
-	// if (!av || !data->cmd)
-	// 	return (1);
 	if (!ft_strchr(av, '/'))
 		return (0);
 	else if (access(av, F_OK | X_OK) == 0)
@@ -48,6 +46,16 @@ char	*find_path_in_env(char **envp)
 	return (NULL);
 }
 
+int	is_absolute_path(t_data *data, t_cmd *cmd)
+{
+	if (!is_path(data, cmd->cmd))
+	{
+		cmd->cmd_path = ft_strndup(cmd->cmd, 0);
+		return (1);
+	}
+	return (0);
+}
+
 // Test tous les paths possibles de la variable d'environnement PATH
 // Return 1 si un path est valide et le met dans cmd->cmd_path, sinon return 0
 int	find_cmd_path(t_data *data, t_cmd *cmd, char *env_path)
@@ -59,11 +67,8 @@ int	find_cmd_path(t_data *data, t_cmd *cmd, char *env_path)
 	i = 0;
 	if (!cmd->cmd)
 		return (0);
-	if (!is_path(data, cmd->cmd))
-	{
-		cmd->cmd_path = ft_strndup(cmd->cmd, 0);
+	if (is_absolute_path(data, cmd))
 		return (1);
-	}
 	all_paths = ft_split_normal(env_path, ':');
 	if (!all_paths)
 		return (0);

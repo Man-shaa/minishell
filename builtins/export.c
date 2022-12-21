@@ -6,12 +6,14 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:43 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 18:59:45 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:21:29 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+// Ajoute un node a la fin de la structure t_envp
+// Return 0 si l'operation a reussie, sinon 1
 int	add_last_env(t_data *data, char *arg)
 {
 	t_envp	*tmp;
@@ -32,8 +34,9 @@ int	add_last_env(t_data *data, char *arg)
 	return (1);
 }
 
-// Ajoute un node a la fin de la structure t_envp
-// Return 0 si l'operation a reussie, sinon 1
+// Ajoute un node (s'il est valide) a la fin de envp s'il n'existe pas
+// Sinon modifie directement la variable avec la nouvelle valeur
+// Return 0 si tout s'est bien passe, sinon 1
 int	ft_export(t_data *data, char **args)
 {
 	int		i;

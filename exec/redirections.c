@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/21 16:19:19 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:37:29 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	handle_redir(t_data *data, t_cmd *cmd)
 
 	i = 0;
 	if (!cmd->token)
-		return 0;
+		return (0);
 	while (cmd->token[i])
 	{
 		if (!open_fd(data->proc, cmd->token[i], cmd->type[i]))
@@ -30,6 +30,8 @@ int	handle_redir(t_data *data, t_cmd *cmd)
 	return (1);
 }
 
+// Open le token et dup2 fd_in/out en fonction du type < > >>
+// Return 1 si tout s'est bie passe, sinon 0
 int	open_fd(t_proc *proc, char *token, int type)
 {
 	if (type == 2)
@@ -59,14 +61,14 @@ int	open_fd(t_proc *proc, char *token, int type)
 	return (1);
 }
 
+// Utile ??
 void	double_dup2(int fd1, int fd2)
 {
 	dup2(fd1, STDIN_FILENO);
-	// close(fd1);
 	dup2(fd2, STDOUT_FILENO);
-	// close(fd2);
 }
 
+// PAS BON
 void	redirect_pipe(t_proc *proc)
 {
 	int	pipe_index;
@@ -77,9 +79,11 @@ void	redirect_pipe(t_proc *proc)
 		if (pipe_index == 0)
 			double_dup2(proc->pipe_fd[0], proc->pipe_fd[1]);
 		else if (pipe_index == proc->n_pipes - 1)
-			double_dup2(proc->pipe_fd[2 * pipe_index - 2], proc->pipe_fd[2 * pipe_index - 1]);
+			double_dup2(proc->pipe_fd[2 * pipe_index - 2],
+				proc->pipe_fd[2 * pipe_index - 1]);
 		else
-			double_dup2(proc->pipe_fd[2 * pipe_index - 2], proc->pipe_fd[2 * pipe_index + 1]);
+			double_dup2(proc->pipe_fd[2 * pipe_index - 2],
+				proc->pipe_fd[2 * pipe_index + 1]);
 		pipe_index++;
 		close_pipes(proc);
 	}

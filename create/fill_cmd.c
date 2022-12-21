@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_cmd.c                                       :+:      :+:    :+:   */
+/*   fill_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:03:31 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/14 14:53:41 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:26:08 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+// Remplit la structure t_cmd en fonction de t_list
 t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j)
 {
 	if (tmp->type == 1)
@@ -29,6 +30,7 @@ t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j)
 	return (tmp);
 }
 
+// Remplit les tokens et type de la structure t_cmd
 t_list	*fill_cmd_tokens(t_cmd *cmd, t_list *tmp, int *k)
 {
 	if (tmp && tmp->type != 1 && tmp->type != 6)
@@ -42,6 +44,7 @@ t_list	*fill_cmd_tokens(t_cmd *cmd, t_list *tmp, int *k)
 	return (tmp);
 }
 
+// Remplit les commandes et otions de la structure t_cmd
 void	handle_cmd(t_data *data, t_cmd *cmd, t_list *tmp, int *j)
 {
 	cmd->cmd = tmp->str;

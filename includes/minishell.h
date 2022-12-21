@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/20 21:29:55 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:37:18 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ void	close_pipes(t_proc *proc);
 // redirections.c
 int		handle_redir(t_data *data, t_cmd *cmd);
 int		open_fd(t_proc *proc, char *token, int type);
-void		redirect_pipe(t_proc *proc);
+void	redirect_pipe(t_proc *proc);
 
 // ********************************* FREE *********************************
 
@@ -261,6 +261,7 @@ char	**get_env_tab(t_envp *envp);
 // exec_utils.c
 int		is_path(t_data *data, char *av);
 char	*find_path_in_env(char **envp);
+int		is_absolute_path(t_data *data, t_cmd *cmd);
 int		find_cmd_path(t_data *data, t_cmd *cmd, char *env_path);
 int		is_cmd(t_data *data, char *str, char *env_path);
 
@@ -273,6 +274,7 @@ char	**ft_split_env(char	*str, char set);
 int		word_count_normal(char *str, char set);
 int		char_count_normal(char *str, char set, int pos);
 char	*putword_normal(char *str, char *tab, char set, int pos);
+void	free_tab_split(char **tab, int i);
 char	**ft_split_normal(char	*str, char set);
 
 // str_utils_2.c

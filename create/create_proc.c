@@ -6,16 +6,17 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 15:06:50 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/21 15:49:57 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:37:07 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+// Cree et et initialise a 0 la structure t_proc
 t_proc	*create_proc(void)
 {
 	t_proc	*proc;
-	
+
 	proc = ft_calloc(1, sizeof(t_proc));
 	if (!proc)
 		return (NULL);

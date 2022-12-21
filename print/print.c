@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 19:49:19 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/14 15:02:16 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:37:37 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	print_struct_cmd(t_data *data)
 		print_int_tab(data, tmp->type);
 		printf("// CMD->OPT //\n");
 		print_tab(tmp->opt);
-		// printf("COUNT = %d\n", words_to_pipe(data, i));
 		printf("\n");
 		tmp = tmp->next;
 		i++;

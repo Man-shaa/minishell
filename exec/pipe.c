@@ -6,12 +6,14 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:38:01 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/21 16:09:38 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:30:08 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+// Cree le nombre de pipe necessaire
+// Return 1 si tout s'est bien passe, sinon 0 (malloc rate)
 int	create_pipes(t_data *data)
 {
 	int		i;
@@ -37,6 +39,7 @@ int	create_pipes(t_data *data)
 	return (1);
 }
 
+// Close tous les pipes et fd_in/out
 void	close_pipes(t_proc *proc)
 {
 	int	i;
@@ -50,4 +53,3 @@ void	close_pipes(t_proc *proc)
 		i++;
 	}
 }
-

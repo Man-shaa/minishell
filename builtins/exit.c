@@ -6,16 +6,16 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:04:26 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/21 13:57:45 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:19:15 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+// Free data et return 0 ou args[0] si il existe 
 int	ft_exit(t_data *data, char **args)
 {
 	int		return_val;
-	(void)data;
 
 	if (!args)
 		return_val = 0;

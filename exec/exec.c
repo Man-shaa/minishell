@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/21 16:22:13 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:28:50 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 	return (WEXITSTATUS(status));
 }
 
+// Cree les pipes et s'occupe des redirections avant d'envoyer la commande
+// a send_cmd
+// Return 0 si il y a un probleme a la creation des pipes, sinon 0
 int	execution(t_data *data)
 {
 	t_cmd	*cmd;

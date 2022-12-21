@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:25:37 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/13 18:55:34 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:13:37 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,19 @@ char	*putword_normal(char *str, char *tab, char set, int pos)
 	return (tab);
 }
 
+void	free_tab_split(char **tab, int i)
+{
+	int	j;
+
+	j = 0;
+	while (i < j)
+	{
+		ft_free(tab[i]);
+		i++;
+	}
+	ft_free(tab);
+}
+
 char	**ft_split_normal(char	*str, char set)
 {
 	int		i;
@@ -104,7 +117,7 @@ char	**ft_split_normal(char	*str, char set)
 	{
 		tab[j] = ft_calloc(char_count_normal(str, set, j) + 1, 1);
 		if (!tab[j])
-			return (free_tab(tab), NULL);
+			return (free_tab_split(tab, j), NULL);
 		tab[j] = putword_normal(str, tab[j], set, j);
 		j++;
 	}

@@ -6,13 +6,14 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 06:20:44 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 18:30:18 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:18:24 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 // Print l'environnement dans t_envp
+// Return 0 si tout s'set bien passe, 127 si il y a une erreur
 int	print_env(t_envp *envp, char **args)
 {
 	if (args && args[0])

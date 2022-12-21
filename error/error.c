@@ -6,12 +6,14 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:19:29 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/20 19:21:04 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:27:16 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+// Affiche un message d'erreur sur STDERR
+// Return la valeur de retour ret
 int	err_msg(char *start, char *str, char *end, int ret)
 {
 	if (start)
@@ -24,6 +26,8 @@ int	err_msg(char *start, char *str, char *end, int ret)
 	return (ret);
 }
 
+// Affiche le message d'erreur correspondant a l'erreur
+// Return la valeur de retour selon l'erreur 
 int	error_cmd(char **cmd)
 {
 	int	fd;

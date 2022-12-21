@@ -6,17 +6,15 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/21 16:15:27 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:37:00 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+// Reset les donnees necessaire a chaque nouveau prompt
 void	reset_data(t_data *data, char *str)
 {
-	// data->proc->fd_in = STDIN_FILENO;
-	// data->proc->fd_out = STDOUT_FILENO;
-	// close_pipes(data->proc);
 	ft_free(str);
 	if (data->list)
 	{
@@ -30,6 +28,7 @@ void	reset_data(t_data *data, char *str)
 	}
 }
 
+// Affiche un prompt different selon la valeur de retour precedente 
 char	*get_readline(t_data *data, char *str)
 {
 	if (!data->return_val)
@@ -42,6 +41,7 @@ char	*get_readline(t_data *data, char *str)
 	return (str);
 }
 
+// Cree data, affiche un prompt et execute les commandes recues
 void	get_prompt(char **envp)
 {
 	char	*str;

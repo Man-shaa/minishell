@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 22:12:58 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 21:33:23 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:32:46 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_envp	*ft_lstnew_env(char *str)
 	return (new);
 }
 
+// Copie NAME [s1] et VALUE [s2] d'un node de t_envp dans [dest]
 void	ft_env_copy(char *dest, char *s1, char *s2)
 {
 	int	i;
@@ -70,6 +71,8 @@ void	ft_env_copy(char *dest, char *s1, char *s2)
 	}
 }
 
+// Remplit un tableau de tableau contenant l'environnement de t_envp
+// Return le tableau de tableau ou NULL (malloc rate)
 char	**fill_env_tab(t_envp *envp, char **env_tab)
 {
 	size_t	i;
@@ -93,6 +96,8 @@ char	**fill_env_tab(t_envp *envp, char **env_tab)
 	return (env_tab);
 }
 
+// Remplit un tableau de tableau contenant l'environnement de t_envp
+// Return le tableau de tableau ou NULL (malloc rate)
 char	**get_env_tab(t_envp *envp)
 {
 	size_t	i;

@@ -6,12 +6,13 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:39:45 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 13:21:53 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:17:45 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+// Return inutile ??
 int	trot(t_data *data, char **args, int i)
 {
 	int		j;
