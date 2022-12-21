@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:15:26 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/19 14:37:08 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:51:28 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	check_cmd(t_data *data)
 	count = 0;
 	while (tmp)
 	{
-		if (is_builtin(tmp->str))
+		if (is_cmd(data, tmp->str, data->env_path))
 			count++;
 		else if (tmp->type == 6)
 		{

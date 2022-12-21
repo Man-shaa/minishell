@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/20 21:15:47 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 16:15:27 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	reset_data(t_data *data, char *str)
 {
+	// data->proc->fd_in = STDIN_FILENO;
+	// data->proc->fd_out = STDOUT_FILENO;
+	// close_pipes(data->proc);
 	ft_free(str);
 	if (data->list)
 	{

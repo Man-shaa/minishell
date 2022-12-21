@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:38:01 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/20 21:27:50 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 16:09:38 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ int	create_pipes(t_data *data)
 	i = 0;
 	proc->n_pipes = pipe_count(data->cmd) - 1;
 	if (proc->n_pipes <= 0)
+	{
+		proc->n_pipes = 0;
 		return (1);
+	}
 	proc->pipe_fd = ft_calloc(2 * proc->n_pipes, sizeof(int));
 	if (!proc->pipe_fd)
 		return (0);

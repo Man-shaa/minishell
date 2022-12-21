@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 15:06:50 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/20 20:34:24 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:49:57 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ t_proc	*create_proc(void)
 		return (NULL);
 	proc->n_pipes = 0;
 	proc->pipe_fd = NULL;
-	proc->fd_in = 0;
-	proc->fd_out = 0;
+	proc->fd_in = STDIN_FILENO;
+	proc->fd_out = STDOUT_FILENO;
 	proc->pid = -1;
 	return (proc);
 }

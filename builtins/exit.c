@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:04:26 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 16:00:49 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 13:57:45 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	ft_exit(t_data *data, char **args)
 {
 	int		return_val;
+	(void)data;
 
 	if (!args)
 		return_val = 0;

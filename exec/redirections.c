@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/20 21:31:56 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 16:19:19 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ int	open_fd(t_proc *proc, char *token, int type)
 void	double_dup2(int fd1, int fd2)
 {
 	dup2(fd1, STDIN_FILENO);
+	// close(fd1);
 	dup2(fd2, STDOUT_FILENO);
+	// close(fd2);
 }
 
 void	redirect_pipe(t_proc *proc)
@@ -70,17 +72,15 @@ void	redirect_pipe(t_proc *proc)
 	int	pipe_index;
 
 	pipe_index = 0;
-	if (proc->n_pipes <= 0)
-		return ;
 	while (pipe_index < proc->n_pipes)
 	{
 		if (pipe_index == 0)
-			double_dup2(proc->fd_in, proc->pipe_fd[1]);
+			double_dup2(proc->pipe_fd[0], proc->pipe_fd[1]);
 		else if (pipe_index == proc->n_pipes - 1)
-			double_dup2(proc->pipe_fd[2 * pipe_index - 2], proc->fd_out);
+			double_dup2(proc->pipe_fd[2 * pipe_index - 2], proc->pipe_fd[2 * pipe_index - 1]);
 		else
-			double_dup2(proc->pipe_fd[2 * pipe_index - 2],
-				proc->pipe_fd[2 * pipe_index + 1]);
+			double_dup2(proc->pipe_fd[2 * pipe_index - 2], proc->pipe_fd[2 * pipe_index + 1]);
+		pipe_index++;
 		close_pipes(proc);
 	}
 }
