@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:06:08 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/21 18:13:25 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:44:10 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	is_cmd(t_data *data, char *str, char *env_path)
 	if (is_builtin(str) || !is_path(data, str))
 		return (1);
 	all_paths = ft_split_normal(env_path, ':');
-	if (!all_paths && is_path(data, str))
+	if (!all_paths)
 		return (0);
 	while (all_paths[i])
 	{

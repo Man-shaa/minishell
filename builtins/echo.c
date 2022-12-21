@@ -6,13 +6,12 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:39:45 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/21 18:17:45 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:43:45 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// Return inutile ??
 int	trot(t_data *data, char **args, int i)
 {
 	int		j;
@@ -23,7 +22,7 @@ int	trot(t_data *data, char **args, int i)
 	{
 		one = ft_split_normal(args[i], ' ');
 		if (!one)
-			return (free_tab(one), 1);
+			return (1);
 		j = 0;
 		while (one[j])
 		{
@@ -43,7 +42,6 @@ int	trot(t_data *data, char **args, int i)
 void	ft_echo(t_data *data, char **args)
 {
 	int		i;
-	int		ret;
 	int		boule;
 
 	boule = 0;
@@ -53,8 +51,7 @@ void	ft_echo(t_data *data, char **args)
 		i++;
 		boule = 1;
 	}
-	ret = trot(data, args, i);
+	data->return_val = trot(data, args, i);
 	if (boule == 0)
 		write(STDOUT_FILENO, "\n", 1);
-	data->return_val = 0;
 }
