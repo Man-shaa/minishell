@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:38:01 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/21 18:30:08 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:54:14 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	close_pipes(t_proc *proc)
 	int	i;
 
 	i = 0;
+	// Necessaire de close (fd_in/out) ??
 	close(proc->fd_in);
 	close(proc->fd_out);
 	while (i < proc->n_pipes)
