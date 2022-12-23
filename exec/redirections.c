@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/21 18:37:29 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/23 15:02:31 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	handle_redir(t_data *data, t_cmd *cmd)
 // Return 1 si tout s'est bie passe, sinon 0
 int	open_fd(t_proc *proc, char *token, int type)
 {
-	if (type == 2)
+	if (type == IN)
 	{
 		proc->fd_in = open(token, O_RDONLY, 0644);
 		if (proc->fd_in < 0)
@@ -42,7 +42,7 @@ int	open_fd(t_proc *proc, char *token, int type)
 		dup2(proc->fd_in, STDIN_FILENO);
 		close(proc->fd_in);
 	}
-	else if (type == 3)
+	else if (type == OUT)
 	{
 		proc->fd_out = open(token, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if (proc->fd_out < 0)
@@ -50,7 +50,7 @@ int	open_fd(t_proc *proc, char *token, int type)
 		dup2(proc->fd_out, STDOUT_FILENO);
 		close(proc->fd_in);
 	}
-	else if (type == 5)
+	else if (type == APPEND)
 	{
 		proc->fd_out = open(token, O_WRONLY | O_CREAT | O_APPEND, 0644);
 		if (proc->fd_out < 0)

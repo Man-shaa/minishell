@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 02:39:44 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/20 14:24:12 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/23 15:04:00 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ int	count_tokens(t_data *data, int n)
 	index = 0;
 	while (tmp)
 	{
-		if (tmp && (tmp->type != 1 && tmp->type != 6) && index == n
-			&& tmp->next->type == 1)
+		if (tmp && (tmp->type != WORD && tmp->type != PIPE) && index == n
+			&& tmp->next->type == WORD)
 		{
 			tmp = tmp->next;
 			count++;
 		}
-		else if (tmp->type == 6)
+		else if (tmp->type == PIPE)
 			index++;
 		tmp = tmp->next;
 	}
@@ -51,14 +51,14 @@ int	words_to_pipe(t_data *data, int n)
 	cappuccino = 0;
 	while (tmp)
 	{
-		if (tmp->type == 1 && is_cmd(data, tmp->str, data->env_path)
+		if (tmp->type == WORD && is_cmd(data, tmp->str, data->env_path)
 			&& cappuccino == 0 && index == n)
 			count += command_or_builtin(tmp->str, &cappuccino);
-		else if (tmp->type == 1 && index == n)
+		else if (tmp->type == WORD && index == n)
 			count++;
-		else if (tmp->type != 1 && tmp->type != 6 && index == n)
+		else if (tmp->type != WORD && tmp->type != PIPE && index == n)
 			count -= 1;
-		else if (tmp->type == 6)
+		else if (tmp->type == PIPE)
 			index++;
 		tmp = tmp->next;
 	}

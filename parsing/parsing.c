@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:15:26 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/21 15:51:28 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/23 15:03:09 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ int	check_dup(t_data *data)
 	tmp = data->list;
 	while (tmp)
 	{
-		if (tmp->next && tmp->type != 1 && tmp->next->type != 1)
+		if (tmp->next && tmp->type != WORD && tmp->next->type != WORD)
 		{
-			if (tmp->next->type != 6)
+			if (tmp->next->type != PIPE)
 				return (0);
 		}
-		if (tmp->next && tmp->type == 6 && tmp->next->type == 6)
+		if (tmp->next && tmp->type == PIPE && tmp->next->type == PIPE)
 			return (0);
 		tmp = tmp->next;
 	}
@@ -51,7 +51,7 @@ int	check_cmd(t_data *data)
 	{
 		if (is_cmd(data, tmp->str, data->env_path))
 			count++;
-		else if (tmp->type == 6)
+		else if (tmp->type == PIPE)
 		{
 			if (count == 0)
 				return (0);
