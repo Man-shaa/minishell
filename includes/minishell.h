@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/23 15:00:33 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/23 15:21:19 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,9 @@ int		error_cmd(char **cmd);
 int		exec_binary(t_data *data, t_cmd *cmd);
 int		execution(t_data *data);
 int		send_cmd(t_data *data, t_cmd *cmd);
+
+// heredoc.c
+int	create_heredoc(char *delim);
 
 // pipe.c
 int		create_pipes(t_data *data);
