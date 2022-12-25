@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/21 18:28:50 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/25 20:01:15 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 	data->proc->pid = fork();
 	if (data->proc->pid == 0)
 	{
-		if (!handle_redir(data, cmd))
-			return (1);
+		if (!redir(data, cmd))
+			return (close_pipes(data->proc), 1);
 		env_tab = get_env_tab(data->envp);
 		execve(cmd->cmd_path, cmd->opt, env_tab);
 		return (error_cmd(cmd->opt));
 	}
+	close_pipes(data->proc);
 	waitpid(data->proc->pid, &status, 0);
 	return (WEXITSTATUS(status));
 }
@@ -47,7 +48,6 @@ int	execution(t_data *data)
 	cmd = data->cmd;
 	if (!create_pipes(data))
 		return (0);
-	redirect_pipe(data->proc);
 	while (cmd)
 	{
 		data->return_val = send_cmd(data, cmd);
