@@ -6,36 +6,56 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/25 21:45:35 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/26 21:17:44 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+// Compare type et chaque cmd->type en parcourant cmd->token
+// Return 1 si cmd->type == type, sinon 0
+int	is_token(t_cmd *cmd, int type)
+{
+	int	i;
+
+	i = 0;
+	if (!cmd->token)
+		return (0);
+	while (cmd->token[i])
+	{
+		if (cmd->type[i] == type)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 // RAJOUTER SECURITE DUP2 ET PRENDRE EN COMPTTE VALEUR DE RETOUR hande_redir()
 int	handle_pipe_redir(t_cmd *cmd, t_proc *proc)
 {
 	if (cmd->index == 0)
 	{
-		// dup2(proc->fd_in, STDIN_FILENO);
-		dup2(proc->pipe_fd[1], STDOUT_FILENO);
+		// close(proc->pipe_fd[0][0]);
+		if (!is_token(cmd, OUT))
+			dup2(proc->pipe_fd[0][1], STDOUT_FILENO);
 	}
 	else if (cmd->index == proc->n_pipes)
 	{
-		dup2(proc->pipe_fd[2 * cmd->index - 2], STDIN_FILENO);
-		printf("pipe[%d] : %d\n", 2 * cmd->index - 2, proc->pipe_fd[2 * cmd->index - 2]);
-		// dup2(proc->fd_out, STDOUT_FILENO);
+		if (!is_token(cmd, IN))
+			dup2(proc->pipe_fd[cmd->index - 1][0], STDIN_FILENO);
 	}
 	else
 	{
-		dup2(proc->pipe_fd[2 * cmd->index - 2], STDIN_FILENO);
-		dup2(proc->pipe_fd[2 * cmd->index + 1], STDOUT_FILENO);
+		if (!is_token(cmd, IN))
+			dup2(proc->pipe_fd[cmd->index][2 * cmd->index - 2], STDIN_FILENO);
+		if (!is_token(cmd, OUT))
+			dup2(proc->pipe_fd[cmd->index][2 * cmd->index + 1], STDOUT_FILENO);
 	}
-	close_pipes(proc);
+	// close_pipes(proc);
 	return (1);
 }
 
-// open et dup2 a l'interieur de chaque pipe si il y a des redirections < > >>
+// S'occupe des redirections pipe et < > >>
 // Return 1 si tout s'est bien passe, sinon 0
 int	redir(t_data *data, t_cmd *cmd)
 {
@@ -44,9 +64,6 @@ int	redir(t_data *data, t_cmd *cmd)
 	i = 0;
 	if (!cmd->token)
 		return (1);
-	if (data->proc->n_pipes > 0)
-		if (!handle_pipe_redir(cmd, data->proc))
-			return (0);
 	while (cmd->token[i])
 	{
 		if (!handle_token_redir(data->proc, cmd->token[i], cmd->type[i]))
@@ -65,7 +82,7 @@ int	redir(t_data *data, t_cmd *cmd)
 // 		close_pipes(data);
 
 // Open le token et dup2 fd_in/out en fonction du type < > >>
-// Return 1 si tout s'est bie passe, sinon 0
+// Return 1 si tout s'est bien passe, sinon 0
 int	handle_token_redir(t_proc *proc, char *token, int type)
 {
 	if (type == IN)

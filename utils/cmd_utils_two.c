@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:50:36 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/20 20:36:03 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/26 19:08:43 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,7 @@ int	pipe_count(t_cmd *cmd)
 		i++;
 		cmd = cmd->next;
 	}
+	if (i > 0)
+		i--;
 	return (i);
 }

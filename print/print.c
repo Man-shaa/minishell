@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 19:49:19 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/21 18:38:46 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/26 19:43:41 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,23 @@ void	print_tab(char **tab)
 	while (tab[i])
 	{
 		printf("tab[%d] : %s\n", i, tab[i]);
+		i++;
+	}
+}
+
+void	print_pipe_fd(int **tab, int until)
+{
+	int	i;
+
+	i = 0;
+	if (!tab)
+	{
+		printf("tab NULL");
+	}
+	while (i < until)
+	{
+		printf("pipe_fd[%d][%d] : %d\n", i, 0, tab[i][0]);
+		printf("pipe_fd[%d][%d] : %d\n", i, 1, tab[i][1]);
 		i++;
 	}
 }

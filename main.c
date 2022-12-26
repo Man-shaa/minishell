@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/23 15:34:38 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/26 17:31:00 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 // wc -l >>out ne gere pas standard input (stdin) | cat >>out Pareil
 // "> out" pete un cable
 
+// "<in ..." alors que in n'existe pas casse tout 
+
 // ------ Mateo ------
 
 // Juste [return] met un message a voir si on enleve
@@ -31,6 +33,8 @@
 
 // Return 0 si str est une commande return 1 si str est un builtin -- inverse ?
 // Manuo ✖✖ <in wc -l >>> out
+
+// <in cat main.c | > out wc doublons of redirections alors que c'est bon
 
 // "Doublons of redirections" leaks
 

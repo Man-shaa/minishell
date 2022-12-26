@@ -51,6 +51,7 @@ SRCS		=	main.c \
 				${EXEC_DIR}redirections.c \
 				\
 				${FREE_DIR}free.c \
+				${FREE_DIR}free_2.c \
 				\
 				${HISTORY_DIR}history.c \
 				\

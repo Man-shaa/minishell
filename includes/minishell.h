@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/25 19:52:17 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/26 19:33:03 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_proc
 {
 	int		fd_in;
 	int		fd_out;
-	int		*pipe_fd;
+	int		**pipe_fd;
 	int		n_pipes;
 	pid_t	pid;
 }				t_proc;
@@ -160,16 +160,22 @@ int		send_cmd(t_data *data, t_cmd *cmd);
 int		create_heredoc(char *delim);
 
 // pipe.c
-int		create_pipes(t_data *data);
+int		create_pipes(t_proc *proc);
+int		create_pipes_array(t_data *data);
 void	close_pipes(t_proc *proc);
 
 // redirections.c
+int		is_token(t_cmd *cmd, int type);
 int		handle_pipe_redir(t_cmd *cmd, t_proc *proc);
 int		redir(t_data *data, t_cmd *cmd);
 int		handle_token_redir(t_proc *proc, char *token, int type);
 void	double_dup2(int fd1, int fd2);
 
 // ********************************* FREE *********************************
+
+// free_2.c
+void	free_int_tab(int **tab, int last);
+void	free_proc(t_proc *proc);
 
 // free.c
 void	free_tab(char **tab);
@@ -196,6 +202,7 @@ int		check_cmd(t_data *data);
 void	print_list(t_list *list);
 void	print_struct_cmd(t_data *data);
 void	print_tab(char **tab);
+void	print_pipe_fd(int **tab, int until);
 void	print_int_tab(t_data *data, int *tab);
 
 // ******************************** SIGNAL *********************************

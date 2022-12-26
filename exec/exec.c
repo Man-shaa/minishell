@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/25 20:01:15 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/26 21:17:36 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,23 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 		err_msg("env not found, specify an absolute path", NULL, NULL, 1);
 		return (1);
 	}
+	if (data->proc->n_pipes > 0) // 3 pro lignes etaient a redir, apres token
+		if (!handle_pipe_redir(cmd, data->proc))
+			return (1);
 	data->proc->pid = fork();
 	if (data->proc->pid == 0)
 	{
+		// printf("Avant redir, cmd->index = %d\n", cmd->index);
 		if (!redir(data, cmd))
 			return (close_pipes(data->proc), 1);
+		// printf("Apres redir\n");
+		close_pipes(data->proc);
 		env_tab = get_env_tab(data->envp);
 		execve(cmd->cmd_path, cmd->opt, env_tab);
 		return (error_cmd(cmd->opt));
 	}
-	close_pipes(data->proc);
 	waitpid(data->proc->pid, &status, 0);
+	close_pipes(data->proc);
 	return (WEXITSTATUS(status));
 }
 
@@ -46,7 +52,7 @@ int	execution(t_data *data)
 	t_cmd	*cmd;
 
 	cmd = data->cmd;
-	if (!create_pipes(data))
+	if (!create_pipes_array(data))
 		return (0);
 	while (cmd)
 	{
