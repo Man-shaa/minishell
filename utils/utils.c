@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:53:54 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/08 14:29:49 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:37:33 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ long	ft_atoi(const char *str)
 
 void	ft_putchar(int c)
 {
-	write(1, &c, 1);
+	write(STDOUT_FILENO, &c, 1);
 }
 
 void	ft_putnbr(int n)

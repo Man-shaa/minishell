@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:27:16 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/13 18:52:48 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 16:14:06 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,24 @@
 int	ft_putstr_echo(t_data *data, char **str, int i)
 {
 	int	j;
+	int	ret;
 
 	j = 0;
+	ret = 0;
 	while (str[i][j])
 	{
 		if (str[i][j] == '$')
 		{
 			if (!echo_env_var(data, &str[i][j]) && !str[i + 1])
-				return (0);
+				return (ret);
 			j++;
 			while (str[i][j] && str[i][j] != '$' && str[i][j] != ' ')
 				j++;
 		}
 		else
 		{
-			write(1, &str[i][j], 1);
+			ret = 1;
+			write(STDOUT_FILENO, &str[i][j], 1);
 			j++;
 		}
 	}
@@ -52,10 +55,16 @@ int	echo_env_var(t_data *data, char *args)
 		res = ignore_charset(args, "(){}", 0);
 		node = data->envp;
 		node = search_node(data->envp, res);
+		if (!node)
+		{
+			if (!res || !res[0])
+				ft_putstr(args);
+			if (res)
+				ft_free(res);
+			return (0);
+		}
 		if (res)
 			ft_free(res);
-		if (!node)
-			return (0);
 		ft_putstr(node->tab[1]);
 	}
 	return (1);

@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   history.c                                          :+:      :+:    :+:   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/22 17:24:47 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/21 18:30:21 by msharifi         ###   ########.fr       */
+/*   Created: 2022/12/23 15:08:17 by msharifi          #+#    #+#             */
+/*   Updated: 2022/12/23 15:28:34 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// Historique
-void	add_to_history(char **av)
+int	create_heredoc(char *delim)
 {
-	char	*line;
-	char	*save;
-	int		i;
+	int	i;
+	int	fd;
+	char *str;
 
-	i = 1;
-	line = NULL;
-	if (!av || !av[0])
-		return ;
-	while (av[i])
+	i = 0;
+	fd = open(".heredoc", O_CREAT | O_TRUNC | O_WRONLY, 0644);
+	if (fd == -1)
+		return (err_msg("Open failed !", NULL, NULL , 0));
+	while (1)
 	{
-		save = ft_strndup(line, 0);
-		ft_free(line);
-		line = ft_strjoin(save, av[i]);
-		ft_free(save);
-		i++;
+		str = readline(">");
+		if (ft_strcmp(str, delim))
+			break ;
+		write(fd, str, ft_strlen(str));
+		write(fd, "\n", 1);
 	}
-	printf("line : %s\n", line);
-	add_history(line);
-	ft_free(line);
+	close(fd);
+	fd = open(".heredoc", O_RDONLY);
+	close(fd);
+	return (fd);
 }

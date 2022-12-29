@@ -6,12 +6,13 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:39:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/13 17:54:25 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:34:18 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+// Return 1 si [a] est alphabetique, sinon 0
 int	ft_isalpha(int a)
 {
 	if ((a >= 'a' && a <= 'z') || (a >= 'A' && a <= 'Z')
@@ -36,6 +37,8 @@ int	is_same(char *s1, char *s2)
 	return (0);
 }
 
+// Met le resultat de s1 + s2 dans dest
+// Return dest ou NULL (malloc rate)
 char	*ft_strjoin(char *s1, char *s2)
 {
 	int		i;
@@ -91,7 +94,7 @@ char	*ignore_charset(char *str, char *charset, int n)
 	i = 1;
 	j = 0;
 	if (!str || !str[0])
-		return (NULL);
+		return (str);
 	while (str[i++] && str[i] != '$')
 		if (ft_strchr(charset, str[i]))
 			j++;

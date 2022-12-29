@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 02:39:44 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/14 14:52:14 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/23 15:04:00 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-//return le compteur de token dans une commande avec n pour l'index du pipe
+// Return le compteur de token dans une commande avec n pour l'index du pipe
 int	count_tokens(t_data *data, int n)
 {
 	t_list	*tmp;
@@ -24,21 +24,20 @@ int	count_tokens(t_data *data, int n)
 	index = 0;
 	while (tmp)
 	{
-		if (tmp && (tmp->type != 1 && tmp->type != 6) && index == n
-			&& tmp->next->type == 1)
+		if (tmp && (tmp->type != WORD && tmp->type != PIPE) && index == n
+			&& tmp->next->type == WORD)
 		{
 			tmp = tmp->next;
 			count++;
 		}
-		else if (tmp->type == 6)
+		else if (tmp->type == PIPE)
 			index++;
 		tmp = tmp->next;
 	}
-	// printf("count_tokens : %d\n", count);
 	return (count);
 }
 
-//return le compteur de type1 dans une commande avec n pour l'index du pipe
+// Return le compteur de type1 dans une commande avec n pour l'index du pipe
 int	words_to_pipe(t_data *data, int n)
 {
 	t_list	*tmp;
@@ -52,22 +51,21 @@ int	words_to_pipe(t_data *data, int n)
 	cappuccino = 0;
 	while (tmp)
 	{
-		if (tmp->type == 1 && is_cmd(data, tmp->str, data->env_path)
+		if (tmp->type == WORD && is_cmd(data, tmp->str, data->env_path)
 			&& cappuccino == 0 && index == n)
 			count += command_or_builtin(tmp->str, &cappuccino);
-		else if (tmp->type == 1 && index == n)
+		else if (tmp->type == WORD && index == n)
 			count++;
-		else if (tmp->type != 1 && tmp->type != 6 && index == n)
+		else if (tmp->type != WORD && tmp->type != PIPE && index == n)
 			count -= 1;
-		else if (tmp->type == 6)
+		else if (tmp->type == PIPE)
 			index++;
 		tmp = tmp->next;
 	}
-	// printf("words to pipe : %d\n", count);
 	return (count);
 }
 
-//return 0 si str est une commande return 1 si str est un builtin
+// Return 0 si str est une commande return 1 si str est un builtin
 int	command_or_builtin(char *str, int *cappuccino)
 {
 	int	count;

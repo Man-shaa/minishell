@@ -6,13 +6,13 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:03 by msharifi          #+#    #+#             */
-/*   Updated: 2022/11/10 20:58:42 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:21:36 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// Affiche le dossier dans lequel on est
+// Affiche le dossier courant
 void	print_pwd(void)
 {
 	char	*buf;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 19:49:19 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/14 15:02:16 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/26 19:43:41 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	print_struct_cmd(t_data *data)
 		print_int_tab(data, tmp->type);
 		printf("// CMD->OPT //\n");
 		print_tab(tmp->opt);
-		// printf("COUNT = %d\n", words_to_pipe(data, i));
 		printf("\n");
 		tmp = tmp->next;
 		i++;
@@ -64,6 +63,23 @@ void	print_tab(char **tab)
 	while (tab[i])
 	{
 		printf("tab[%d] : %s\n", i, tab[i]);
+		i++;
+	}
+}
+
+void	print_pipe_fd(int **tab, int until)
+{
+	int	i;
+
+	i = 0;
+	if (!tab)
+	{
+		printf("tab NULL");
+	}
+	while (i < until)
+	{
+		printf("pipe_fd[%d][%d] : %d\n", i, 0, tab[i][0]);
+		printf("pipe_fd[%d][%d] : %d\n", i, 1, tab[i][1]);
 		i++;
 	}
 }

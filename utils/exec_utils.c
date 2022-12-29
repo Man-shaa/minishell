@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:06:08 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/12 13:20:55 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:44:10 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@
 // Return 0 si le chemin est absolu ou l'acces a reussi, sinon return 1
 int	is_path(t_data *data, char *av)
 {
-	if (!av || !data->cmd)
-		return (1);
 	if (!ft_strchr(av, '/'))
-		return (1);
-	if (access(av, F_OK | X_OK) == 0)
+		return (0);
+	else if (access(av, F_OK | X_OK) == 0)
 	{
 		data->cmd->cmd_path = av;
 		return (0);
@@ -48,6 +46,16 @@ char	*find_path_in_env(char **envp)
 	return (NULL);
 }
 
+int	is_absolute_path(t_data *data, t_cmd *cmd)
+{
+	if (!is_path(data, cmd->cmd))
+	{
+		cmd->cmd_path = ft_strndup(cmd->cmd, 0);
+		return (1);
+	}
+	return (0);
+}
+
 // Test tous les paths possibles de la variable d'environnement PATH
 // Return 1 si un path est valide et le met dans cmd->cmd_path, sinon return 0
 int	find_cmd_path(t_data *data, t_cmd *cmd, char *env_path)
@@ -59,11 +67,11 @@ int	find_cmd_path(t_data *data, t_cmd *cmd, char *env_path)
 	i = 0;
 	if (!cmd->cmd)
 		return (0);
+	if (is_absolute_path(data, cmd))
+		return (1);
 	all_paths = ft_split_normal(env_path, ':');
-	if (!all_paths && is_path(data, cmd->cmd))
-		return (err_msg("Env not found, specify a path", NULL, NULL, 2), 0);
-	if (!is_path(data, cmd->cmd))
-		return (free_tab(all_paths), 1);
+	if (!all_paths)
+		return (0);
 	while (all_paths[i])
 	{
 		path = ft_strjoin(all_paths[i], "/");
@@ -75,7 +83,7 @@ int	find_cmd_path(t_data *data, t_cmd *cmd, char *env_path)
 		i++;
 	}
 	free_tab(all_paths);
-	return (err_msg("No such file or directory", NULL, NULL, 2), 0);
+	return (err_msg("No such file or directory", NULL, NULL, 0));
 }
 
 // Return 1 si str est uen commande (access), sinon 0
@@ -87,13 +95,11 @@ int	is_cmd(t_data *data, char *str, char *env_path)
 	char	*save;
 
 	i = 0;
-	if (is_builtin(str))
+	if (is_builtin(str) || !is_path(data, str))
 		return (1);
 	all_paths = ft_split_normal(env_path, ':');
-	if (!all_paths && is_path(data, str))
-		return (err_msg("Env not found, specify a path", NULL, NULL, 2), 0);
-	if (!is_path(data, str))
-		return (free_tab(all_paths), 1);
+	if (!all_paths)
+		return (0);
 	while (all_paths[i])
 	{
 		save = ft_strjoin(all_paths[i], "/");

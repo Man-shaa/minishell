@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   history.c                                          :+:      :+:    :+:   */
+/*   free_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/22 17:24:47 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/21 18:30:21 by msharifi         ###   ########.fr       */
+/*   Created: 2022/12/26 19:06:10 by msharifi          #+#    #+#             */
+/*   Updated: 2022/12/26 19:36:01 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// Historique
-void	add_to_history(char **av)
+void	free_int_tab(int **tab, int last)
 {
-	char	*line;
-	char	*save;
-	int		i;
+	int	i;
 
-	i = 1;
-	line = NULL;
-	if (!av || !av[0])
+	i = 0;
+	if (!tab)
 		return ;
-	while (av[i])
+	while (i < last)
 	{
-		save = ft_strndup(line, 0);
-		ft_free(line);
-		line = ft_strjoin(save, av[i]);
-		ft_free(save);
+		ft_free(tab[i]);
 		i++;
 	}
-	printf("line : %s\n", line);
-	add_history(line);
-	ft_free(line);
+	ft_free(tab);
+}
+
+void	free_proc(t_proc *proc)
+{
+	if (proc->pipe_fd)
+		free_int_tab(proc->pipe_fd, proc->n_pipes + 1);
+	ft_free(proc);
 }

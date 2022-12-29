@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/14 15:02:32 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/26 19:33:03 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 # include <wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <sys/types.h>
+# include <dirent.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 # define WORD	1
 # define IN		2 // <	lire dans 
@@ -33,7 +37,8 @@ typedef struct s_proc
 {
 	int		fd_in;
 	int		fd_out;
-	int		fd[2];
+	int		**pipe_fd;
+	int		n_pipes;
 	pid_t	pid;
 }				t_proc;
 
@@ -85,7 +90,7 @@ int		ft_cd(t_data *data, char *str);
 void	ft_echo(t_data *data, char **args);
 
 // env.c
-void	print_env(t_envp *envp);
+int		print_env(t_envp *envp, char **args);
 
 // exit.c
 int		ft_exit(t_data *data, char **args);
@@ -110,7 +115,7 @@ void	reset_data(t_data *data, char *str);
 void	get_prompt(char **envp);
 char	*get_readline(t_data *data, char *str);
 
-// ***************************** CREATE_INIT ******************************
+// ******************************* CREATE *********************************
 
 // create_cmd.c
 int		get_cmd_struct(t_data *data);
@@ -130,6 +135,9 @@ int		add_last_list(t_data *data, char *str);
 t_list	*ft_lstnew(char *str, int type);
 t_list	*ft_lstlast(t_list *list);
 
+// create_proc.c
+t_proc	*create_proc(void);
+
 // fill_cmd.c
 t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j);
 t_list	*fill_cmd_tokens(t_cmd *cmd, t_list *tmp, int *k);
@@ -138,15 +146,36 @@ void	handle_cmd(t_data *data, t_cmd *cmd, t_list *tmp, int *j);
 // ********************************* ERROR ********************************
 
 // error.c
-void	err_msg(char *start, char *str, char *end, int fd);
+int		err_msg(char *start, char *str, char *end, int ret);
+int		error_cmd(char **cmd);
 
 // ********************************* EXEC *********************************
 
 // exec.c
 int		exec_binary(t_data *data, t_cmd *cmd);
+int		execution(t_data *data);
 int		send_cmd(t_data *data, t_cmd *cmd);
 
+// heredoc.c
+int		create_heredoc(char *delim);
+
+// pipe.c
+int		create_pipes(t_proc *proc);
+int		create_pipes_array(t_data *data);
+void	close_pipes(t_proc *proc);
+
+// redirections.c
+int		is_token(t_cmd *cmd, int type);
+int		handle_pipe_redir(t_cmd *cmd, t_proc *proc);
+int		redir(t_data *data, t_cmd *cmd);
+int		handle_token_redir(t_proc *proc, char *token, int type);
+void	double_dup2(int fd1, int fd2);
+
 // ********************************* FREE *********************************
+
+// free_2.c
+void	free_int_tab(int **tab, int last);
+void	free_proc(t_proc *proc);
 
 // free.c
 void	free_tab(char **tab);
@@ -173,6 +202,7 @@ int		check_cmd(t_data *data);
 void	print_list(t_list *list);
 void	print_struct_cmd(t_data *data);
 void	print_tab(char **tab);
+void	print_pipe_fd(int **tab, int until);
 void	print_int_tab(t_data *data, int *tab);
 
 // ******************************** SIGNAL *********************************
@@ -215,6 +245,7 @@ int		count_chars_single(char *str, int *i, int *count, int n);
 void	add_back(t_data *data, t_cmd *cmd);
 t_cmd	*ft_cmdnew(int index);
 t_cmd	*ft_cmdlast(t_cmd *cmd);
+int		pipe_count(t_cmd *cmd);
 
 // cmd_utils.c
 int		count_tokens(t_data *data, int n);
@@ -241,18 +272,20 @@ char	**get_env_tab(t_envp *envp);
 // exec_utils.c
 int		is_path(t_data *data, char *av);
 char	*find_path_in_env(char **envp);
+int		is_absolute_path(t_data *data, t_cmd *cmd);
 int		find_cmd_path(t_data *data, t_cmd *cmd, char *env_path);
 int		is_cmd(t_data *data, char *str, char *env_path);
 
 // split_env.c
 int		char_count_env(char *str, char set, int pos);
-char	*ft_putword_env(char *str, char *tab, char set, int pos);
+void	ft_putword_env(char *str, char *tab, char set, int pos);
 char	**ft_split_env(char	*str, char set);
 
 // split_normal.c
 int		word_count_normal(char *str, char set);
 int		char_count_normal(char *str, char set, int pos);
 char	*putword_normal(char *str, char *tab, char set, int pos);
+void	free_tab_split(char **tab, int i);
 char	**ft_split_normal(char	*str, char set);
 
 // str_utils_2.c

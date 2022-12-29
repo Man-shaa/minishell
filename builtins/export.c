@@ -6,12 +6,14 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:43 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/09 17:33:23 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:21:29 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+// Ajoute un node a la fin de la structure t_envp
+// Return 0 si l'operation a reussie, sinon 1
 int	add_last_env(t_data *data, char *arg)
 {
 	t_envp	*tmp;
@@ -32,8 +34,9 @@ int	add_last_env(t_data *data, char *arg)
 	return (1);
 }
 
-// Ajoute un node a la fin de la structure t_envp
-// Return 0 si l'operation a reussie, sinon 1
+// Ajoute un node (s'il est valide) a la fin de envp s'il n'existe pas
+// Sinon modifie directement la variable avec la nouvelle valeur
+// Return 0 si tout s'est bien passe, sinon 1
 int	ft_export(t_data *data, char **args)
 {
 	int		i;
@@ -46,7 +49,7 @@ int	ft_export(t_data *data, char **args)
 		if (!args[i] || !args[i][0] || args[i][0] == '='
 			|| !is_valid_name(args[i]))
 		{
-			err_msg("export: `", args[i], "': not a valid identifier", 2);
+			err_msg("export: `", args[i], "': not a valid identifier", 1);
 			return (1);
 		}
 		if (already_exist(data->envp, args[i]))
@@ -66,6 +69,8 @@ int	already_exist(t_envp *envp, char *str)
 	char	**tab;
 	t_envp	*travel;
 
+	if (!envp)
+		return (0);
 	tab = ft_split_env(str, '=');
 	if (!tab)
 		return (0);

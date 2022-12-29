@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   history.c                                          :+:      :+:    :+:   */
+/*   create_proc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/22 17:24:47 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/21 18:30:21 by msharifi         ###   ########.fr       */
+/*   Created: 2022/12/20 15:06:50 by msharifi          #+#    #+#             */
+/*   Updated: 2022/12/21 18:37:07 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// Historique
-void	add_to_history(char **av)
+// Cree et et initialise a 0 la structure t_proc
+t_proc	*create_proc(void)
 {
-	char	*line;
-	char	*save;
-	int		i;
+	t_proc	*proc;
 
-	i = 1;
-	line = NULL;
-	if (!av || !av[0])
-		return ;
-	while (av[i])
-	{
-		save = ft_strndup(line, 0);
-		ft_free(line);
-		line = ft_strjoin(save, av[i]);
-		ft_free(save);
-		i++;
-	}
-	printf("line : %s\n", line);
-	add_history(line);
-	ft_free(line);
+	proc = ft_calloc(1, sizeof(t_proc));
+	if (!proc)
+		return (NULL);
+	proc->n_pipes = 0;
+	proc->pipe_fd = NULL;
+	proc->fd_in = STDIN_FILENO;
+	proc->fd_out = STDOUT_FILENO;
+	proc->pid = -1;
+	return (proc);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_list_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 22:12:58 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/08 17:00:33 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:32:46 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_envp	*search_node(t_envp *envp, char *str)
 	t_envp	*travel;
 
 	travel = envp;
+	if (!str)
+		return (NULL);
 	while (travel)
 	{
 		if (is_same(travel->tab[0], str))
@@ -47,6 +49,7 @@ t_envp	*ft_lstnew_env(char *str)
 	return (new);
 }
 
+// Copie NAME [s1] et VALUE [s2] d'un node de t_envp dans [dest]
 void	ft_env_copy(char *dest, char *s1, char *s2)
 {
 	int	i;
@@ -68,6 +71,8 @@ void	ft_env_copy(char *dest, char *s1, char *s2)
 	}
 }
 
+// Remplit un tableau de tableau contenant l'environnement de t_envp
+// Return le tableau de tableau ou NULL (malloc rate)
 char	**fill_env_tab(t_envp *envp, char **env_tab)
 {
 	size_t	i;
@@ -91,12 +96,16 @@ char	**fill_env_tab(t_envp *envp, char **env_tab)
 	return (env_tab);
 }
 
+// Remplit un tableau de tableau contenant l'environnement de t_envp
+// Return le tableau de tableau ou NULL (malloc rate)
 char	**get_env_tab(t_envp *envp)
 {
 	size_t	i;
 	t_envp	*tmp;
 	char	**env;
 
+	if (!envp)
+		return (NULL);
 	tmp = envp;
 	i = 0;
 	while (tmp)

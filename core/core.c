@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/14 14:58:23 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/25 22:19:26 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+// Reset les donnees necessaire a chaque nouveau prompt
 void	reset_data(t_data *data, char *str)
 {
 	ft_free(str);
@@ -27,6 +28,7 @@ void	reset_data(t_data *data, char *str)
 	}
 }
 
+// Affiche un prompt different selon la valeur de retour precedente 
 char	*get_readline(t_data *data, char *str)
 {
 	if (!data->return_val)
@@ -39,10 +41,10 @@ char	*get_readline(t_data *data, char *str)
 	return (str);
 }
 
+// Cree data, affiche un prompt et execute les commandes recues
 void	get_prompt(char **envp)
 {
 	char	*str;
-	t_cmd	*cmd;
 	t_data	*data;
 
 	data = create_data(envp);
@@ -54,15 +56,10 @@ void	get_prompt(char **envp)
 			return ;
 		ft_split(str, data);
 		if (!parsing(data))
-			return ;
+			break ;
 		get_cmd_struct(data);
-		print_struct_cmd(data);
-		cmd = data->cmd;
-		while (cmd)
-		{
-			data->return_val = send_cmd(data, cmd);
-			cmd = cmd->next;
-		}
+		if (!execution(data))
+			return (free_data(data));
 		reset_data(data, str);
 	}
 	free_data(data);
