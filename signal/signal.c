@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:34:48 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/09 20:13:15 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/15 17:40:16 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ void	handle_sigint(int sig_int)
 void	handle_signal(void)
 {
 	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, handle_sigint);
 	signal(SIGSEGV, handle_sigsegv);
+	signal(SIGINT, handle_sigint);
 }
