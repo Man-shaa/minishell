@@ -6,15 +6,20 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/30 21:48:29 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/30 21:53:18 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
+// Y a des problemes avec wait quand il y a des builtins
+
 // Gerer le leak de history (le sujet ne dit pas que c'est ok d'en avoir)
 
+// retour de fork (status) impossible a recupere comme c'est actuellement
+
 // echo "skdf$PWDsfd     jkhsd" split zap les espaces et en mettre qu'un seul
+
 // here_doc Pioritaire quelque soit sa position dans readline ??
 
 // wc -l >>out ne gere pas standard input (stdin) | cat >>out Pareil
@@ -35,8 +40,6 @@ int	main(int ac, char **av, char **envp)
 {
 	(void)ac;
 	(void)av;
-	// (void)envp;
-	// create_heredoc("EOF");
 	handle_signal();
 	get_prompt(envp);
 	return (0);

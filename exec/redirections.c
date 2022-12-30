@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/30 20:33:33 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/30 21:16:33 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,30 @@ int	is_token(t_cmd *cmd, int type)
 	return (0);
 }
 
-// RAJOUTER SECURITE DUP2 ET PRENDRE EN COMPTTE VALEUR DE RETOUR hande_redir()
+// dup2 l'entree et sortie des pipes avec STDIN/OUT_FILENO
+// Return 1 si tout s'est bien passe, sinon 0
 int	handle_pipe_redir(t_cmd *cmd, t_proc *proc)
 {
 	if (cmd->index == 0)
 	{
 		if (!is_token(cmd, OUT))
- 			dup2(proc->pipe_fd[0][1], STDOUT_FILENO);
+			if (dup2(proc->pipe_fd[0][1], STDOUT_FILENO) == -1)
+				return (0);
 	}
 	else if (cmd->index == proc->n_pipes)
 	{
 		if (!is_token(cmd, IN))
-			dup2(proc->pipe_fd[cmd->index - 1][0], STDIN_FILENO);
+			if (dup2(proc->pipe_fd[cmd->index - 1][0], STDIN_FILENO) == -1)
+				return (0);
 	}
 	else
 	{
 		if (!is_token(cmd, IN))
-			dup2(proc->pipe_fd[cmd->index - 1][0], STDIN_FILENO);
+			if (dup2(proc->pipe_fd[cmd->index - 1][0], STDIN_FILENO) == -1)
+				return (0);
 		if (!is_token(cmd, OUT))
-			dup2(proc->pipe_fd[cmd->index][1], STDOUT_FILENO);
+			if (dup2(proc->pipe_fd[cmd->index][1], STDOUT_FILENO) == -1)
+				return (0);
 	}
 	close_pipes(proc);
 	return (1);
@@ -71,7 +76,7 @@ int	redir(t_data *data, t_cmd *cmd)
 	}
 	if (data->proc->n_pipes > 0)
 		if (!handle_pipe_redir(cmd, data->proc))
-			return (0);
+			return (err_msg("Dup2 failed", NULL, NULL, 0));
 	return (1);
 }
 
@@ -84,7 +89,7 @@ int	handle_token_redir(t_proc *proc, char *token, int type)
 		proc->fd_in = open(token, O_RDONLY, 0644);
 		if (proc->fd_in < 0)
 			return (err_msg("open: No such file or directory", NULL, NULL, 0));
-		dup2(proc->fd_in, STDIN_FILENO);
+		dup2(proc->fd_in, STDIN_FILENO); // PROTECTIONSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSss
 		close(proc->fd_in);
 	}
 	else if (type == OUT)
@@ -104,11 +109,4 @@ int	handle_token_redir(t_proc *proc, char *token, int type)
 		close(proc->fd_out);
 	}
 	return (1);
-}
-
-// Utile ??
-void	double_dup2(int fd1, int fd2)
-{
-	dup2(fd1, STDIN_FILENO);
-	dup2(fd2, STDOUT_FILENO);
 }

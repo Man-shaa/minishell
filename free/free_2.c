@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 19:06:10 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/30 16:22:55 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/30 21:29:12 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	free_int_tab(int **tab, int last)
 
 void	free_proc(t_proc *proc)
 {
+	if (proc->pid)
+		ft_free(proc->pid);
 	if (proc->pipe_fd)
 		free_int_tab(proc->pipe_fd, proc->n_pipes + 1);
 	ft_free(proc);

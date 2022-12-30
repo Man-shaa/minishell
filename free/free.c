@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:11:04 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/26 19:07:05 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/30 21:21:33 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,7 @@ void	free_data(t_data *data)
 	if (data->envp)
 		free_envp(data->envp);
 	if (data->proc)
-	{
 		free_proc(data->proc);
-	}
 	ft_free(data);
 	rl_clear_history();
 }

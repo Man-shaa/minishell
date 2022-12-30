@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/30 21:36:46 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/30 21:54:14 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	reset_data(t_data *data, char *str)
 		free_cmd(data->cmd);
 		data->cmd = NULL;
 	}
+	if (data->proc)
+		ft_free(data->proc->pid);
 }
 
 // Affiche un prompt different selon la valeur de retour precedente 
@@ -57,7 +59,8 @@ void	get_prompt(char **envp)
 		ft_split(str, data);
 		if (!parsing(data))
 			return (free_data(data), get_prompt(envp))	;
-		get_cmd_struct(data);
+		if (!get_cmd_struct(data))
+			return (free_data(data));
 		if (!execution(data))
 			return (free_data(data));
 		reset_data(data, str);
