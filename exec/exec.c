@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/29 15:32:21 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:41:46 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,12 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 		err_msg("env not found, specify an absolute path", NULL, NULL, 1);
 		return (1);
 	}
-	if (data->proc->n_pipes > 0) // 3 pro lignes etaient a redir, apres token
-		if (!handle_pipe_redir(cmd, data->proc))
-			return (1);
 	data->proc->pid = fork();
 	if (data->proc->pid == 0)
 	{
-		// printf("Avant redir, cmd->index = %d\n", cmd->index);
 		if (!redir(data, cmd))
 			return (close_pipes(data->proc), 1);
-		// printf("Apres redir\n");
-		close_pipes(data->proc);
+		// close_pipes(data->proc);
 		env_tab = get_env_tab(data->envp);
 		execve(cmd->cmd_path, cmd->opt, env_tab);
 		return (error_cmd(cmd->opt));

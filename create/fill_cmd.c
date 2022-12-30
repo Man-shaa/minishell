@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   fill_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:03:31 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/23 15:01:45 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/29 15:58:16 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// Remplit la structure t_cmd en fonction de t_list
 t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j)
 {
-	if (tmp->type == WORD)
+	if (tmp->type == 1)
 	{
 		if (is_cmd(data, tmp->str, data->env_path) && cmd->cmd == NULL)
 			handle_cmd(data, cmd, tmp, j);
@@ -30,10 +29,9 @@ t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j)
 	return (tmp);
 }
 
-// Remplit les tokens et type de la structure t_cmd
 t_list	*fill_cmd_tokens(t_cmd *cmd, t_list *tmp, int *k)
 {
-	if (tmp && tmp->type != WORD && tmp->type != PIPE)
+	if (tmp && tmp->type != 1 && tmp->type != 6)
 	{
 		cmd->type[(*k)] = tmp->type;
 		tmp = tmp->next;
@@ -44,7 +42,6 @@ t_list	*fill_cmd_tokens(t_cmd *cmd, t_list *tmp, int *k)
 	return (tmp);
 }
 
-// Remplit les commandes et otions de la structure t_cmd
 void	handle_cmd(t_data *data, t_cmd *cmd, t_list *tmp, int *j)
 {
 	cmd->cmd = tmp->str;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/26 21:17:44 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:46:21 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int	is_token(t_cmd *cmd, int type)
 	while (cmd->token[i])
 	{
 		if (cmd->type[i] == type)
+		{
+			printf("is_token return 1\n\n\n");
 			return (1);
+		}
 		i++;
 	}
 	return (0);
@@ -33,6 +36,7 @@ int	is_token(t_cmd *cmd, int type)
 // RAJOUTER SECURITE DUP2 ET PRENDRE EN COMPTTE VALEUR DE RETOUR hande_redir()
 int	handle_pipe_redir(t_cmd *cmd, t_proc *proc)
 {
+	printf("on rentre dans la redir avec l'index[%d]\n", cmd->index);
 	if (cmd->index == 0)
 	{
 		// close(proc->pipe_fd[0][0]);
@@ -42,16 +46,27 @@ int	handle_pipe_redir(t_cmd *cmd, t_proc *proc)
 	else if (cmd->index == proc->n_pipes)
 	{
 		if (!is_token(cmd, IN))
+		{
+			// printf("avant dup2 LAAST\n\n\n");
 			dup2(proc->pipe_fd[cmd->index - 1][0], STDIN_FILENO);
+		}
 	}
 	else
 	{
+		// printf("MID\n\n\n");
 		if (!is_token(cmd, IN))
-			dup2(proc->pipe_fd[cmd->index][2 * cmd->index - 2], STDIN_FILENO);
+		{
+			printf("REDIRECT IN MID\n\n\n");
+			dup2(proc->pipe_fd[cmd->index - 1][0], STDIN_FILENO);
+		}
 		if (!is_token(cmd, OUT))
-			dup2(proc->pipe_fd[cmd->index][2 * cmd->index + 1], STDOUT_FILENO);
+		{
+			printf("REDIRECT OUT MID\n\n\n");
+			dup2(proc->pipe_fd[cmd->index][1], STDOUT_FILENO);
+		}
 	}
-	// close_pipes(proc);
+	print_pipe_fd(proc->pipe_fd, cmd->index);
+	close_pipes(proc);
 	return (1);
 }
 
@@ -70,16 +85,11 @@ int	redir(t_data *data, t_cmd *cmd)
 			return (0);
 		i++;
 	}
+	if (data->proc->n_pipes > 0)
+		if (!handle_pipe_redir(cmd, data->proc))
+			return (1);
 	return (1);
 }
-// if (data->cmd_count == 0)
-// 			double_dup2(data->fd_infile, data->pipe[1]);
-// 		else if (data->cmd_count == data->cmd_nb - 1)
-// 			double_dup2(data->pipe[2 * data->cmd_count - 2], data->fd_outfile);
-// 		else
-// 			double_dup2(data->pipe[2 * data->cmd_count - 2],
-// 				data->pipe[2 * data->cmd_count + 1]);
-// 		close_pipes(data);
 
 // Open le token et dup2 fd_in/out en fonction du type < > >>
 // Return 1 si tout s'est bien passe, sinon 0

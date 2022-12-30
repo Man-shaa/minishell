@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 19:06:10 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/26 19:36:01 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/30 16:22:55 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	free_int_tab(int **tab, int last)
 	i = 0;
 	if (!tab)
 		return ;
-	while (i < last)
+	while (i < last + 1)
 	{
 		ft_free(tab[i]);
 		i++;
