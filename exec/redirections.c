@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/26 21:17:44 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/30 20:33:33 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,8 @@ int	handle_pipe_redir(t_cmd *cmd, t_proc *proc)
 {
 	if (cmd->index == 0)
 	{
-		// close(proc->pipe_fd[0][0]);
 		if (!is_token(cmd, OUT))
-			dup2(proc->pipe_fd[0][1], STDOUT_FILENO);
+ 			dup2(proc->pipe_fd[0][1], STDOUT_FILENO);
 	}
 	else if (cmd->index == proc->n_pipes)
 	{
@@ -47,11 +46,11 @@ int	handle_pipe_redir(t_cmd *cmd, t_proc *proc)
 	else
 	{
 		if (!is_token(cmd, IN))
-			dup2(proc->pipe_fd[cmd->index][2 * cmd->index - 2], STDIN_FILENO);
+			dup2(proc->pipe_fd[cmd->index - 1][0], STDIN_FILENO);
 		if (!is_token(cmd, OUT))
-			dup2(proc->pipe_fd[cmd->index][2 * cmd->index + 1], STDOUT_FILENO);
+			dup2(proc->pipe_fd[cmd->index][1], STDOUT_FILENO);
 	}
-	// close_pipes(proc);
+	close_pipes(proc);
 	return (1);
 }
 
@@ -70,16 +69,11 @@ int	redir(t_data *data, t_cmd *cmd)
 			return (0);
 		i++;
 	}
+	if (data->proc->n_pipes > 0)
+		if (!handle_pipe_redir(cmd, data->proc))
+			return (0);
 	return (1);
 }
-// if (data->cmd_count == 0)
-// 			double_dup2(data->fd_infile, data->pipe[1]);
-// 		else if (data->cmd_count == data->cmd_nb - 1)
-// 			double_dup2(data->pipe[2 * data->cmd_count - 2], data->fd_outfile);
-// 		else
-// 			double_dup2(data->pipe[2 * data->cmd_count - 2],
-// 				data->pipe[2 * data->cmd_count + 1]);
-// 		close_pipes(data);
 
 // Open le token et dup2 fd_in/out en fonction du type < > >>
 // Return 1 si tout s'est bien passe, sinon 0

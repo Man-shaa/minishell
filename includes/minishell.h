@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/26 19:33:03 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/30 20:35:39 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_proc
 	int		fd_out;
 	int		**pipe_fd;
 	int		n_pipes;
-	pid_t	pid;
+	pid_t	pid[2];
 }				t_proc;
 
 typedef struct s_cmd

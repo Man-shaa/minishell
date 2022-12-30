@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 19:49:19 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/26 19:43:41 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:45:35 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,10 @@ void	print_pipe_fd(int **tab, int until)
 	}
 	while (i < until)
 	{
+		printf("index : %d\n", i);
 		printf("pipe_fd[%d][%d] : %d\n", i, 0, tab[i][0]);
 		printf("pipe_fd[%d][%d] : %d\n", i, 1, tab[i][1]);
+		printf("\n");
 		i++;
 	}
 }

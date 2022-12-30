@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:34:48 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/19 16:01:12 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/29 15:32:29 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ void	handle_sigint(int sig_int)
 void	handle_signal(void)
 {
 	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, handle_sigint);
 	signal(SIGSEGV, handle_sigsegv);
+	signal(SIGINT, handle_sigint);
 }
