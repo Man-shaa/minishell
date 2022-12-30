@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:38:01 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/30 20:20:00 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/30 21:26:48 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	create_pipes(t_proc *proc)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < proc->n_pipes)
 	{
@@ -41,7 +41,7 @@ int	create_pipes_array(t_data *data)
 		proc->n_pipes = 0;
 		return (1);
 	}
-	proc->pipe_fd = ft_calloc(proc->n_pipes + 1, sizeof(int *)); // pk +1 
+	proc->pipe_fd = ft_calloc(proc->n_pipes + 1, sizeof(int *)); // pk +1
 	if (!proc->pipe_fd)
 		return (0);
 	while (i < proc->n_pipes)
@@ -53,7 +53,7 @@ int	create_pipes_array(t_data *data)
 	}
 	proc->pipe_fd[i] = 0;
 	if (!create_pipes(proc))
-		return (printf("create_pipes_array"), free_int_tab(proc->pipe_fd, proc->n_pipes), 0);
+		return (free_int_tab(proc->pipe_fd, proc->n_pipes), 0);
 	return (1);
 }
 
@@ -63,8 +63,6 @@ void	close_pipes(t_proc *proc)
 	int	i;
 
 	i = 0;
-	// close(proc->fd_in);
-	// close(proc->fd_out);
 	while (i < proc->n_pipes)
 	{
 		close(proc->pipe_fd[i][0]);

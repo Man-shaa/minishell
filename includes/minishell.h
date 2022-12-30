@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/30 20:35:39 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/30 21:16:30 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_proc
 	int		fd_out;
 	int		**pipe_fd;
 	int		n_pipes;
-	pid_t	pid[2];
+	pid_t	*pid;
 }				t_proc;
 
 typedef struct s_cmd
@@ -152,8 +152,9 @@ int		error_cmd(char **cmd);
 // ********************************* EXEC *********************************
 
 // exec.c
-int		exec_binary(t_data *data, t_cmd *cmd);
 int		execution(t_data *data);
+void	wait_all_child(t_proc *proc, int n);
+int		exec_binary(t_data *data, t_cmd *cmd);
 int		send_cmd(t_data *data, t_cmd *cmd);
 
 // heredoc.c
@@ -169,7 +170,6 @@ int		is_token(t_cmd *cmd, int type);
 int		handle_pipe_redir(t_cmd *cmd, t_proc *proc);
 int		redir(t_data *data, t_cmd *cmd);
 int		handle_token_redir(t_proc *proc, char *token, int type);
-void	double_dup2(int fd1, int fd2);
 
 // ********************************* FREE *********************************
 

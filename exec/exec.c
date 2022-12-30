@@ -6,36 +6,11 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/30 20:41:36 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/30 21:36:36 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-// Execute les commandes (non builtins)
-// Ne return rien si l'execution a reussie ou la valeur d'erreur
-int	exec_binary(t_data *data, t_cmd *cmd)
-{
-	char	**env_tab;
-	int		status = 0;
-
-	if (!cmd->cmd_path)
-	{
-		err_msg("env not found, specify an absolute path", NULL, NULL, 1);
-		return (1);
-	}
-	data->proc->pid[cmd->index] = fork();
-	if (data->proc->pid[cmd->index] == 0) 
-	{
-		if (!redir(data, cmd))
-			return (close_pipes(data->proc), 1);
-		// close_pipes(data->proc);
-		env_tab = get_env_tab(data->envp);
-		execve(cmd->cmd_path, cmd->opt, env_tab);
-		return (error_cmd(cmd->opt));
-	}
-	return (WEXITSTATUS(status));
-}
 
 // Cree les pipes et s'occupe des redirections avant d'envoyer la commande
 // a send_cmd
@@ -43,10 +18,8 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 int	execution(t_data *data)
 {
 	t_cmd	*cmd;
-	int	i;
 
 	cmd = data->cmd;
-	i = 0;
 	if (!create_pipes_array(data))
 		return (0);
 	while (cmd)
@@ -55,10 +28,43 @@ int	execution(t_data *data)
 		cmd = cmd->next;
 	}
 	close_pipes(data->proc);
-	while (i < data->proc->n_pipes + 1)
+	wait_all_child(data->proc, data->proc->n_pipes + 1);
+	return (1);
+}
+
+void	wait_all_child(t_proc *proc, int n)
+{
+	int	i;
+
+	i = 0;
+	if (!proc->pid)
+		return ;
+	while (i < n)
 	{
-		waitpid(data->proc->pid[i], NULL, 0);
+		waitpid(proc->pid[i], NULL, 0);
 		i++;
+	}
+}
+
+// Execute les commandes (non builtins)
+// Ne return rien si l'execution a reussie ou la valeur d'erreur
+int	exec_binary(t_data *data, t_cmd *cmd)
+{
+	char	**env_tab;
+
+	if (!cmd->cmd_path)
+	{
+		err_msg("env not found, specify an absolute path", NULL, NULL, 1);
+		return (1);
+	}
+	data->proc->pid[cmd->index] = fork();
+	if (data->proc->pid[cmd->index] == 0)
+	{
+		if (!redir(data, cmd))
+			return (close_pipes(data->proc), 1);
+		env_tab = get_env_tab(data->envp);
+		execve(cmd->cmd_path, cmd->opt, env_tab);
+		return (error_cmd(cmd->opt));
 	}
 	return (1);
 }

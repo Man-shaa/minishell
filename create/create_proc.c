@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_proc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 15:06:50 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/30 19:21:28 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/30 21:10:33 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ t_proc	*create_proc(void)
 	proc->pipe_fd = NULL;
 	proc->fd_in = STDIN_FILENO;
 	proc->fd_out = STDOUT_FILENO;
-	proc->pid[0] = -1;
-	proc->pid[1] = -1;
+	proc->pid = NULL;
 	return (proc);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:53:43 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/14 14:59:48 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/30 21:23:22 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	get_cmd_struct(t_data *data)
 	cmd = NULL;
 	if (!start_cmd_struct(data, tmp, cmd))
 		return (0);
+	printf("Nombre de commande : %d\n\n", pipe_count(data->cmd) + 1);
+	data->proc->pid = ft_calloc(pipe_count(data->cmd) + 1, sizeof(pid_t));
 	return (1);
 }
 
