@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/30 18:41:46 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/30 20:25:50 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 int	exec_binary(t_data *data, t_cmd *cmd)
 {
 	char	**env_tab;
-	int		status;
+	int		status = 0;
 
 	if (!cmd->cmd_path)
 	{
 		err_msg("env not found, specify an absolute path", NULL, NULL, 1);
 		return (1);
 	}
-	data->proc->pid = fork();
-	if (data->proc->pid == 0)
+	data->proc->pid[cmd->index] = fork();
+	if (data->proc->pid[cmd->index] == 0) 
 	{
 		if (!redir(data, cmd))
 			return (close_pipes(data->proc), 1);
@@ -34,8 +34,6 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 		execve(cmd->cmd_path, cmd->opt, env_tab);
 		return (error_cmd(cmd->opt));
 	}
-	waitpid(data->proc->pid, &status, 0);
-	close_pipes(data->proc);
 	return (WEXITSTATUS(status));
 }
 
@@ -45,14 +43,22 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 int	execution(t_data *data)
 {
 	t_cmd	*cmd;
+	int	i;
 
 	cmd = data->cmd;
+	i = 0;
 	if (!create_pipes_array(data))
 		return (0);
 	while (cmd)
 	{
 		data->return_val = send_cmd(data, cmd);
 		cmd = cmd->next;
+	}
+	close_pipes(data->proc);
+	while (i < data->proc->n_pipes + 1)
+	{
+		waitpid(data->proc->pid[i], NULL, 0);
+		i++;
 	}
 	return (1);
 }

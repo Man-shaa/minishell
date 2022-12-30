@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:38:01 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/29 19:52:04 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/30 20:20:00 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	create_pipes_array(t_data *data)
 		proc->n_pipes = 0;
 		return (1);
 	}
-	proc->pipe_fd = ft_calloc(proc->n_pipes + 1, sizeof(int *));
+	proc->pipe_fd = ft_calloc(proc->n_pipes + 1, sizeof(int *)); // pk +1 
 	if (!proc->pipe_fd)
 		return (0);
 	while (i < proc->n_pipes)

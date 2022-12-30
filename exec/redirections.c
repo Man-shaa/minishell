@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/30 18:46:21 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/30 20:33:33 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ int	is_token(t_cmd *cmd, int type)
 	while (cmd->token[i])
 	{
 		if (cmd->type[i] == type)
-		{
-			printf("is_token return 1\n\n\n");
 			return (1);
-		}
 		i++;
 	}
 	return (0);
@@ -36,36 +33,23 @@ int	is_token(t_cmd *cmd, int type)
 // RAJOUTER SECURITE DUP2 ET PRENDRE EN COMPTTE VALEUR DE RETOUR hande_redir()
 int	handle_pipe_redir(t_cmd *cmd, t_proc *proc)
 {
-	printf("on rentre dans la redir avec l'index[%d]\n", cmd->index);
 	if (cmd->index == 0)
 	{
-		// close(proc->pipe_fd[0][0]);
 		if (!is_token(cmd, OUT))
-			dup2(proc->pipe_fd[0][1], STDOUT_FILENO);
+ 			dup2(proc->pipe_fd[0][1], STDOUT_FILENO);
 	}
 	else if (cmd->index == proc->n_pipes)
 	{
 		if (!is_token(cmd, IN))
-		{
-			// printf("avant dup2 LAAST\n\n\n");
 			dup2(proc->pipe_fd[cmd->index - 1][0], STDIN_FILENO);
-		}
 	}
 	else
 	{
-		// printf("MID\n\n\n");
 		if (!is_token(cmd, IN))
-		{
-			printf("REDIRECT IN MID\n\n\n");
 			dup2(proc->pipe_fd[cmd->index - 1][0], STDIN_FILENO);
-		}
 		if (!is_token(cmd, OUT))
-		{
-			printf("REDIRECT OUT MID\n\n\n");
 			dup2(proc->pipe_fd[cmd->index][1], STDOUT_FILENO);
-		}
 	}
-	print_pipe_fd(proc->pipe_fd, cmd->index);
 	close_pipes(proc);
 	return (1);
 }
@@ -87,7 +71,7 @@ int	redir(t_data *data, t_cmd *cmd)
 	}
 	if (data->proc->n_pipes > 0)
 		if (!handle_pipe_redir(cmd, data->proc))
-			return (1);
+			return (0);
 	return (1);
 }
 
