@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/30 18:06:53 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/30 21:36:46 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	get_prompt(char **envp)
 			return ;
 		ft_split(str, data);
 		if (!parsing(data))
-			break ;
+			return (free_data(data), get_prompt(envp))	;
 		get_cmd_struct(data);
 		if (!execution(data))
 			return (free_data(data));

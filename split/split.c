@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/09 17:19:10 by mfroissa         ###   ########.fr       */
+/*   Updated: 2022/12/30 20:58:43 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	count_words(char *str)
 		else if (is_in_charset(str[i]) == 2)
 			count += count_words_pipe(&i);
 		if (count == -1)
-			return (0);
+			return (-1);
 	}
 	return (count);
 }
@@ -97,7 +97,7 @@ void	ft_split(char *str, t_data *data)
 	if (!str)
 		return ;
 	i = 0;
-	if (!count_words(str))
+	if (count_words(str) == -1)
 		return (ft_putstr("No instructions or missing double quote\n"));
 	tab = ft_calloc(count_words(str) + 1, sizeof(char *));
 	while (i < count_words(str))
