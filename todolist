@@ -1,0 +1,5 @@
+cat Makefile | wc return une erreur
+verifier le message d'erreur si doublons de redirections et/ou pipe
+regler la gestion des single quote
+	par ex:
+	'hola' = hola (pour l'instant = 'hola')

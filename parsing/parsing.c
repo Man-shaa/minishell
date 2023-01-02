@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:15:26 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/26 17:29:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/12/30 21:21:59 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,20 @@ int	check_dup(t_data *data)
 	tmp = data->list;
 	while (tmp)
 	{
-		if (tmp->next && tmp->type != WORD && tmp->next->type != WORD)
+		if (tmp->next && tmp->type != WORD && tmp->type != PIPE
+				&& tmp->next->type != WORD)
 		{
 			if (tmp->next->type != PIPE)
+			{
+				printf("la\n");
 				return (0);
+			}
 		}
 		if (tmp->next && tmp->type == PIPE && tmp->next->type == PIPE)
+		{
+			printf("ici\n");
 			return (0);
+		}
 		tmp = tmp->next;
 	}
 	return (1);

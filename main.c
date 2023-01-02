@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/02 17:00:28 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/02 21:49:45 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,16 @@
 
 // "<in ..." alors que in n'existe pas casse tout 
 
-// ------ Mateo ------
-
-// Juste [return] met un message a voir si on enleve
+// ------ Mat	 ------
 
 // echo '$PWD' qui devrait afficher $PWD (lire sujet a propos des quotes)
 
-// "ls | cat" renvoies missing a command -> changer un is_builtin pour is_cmd
-// qq part  dans le parsing
-
 // Return 0 si str est une commande return 1 si str est un builtin -- inverse ?
-// Manuo ✖✖ <in wc -l >>> out
-
-// <in cat main.c | > out wc doublons of redirections alors que c'est bon
+// Manuo ✖✖ <izeixn wc -l >>> out
 
 // "Doublons of redirections" leaks
+
+// Pourquoi est ce que cat Makefile | wc return une erreur
 
 int	main(int ac, char **av, char **envp)
 {
