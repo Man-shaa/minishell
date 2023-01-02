@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/30 20:58:43 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:21:37 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ char	*ft_putwords(char *str, int n, char *mot)
 	{
 		if (str[index] == '"')
 			index++;
-		if (str[index] == 39)
-			index++;
+		// if (str[index] == 39)
+		// 	index++;
 		mot[i] = str[index];
 		i++;
 		index++;
@@ -103,6 +103,7 @@ void	ft_split(char *str, t_data *data)
 	while (i < count_words(str))
 	{
 		tab[i] = ft_calloc(count_chars(str, i) + 1, sizeof(char));
+		// printf("count_chars[%d] = %d\n", i, count_chars(str, i));
 		tab[i] = ft_putwords(str, i, tab[i]);
 		add_last_list(data, tab[i]);
 		i++;

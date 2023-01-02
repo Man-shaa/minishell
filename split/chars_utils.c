@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 07:33:16 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/09 17:15:10 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:21:31 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	count_chars_single(char *str, int *i, int *count, int n)
 
 	chars = 0;
 	(*i)++;
+	if ((*count) == n)
+		chars++;
 	while (str[(*i)] != 39)
 	{
 		(*i)++;
@@ -86,6 +88,9 @@ int	count_chars_single(char *str, int *i, int *count, int n)
 			chars++;
 	}
 	(*i)++;
+	if ((*count) == n)
+		chars++;
 	(*count)++;
+	// printf("chaine[%d] = %d\n", (*count), chars);
 	return (chars);
 }

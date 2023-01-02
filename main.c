@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/30 21:53:18 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/02 16:37:02 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 // Manuo ✖✖ <izeixn wc -l >>> out
 
 // "Doublons of redirections" leaks
+
+// Pourquoi est ce que cat Makefile | wc return une erreur
 
 int	main(int ac, char **av, char **envp)
 {
