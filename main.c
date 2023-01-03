@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/02 16:37:02 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/02 21:49:45 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
 // Y a des problemes avec wait quand il y a des builtins
+
+// echo sd$psdg$PWD affiche pas le PWD
 
 // Gerer le leak de history (le sujet ne dit pas que c'est ok d'en avoir)
 
