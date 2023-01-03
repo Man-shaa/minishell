@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 02:39:44 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/23 15:04:00 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/03 18:50:01 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	count_tokens(t_data *data, int n)
 	tmp = data->list;
 	count = 0;
 	index = 0;
+	if (tmp->type != 1 && !tmp->next)
+		return (1);
 	while (tmp)
 	{
 		if (tmp && (tmp->type != WORD && tmp->type != PIPE) && index == n
@@ -62,6 +64,8 @@ int	words_to_pipe(t_data *data, int n)
 			index++;
 		tmp = tmp->next;
 	}
+	if (count == -1)
+		return (0);
 	return (count);
 }
 

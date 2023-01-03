@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/30 21:54:14 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/03 18:18:17 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*get_readline(t_data *data, char *str)
 	if (!data->return_val)
 		str = readline("Manuo ✖✖ ");
 	else
-		str = readline("✖ Manuo ✖ ");
+		str = readline("✖Manuo✖ ");
 	if (!str)
 		return (rl_clear_history(), ft_exit(data, NULL), NULL);
 	add_history(str);
@@ -58,11 +58,20 @@ void	get_prompt(char **envp)
 			return ;
 		ft_split(str, data);
 		if (!parsing(data))
-			return (free_data(data), get_prompt(envp))	;
+		{
+			printf("problem : parsing\n");
+			return (get_prompt(envp));
+		}
 		if (!get_cmd_struct(data))
+		{
+			printf("problem : t_cmd\n");
 			return (free_data(data));
+		}
 		if (!execution(data))
+		{
+			printf("problem : execution\n");
 			return (free_data(data));
+		}
 		reset_data(data, str);
 	}
 	free_data(data);

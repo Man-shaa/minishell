@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:15:26 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/30 21:21:59 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/03 17:33:32 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	parsing(t_data *data)
 {
 	if (!check_dup(data))
-		return (err_msg("Doublons of redirections", NULL, NULL, 0));
+		return (err_msg("minishell : unexpected token or redirection", NULL, NULL, 0));
 	if (!check_cmd(data))
-		return (err_msg("Missing a command", NULL, NULL, 0));
+		return (err_msg("minishell : missing a command", NULL, NULL, 0));
 	return (1);
 }
 
@@ -32,16 +32,10 @@ int	check_dup(t_data *data)
 				&& tmp->next->type != WORD)
 		{
 			if (tmp->next->type != PIPE)
-			{
-				printf("la\n");
 				return (0);
-			}
 		}
 		if (tmp->next && tmp->type == PIPE && tmp->next->type == PIPE)
-		{
-			printf("ici\n");
 			return (0);
-		}
 		tmp = tmp->next;
 	}
 	return (1);

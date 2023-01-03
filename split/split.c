@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/02 18:21:37 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/03 17:59:32 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	ft_split(char *str, t_data *data)
 		return ;
 	i = 0;
 	if (count_words(str) == -1)
-		return (ft_putstr("No instructions or missing double quote\n"));
+		return (ft_putstr("minishell : no instructions or missing double quote\n"));
 	tab = ft_calloc(count_words(str) + 1, sizeof(char *));
 	while (i < count_words(str))
 	{

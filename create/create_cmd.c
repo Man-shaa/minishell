@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:53:43 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/02 18:17:02 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/03 19:02:47 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_cmd	*set_up_cmd(t_data *data, int *i)
 	if (!cmd->opt)
 		return (NULL);
 	cmd->opt[words_to_pipe(data, (*i))] = 0;
+	print_tab(cmd->opt);
 	cmd->token = ft_calloc(count_tokens(data, (*i)) + 1, sizeof(char *));
 	if (!cmd->token)
 		return (NULL);
@@ -46,6 +47,7 @@ int	get_cmd_struct(t_data *data)
 	return (1);
 }
 
+			// printf("CMD->TOKEN[0]= %s\n", cmd->token[0]);
 //return 1 si la creation de data->cmd abouti
 int	start_cmd_struct(t_data *data, t_list *tmp, t_cmd *cmd)
 {
