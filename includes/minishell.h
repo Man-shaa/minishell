@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/30 21:16:30 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/04 19:24:11 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,7 @@ void	print_int_tab(t_data *data, int *tab);
 // ******************************** SIGNAL *********************************
 
 // signal.c
+void	handle_sigquit(int sig_quit);
 void	handle_sigsegv(int sig_segv);
 void	handle_sigint(int sig_int);
 void	handle_signal(void);
