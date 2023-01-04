@@ -6,11 +6,17 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:34:48 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/29 15:32:29 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/04 19:22:21 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	handle_sigquit(int sig_quit)
+{
+	(void)sig_quit;
+	ft_putstr("Quit (core dumped)\n");
+}
 
 void	handle_sigsegv(int sig_segv)
 {
@@ -32,6 +38,7 @@ void	handle_sigint(int sig_int)
 void	handle_signal(void)
 {
 	signal(SIGQUIT, SIG_IGN);
+	signal(SIGTSTP, SIG_IGN);
 	signal(SIGSEGV, handle_sigsegv);
 	signal(SIGINT, handle_sigint);
 }

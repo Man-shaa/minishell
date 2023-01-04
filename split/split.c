@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/03 17:59:32 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/04 16:56:49 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ char	*ft_putwords(char *str, int n, char *mot)
 	{
 		if (str[index] == '"')
 			index++;
-		// if (str[index] == 39)
-		// 	index++;
+		if (str[index] == 39)
+			index++;
 		mot[i] = str[index];
 		i++;
 		index++;

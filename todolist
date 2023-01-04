@@ -3,3 +3,9 @@ verifier le message d'erreur si doublons de redirections et/ou pipe
 regler la gestion des single quote
 	par ex:
 	'hola' = hola (pour l'instant = 'hola')
+echo '''''' chelou
+"ec"ho = echo et non pas ec ho
+
+je pense qu'il y a un probleme avec les instances de prompt:
+	c'est a dire : 	desfois faut exit 5 fois pour vrm exit
+					desfois quand tu ctrl-C ca ecrit xManuoxxManuox (genre 2 3 4 fois)

@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/03 18:17:12 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/04 19:25:13 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 // Return le retour de chaque commande effectuee
 int	send_cmd(t_data *data, t_cmd *cmd)
 {
+	signal(SIGQUIT, handle_sigquit);
 	if (!cmd->cmd || is_same(cmd->cmd, "..") || is_same(cmd->cmd, "."))
 		return (error_cmd(cmd->opt));
 	else if (is_builtin(cmd->cmd))
