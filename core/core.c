@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/03 18:18:17 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/07 14:05:14 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,11 @@ void	get_prompt(char **envp)
 			return ;
 		ft_split(str, data);
 		if (!parsing(data))
-		{
-			printf("problem : parsing\n");
-			return (get_prompt(envp));
-		}
+			return (printf("problem : parsing\n"), get_prompt(envp));
 		if (!get_cmd_struct(data))
-		{
-			printf("problem : t_cmd\n");
-			return (free_data(data));
-		}
+			return (printf("problem : t_cmd\n"), free_data(data));
 		if (!execution(data))
-		{
-			printf("problem : execution\n");
-			return (free_data(data));
-		}
+			return (printf("problem : execution\n"), free_data(data));
 		reset_data(data, str);
 	}
 	free_data(data);

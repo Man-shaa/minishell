@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:27:16 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/21 16:14:06 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:51:18 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	echo_env_var(t_data *data, char *args)
 	char	*res;
 	t_envp	*node;
 
-	if (is_same(args, "$?"))
+	if (ft_strcmp(args, "$?"))
 		ft_putnbr(data->return_val);
 	else
 	{
