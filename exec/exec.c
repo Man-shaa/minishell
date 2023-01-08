@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/04 19:25:13 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:53:50 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	execution(t_data *data)
 	}
 	close_pipes(data->proc);
 	wait_all_child(data->proc, data->proc->n_pipes + 1);
+	handle_signal();
 	return (1);
 }
 
