@@ -6,13 +6,13 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:43 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/21 18:21:29 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/09 18:26:14 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// Ajoute un node a la fin de la structure t_envp
+// Ajoute un node a la fin de la structure t_envp conetenant arg
 // Return 0 si l'operation a reussie, sinon 1
 int	add_last_env(t_data *data, char *arg)
 {
@@ -48,14 +48,16 @@ int	ft_export(t_data *data, char **args)
 	{
 		if (!args[i] || !args[i][0] || args[i][0] == '='
 			|| !is_valid_name(args[i]))
-		{
 			err_msg("export: `", args[i], "': not a valid identifier", 1);
-			return (1);
+		else
+		{
+			if (already_exist(data->envp, args[i]))
+				return (0);
+			if (concat_inexist(data, args[i]))
+				return (0);
+			if (!add_last_env(data, args[i]))
+				return (1);
 		}
-		if (already_exist(data->envp, args[i]))
-			return (0);
-		if (!add_last_env(data, args[i]))
-			return (1);
 		i++;
 	}
 	return (0);

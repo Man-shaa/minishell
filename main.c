@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/08 19:40:54 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/09 20:27:21 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 // "> out" pete un cable
 
 // "<in ..." alors que in n'existe pas casse tout 
+
+// Manuo ✖✖ history fait tout crash
 
 // ------ Mat	 ------
 
