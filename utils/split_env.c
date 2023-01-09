@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:01:49 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/21 18:07:34 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:21:12 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	char_count_env(char *str, char set, int pos)
 	k = 0;
 	if (pos == 0)
 		return (first_sep(str, set));
-	i = first_sep(str, set);
-	while (str[i])
+	i = first_sep(str, set) + 1;
+	while (i < (int)ft_strlen(str) && str[i])
 	{
 		i++;
 		k++;
@@ -57,8 +57,8 @@ void	ft_putword_env(char *str, char *tab, char set, int pos)
 	}
 	else
 	{
-		i = first_sep(str, set);
-		while (str[i])
+		i = first_sep(str, set) + 1;
+		while (i < (int)ft_strlen(str) && str[i])
 		{
 			tab[k] = str[i];
 			i++;

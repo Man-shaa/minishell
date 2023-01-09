@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:39:22 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/21 18:34:18 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/09 18:10:54 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ char	*ignore_charset(char *str, char *charset, int n)
 	int		j;
 	char	*dup;
 
-	i = 1;
+	i = 0;
 	j = 0;
-	if (!str || !str[0])
+	if (!str || str[0] == '\0')
 		return (str);
 	while (str[i++] && str[i] != '$')
 		if (ft_strchr(charset, str[i]))
@@ -101,7 +101,7 @@ char	*ignore_charset(char *str, char *charset, int n)
 	dup = ft_calloc(j + 2, 1);
 	if (!dup)
 		return (NULL);
-	i = 1;
+	i = 0;
 	j = 0;
 	while (str[i] && str[i] != '$')
 	{

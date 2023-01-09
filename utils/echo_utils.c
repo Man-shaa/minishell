@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:27:16 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/08 15:51:18 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/09 18:09:39 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,22 @@ int	ft_putstr_echo(t_data *data, char **str, int i)
 // Cherche la variable d'env correspondant a args[i] sans "${}()" et la print
 // si elle existe, sinon ne print rien
 // Return 1 si la variable d'environnement existe, sinon 0
-int	echo_env_var(t_data *data, char *args)
+int	echo_env_var(t_data *data, char *str)
 {
 	char	*res;
 	t_envp	*node;
 
-	if (ft_strcmp(args, "$?"))
+	if (ft_strcmp(str, "$?"))
 		ft_putnbr(data->return_val);
 	else
 	{
-		res = ignore_charset(args, "(){}", 0);
+		res = ignore_charset(str + 1, "(){}", 0);
 		node = data->envp;
 		node = search_node(data->envp, res);
 		if (!node)
 		{
 			if (!res || !res[0])
-				ft_putstr(args);
+				ft_putstr(str);
 			if (res)
 				ft_free(res);
 			return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/04 19:24:11 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/09 18:02:35 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int		print_env(t_envp *envp, char **args);
 int		ft_exit(t_data *data, char **args);
 
 // export.c
+int		add_last_env(t_data *data, char *arg);
 int		ft_export(t_data *data, char **args);
 int		already_exist(t_envp *envp, char *str);
 void	print_export(t_envp *envp);
@@ -106,7 +107,7 @@ void	replace_pwd_my_env(t_envp *envp);
 void	replace_oldpwd_my_env(t_envp *envp);
 
 // unset.c
-void	ft_unset(t_data *data, char *str);
+void	ft_unset(t_data *data, char **args);
 
 // ******************************** CORE **********************************
 
@@ -256,10 +257,11 @@ int		command_or_builtin(char *str, int *cappuccino);
 // echo_utils.c
 int		ft_putstr_echo(t_data *data, char **str, int i);
 int		is_option_n(char *str);
-int		echo_env_var(t_data *data, char *args);
+int		echo_env_var(t_data *data, char *str);
 
 // export_utis.c
 int		is_concat(char *str);
+int		concat_inexist(t_data *data, char *str);
 int		concat(t_envp *node, char **tab);
 int		is_valid_name(char *str);
 int		replace_value(t_envp *node, char *value);

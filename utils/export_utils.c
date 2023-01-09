@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 17:49:30 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 18:58:15 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:51:33 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,27 @@ int	is_concat(char *str)
 	{
 		if (str[i] == '+' && !str[i + 1])
 			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	concat_inexist(t_data *data, char *str)
+{
+	int		i;
+	char	*res;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '+' && str[i + 1] == '=')
+		{
+			res = ignore_charset(str, "+", 0);
+			add_last_env(data, res);
+			if (res)
+				ft_free(res);
+			return (1);
+		}
 		i++;
 	}
 	return (0);
@@ -58,6 +79,8 @@ int	is_valid_name(char *str)
 	int	i;
 
 	i = 0;
+	if (str && str[0] >= '0' && str[0] <= '9')
+		return (0);
 	while (str[i] && str[i] != '=')
 	{
 		if (!ft_isalpha((int)str[i]))
@@ -68,7 +91,7 @@ int	is_valid_name(char *str)
 	return (1);
 }
 
-// Remplace la valeur d'uen variable dans t_envp si elle existe deja 
+// Remplace la valeur d'une variable dans t_envp si elle existe deja 
 // et est redefinie par l'utilisateur
 // Return 1 si tout s'est bien passe, sinon 0 (probleme de malloc strdup)
 int	replace_value(t_envp *node, char *value)
