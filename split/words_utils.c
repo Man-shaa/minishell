@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 07:33:48 by mfroissa          #+#    #+#             */
-/*   Updated: 2022/12/09 17:15:52 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/09 20:11:03 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,30 +42,82 @@ int	count_words_pipe(int *i)
 	return (1);
 }
 
-void	count_words_quote(char *str, int *i, int *count)
+// avant l'updqate
+// void	count_words_quote(char *str, int *i, int *count)
+// {
+// 	(*i)++;
+// 	while (str[*i] && str[(*i)] != '"')
+// 		(*i)++;
+// 	if (str[(*i)] == '"')
+// 	{
+// 		(*i)++;
+// 		(*count)++;
+// 	}
+// 	else if (str[(*i)] == '\0')
+// 		(*count) = -1;
+// }
+
+//update
+int	count_words_quote(char *str, int *i, int *count)
 {
 	(*i)++;
 	while (str[*i] && str[(*i)] != '"')
 		(*i)++;
-	if (str[(*i)] == '"')
+	if (str[(*i)] == '"' && !is_end_of_string(str[(*i) + 1]))
 	{
 		(*i)++;
-		(*count)++;
+		while (str[*i] != '"' && str[*i] != 39 && !is_end_of_string(str[*i]))
+			(*i)++;
+		if (str[*i] == '"')
+			return (count_words_quote(str, i, count));
+		else if (str[*i] == 39)
+			return (count_words_single(str, i, count));
+		else
+			return (1);
 	}
-	else if (str[(*i)] == '\0')
-		(*count) = -1;
+	else
+	{
+		(*i)++;
+		return (1);
+	}
 }
 
-void	count_words_single(char *str, int *i, int *count)
+//avant l'update
+// void	count_words_single(char *str, int *i, int *count)
+// {
+// 	(*i)++;
+// 	while (str[*i] && str[(*i)] != 39)
+// 		(*i)++;
+// 	if (str[(*i)] == 39)
+// 	{
+// 		(*i)++;
+// 		(*count)++;
+// 	}
+// 	else if (str[(*i)] == '\0')
+// 		(*count) = -1;
+// }
+
+//update
+int	count_words_single(char *str, int *i, int *count)
 {
 	(*i)++;
 	while (str[*i] && str[(*i)] != 39)
 		(*i)++;
-	if (str[(*i)] == 39)
+	if (str[(*i)] == 39 && !is_end_of_string(str[(*i) + 1]))
 	{
 		(*i)++;
-		(*count)++;
+		while (str[*i] != 39 && str[*i] != '"' && !is_end_of_string(str[*i]))
+			(*i)++;
+		if (str[*i] == 39)
+			return (count_words_single(str, i, count));
+		else if (str[*i] == '"')
+			return (count_words_quote(str, i, count));
+		else
+			return (1);
 	}
-	else if (str[(*i)] == '\0')
-		(*count) = -1;
+	else
+	{
+		(*i)++;
+		return (1);
+	}
 }

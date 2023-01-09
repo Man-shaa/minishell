@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/04 19:24:11 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/09 20:06:21 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,6 +223,7 @@ void	ft_split(char *str, t_data *data);
 
 // split_utils.c
 int		is_in_charset(char c);
+int		is_end_of_string(char c);
 int		get_index(char *str, int n);
 int		get_index_exp(char *str, int *count, int *i, int n);
 
@@ -230,8 +231,8 @@ int		get_index_exp(char *str, int *count, int *i, int n);
 int		count_words_cmd(char *str, int *i);
 int		count_words_redir(char *str, int *i);
 int		count_words_pipe(int *i);
-void	count_words_quote(char *str, int *i, int *count);
-void	count_words_single(char *str, int *i, int *count);
+int		count_words_quote(char *str, int *i, int *count);
+int		count_words_single(char *str, int *i, int *count);
 
 // chars_utils.c
 int		count_chars_cmd(char *str, int *i, int *count, int n);

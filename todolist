@@ -9,3 +9,5 @@ echo '''''' chelou
 je pense qu'il y a un probleme avec les instances de prompt:
 	c'est a dire : 	desfois faut exit 5 fois pour vrm exit
 					desfois quand tu ctrl-C ca ecrit xManuoxxManuox (genre 2 3 4 fois)
+
+faire un check doublon au tout debut
