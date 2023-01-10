@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:15:26 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/03 17:33:32 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:14:35 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,37 @@ int	check_cmd(t_data *data)
 				count = 0;
 		}
 		tmp = tmp->next;
+	}
+	return (1);
+}
+
+int	check_quotes(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	printf("yo");
+	while (str[i])
+	{
+		if (str[i] == '"')
+		{
+			i++;
+			while (str[i] && str[i] != '"')
+				i++;
+			if (str[i] == '\0')
+				return (0);
+		}
+		if (str[i] == 39)
+		{
+			i++;
+			while (str[i] && str[i] != 39)
+				i++;
+			if (str[i] == '\0')
+				return (0);
+		}
+		i++;
 	}
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/07 14:05:14 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:02:00 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	get_prompt(char **envp)
 		str = get_readline(data, str);
 		if (!str)
 			return ;
+		if (!check_quotes(str))
+			return (ft_putstr("quote is not closed\n"), get_prompt(envp));
 		ft_split(str, data);
 		if (!parsing(data))
 			return (printf("problem : parsing\n"), get_prompt(envp));

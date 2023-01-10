@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 07:33:41 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/09 20:14:04 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:11:18 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ int	get_index(char *str, int n)
 				i++;
 			if (count == n)
 				return (i);
-			if (is_in_charset(str[i + 1]) || str[i + 1] == '\0'
-				|| str[i + 1] == ' ' || str[i + 1] == '\t')
+			if (is_end_of_string(str[i + 1]))
 				count++;
 			i++;
 		}
@@ -72,17 +71,9 @@ int	get_index_exp(char *str, int *count, int *i, int n)
 		if ((*count) == n)
 			return (1);
 		if (str[(*i)] == '"')
-		{
-			(*i)++;
-			while (str[(*i)] != '"')
-				(*i)++;
-		}
+			get_index_dq(str, count, i);
 		if (str[(*i)] == 39)
-		{
-			(*i)++;
-			while (str[(*i)] != 39)
-				(*i)++;
-		}
+			get_index_sq(str, count, i);
 		if (str[(*i)] != '|' && str[(*i) + 1] == str[(*i)])
 			(*i)++;
 		(*count)++;
@@ -91,12 +82,40 @@ int	get_index_exp(char *str, int *count, int *i, int n)
 	return (0);
 }
 
-// int	get_index_dq(char *str, int *count, int *i, int n)
-// {
-	
-// }
+void	get_index_dq(char *str, int *count, int *i)
+ {
+	(*i)++;
+	while (str[*i] && str[(*i)] != '"')
+		(*i)++;
+	if (str[(*i)] == '"' && !is_end_of_string(str[(*i) + 1]))
+	{
+		(*i)++;
+		while (str[*i] != '"' && str[*i] != 39 && !is_end_of_string(str[*i]))
+			(*i)++;
+		if (str[*i] == '"')
+			get_index_dq(str, i, count);
+		else if (str[*i] == 39)
+			get_index_sq(str, i, count);
+	}
+	else
+		(*i)++;
+}
 
-// int	get_index_sq(char *str, int *count, int *i, int n)
-// {
-	
-// }
+void	get_index_sq(char *str, int *count, int *i)
+ {
+	(*i)++;
+	while (str[*i] && str[(*i)] != 39)
+		(*i)++;
+	if (str[(*i)] == 39 && !is_end_of_string(str[(*i) + 1]))
+	{
+		(*i)++;
+		while (str[*i] != 39 && str[*i] != '"' && !is_end_of_string(str[*i]))
+			(*i)++;
+		if (str[*i] == 39)
+			get_index_dq(str, i, count);
+		else if (str[*i] == '"')
+			get_index_sq(str, i, count);
+	}
+	else
+		(*i)++;
+}

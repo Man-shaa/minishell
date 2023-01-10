@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/09 20:27:28 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:10:55 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,7 @@ void	add_to_history(char **av);
 int		parsing(t_data *data);
 int		check_dup(t_data *data);
 int		check_cmd(t_data *data);
+int		check_quotes(char *str);
 
 // ******************************** PRINT *********************************
 
@@ -227,6 +228,8 @@ int		is_in_charset(char c);
 int		is_end_of_string(char c);
 int		get_index(char *str, int n);
 int		get_index_exp(char *str, int *count, int *i, int n);
+void	get_index_dq(char *str, int *count, int *i);
+void	get_index_sq(char *str, int *count, int *i);
 
 // words_utils.c
 int		count_words_cmd(char *str, int *i);

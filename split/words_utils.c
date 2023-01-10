@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 07:33:48 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/09 20:11:03 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:09:11 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	count_words_cmd(char *str, int *i)
 	int	count;
 
 	count = 0;
-	if (is_in_charset(str[(*i) + 1]) || str[(*i) + 1] == '\0')
+	if (is_end_of_string(str[(*i) + 1]))
 		count++;
 	(*i)++;
 	return (count);
