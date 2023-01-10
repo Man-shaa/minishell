@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/10 18:10:55 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/10 19:27:48 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,11 +221,13 @@ void	handle_signal(void);
 int		count_words(char *str);
 int		count_chars(char *str, int n);
 char	*ft_putwords(char *str, int n, char *mot);
-void	ft_split(char *str, t_data *data);
+int		ft_split(char *str, t_data *data);
 
 // split_utils.c
 int		is_in_charset(char c);
 int		is_end_of_string(char c);
+
+// split_index.c
 int		get_index(char *str, int n);
 int		get_index_exp(char *str, int *count, int *i, int n);
 void	get_index_dq(char *str, int *count, int *i);

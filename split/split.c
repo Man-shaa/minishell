@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/09 20:13:47 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/10 19:42:25 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int	count_words(char *str)
 			count += count_words_redir(str, &i);
 		else if (is_in_charset(str[i]) == 2)
 			count += count_words_pipe(&i);
-		if (count == -1)
-			return (-1);
 	}
 	return (count);
 }
@@ -78,10 +76,6 @@ char	*ft_putwords(char *str, int n, char *mot)
 	i = 0;
 	while (i < count_chars(str, n))
 	{
-		// if (str[index] == '"')
-		// 	index++;
-		// if (str[index] == 39)
-		// 	index++;
 		mot[i] = str[index];
 		i++;
 		index++;
@@ -89,21 +83,23 @@ char	*ft_putwords(char *str, int n, char *mot)
 	return (mot);
 }
 
-void	ft_split(char *str, t_data *data)
+int	ft_split(char *str, t_data *data)
 {
 	char	**tab;
 	int		i;
 
 	if (!str)
-		return ;
+		return (0);
 	i = 0;
-	if (count_words(str) == -1)
-		return (ft_putstr("minishell : no instructions or missing double quote\n"));
 	printf("count_words = %d\n", count_words(str));
 	tab = ft_calloc(count_words(str) + 1, sizeof(char *));
+	if (!tab)
+		return (0);
 	while (i < count_words(str))
 	{
 		tab[i] = ft_calloc(count_chars(str, i) + 1, sizeof(char));
+		if (!tab[i])
+			return (ft_free(tab), 0);
 		printf("count_chars[%d] = %d\n", i, count_chars(str, i));
 		tab[i] = ft_putwords(str, i, tab[i]);
 		add_last_list(data, tab[i]);
@@ -112,4 +108,5 @@ void	ft_split(char *str, t_data *data)
 	tab[i] = 0;
 	print_tab(tab);
 	ft_free(tab);
+	return (1);
 }
