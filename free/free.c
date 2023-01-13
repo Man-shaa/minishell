@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:11:04 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/30 21:21:33 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/13 22:11:20 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	free_list(t_list *list)
 		list = list->next;
 		if (save->str)
 			ft_free(save->str);
+		if (save->dollar)
+			ft_free(save->dollar);
 		ft_free(save);
 		save = list;
 	}

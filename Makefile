@@ -62,6 +62,7 @@ SRCS		=	main.c \
 				${SPLIT_DIR}chars_utils.c \
 				\
 				${PARSING_DIR}parsing.c \
+				${PARSING_DIR}quotes.c \
 				\
 				${SIGNAL_DIR}signal.c \
 				\

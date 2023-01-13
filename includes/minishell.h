@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/10 19:27:48 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/13 22:14:06 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_list
 {
 	char			*str;
 	int				type;
+	int				*dollar;
 	struct s_list	*next;
 	struct s_list	*prev;
 }				t_list;
@@ -197,6 +198,13 @@ int		parsing(t_data *data);
 int		check_dup(t_data *data);
 int		check_cmd(t_data *data);
 int		check_quotes(char *str);
+
+//quotes.c
+int		count_dollars(char *str);
+int		fill_dollar_tab(t_data *data);
+void	fill_dollar_dq(t_list *tmp, int *i, int *index);
+void	fill_dollar_sq(t_list *tmp, int *i, int *index);
+
 
 // ******************************** PRINT *********************************
 

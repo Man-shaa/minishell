@@ -11,3 +11,10 @@ je pense qu'il y a un probleme avec les instances de prompt:
 					desfois quand tu ctrl-C ca ecrit xManuoxxManuox (genre 2 3 4 fois)
 
 faire un check doublon au tout debut
+
+1 - compter les $ pour malloc le int tab
+2 - parcourir et remplir 1 pour $ a changer 0 pour $ a garder
+3 - enlever les quotes
+4 - remplacer les dollars
+
+3 a la place de 4 ou vice versa donc je ne sais pas

@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 19:19:37 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/10 20:07:59 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/13 22:03:31 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,17 @@ int	get_index_exp(char *str, int *count, int *i, int n)
 	{
 		if ((*count) == n)
 			return (1);
-		if (str[(*i)] == '"')
+		else if (str[(*i)] == '"')
 			get_index_dq(str, count, i);
-		if (str[(*i)] == 39)
+		else if (str[(*i)] == 39)
 			get_index_sq(str, count, i);
-		if (str[(*i)] != '|' && str[(*i) + 1] == str[(*i)])
+		else if (str[(*i)] != '|' && str[(*i) + 1] == str[(*i)])
 			(*i)++;
-		(*count)++;
-		(*i)++;
+		else
+		{
+			(*count)++;
+			(*i)++;
+		}
 	}
 	return (0);
 }
@@ -74,6 +77,8 @@ void	get_index_dq(char *str, int *count, int *i)
 			get_index_dq(str, count, i);
 		else if (str[*i] == 39)
 			get_index_sq(str, count, i);
+		if (is_end_of_string(str[(*i)]))
+			(*count)++;
 	}
 	else
 	{
@@ -96,6 +101,8 @@ void	get_index_sq(char *str, int *count, int *i)
 			get_index_sq(str, count, i);
 		else if (str[*i] == '"')
 			get_index_dq(str, count, i);
+		if (is_end_of_string(str[(*i)]))
+			(*count)++;
 	}
 	else
 	{
