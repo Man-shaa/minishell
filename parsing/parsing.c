@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:15:26 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/10 19:33:02 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/13 22:15:06 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 int	parsing(t_data *data)
 {
 	if (!check_dup(data))
-		return (err_msg("minishell : unexpected token or redirection", NULL, NULL, 0));
+		return (err_msg("minishell: unexpected token or redirection", NULL, NULL, 0));
 	if (!check_cmd(data))
-		return (err_msg("minishell : missing a command", NULL, NULL, 0));
+		return (err_msg("minishell: missing a command", NULL, NULL, 0));
+	if (!fill_dollar_tab(data))
+		return (err_msg("minishell: malloc failed", NULL, NULL, 0));
 	return (1);
 }
 
@@ -71,7 +73,6 @@ int	check_quotes(char *str)
 	i = 0;
 	if (!str)
 		return (0);
-	printf("yo");
 	while (str[i])
 	{
 		if (str[i] == '"')
