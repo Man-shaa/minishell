@@ -57,6 +57,7 @@ SRCS		=	main.c \
 				\
 				${SPLIT_DIR}split.c \
 				${SPLIT_DIR}split_utils.c \
+				${SPLIT_DIR}split_index.c \
 				${SPLIT_DIR}words_utils.c \
 				${SPLIT_DIR}chars_utils.c \
 				\
