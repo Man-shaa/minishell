@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:27:16 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/09 18:09:39 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/13 22:28:03 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	echo_env_var(t_data *data, char *str)
 	else
 	{
 		res = ignore_charset(str + 1, "(){}", 0);
-		node = data->envp;
+		node = data->envp;z
 		node = search_node(data->envp, res);
 		if (!node)
 		{
