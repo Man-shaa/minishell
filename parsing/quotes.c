@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:32:56 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/14 19:35:18 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/14 19:41:16 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	fill_dollar_tab(t_data *data)
 			i++;
 		}
 		handle_dollar(data->envp, tmp);
+		tmp->str = remove_quotes(tmp->str);
 		tmp = tmp->next;
 	}
 	return (1);
@@ -62,14 +63,12 @@ int	fill_dollar_tab(t_data *data)
 
 void	fill_dollar_dq(t_list *tmp, int *i, int *index)
 {
-	printf("PASSAGE DANS FILL DOLLAR DQ\n");
 	(*i)++;
 	while (tmp->str[*i] != '"')
 	{
 		if (tmp->str[*i] == '$')
 		{
 			tmp->dollar[*index] = 1;
-			printf("dollar[%d] = 1\n", *index);
 			(*i)++;
 			(*index)++;
 		}
@@ -80,18 +79,96 @@ void	fill_dollar_dq(t_list *tmp, int *i, int *index)
 
 void	fill_dollar_sq(t_list *tmp, int *i, int *index)
 {
-	printf("PASSAGE DANS FILL DOLLAR SQ\n");
 	(*i)++;
 	while (tmp->str[*i] != 39)
 	{
 		if (tmp->str[*i] == '$')
 		{
 			tmp->dollar[*index] = 0;
-			printf("dollar[%d] = 0\n", *index);
 			(*i)++;
 			(*index)++;
 		}
 		else
 			(*i)++;
 	}
+}
+
+int	ft_strlen_quotes(char *str)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (str[i] == '"')
+		{
+			i++;
+			while (str[i] != '"')
+				i++;
+			i++;
+			count += 2;
+		}
+		else if (str[i] == 39)
+		{
+			i++;
+			while (str[i] != 39)
+				i++;
+			i++;
+			count += 2;
+		}
+		else if (str[i])
+			i++;
+	}
+	return (count);
+}
+
+char	*remove_quotes(char *str)
+{
+ 	int		i;
+	int		j;
+	char	*new;
+	
+	i = 0;
+	j = 0;
+	new = ft_calloc(ft_strlen(str) - ft_strlen_quotes(str) + 1, sizeof(char));
+	if (!new)
+		return (NULL);
+	while (str[i])
+	{
+		if (str[i] == '"')
+			remove_dq(str, new, &i, &j);
+		else if (str[i] == 39)
+			remove_sq(str, new, &i, &j);
+		else
+			new[j++] = str[i++];
+	}
+	new[j] = '\0';
+	free (str);
+	return (new);
+}
+
+void	remove_dq(char *str, char *new, int *i, int *j)
+{
+	(*i)++;
+	while (str[*i] != '"')
+	{
+		new[*j] = str[*i];
+		(*i)++;
+		(*j)++;
+	}
+	(*i)++;
+}
+
+void	remove_sq(char *str, char *new, int *i, int *j)
+{
+	(*i)++;
+	while (str[*i] != 39)
+	{
+		new[*j] = str[*i];
+		(*i)++;
+		(*j)++;
+	}
+	(*i)++;
 }
