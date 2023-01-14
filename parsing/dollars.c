@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollars.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:24:48 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/14 19:35:27 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/14 21:40:33 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*replace_dollar(t_envp *envp, char *str)
 	res = ft_substr(str + 1, i - 1);
 	if (!res)
 		return (NULL);
-	res = ignore_charset(res, "{}()", 1);
+	res = ignore_charset(res, "{}", 1);
 	env = search_node(envp, res);
 	ft_free(res);
 	if (!env)

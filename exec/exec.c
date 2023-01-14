@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/14 19:42:03 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/14 21:03:40 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,10 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 		if (!redir(data, cmd))
 			return (close_pipes(data->proc), 1);
 		env_tab = get_env_tab(data->envp);
-		printf("exec here\n\n");
 		execve(cmd->cmd_path, cmd->opt, env_tab);
-		return (free_tab(env_tab), error_cmd(cmd->opt));
+		free_tab(env_tab);
+		error_cmd(cmd->opt);
+		exit(1);
 	}
 	return (1);
 }
@@ -76,7 +77,8 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 int	send_cmd(t_data *data, t_cmd *cmd)
 {
 	signal(SIGQUIT, handle_sigquit);
-	if (!cmd->cmd || !cmd->cmd[0] || is_same(cmd->cmd, "..") || is_same(cmd->cmd, "."))
+	if (!cmd->cmd || !cmd->cmd[0] || is_same(cmd->cmd, "..")
+		|| is_same(cmd->cmd, "."))
 		return (error_cmd(cmd->opt));
 	else if (is_builtin(cmd->cmd))
 		return (exec_builtin(data, cmd->cmd, cmd->opt));

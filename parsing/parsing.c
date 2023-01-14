@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:15:26 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/14 19:33:05 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/14 20:40:21 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 int	parsing(t_data *data)
 {
 	if (!check_dup(data))
-		return (err_msg("minishell: unexpected token or redirection", NULL, NULL, 0));
+		return (err_msg("minishell: unexpected token or redirection",
+				NULL, NULL, 0));
 	if (!check_cmd(data))
 		return (err_msg("minishell: missing a command", NULL, NULL, 0));
-	if (!fill_dollar_tab(data))
+	if (!handle_dollar_quote(data))
 		return (err_msg("minishell: malloc failed", NULL, NULL, 0));
 	return (1);
 }
@@ -31,7 +32,7 @@ int	check_dup(t_data *data)
 	while (tmp)
 	{
 		if (tmp->next && tmp->type != WORD && tmp->type != PIPE
-				&& tmp->next->type != WORD)
+			&& tmp->next->type != WORD)
 		{
 			if (tmp->next->type != PIPE)
 				return (0);
@@ -66,11 +67,8 @@ int	check_cmd(t_data *data)
 	return (1);
 }
 
-int	check_quotes(char *str)
+int	check_quotes(char *str, int i)
 {
-	int	i;
-
-	i = 0;
 	if (!str)
 		return (0);
 	while (str[i])

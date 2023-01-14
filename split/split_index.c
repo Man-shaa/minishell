@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 19:19:37 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/13 22:03:31 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/14 20:17:20 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	get_index_dq(char *str, int *count, int *i)
 			get_index_dq(str, count, i);
 		else if (str[*i] == 39)
 			get_index_sq(str, count, i);
-		if (is_end_of_string(str[(*i)]))
+		else if (is_end_of_string(str[(*i)]))
 			(*count)++;
 	}
 	else
@@ -101,7 +101,7 @@ void	get_index_sq(char *str, int *count, int *i)
 			get_index_sq(str, count, i);
 		else if (str[*i] == '"')
 			get_index_dq(str, count, i);
-		if (is_end_of_string(str[(*i)]))
+		else if (is_end_of_string(str[(*i)]))
 			(*count)++;
 	}
 	else

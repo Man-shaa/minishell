@@ -1,20 +1,6 @@
 cat Makefile | wc return une erreur
-verifier le message d'erreur si doublons de redirections et/ou pipe
-regler la gestion des single quote
-	par ex:
-	'hola' = hola (pour l'instant = 'hola')
-echo '''''' chelou
-"ec"ho = echo et non pas ec ho
 
 je pense qu'il y a un probleme avec les instances de prompt:
-	c'est a de : 	desfois faut exit 5 fois pour vrm exit
-					desfois quand tu ctrl-C ca ecrit xManuoxxManuox (genre 2 3 4 fois)
+	desfois quand tu ctrl-C ca ecrit xManuoxxManuox (genre 2 3 4 fois)
 
-faire un check doublon au tout debut
-
-1 - compter les $ pour malloc le int tab
-2 - parcourir et remplir 1 pour $ a changer 0 pour $ a garder
-3 - enlever les quotes
-4 - remplacer les dollars
-
-3 a la place de 4 ou vice versa donc je ne sais pas
+"$$" tmp->dollar[i et i + 1] = 0

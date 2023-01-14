@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 20:31:39 by mansha            #+#    #+#             */
-/*   Updated: 2023/01/13 20:27:23 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/14 21:34:27 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	add_last_list(t_data *data, char *str)
 		return (1);
 	}
 	last->next = new;
-	new->prev = last;
 	return (1);
 }
 
@@ -45,7 +44,6 @@ t_list	*ft_lstnew(char *str, int type)
 	list->str = str;
 	list->type = type;
 	list->dollar = NULL;
-	list->prev = NULL;
 	list->next = NULL;
 	return (list);
 }

@@ -50,8 +50,8 @@ SRCS		=	main.c \
 				${EXEC_DIR}pipe.c \
 				${EXEC_DIR}redirections.c \
 				\
-				${FREE_DIR}free.c \
 				${FREE_DIR}free_2.c \
+				${FREE_DIR}free.c \
 				\
 				${HISTORY_DIR}history.c \
 				\
@@ -63,13 +63,13 @@ SRCS		=	main.c \
 				\
 				${PARSING_DIR}dollars.c \
 				${PARSING_DIR}parsing.c \
+				${PARSING_DIR}quotes_utils.c \
 				${PARSING_DIR}quotes.c \
 				\
 				${SIGNAL_DIR}signal.c \
 				\
 				${UTILS_DIR}cmd_utils_two.c \
 				${UTILS_DIR}cmd_utils.c \
-				${UTILS_DIR}echo_utils.c \
 				${UTILS_DIR}env_list_utils.c \
 				${UTILS_DIR}exec_utils.c \
 				${UTILS_DIR}export_utils.c \

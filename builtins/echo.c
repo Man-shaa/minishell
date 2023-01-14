@@ -3,19 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:39:45 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/08 15:48:05 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/14 21:43:38 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	trot(t_data *data, char **args, int i)
+// Return 1 si l'option -n est trouvee dans str, sinon 0
+int	is_option_n(char *str)
+{
+	int	i;
+
+	i = 1;
+	if (!str)
+		return (0);
+	if (str[0] != '-')
+		return (0);
+	while (str[i] && str[i] == 'n')
+		i++;
+	if (!str[i])
+		return (1);
+	return (0);
+}
+
+int	echo_each_arg(char **args, int i)
 {
 	int		j;
-	int		ret;
 	char	**one;
 
 	while (args[i])
@@ -26,14 +42,14 @@ int	trot(t_data *data, char **args, int i)
 		j = 0;
 		while (one[j])
 		{
-			ret = ft_putstr_echo(data, one, j);
+			ft_putstr(one[j]);
 			j++;
-			if (one[j] && ret != 0)
+			if (one[j])
 				write(STDOUT_FILENO, " ", 1);
 		}
 		i++;
 		free_tab(one);
-		if (args[i] && ret != 0)
+		if (args[i])
 			write(STDOUT_FILENO, " ", 1);
 	}
 	return (0);
@@ -51,7 +67,7 @@ void	ft_echo(t_data *data, char **args)
 		i++;
 		boule = 1;
 	}
-	data->return_val = trot(data, args, i);
+	data->return_val = echo_each_arg(args, i);
 	if (boule == 0)
 		write(STDOUT_FILENO, "\n", 1);
 }

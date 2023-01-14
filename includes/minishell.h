@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/14 19:41:50 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/14 21:34:30 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct s_list
 	int				type;
 	int				*dollar;
 	struct s_list	*next;
-	struct s_list	*prev;
 }				t_list;
 
 typedef struct s_envp
@@ -88,6 +87,8 @@ int		exec_builtin(t_data *data, char *cmd, char **args);
 int		ft_cd(t_data *data, char *str);
 
 // echo.c
+int		is_option_n(char *str);
+int		echo_each_arg(char **args, int i);
 void	ft_echo(t_data *data, char **args);
 
 // env.c
@@ -202,14 +203,17 @@ void	handle_dollar(t_envp *envp, t_list *list);
 int		parsing(t_data *data);
 int		check_dup(t_data *data);
 int		check_cmd(t_data *data);
-int		check_quotes(char *str);
+int		check_quotes(char *str, int i);
 
 //quotes.c
 int		count_dollars(char *str);
-int		fill_dollar_tab(t_data *data);
+int		handle_dollar_quote(t_data *data);
+int		fill_dollar_tab(t_list *tmp);
 void	fill_dollar_dq(t_list *tmp, int *i, int *index);
 void	fill_dollar_sq(t_list *tmp, int *i, int *index);
-int		ft_strlen_quotes(char *str);
+
+//quotes_utils.c
+int		ft_strlen_quotes(char *str, int i);
 char	*remove_quotes(char *str);
 void	remove_dq(char *str, char *new, int *i, int *j);
 void	remove_sq(char *str, char *new, int *i, int *j);
@@ -276,11 +280,6 @@ int		pipe_count(t_cmd *cmd);
 int		count_tokens(t_data *data, int n);
 int		words_to_pipe(t_data *data, int n);
 int		command_or_builtin(char *str, int *cappuccino);
-
-// echo_utils.c
-int		ft_putstr_echo(t_data *data, char **str, int i);
-int		is_option_n(char *str);
-int		echo_env_var(t_data *data, char *str);
 
 // export_utis.c
 int		is_concat(char *str);

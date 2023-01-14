@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/14 19:37:23 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/14 20:41:28 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	handle_token_redir(t_proc *proc, char *token, int type)
 		proc->fd_in = open(token, O_RDONLY, 0644);
 		if (proc->fd_in < 0)
 			return (err_msg("open: No such file or directory", NULL, NULL, 0));
-		dup2(proc->fd_in, STDIN_FILENO); // PROTECTIONSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSss
+		dup2(proc->fd_in, STDIN_FILENO); // PROTECTIONSSSSSSSSSSSSS
 		close(proc->fd_in);
 	}
 	else if (type == OUT)
