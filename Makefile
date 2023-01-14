@@ -61,6 +61,7 @@ SRCS		=	main.c \
 				${SPLIT_DIR}words_utils.c \
 				${SPLIT_DIR}chars_utils.c \
 				\
+				${PARSING_DIR}dollars.c \
 				${PARSING_DIR}parsing.c \
 				${PARSING_DIR}quotes.c \
 				\
@@ -74,8 +75,9 @@ SRCS		=	main.c \
 				${UTILS_DIR}export_utils.c \
 				${UTILS_DIR}split_env.c \
 				${UTILS_DIR}split_normal.c \
-				${UTILS_DIR}str_utils.c \
 				${UTILS_DIR}str_utils_2.c \
+				${UTILS_DIR}str_utils_3.c \
+				${UTILS_DIR}str_utils.c \
 				${UTILS_DIR}utils.c
 
 OBJS		=	${SRCS:.c=.o}

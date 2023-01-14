@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/13 21:43:22 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:40:43 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ void	get_prompt(char **envp)
 		if (!check_quotes(str))
 			return (ft_putstr("quote is not closed\n"), get_prompt(envp));
 		if (!ft_split(str, data))
-			return (printf("problem : split unsuccesfull\n"), get_prompt(envp));
+			return (printf("problem: split unsuccesfull\n"), get_prompt(envp));
 		if (!parsing(data))
-			return (printf("problem : parsing\n"), get_prompt(envp));
+			return (printf("problem: parsing\n"), get_prompt(envp));
 		if (!get_cmd_struct(data))
-			return (printf("problem : t_cmd\n"), free_data(data));
+			return (printf("problem: t_cmd\n"), free_data(data));
 		if (!execution(data))
-			return (printf("problem : execution\n"), free_data(data));
+			return (printf("problem: execution\n"), free_data(data));
 		reset_data(data, str);
 	}
 	free_data(data);

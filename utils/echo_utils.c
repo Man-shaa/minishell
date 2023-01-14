@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:27:16 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/13 22:28:46 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/14 19:36:21 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	echo_env_var(t_data *data, char *str)
 	else
 	{
 		res = ignore_charset(str + 1, "(){}", 0);
-		// fonction pour chercher jusqu'au separateur (= tout saud alphaumerique + '_'), renvoyer ca dans res
 		node = data->envp;
 		node = search_node(data->envp, res);
 		if (!node)

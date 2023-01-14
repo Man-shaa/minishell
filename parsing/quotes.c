@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:32:56 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/13 22:26:05 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/14 19:35:18 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,9 @@ int	fill_dollar_tab(t_data *data)
 				fill_dollar_sq(tmp, &i, &index);
 			i++;
 		}
+		handle_dollar(data->envp, tmp);
 		tmp = tmp->next;
 	}
-	//fonction manu echo_env_var()
-	//fonction mateo enlever les quotes
 	return (1);
 }
 

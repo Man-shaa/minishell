@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:38:01 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/02 16:35:55 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/14 19:36:49 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	create_pipes_array(t_data *data)
 		proc->n_pipes = 0;
 		return (1);
 	}
-	proc->pipe_fd = ft_calloc(proc->n_pipes + 1, sizeof(int *)); // pk +1
+	proc->pipe_fd = ft_calloc(proc->n_pipes + 1, sizeof(int *));
 	if (!proc->pipe_fd)
 		return (0);
 	while (i < proc->n_pipes)

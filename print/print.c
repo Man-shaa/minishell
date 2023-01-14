@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 19:49:19 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/30 18:45:35 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/14 18:41:37 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,20 @@ void	print_int_tab(t_data *data, int *tab)
 	n = count_tokens(data, 0);
 	i = 0;
 	printf("INT TAB SIZE : %d\n", n);
+	while (i < n)
+	{
+		printf("tab[%d] : %d\n", i, tab[i]);
+		i++;
+	}
+}
+
+void	print_tab_index(int *tab, int n)
+{
+	int	i;
+
+	i = 0;
+	if (!tab)
+		return ;
 	while (i < n)
 	{
 		printf("tab[%d] : %d\n", i, tab[i]);

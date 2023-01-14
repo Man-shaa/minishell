@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/13 22:14:06 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/14 19:37:34 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,11 @@ void	add_to_history(char **av);
 
 // ******************************* PARSING ********************************
 
+// dollars.c
+char	*replace_dollar(t_envp *envp, char *str);
+char	*new_str(char *big_str, char *res, int *index);
+void	handle_dollar(t_envp *envp, t_list *list);
+
 // parsing.c
 int		parsing(t_data *data);
 int		check_dup(t_data *data);
@@ -205,7 +210,6 @@ int		fill_dollar_tab(t_data *data);
 void	fill_dollar_dq(t_list *tmp, int *i, int *index);
 void	fill_dollar_sq(t_list *tmp, int *i, int *index);
 
-
 // ******************************** PRINT *********************************
 
 // print.c
@@ -214,6 +218,7 @@ void	print_struct_cmd(t_data *data);
 void	print_tab(char **tab);
 void	print_pipe_fd(int **tab, int until);
 void	print_int_tab(t_data *data, int *tab);
+void	print_tab_index(int *tab, int n);
 
 // ******************************** SIGNAL *********************************
 
@@ -311,6 +316,11 @@ int		is_same(char *s1, char *s2);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strchr(char *str, char c);
 char	*ignore_charset(char *str, char *charset, int n);
+
+// str_utils_3.c
+char	*ft_substr(char *str, int n);
+int		is_sep(int a);
+char	*ft_strdup_until(char *str, int n);
 
 // str_utils.c
 size_t	ft_strlen(char *str);

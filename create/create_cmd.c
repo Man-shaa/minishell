@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:53:43 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/05 15:29:15 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/14 19:38:00 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	get_cmd_struct(t_data *data)
 	return (1);
 }
 
-			// printf("CMD->TOKEN[0]= %s\n", cmd->token[0]);
 //return 1 si la creation de data->cmd abouti
 int	start_cmd_struct(t_data *data, t_list *tmp, t_cmd *cmd)
 {
