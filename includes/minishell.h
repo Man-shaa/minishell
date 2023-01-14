@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/13 22:14:06 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:57:25 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,7 +204,10 @@ int		count_dollars(char *str);
 int		fill_dollar_tab(t_data *data);
 void	fill_dollar_dq(t_list *tmp, int *i, int *index);
 void	fill_dollar_sq(t_list *tmp, int *i, int *index);
-
+int		ft_strlen_quotes(char *str);
+char	*remove_quotes(char *str);
+void	remove_dq(char *str, char *new, int *i, int *j);
+void	remove_sq(char *str, char *new, int *i, int *j);
 
 // ******************************** PRINT *********************************
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:06:08 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/21 18:44:10 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/14 19:02:33 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ int	is_cmd(t_data *data, char *str, char *env_path)
 	char	*save;
 
 	i = 0;
+	if (!str || !str[0])
+		return (0);
 	if (is_builtin(str) || !is_path(data, str))
 		return (1);
 	all_paths = ft_split_normal(env_path, ':');
