@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/16 20:30:04 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/16 21:46:52 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	execution(t_data *data)
 		data->return_val = send_cmd(data, cmd);
 		cmd = cmd->next;
 	}
-
 	handle_signal();
 	return (1);
 }
@@ -44,7 +43,6 @@ void	wait_all_child(t_data *data, int n)
 	{
 		waitpid(data->proc->pid[i], &status, 0);
 		data->return_val = WEXITSTATUS(status);
-		printf("Ret : %d\n ", WEXITSTATUS(status));
 		i++;
 	}
 }
@@ -54,6 +52,7 @@ void	wait_all_child(t_data *data, int n)
 int	exec_binary(t_data *data, t_cmd *cmd)
 {
 	char	**env_tab;
+	int		ret;
 
 	if (!cmd->cmd_path)
 	{
@@ -67,9 +66,10 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 			return (close_pipes(data->proc), 1);
 		env_tab = get_env_tab(data->envp);
 		execve(cmd->cmd_path, cmd->opt, env_tab);
+		ret = error_cmd(cmd->opt);
 		free_tab(env_tab);
-		data->return_val = error_cmd(cmd->opt);
-		exit(1);
+		free_data(data);
+		exit(ret);
 	}
 	close_pipes(data->proc);
 	wait_all_child(data, data->proc->n_pipes + 1);
