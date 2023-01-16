@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/16 21:42:45 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:32:11 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	reset_data(t_data *data, char *str)
 		data->cmd = NULL;
 	}
 	if (data->proc)
+	{
+		free_int_tab(data->proc->pipe_fd, data->proc->n_pipes - 1);
 		ft_free(data->proc->pid);
+	}
 }
 
 // Affiche un prompt different selon la valeur de retour precedente 
@@ -66,7 +69,7 @@ void	get_prompt(char **envp)
 			return (printf("problem: t_cmd\n"), free_data(data));
 		if (!execution(data))
 			return (printf("problem: execution\n"), free_data(data));
-		printf("Retour : %d\n\n", data->return_val);
+		// printf("Retour : %d\n\n", data->return_val);
 		reset_data(data, str);
 	}
 	free_data(data);
