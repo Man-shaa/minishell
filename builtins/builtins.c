@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:48:44 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/16 17:25:31 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:30:09 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ int	exec_builtin(t_data *data, char *cmd, char **args)
 {
 	int	ret_exit;
 
-	printf("cmd : %s\n", cmd);
-	print_tab(args);
 	if (is_same(cmd, "cd") && args && args[0])
 		data->return_val = ft_cd(data, args[0]);
 	else if (is_same(cmd, "export") && args)
