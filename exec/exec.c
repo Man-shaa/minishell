@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/16 20:05:47 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/16 20:30:04 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,24 @@ int	execution(t_data *data)
 		data->return_val = send_cmd(data, cmd);
 		cmd = cmd->next;
 	}
-	if (data->proc->n_pipes > 0)
-	{
-		close_pipes(data->proc);
-		wait_all_child(data->proc, data->proc->n_pipes + 1);
-	}
+
 	handle_signal();
 	return (1);
 }
 
-void	wait_all_child(t_proc *proc, int n)
+void	wait_all_child(t_data *data, int n)
 {
 	int	i;
+	int	status;
 
 	i = 0;
-	if (!proc->pid)
+	if (!data->proc->pid)
 		return ;
 	while (i < n)
 	{
-		waitpid(proc->pid[i], NULL, 0);
+		waitpid(data->proc->pid[i], &status, 0);
+		data->return_val = WEXITSTATUS(status);
+		printf("Ret : %d\n ", WEXITSTATUS(status));
 		i++;
 	}
 }
@@ -69,10 +68,12 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 		env_tab = get_env_tab(data->envp);
 		execve(cmd->cmd_path, cmd->opt, env_tab);
 		free_tab(env_tab);
-		error_cmd(cmd->opt);
+		data->return_val = error_cmd(cmd->opt);
 		exit(1);
 	}
-	return (1);
+	close_pipes(data->proc);
+	wait_all_child(data, data->proc->n_pipes + 1);
+	return (data->return_val);
 }
 
 // Envoies la commande a la fonction de builtins ou d'exec bin

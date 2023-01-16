@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:48:44 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/16 19:30:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/16 20:33:17 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	exec_builtin(t_data *data, char *cmd, char **args)
 		data->return_val = ft_cd(data, args[0]);
 	else if (is_same(cmd, "export") && args)
 		data->return_val = ft_export(data, args);
-	if (is_same(cmd, "echo") && args)
-		ft_echo(data, args);
+	else if (is_same(cmd, "echo") && args)
+		data->return_val = ft_echo(data, args);
 	else if (is_same(cmd, "env") && args)
 		print_env(data->envp, args);
 	else if (is_same(cmd, "exit") && args)

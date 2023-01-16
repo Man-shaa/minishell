@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:39:45 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/16 17:25:23 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/16 20:21:37 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	echo_each_arg(char **args, int i)
 	return (0);
 }
 
-void	ft_echo(t_data *data, char **args)
+int	ft_echo(t_data *data, char **args)
 {
 	int		i;
 	int		boule;
@@ -70,4 +70,5 @@ void	ft_echo(t_data *data, char **args)
 	data->return_val = echo_each_arg(args, i);
 	if (boule == 0)
 		write(STDOUT_FILENO, "\n", 1);
+	return (0);
 }
