@@ -6,11 +6,18 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 19:06:10 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/30 21:29:12 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:46:27 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	ft_free(void *addr)
+{
+	if (addr)
+		free(addr);
+	addr = NULL;
+}
 
 void	free_int_tab(int **tab, int last)
 {

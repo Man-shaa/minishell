@@ -6,18 +6,11 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:53:54 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/14 18:20:43 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:46:20 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void	ft_free(void *addr)
-{
-	if (addr)
-		free(addr);
-	addr = NULL;
-}
 
 void	*ft_calloc(size_t n, size_t size)
 {

@@ -3,21 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   dollars.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:24:48 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/14 21:40:33 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:03:00 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	*replace_dollar(t_envp *envp, char *str)
+char	*replace_ret_val(t_data *data, char *str, int index)
+{
+	char	*res;
+	char	*before;
+	char	*after;
+	char	*ret;
+
+	ret = ft_itoa(data->return_val);
+	if (!ret)
+		return (str);
+	before = ft_strdup_until(str, index);
+	res = ft_strjoin(before, ret);
+	ft_free(before);
+	ft_free(ret);
+	if (!res)
+		return (err_msg("Malloc failed", NULL, NULL, 1), str);
+	before = ft_strndup(res, 0);
+	ft_free(res);
+	after = ft_strndup(&str[index + 2], 0);
+	res = ft_strjoin(before, after);
+	if (!res)
+		return (err_msg("Malloc failed", NULL, NULL, 1), str);
+	ft_free(before);
+	ft_free(after);
+	return (res);
+}
+
+char	*replace_dollar(t_envp *envp, char *big_str, int index)
 {
 	int		i;
 	char	*res;
+	char	*str;
 	t_envp	*env;
 
+	str = &big_str[index];
 	i = 1;
 	while (str[i] && !is_sep((int)str[i]))
 		i++;
@@ -32,6 +61,7 @@ char	*replace_dollar(t_envp *envp, char *str)
 	res = ft_strndup(env->tab[1], 0);
 	if (!res)
 		return (NULL);
+	res = new_str(big_str, res, &index);
 	return (res);
 }
 
@@ -63,7 +93,7 @@ char	*new_str(char *big_str, char *res, int *index)
 	return (ft_free(before), ft_free(after), new);
 }
 
-void	handle_dollar(t_envp *envp, t_list *list)
+void	handle_dollar(t_data *data, t_list *list)
 {
 	char	*res;
 	int		dollar_count;
@@ -71,16 +101,16 @@ void	handle_dollar(t_envp *envp, t_list *list)
 
 	i = 0;
 	dollar_count = 0;
-	if (!count_dollars(list->str))
-		return ;
 	while (i < (int)ft_strlen(list->str) && list->str[i])
 	{
 		if (list->str[i] == '$')
 		{
 			if (list->dollar[dollar_count] == 1)
 			{
-				res = replace_dollar(envp, &list->str[i]);
-				res = new_str(list->str, res, &i);
+				if (list->str[i + 1] == '?')
+					res = replace_ret_val(data, list->str, i);
+				else
+					res = replace_dollar(data->envp, list->str, i);
 				ft_free(list->str);
 				list->str = res;
 			}

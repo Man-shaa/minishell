@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/14 21:34:30 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:01:54 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define DELIM	4 // <<	heredoc
 # define APPEND	5 // >>	redirection sortie en mode append
 # define PIPE	6 // |	ET
+
+// int	data->return_val;
 
 typedef struct s_proc
 {
@@ -179,6 +181,7 @@ int		handle_token_redir(t_proc *proc, char *token, int type);
 // free_2.c
 void	free_int_tab(int **tab, int last);
 void	free_proc(t_proc *proc);
+void	ft_free(void *addr);
 
 // free.c
 void	free_tab(char **tab);
@@ -195,9 +198,10 @@ void	add_to_history(char **av);
 // ******************************* PARSING ********************************
 
 // dollars.c
-char	*replace_dollar(t_envp *envp, char *str);
+char	*replace_ret_val(t_data *data, char *str, int index);
+char	*replace_dollar(t_envp *envp, char *big_str, int index);
 char	*new_str(char *big_str, char *res, int *index);
-void	handle_dollar(t_envp *envp, t_list *list);
+void	handle_dollar(t_data *data, t_list *list);
 
 // parsing.c
 int		parsing(t_data *data);
@@ -324,6 +328,8 @@ char	*ignore_charset(char *str, char *charset, int n);
 char	*ft_substr(char *str, int n);
 int		is_sep(int a);
 char	*ft_strdup_until(char *str, int n);
+void	fill(char *str, long long nb, int j);
+char	*ft_itoa(long long n);
 
 // str_utils.c
 size_t	ft_strlen(char *str);
@@ -333,7 +339,6 @@ char	*ft_strndup(char *str, int n);
 char	*ft_strcmp(char *str, char *to_find);
 
 // utils.c
-void	ft_free(void *addr);
 void	*ft_calloc(size_t n, size_t size);
 long	ft_atoi(const char *str);
 void	ft_putnbr(int n);

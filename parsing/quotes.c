@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:32:56 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/14 21:08:23 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:21:35 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	handle_dollar_quote(t_data *data)
 	{
 		if (!fill_dollar_tab(tmp))
 			return (0);
-		handle_dollar(data->envp, tmp);
+		if (count_dollars(tmp->str))
+			handle_dollar(data, tmp);
 		tmp->str = remove_quotes(tmp->str);
 		tmp = tmp->next;
 	}
