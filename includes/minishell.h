@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 15:13:15 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:55:18 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,6 @@ void	handle_dollar(t_data *data, t_list *list);
 // parsing.c
 int		parsing(t_data *data);
 int		check_dup(t_data *data);
-int		check_cmd(t_data *data);
 int		check_quotes(char *str, int i);
 
 //quotes.c

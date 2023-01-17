@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:06:08 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 15:26:49 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:50:43 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	is_absolute_path(t_data *data, t_cmd *cmd)
 {
 	if (!is_path(data, cmd->cmd))
 	{
-		cmd->cmd_path = ft_strndup(cmd->cmd, 0);
+		if (!cmd->cmd_path)
+			cmd->cmd_path = ft_strndup(cmd->cmd, 0);
 		return (1);
 	}
 	return (0);
