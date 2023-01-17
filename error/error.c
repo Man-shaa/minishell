@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:19:29 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 17:04:05 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:42:23 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int	error_cmd(char **cmd)
 		ret = err_msg("minishell: ", cmd[0], ": is a directory", 126);
 	else if (fd != -1 && dir == NULL)
 		ret = err_msg("minishell: ", cmd[0], ": Permission denied", 127);
-	else
-		ret = err_msg("minishell: ", cmd[0], ": command not found", 127);
 	if (fd > 0)
 		close(fd);
 	if (dir)

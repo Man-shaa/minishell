@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:03:31 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/16 21:43:11 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:49:44 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_list	*fill_cmd_tokens(t_cmd *cmd, t_list *tmp, int *k)
 
 void	handle_cmd(t_data *data, t_cmd *cmd, t_list *tmp, int *j)
 {
-	cmd->cmd = tmp->str;
+	cmd->cmd = ft_strndup(tmp->str, 0);
 	if (!is_builtin(tmp->str))
 	{
 		cmd->opt[(*j)] = tmp->str;
