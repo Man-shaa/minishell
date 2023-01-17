@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 18:44:13 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:45:00 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@
 # define DELIM	4 // <<	heredoc
 # define APPEND	5 // >>	redirection sortie en mode append
 # define PIPE	6 // |	ET
-
-// int	data->return_val;
 
 typedef struct s_proc
 {
