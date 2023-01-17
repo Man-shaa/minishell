@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:52:09 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/17 19:42:45 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:50:35 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ int	ft_split(char *str, t_data *data)
 		i++;
 	}
 	tab[i] = 0;
-	print_tab(tab);
 	ft_free(tab);
 	return (1);
 }
