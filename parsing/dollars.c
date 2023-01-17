@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:24:48 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/16 20:30:30 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:47:45 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*replace_dollar(t_envp *envp, char *big_str, int index)
 	env = search_node(envp, res);
 	ft_free(res);
 	if (!env)
-		return (NULL);
+		return (ft_strndup(&big_str[i], 0));
 	res = ft_strndup(env->tab[1], 0);
 	if (!res)
 		return (NULL);
