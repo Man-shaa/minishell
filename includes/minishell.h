@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 17:55:18 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:00:42 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int		ft_cd(t_data *data, char *str);
 // echo.c
 int		is_option_n(char *str);
 int		echo_each_arg(char **args, int i);
-int	ft_echo(t_data *data, char **args);
+int		ft_echo(t_data *data, char **args);
 
 // env.c
 int		print_env(t_envp *envp, char **args);
