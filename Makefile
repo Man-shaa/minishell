@@ -64,6 +64,7 @@ SRCS		=	main.c \
 				${SPLIT_DIR}chars_quotes.c \
 				\
 				${PARSING_DIR}dollars.c \
+				${PARSING_DIR}fill_dollar.c \
 				${PARSING_DIR}parsing.c \
 				${PARSING_DIR}quotes_utils.c \
 				${PARSING_DIR}quotes.c \
