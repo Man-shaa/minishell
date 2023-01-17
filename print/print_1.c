@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 19:49:19 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/14 18:41:37 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:02:41 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,37 +82,6 @@ void	print_pipe_fd(int **tab, int until)
 		printf("pipe_fd[%d][%d] : %d\n", i, 0, tab[i][0]);
 		printf("pipe_fd[%d][%d] : %d\n", i, 1, tab[i][1]);
 		printf("\n");
-		i++;
-	}
-}
-
-void	print_int_tab(t_data *data, int *tab)
-{
-	int	n;
-	int	i;
-
-	if (!tab)
-		return ;
-	n = count_tokens(data, 0);
-	i = 0;
-	printf("INT TAB SIZE : %d\n", n);
-	while (i < n)
-	{
-		printf("tab[%d] : %d\n", i, tab[i]);
-		i++;
-	}
-}
-
-void	print_tab_index(int *tab, int n)
-{
-	int	i;
-
-	i = 0;
-	if (!tab)
-		return ;
-	while (i < n)
-	{
-		printf("tab[%d] : %d\n", i, tab[i]);
 		i++;
 	}
 }

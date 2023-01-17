@@ -23,7 +23,8 @@ SPLIT_DIR	=	split/
 UTILS_DIR	=	utils/
 
 SRCS		=	main.c \
-				print/print.c \
+				print/print_1.c \
+				print/print_2.c \
 				\
 				${BUILTS_DIR}builtins.c \
 				${BUILTS_DIR}cd.c \
@@ -60,6 +61,7 @@ SRCS		=	main.c \
 				${SPLIT_DIR}split_index.c \
 				${SPLIT_DIR}words_utils.c \
 				${SPLIT_DIR}chars_utils.c \
+				${SPLIT_DIR}chars_quotes.c \
 				\
 				${PARSING_DIR}dollars.c \
 				${PARSING_DIR}parsing.c \

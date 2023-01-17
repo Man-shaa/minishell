@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 18:32:55 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:44:13 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,11 +224,13 @@ void	remove_sq(char *str, char *new, int *i, int *j);
 
 // ******************************** PRINT *********************************
 
-// print.c
+// print_1.c
 void	print_list(t_list *list);
 void	print_struct_cmd(t_data *data);
 void	print_tab(char **tab);
 void	print_pipe_fd(int **tab, int until);
+
+//print_2.c
 void	print_int_tab(t_data *data, int *tab);
 void	print_tab_index(int *tab, int n);
 
@@ -269,8 +271,12 @@ int		count_words_single(char *str, int *i, int *count);
 int		count_chars_cmd(char *str, int *i, int *count, int n);
 int		count_chars_redir(char *str, int *i, int *count, int n);
 int		count_chars_pipe(int *i, int *count, int n);
-int		count_chars_quote(char *str, int *i, int *count, int n);
+
+//chars_quotes.c
+int		count_chars_double(char *str, int *i, int *count, int n);
+int		count_chars_double_inner(char *str, int *i, int *count, int n);
 int		count_chars_single(char *str, int *i, int *count, int n);
+int		count_chars_single_inner(char *str, int *i, int *count, int n);
 
 // ******************************** UTILS *********************************
 
