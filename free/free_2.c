@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 19:06:10 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/16 23:04:24 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:25:38 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_int_tab(int **tab, int last)
 	int	i;
 
 	i = 0;
-	if (!tab)
+	if (!tab || last <= 0)
 		return ;
 	while (i < last + 1)
 	{
@@ -32,6 +32,7 @@ void	free_int_tab(int **tab, int last)
 		i++;
 	}
 	ft_free(tab);
+	tab = NULL;
 }
 
 void	free_proc(t_proc *proc)

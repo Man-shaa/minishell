@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/16 22:32:11 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:43:52 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 void	reset_data(t_data *data, char *str)
 {
 	ft_free(str);
+	str = NULL;
 	if (data->list)
 	{
 		free_list(data->list);
@@ -28,7 +29,7 @@ void	reset_data(t_data *data, char *str)
 	}
 	if (data->proc)
 	{
-		free_int_tab(data->proc->pipe_fd, data->proc->n_pipes - 1);
+		free_int_tab(data->proc->pipe_fd, data->proc->n_pipes);
 		ft_free(data->proc->pid);
 	}
 }
@@ -69,7 +70,6 @@ void	get_prompt(char **envp)
 			return (printf("problem: t_cmd\n"), free_data(data));
 		if (!execution(data))
 			return (printf("problem: execution\n"), free_data(data));
-		// printf("Retour : %d\n\n", data->return_val);
 		reset_data(data, str);
 	}
 	free_data(data);

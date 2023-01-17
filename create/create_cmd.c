@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:53:43 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/14 19:38:00 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:47:18 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ int	get_cmd_struct(t_data *data)
 		return (0);
 	// printf("Nombre de commande : %d\n\n", pipe_count(data->cmd) + 1);
 	data->proc->pid = ft_calloc(pipe_count(data->cmd) + 1, sizeof(pid_t));
+	int	i = 0;
+	while (i < pipe_count(data->cmd) + 1)
+	{
+		data->proc->pid[i] = -1;
+		i++;
+	}
 	return (1);
 }
 

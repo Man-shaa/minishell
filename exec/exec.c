@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/16 23:12:08 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:55:34 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	wait_all_child(t_data *data, int n)
 	int	i;
 	int	status;
 
+	status = 1;
 	i = 0;
 	if (!data->proc->pid)
 		return ;
@@ -67,11 +68,15 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 		if (!redir(data, cmd))
 			return (close_pipes(data->proc), free_data(data), 1);
 		env_tab = get_env_tab(data->envp);
-		execve(cmd->cmd_path, cmd->opt, env_tab);
-		ret = error_cmd(cmd->opt);
-		free_tab(env_tab);
-		free_data(data);
-		exit(ret);
+		if (execve(cmd->cmd_path, cmd->opt, env_tab) == -1)
+		{
+			printf("execve failed\n\n");
+			ret = error_cmd(cmd->opt);
+			printf("Retour exec_binary : %d\n", ret);
+			free_tab(env_tab);
+			free_data(data);
+			exit(ret);
+		}
 	}
 	return (data->return_val);
 }
@@ -83,7 +88,10 @@ int	send_cmd(t_data *data, t_cmd *cmd)
 	signal(SIGQUIT, handle_sigquit);
 	if (!cmd->cmd || !cmd->cmd[0] || is_same(cmd->cmd, "..")
 		|| is_same(cmd->cmd, "."))
+	{
+		printf("exit at send_cmd\n\n");
 		return (error_cmd(cmd->opt));
+	}
 	else if (is_builtin(cmd->cmd))
 		return (exec_builtin(data, cmd->cmd, cmd->opt));
 	else if (is_cmd(data, cmd->cmd, data->env_path))

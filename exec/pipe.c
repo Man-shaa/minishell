@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:38:01 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/16 22:31:31 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:09:37 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	create_pipes_array(t_data *data)
 	return (1);
 }
 
-// Close tous les pipes et fd_in/out
+// Close tous les pipes
 void	close_pipes(t_proc *proc)
 {
 	int	i;
