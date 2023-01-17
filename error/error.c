@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:19:29 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 14:50:34 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:43:28 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,24 @@ int	error_cmd(char **cmd)
 
 	ret = 0;
 	printf("error_cmd\n");
-	if (!cmd && cmd[0])
-		return (err_msg("minishell: ", cmd[0], "command not found: ", 127));
-	if (!cmd[0])
-		return (0);
+	if (!cmd || !cmd[0])
+		return (1);
+	if (ft_strchr(cmd[0], '/'))
+		return (err_msg("minishell: ", cmd[0], ": command not found", 127));
 	fd = open(cmd[0], O_WRONLY);
 	dir = opendir(cmd[0]);
-	if (ft_strchr(cmd[0], '/'))
-		ret = err_msg("minishell: ", cmd[0], ": command not found", 127);
-	else if (fd == -1 && dir == NULL)
+	if (fd == -1 && dir == NULL)
 		ret = err_msg("minishell: ", cmd[0], ": No such file or directory",
 				127);
 	else if (fd == -1 && dir != NULL)
 		ret = err_msg("minishell: ", cmd[0], ": is a directory", 126);
 	else if (fd != -1 && dir == NULL)
 		ret = err_msg("minishell: ", cmd[0], ": Permission denied", 127);
+	else
+		ret = err_msg("minishell: ", cmd[0], ": command not found", 127);
 	if (fd > 0)
 		close(fd);
 	if (dir)
 		closedir(dir);
-	printf("ret : %d\n", ret);	
 	return (ret);
 }

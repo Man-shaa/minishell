@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:06:08 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/14 19:02:33 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:26:49 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	is_path(t_data *data, char *av)
 		return (0);
 	else if (access(av, F_OK | X_OK) == 0)
 	{
-		data->cmd->cmd_path = av;
+		if (data->cmd)
+			data->cmd->cmd_path = ft_strndup(av, 0);
 		return (0);
 	}
 	return (1);
