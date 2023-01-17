@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:43:56 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/17 18:49:15 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:46:17 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	fill_dollar(t_list *tmp, int *i, int *index)
 		tmp->dollar[*index] = 0;
 		(*index)++;
 	}
-	else if (!tmp->str[(*i) + 1])
+	else if (!tmp->str[(*i) + 1] || tmp->str[(*i) + 1] == '"'
+		|| tmp->str[(*i) + 1] == 39)
 		tmp->dollar[(*index)++] = 0;
 	else
 		tmp->dollar[(*index)++] = 1;
@@ -64,7 +65,7 @@ void	fill_dollar_dq(t_list *tmp, int *i, int *index)
 				(*i)++;
 				tmp->dollar[(*index)++] = 0;
 			}
-			else if (!tmp->str[(*i) + 1])
+			else if (!tmp->str[(*i) + 1] || tmp->str[(*i) + 1] == '"')
 				tmp->dollar[(*index)++] = 0;
 			else
 				tmp->dollar[(*index)++] = 1;
