@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 18:00:19 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:09:29 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	send_cmd(t_data *data, t_cmd *cmd)
 {
 	signal(SIGQUIT, handle_sigquit);
 	if (!cmd->cmd || !cmd->cmd[0] || is_same(cmd->cmd, "..")
-			|| is_same(cmd->cmd, "."))
+		|| is_same(cmd->cmd, "."))
 		return (error_cmd(cmd->opt));
 	else if (is_builtin(cmd->cmd))
 		return (exec_builtin(data, cmd->cmd, cmd->opt));

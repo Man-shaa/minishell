@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 19:06:10 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 14:25:38 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:32:32 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,21 @@ void	free_proc(t_proc *proc)
 	if (proc->pipe_fd)
 		free_int_tab(proc->pipe_fd, proc->n_pipes);
 	ft_free(proc);
+}
+
+// Free tout t_data sauf les variables dans t_proc
+void	free_data_proc(t_data *data)
+{
+	if (!data)
+		return ;
+	if (data->list)
+		free_list(data->list);
+	if (data->cmd)
+		free_cmd(data->cmd);
+	if (data->envp)
+		free_envp(data->envp);
+	if (data->proc)
+		ft_free(data->proc);
+	ft_free(data);
+	rl_clear_history();
 }

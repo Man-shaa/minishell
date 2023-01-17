@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 18:00:42 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:32:55 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,7 @@ int		handle_token_redir(t_proc *proc, char *token, int type);
 void	free_int_tab(int **tab, int last);
 void	free_proc(t_proc *proc);
 void	ft_free(void *addr);
+void	free_data_proc(t_data *data);
 
 // free.c
 void	free_tab(char **tab);
