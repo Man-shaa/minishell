@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 18:57:11 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 20:24:45 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,7 @@ void	add_to_history(char **av);
 
 // dollars.c
 char	*replace_ret_val(t_data *data, char *str, int index);
-char	*replace_dollar(t_envp *envp, char *big_str, int index);
+char	*replace_dollar(t_envp *envp, char *big_str, int *index);
 char	*new_str(char *big_str, char *res, int *index);
 void	handle_dollar(t_data *data, t_list *list);
 

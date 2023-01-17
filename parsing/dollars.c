@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:24:48 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 19:47:45 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 20:26:58 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,30 +39,33 @@ char	*replace_ret_val(t_data *data, char *str, int index)
 	return (res);
 }
 
-char	*replace_dollar(t_envp *envp, char *big_str, int index)
+char	*replace_dollar(t_envp *envp, char *big_str, int *index)
 {
 	int		i;
 	char	*res;
 	char	*str;
+	char	*after;
 	t_envp	*env;
 
-	str = &big_str[index];
+	str = &big_str[*index];
 	i = 1;
 	while (str[i] && !is_sep((int)str[i]))
 		i++;
 	res = ft_substr(str + 1, i - 1);
-	if (!res)
-		return (NULL);
 	res = ignore_charset(res, "{}", 1);
 	env = search_node(envp, res);
 	ft_free(res);
 	if (!env)
-		return (ft_strndup(&big_str[i], 0));
+	{
+		res = ft_strdup_until(big_str, *index);
+		after = ft_strndup(&big_str[i + (*index)], 0);
+		str = ft_strjoin(res, after);
+		return ((*index)--, ft_free(res), ft_free(after), str);
+	}
 	res = ft_strndup(env->tab[1], 0);
 	if (!res)
 		return (NULL);
-	res = new_str(big_str, res, &index);
-	return (res);
+	return (new_str(big_str, res, index));
 }
 
 char	*new_str(char *big_str, char *res, int *index)
@@ -110,7 +113,7 @@ void	handle_dollar(t_data *data, t_list *list)
 				if (list->str[i + 1] == '?')
 					res = replace_ret_val(data, list->str, i);
 				else
-					res = replace_dollar(data->envp, list->str, i);
+					res = replace_dollar(data->envp, list->str, &i);
 				ft_free(list->str);
 				list->str = res;
 			}
