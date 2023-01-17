@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/17 17:47:54 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:32:26 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ char	*get_readline(t_data *data, char *str)
 	else
 		str = readline("✖Manuo✖ ");
 	if (!str)
-		return (rl_clear_history(), ft_exit(data, NULL), NULL);
+	{
+		rl_clear_history();
+		free_data_proc(data);
+		exit(127);
+	}
 	add_history(str);
 	return (str);
 }
@@ -72,5 +76,5 @@ void	get_prompt(char **envp)
 			return (printf("problem: execution\n"), free_data(data));
 		reset_data(data, str);
 	}
-	free_data(data);
+	// free_data(data);
 }
