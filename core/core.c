@@ -69,7 +69,10 @@ void	get_prompt(char **envp)
 		if (!ft_split(str, data))
 			return (printf("problem: split unsuccesfull\n"), get_prompt(envp));
 		if (!parsing(data))
-			return (printf("problem: parsing\n"), get_prompt(envp));
+		{
+			free_data(data);
+			get_prompt(envp);
+		}
 		if (!get_cmd_struct(data))
 			return (printf("problem: t_cmd\n"), free_data(data));
 		if (!execution(data))

@@ -67,7 +67,6 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 	{
 		if (!redir(data, cmd))
 		{
-			ret = error_cmd(cmd->opt);
 			close_pipes(data->proc);
 			free_data(data);
 			exit(1);

@@ -1,8 +1,13 @@
-cat Makefile | wc return une erreur
-
 je pense qu'il y a un probleme avec les instances de prompt:
 	desfois quand tu ctrl-C ca ecrit xManuoxxManuox (genre 2 3 4 fois)
 	(par exemple sleep 20, puis ctrl C)
 
 faut faire attention au premiers test de lexcel
 
+HEREDOC
+
+FORK builtin
+
+Verifier les SIGNAUX
+
+cmd->opt NULL pour echo
