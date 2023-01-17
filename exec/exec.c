@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 16:58:19 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:05:10 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,11 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 			exit(1);
 		}
 		env_tab = get_env_tab(data->envp);
-		if (execve(cmd->cmd_path, cmd->opt, env_tab) == -1)
-		{
-			ret = error_cmd(cmd->opt);
-			free_tab(env_tab);
-			free_data(data);
-			exit(ret);
-		}
+		execve(cmd->cmd_path, cmd->opt, env_tab);
+		ret = error_cmd(cmd->opt);
+		free_tab(env_tab);
+		free_data(data);
+		exit(ret);
 	}
 	return (data->return_val);
 }

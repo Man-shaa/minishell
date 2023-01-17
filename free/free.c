@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:11:04 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 17:00:30 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:05:59 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ void	free_cmd(t_cmd *cmd)
 	while (cmd)
 	{
 		cmd = cmd->next;
-		if (save->cmd)
-			ft_free(save->cmd);
 		if (save->cmd_path)
 			ft_free(save->cmd_path);
 		if (save->opt)

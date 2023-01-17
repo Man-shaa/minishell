@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:19:29 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 16:43:28 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:04:05 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	error_cmd(char **cmd)
 	int	ret;
 
 	ret = 0;
-	printf("error_cmd\n");
 	if (!cmd || !cmd[0])
 		return (1);
 	if (ft_strchr(cmd[0], '/'))
