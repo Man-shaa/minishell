@@ -6,12 +6,14 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:38:01 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 18:25:47 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:47:29 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+// Cree tous les pipes neccessaire a l'execution de la ligne de commande
+// Return 1 si la creation a fonctionne, sinon 0
 int	create_pipes(t_proc *proc)
 {
 	int	i;

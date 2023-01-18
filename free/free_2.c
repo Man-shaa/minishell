@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 19:06:10 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 18:32:32 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:22:19 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_free(void *addr)
 	addr = NULL;
 }
 
+// Free tab jussqu'a last
 void	free_int_tab(int **tab, int last)
 {
 	int	i;
@@ -34,7 +35,7 @@ void	free_int_tab(int **tab, int last)
 	ft_free(tab);
 	tab = NULL;
 }
-
+ 
 void	free_proc(t_proc *proc)
 {
 	if (proc->pid)

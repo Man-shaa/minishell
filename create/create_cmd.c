@@ -6,13 +6,13 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:53:43 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/17 18:49:45 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:42:40 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-//calloc les char** et int* de data->cmd, return t_cmd
+// Calloc les char** et int* de data->cmd, return t_cmd
 t_cmd	*set_up_cmd(t_data *data, int *i)
 {
 	t_cmd	*cmd;
@@ -31,7 +31,7 @@ t_cmd	*set_up_cmd(t_data *data, int *i)
 	return (cmd);
 }
 
-//initialise la creation de data->cmd
+// Initialise la creation de data->cmd
 int	get_cmd_struct(t_data *data)
 {
 	t_list	*tmp;
@@ -53,7 +53,7 @@ int	get_cmd_struct(t_data *data)
 	return (1);
 }
 
-//return 1 si la creation de data->cmd abouti
+// Return 1 si la creation de data->cmd abouti
 int	start_cmd_struct(t_data *data, t_list *tmp, t_cmd *cmd)
 {
 	int	i;

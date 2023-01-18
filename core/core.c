@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/17 18:32:26 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:42:24 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,4 @@ void	get_prompt(char **envp)
 			return (printf("problem: execution\n"), free_data(data));
 		reset_data(data, str);
 	}
-	// free_data(data);
 }

@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/18 18:20:30 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:23:12 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int		ft_cd(t_data *data, char **args);
 // echo.c
 int		is_option_n(char *str);
 int		echo_each_arg(char **args, int i);
-int		ft_echo(t_data *data, char **args);
+void	ft_echo(t_data *data, char **args);
 
 // env.c
 int		print_env(t_envp *envp, char **args);

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:04:44 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/16 17:36:47 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:27:21 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char	*ft_substr(char *str, int n)
 	return (res);
 }
 
+// Return 0 si a est un separateur pour dollar, sinon 1
 int	is_sep(int a)
 {
 	if (!ft_isalpha(a) && ft_strchr("{}()", a))
@@ -38,6 +39,8 @@ int	is_sep(int a)
 	return (0);
 }
 
+// strdup n char
+// Return dup ou NULL si malloc fail
 char	*ft_strdup_until(char *str, int n)
 {
 	int		i;

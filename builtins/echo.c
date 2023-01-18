@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:39:45 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/18 16:33:45 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:23:04 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	is_option_n(char *str)
 	return (0);
 }
 
+// affiche chaque argument envoye a echo
+// Return 0 si tout s'est bien passe, sinon 1 (malloc failed) 
 int	echo_each_arg(char **args, int i)
 {
 	int		j;
@@ -58,7 +60,9 @@ int	echo_each_arg(char **args, int i)
 	return (0);
 }
 
-int	ft_echo(t_data *data, char **args)
+// Affiche tous les arguments encoyes a la fonction (args) et mets a jour
+// data->return_val
+void	ft_echo(t_data *data, char **args)
 {
 	int		i;
 	int		boule;
@@ -73,5 +77,4 @@ int	ft_echo(t_data *data, char **args)
 	data->return_val = echo_each_arg(args, i);
 	if (boule == 0)
 		write(STDOUT_FILENO, "\n", 1);
-	return (0);
 }
