@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 19:06:10 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/18 16:22:19 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:30:13 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	free_int_tab(int **tab, int last)
 	ft_free(tab);
 	tab = NULL;
 }
- 
+
 void	free_proc(t_proc *proc)
 {
 	if (proc->pid)

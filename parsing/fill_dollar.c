@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:43:56 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/17 19:52:02 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:21:48 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,6 @@ int	fill_dollar_tab(t_list *tmp)
 		i++;
 	}
 	return (1);
-}
-
-void	fill_dollar(t_list *tmp, int *i, int *index)
-{
-	if (tmp->str[(*i) + 1] == '$')
-	{
-		tmp->dollar[*index] = 0;
-		(*i)++;
-		(*index)++;
-		tmp->dollar[*index] = 0;
-		(*index)++;
-	}
-	else if (!tmp->str[(*i) + 1])
-		tmp->dollar[(*index)++] = 0;
-	else
-		tmp->dollar[(*index)++] = 1;
 }
 
 void	fill_dollar_dq(t_list *tmp, int *i, int *index)
@@ -95,4 +79,20 @@ void	fill_dollar_sq(t_list *tmp, int *i, int *index)
 		else
 			(*i)++;
 	}
+}
+
+void	fill_dollar(t_list *tmp, int *i, int *index)
+{
+	if (tmp->str[(*i) + 1] == '$')
+	{
+		tmp->dollar[*index] = 0;
+		(*i)++;
+		(*index)++;
+		tmp->dollar[*index] = 0;
+		(*index)++;
+	}
+	else if (!tmp->str[(*i) + 1])
+		tmp->dollar[(*index)++] = 0;
+	else
+		tmp->dollar[(*index)++] = 1;
 }

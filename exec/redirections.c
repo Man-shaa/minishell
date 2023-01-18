@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 14:02:28 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:18:35 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,27 +59,6 @@ int	handle_pipe_redir(t_cmd *cmd, t_proc *proc)
 	return (1);
 }
 
-// S'occupe des redirections pipe et < > >>
-// Return 1 si tout s'est bien passe, sinon 0
-int	redir(t_data *data, t_cmd *cmd)
-{
-	int	i;
-
-	i = 0;
-	if (!cmd->token)
-		return (1);
-	while (cmd->token[i])
-	{
-		if (!handle_token_redir(data->proc, cmd->token[i], cmd->type[i]))
-			return (0);
-		i++;
-	}
-	if (data->proc->n_pipes > 0)
-		if (!handle_pipe_redir(cmd, data->proc))
-			return (err_msg("Dup2 failed", NULL, NULL, 0));
-	return (1);
-}
-
 // Open le token et dup2 fd_in/out en fonction du type < > >>
 // Return 1 si tout s'est bien passe, sinon 0
 int	handle_token_redir(t_proc *proc, char *token, int type)
@@ -108,5 +87,26 @@ int	handle_token_redir(t_proc *proc, char *token, int type)
 		dup2(proc->fd_out, STDOUT_FILENO);
 		close(proc->fd_out);
 	}
+	return (1);
+}
+
+// S'occupe des redirections pipe et < > >>
+// Return 1 si tout s'est bien passe, sinon 0
+int	redir(t_data *data, t_cmd *cmd)
+{
+	int	i;
+
+	i = 0;
+	if (!cmd->token)
+		return (1);
+	while (cmd->token[i])
+	{
+		if (!handle_token_redir(data->proc, cmd->token[i], cmd->type[i]))
+			return (0);
+		i++;
+	}
+	if (data->proc->n_pipes > 0)
+		if (!handle_pipe_redir(cmd, data->proc))
+			return (err_msg("Dup2 failed", NULL, NULL, 0));
 	return (1);
 }

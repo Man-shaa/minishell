@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:43 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/09 18:26:14 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:14:40 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,35 +32,6 @@ int	add_last_env(t_data *data, char *arg)
 		tmp->next = last;
 	}
 	return (1);
-}
-
-// Ajoute un node (s'il est valide) a la fin de envp s'il n'existe pas
-// Sinon modifie directement la variable avec la nouvelle valeur
-// Return 0 si tout s'est bien passe, sinon 1
-int	ft_export(t_data *data, char **args)
-{
-	int		i;
-
-	i = 0;
-	if (!args || !args[0])
-		return (print_export(data->envp), 0);
-	while (args[i])
-	{
-		if (!args[i] || !args[i][0] || args[i][0] == '='
-			|| !is_valid_name(args[i]))
-			err_msg("export: `", args[i], "': not a valid identifier", 1);
-		else
-		{
-			if (already_exist(data->envp, args[i]))
-				return (0);
-			if (concat_inexist(data, args[i]))
-				return (0);
-			if (!add_last_env(data, args[i]))
-				return (1);
-		}
-		i++;
-	}
-	return (0);
 }
 
 // Determine si le nom de variable dans str existe deja dans t_envp
@@ -106,4 +77,33 @@ void	print_export(t_envp *envp)
 			printf("declare -x %s\n", envp->tab[0]);
 		envp = envp->next;
 	}
+}
+
+// Ajoute un node (s'il est valide) a la fin de envp s'il n'existe pas
+// Sinon modifie directement la variable avec la nouvelle valeur
+// Return 0 si tout s'est bien passe, sinon 1
+int	ft_export(t_data *data, char **args)
+{
+	int		i;
+
+	i = 0;
+	if (!args || !args[0])
+		return (print_export(data->envp), 0);
+	while (args[i])
+	{
+		if (!args[i] || !args[i][0] || args[i][0] == '='
+			|| !is_valid_name(args[i]))
+			err_msg("export: `", args[i], "': not a valid identifier", 1);
+		else
+		{
+			if (already_exist(data->envp, args[i]))
+				return (0);
+			if (concat_inexist(data, args[i]))
+				return (0);
+			if (!add_last_env(data, args[i]))
+				return (1);
+		}
+		i++;
+	}
+	return (0);
 }

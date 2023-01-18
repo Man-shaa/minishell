@@ -6,30 +6,23 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:07:42 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/19 18:33:44 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:16:34 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// Cree l'environnement dans la structure t_envp a partir de l'environnement
-// bash ou de create_my_env
-// Return 1 si la creation a reussie, sinon 0
-int	create_env(t_data *data, char **envp)
+// Return le nombre de variable de l'environnement bash ou 0 si il n'y en a pas
+int	env_length(char **envp)
 {
-	int		env_lgt;
+	int	i;
 
-	env_lgt = env_length(envp);
-	if (env_lgt == 0)
-	{
-		if (!create_my_env(data))
-			return (0);
-		return (1);
-	}
-	if (ft_export(data, envp))
+	i = 0;
+	if (!*envp)
 		return (0);
-	data->env_path = find_path_in_env(envp);
-	return (1);
+	while (envp[i])
+		i++;
+	return (i);
 }
 
 // Cree un environnement minial si l'environnement de bash n'existe pas
@@ -50,15 +43,22 @@ int	create_my_env(t_data *data)
 	return (1);
 }
 
-// Return le nombre de variable de l'environnement bash ou 0 si il n'y en a pas
-int	env_length(char **envp)
+// Cree l'environnement dans la structure t_envp a partir de l'environnement
+// bash ou de create_my_env
+// Return 1 si la creation a reussie, sinon 0
+int	create_env(t_data *data, char **envp)
 {
-	int	i;
+	int		env_lgt;
 
-	i = 0;
-	if (!*envp)
+	env_lgt = env_length(envp);
+	if (env_lgt == 0)
+	{
+		if (!create_my_env(data))
+			return (0);
+		return (1);
+	}
+	if (ft_export(data, envp))
 		return (0);
-	while (envp[i])
-		i++;
-	return (i);
+	data->env_path = find_path_in_env(envp);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/18 14:40:59 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:28:35 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int		ft_cd(t_data *data, char *str);
 int		is_option_n(char *str);
 int		echo_each_arg(char **args, int i);
 void	ft_echo(t_data *data, char **args);
+char	**ft_split_echo(char	*str, char set);
 
 // env.c
 int		print_env(t_envp *envp, char **args);
@@ -99,14 +100,14 @@ int		ft_exit(t_data *data, char **args);
 
 // export.c
 int		add_last_env(t_data *data, char *arg);
-int		ft_export(t_data *data, char **args);
 int		already_exist(t_envp *envp, char *str);
 void	print_export(t_envp *envp);
+int		ft_export(t_data *data, char **args);
 
 // pwd.c
-void	print_pwd(void);
-void	replace_pwd_my_env(t_envp *envp);
+int		print_pwd(void);
 void	replace_oldpwd_my_env(t_envp *envp);
+void	replace_pwd_my_env(t_envp *envp);
 
 // unset.c
 void	ft_unset(t_data *data, char **args);
@@ -121,22 +122,22 @@ char	*get_readline(t_data *data, char *str);
 // ******************************* CREATE *********************************
 
 // create_cmd.c
+t_cmd	*set_up_cmd(t_data *data, int *i);
 int		get_cmd_struct(t_data *data);
 int		start_cmd_struct(t_data *data, t_list *tmp, t_cmd *cmd);
-t_cmd	*set_up_cmd(t_data *data, int *i);
 
 // create_data.c
 t_data	*create_data(char **envp);
 
 // create_env.c
-int		create_env(t_data *data, char **envp);
-int		create_my_env(t_data *data);
 int		env_length(char **envp);
+int		create_my_env(t_data *data);
+int		create_env(t_data *data, char **envp);
 
 // create_list.c
-int		add_last_list(t_data *data, char *str);
 t_list	*ft_lstnew(char *str, int type);
 t_list	*ft_lstlast(t_list *list);
+int		add_last_list(t_data *data, char *str);
 
 // create_proc.c
 t_proc	*create_proc(void);
@@ -155,10 +156,10 @@ int		error_cmd(char **cmd);
 // ********************************* EXEC *********************************
 
 // exec.c
-int		execution(t_data *data);
 void	wait_all_child(t_data *data, int n);
 int		exec_binary(t_data *data, t_cmd *cmd);
 int		send_cmd(t_data *data, t_cmd *cmd);
+int		execution(t_data *data);
 
 // heredoc.c
 int		create_heredoc(char *delim);
@@ -171,15 +172,15 @@ void	close_pipes(t_proc *proc);
 // redirections.c
 int		is_token(t_cmd *cmd, int type);
 int		handle_pipe_redir(t_cmd *cmd, t_proc *proc);
-int		redir(t_data *data, t_cmd *cmd);
 int		handle_token_redir(t_proc *proc, char *token, int type);
+int		redir(t_data *data, t_cmd *cmd);
 
 // ********************************* FREE *********************************
 
 // free_2.c
+void	ft_free(void *addr);
 void	free_int_tab(int **tab, int last);
 void	free_proc(t_proc *proc);
-void	ft_free(void *addr);
 void	free_data_proc(t_data *data);
 
 // free.c
@@ -202,26 +203,26 @@ char	*replace_dollar(t_envp *envp, char *big_str, int *index);
 char	*new_str(char *big_str, char *res, int *index);
 void	handle_dollar(t_data *data, t_list *list);
 
-// parsing.c
-int		parsing(t_data *data);
-int		check_dup(t_data *data);
-int		check_quotes(char *str, int i);
-
-//quotes.c
-int		count_dollars(char *str);
-int		handle_dollar_quote(t_data *data);
-
-//fill_dollar.c
+// fill_dollar.c
 int		fill_dollar_tab(t_list *tmp);
-void	fill_dollar(t_list *tmp, int *i, int *index);
 void	fill_dollar_dq(t_list *tmp, int *i, int *index);
 void	fill_dollar_sq(t_list *tmp, int *i, int *index);
+void	fill_dollar(t_list *tmp, int *i, int *index);
+
+// parsing.c
+int		check_dup(t_data *data);
+int		check_quotes(char *str, int i);
+int		parsing(t_data *data);
 
 //quotes_utils.c
 int		ft_strlen_quotes(char *str, int i);
-char	*remove_quotes(char *str);
 void	remove_dq(char *str, char *new, int *i, int *j);
 void	remove_sq(char *str, char *new, int *i, int *j);
+char	*remove_quotes(char *str);
+
+// quotes.c
+int		count_dollars(char *str);
+int		handle_dollar_quote(t_data *data);
 
 // ******************************** PRINT *********************************
 
@@ -273,7 +274,7 @@ int		count_chars_cmd(char *str, int *i, int *count, int n);
 int		count_chars_redir(char *str, int *i, int *count, int n);
 int		count_chars_pipe(int *i, int *count, int n);
 
-//chars_quotes.c
+// chars_quotes.c
 int		count_chars_double(char *str, int *i, int *count, int n);
 int		count_chars_double_inner(char *str, int *i, int *count, int n);
 int		count_chars_single(char *str, int *i, int *count, int n);
@@ -311,6 +312,13 @@ char	*find_path_in_env(char **envp);
 int		is_absolute_path(t_data *data, t_cmd *cmd);
 int		find_cmd_path(t_data *data, t_cmd *cmd, char *env_path);
 int		is_cmd(t_data *data, char *str, char *env_path);
+
+// split_echo.c
+int		word_count_echo(char *str, char set);
+int		char_count_pos(char *str, int i, char set);
+int		char_count_echo(char *str, char set, int pos);
+char	*put_word_pos(char *str, int i, char *tab, char set);
+char	*putword_echo(char *str, char *tab, char set, int pos);
 
 // split_env.c
 int		char_count_env(char *str, char set, int pos);

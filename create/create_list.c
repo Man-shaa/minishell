@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   create_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 20:31:39 by mansha            #+#    #+#             */
-/*   Updated: 2023/01/14 21:34:27 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:16:54 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-// Ajoute le resulat du split a la fin de la structure t_list
-// Return 1 si l'ajout a reussie, sinon 0 
-int	add_last_list(t_data *data, char *str)
-{
-	t_list	*new;
-	t_list	*last;
-
-	new = ft_lstnew(str, redir_type(str));
-	if (!new)
-		return (0);
-	last = ft_lstlast(data->list);
-	if (!last)
-	{
-		data->list = new;
-		return (1);
-	}
-	last->next = new;
-	return (1);
-}
 
 // Cree un nouveau node dans la structure t_list et initialise a NULL
 // Return un pointeur sur t_list ou NULL si le malloc a rate
@@ -57,4 +37,24 @@ t_list	*ft_lstlast(t_list *list)
 	while (list->next)
 		list = list->next;
 	return (list);
+}
+
+// Ajoute le resulat du split a la fin de la structure t_list
+// Return 1 si l'ajout a reussie, sinon 0 
+int	add_last_list(t_data *data, char *str)
+{
+	t_list	*new;
+	t_list	*last;
+
+	new = ft_lstnew(str, redir_type(str));
+	if (!new)
+		return (0);
+	last = ft_lstlast(data->list);
+	if (!last)
+	{
+		data->list = new;
+		return (1);
+	}
+	last->next = new;
+	return (1);
 }

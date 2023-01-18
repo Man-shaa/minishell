@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 20:43:37 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/17 17:47:18 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:22:36 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,30 @@ int	ft_strlen_quotes(char *str, int i)
 	return (count);
 }
 
+void	remove_dq(char *str, char *new, int *i, int *j)
+{
+	(*i)++;
+	while (str[*i] != '"')
+	{
+		new[*j] = str[*i];
+		(*i)++;
+		(*j)++;
+	}
+	(*i)++;
+}
+
+void	remove_sq(char *str, char *new, int *i, int *j)
+{
+	(*i)++;
+	while (str[*i] != 39)
+	{
+		new[*j] = str[*i];
+		(*i)++;
+		(*j)++;
+	}
+	(*i)++;
+}
+
 char	*remove_quotes(char *str)
 {
 	int		i;
@@ -66,28 +90,4 @@ char	*remove_quotes(char *str)
 	new[j] = '\0';
 	free (str);
 	return (new);
-}
-
-void	remove_dq(char *str, char *new, int *i, int *j)
-{
-	(*i)++;
-	while (str[*i] != '"')
-	{
-		new[*j] = str[*i];
-		(*i)++;
-		(*j)++;
-	}
-	(*i)++;
-}
-
-void	remove_sq(char *str, char *new, int *i, int *j)
-{
-	(*i)++;
-	while (str[*i] != 39)
-	{
-		new[*j] = str[*i];
-		(*i)++;
-		(*j)++;
-	}
-	(*i)++;
 }

@@ -6,21 +6,11 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:15:26 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/17 17:54:41 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:22:03 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-int	parsing(t_data *data)
-{
-	if (!check_dup(data))
-		return (err_msg("minishell: unexpected token or redirection",
-				NULL, NULL, 0));
-	if (!handle_dollar_quote(data))
-		return (err_msg("minishell: malloc failed", NULL, NULL, 0));
-	return (1);
-}
 
 int	check_dup(t_data *data)
 {
@@ -66,5 +56,15 @@ int	check_quotes(char *str, int i)
 		}
 		i++;
 	}
+	return (1);
+}
+
+int	parsing(t_data *data)
+{
+	if (!check_dup(data))
+		return (err_msg("minishell: unexpected token or redirection",
+				NULL, NULL, 0));
+	if (!handle_dollar_quote(data))
+		return (err_msg("minishell: malloc failed", NULL, NULL, 0));
 	return (1);
 }

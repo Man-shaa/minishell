@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:39:45 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/18 16:28:33 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:12:39 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	echo_each_arg(char **args, int i)
 	while (args[i])
 	{
 		boule = 0;
-		one = ft_split_normal(args[i], ' ');
+		one = ft_split_echo(args[i], ' ');
 		if (!one)
 			return (1);
 		j = 0;
@@ -77,4 +77,32 @@ void	ft_echo(t_data *data, char **args)
 	data->return_val = echo_each_arg(args, i);
 	if (boule == 0)
 		write(STDOUT_FILENO, "\n", 1);
+}
+
+char	**ft_split_echo(char	*str, char set)
+{
+	int		i;
+	int		j;
+	char	**tab;
+
+	i = 0;
+	j = 0;
+	if (!str)
+		return (NULL);
+	tab = ft_calloc(word_count_echo(str, set) + 1, sizeof(char *));
+	printf("word_count : [%d]\n", word_count_echo(str, set));
+	if (!tab)
+		return (ft_free(tab), NULL);
+	while (j < word_count_echo(str, set))
+	{
+		printf("char_count (%d) : [%d]\n", j, char_count_echo(str, set, j));
+		tab[j] = ft_calloc(char_count_echo(str, set, j) + 1, 1);
+		if (!tab[j])
+			return (free_tab_split(tab, j), NULL);
+		printf("putword (%d) : [%s]\n", j, putword_echo(str, tab[j], set, j));
+		tab[j] = putword_echo(str, tab[j], set, j);
+		j++;
+	}
+	tab[j] = 0;
+	return (tab);
 }

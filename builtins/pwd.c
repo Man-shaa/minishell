@@ -6,14 +6,14 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/16 20:03:45 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:28:20 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 // Affiche le dossier courant
-void	print_pwd(void)
+int	print_pwd(void)
 {
 	char	*buf;
 
@@ -21,6 +21,7 @@ void	print_pwd(void)
 	ft_putstr(buf);
 	write(STDIN_FILENO, "\n", 1);
 	ft_free(buf);
+	return (0);
 }
 
 // Met a jour la variable $OLDPWD dans t_envp
