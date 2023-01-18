@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:48:44 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/18 18:31:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:35:09 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ int	exec_builtin(t_data *data, char *cmd, char **args)
 		data->return_val = 1;
 	}
 	else if (is_same(cmd, "pwd"))
+	{
+		printf("notre pwd\n\n");
 		data->return_val = print_pwd();
+	}
 	else if (is_same(cmd, "unset") && args && args[0])
 		ft_unset(data, args);
 	return (data->return_val);

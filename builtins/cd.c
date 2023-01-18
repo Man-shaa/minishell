@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 05:07:52 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/18 18:21:29 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/18 19:54:35 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int	check_cd(char **args)
 // changer oldpwd et pwd avec replace...
 int	ft_cd(t_data *data, char **args)
 {
-	(void)data;
 	if (!check_cd(args))
 		return (1);
 	chdir(args[0]);
+	replace_pwd_my_env(data->envp);
 	return (0);
 }
