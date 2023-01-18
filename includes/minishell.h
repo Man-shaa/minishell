@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 20:24:45 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:20:30 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,9 @@ int		is_builtin(char *str);
 int		exec_builtin(t_data *data, char *cmd, char **args);
 
 // cd.c
-int		ft_cd(t_data *data, char *str);
+int		is_a_dir(char *str);
+int		check_cd(char **args);
+int		ft_cd(t_data *data, char **args);
 
 // echo.c
 int		is_option_n(char *str);
