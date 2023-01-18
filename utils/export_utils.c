@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 17:49:30 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/14 15:17:22 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:26:12 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	is_concat(char *str)
 	return (0);
 }
 
+// Gere le cas ou export VAR+=VALUE avec VAR inexistant
+// Return 0 si tout fonctionne, sinon 1
 int	concat_inexist(t_data *data, char *str)
 {
 	int		i;

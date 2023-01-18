@@ -6,12 +6,14 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:24:48 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 20:26:58 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:24:01 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+// Replace $? par lla valeur de retour
+// Return la chaine de caractere modifiee;
 char	*replace_ret_val(t_data *data, char *str, int index)
 {
 	char	*res;
@@ -39,6 +41,8 @@ char	*replace_ret_val(t_data *data, char *str, int index)
 	return (res);
 }
 
+// Replace les variables d'env par leur valeur
+// Return la chaine de caractere modifiee
 char	*replace_dollar(t_envp *envp, char *big_str, int *index)
 {
 	int		i;
@@ -68,6 +72,7 @@ char	*replace_dollar(t_envp *envp, char *big_str, int *index)
 	return (new_str(big_str, res, index));
 }
 
+// Return la nouvelle chaine de caractere apres replace_dollar
 char	*new_str(char *big_str, char *res, int *index)
 {
 	char	*new;
@@ -96,6 +101,7 @@ char	*new_str(char *big_str, char *res, int *index)
 	return (ft_free(before), ft_free(after), new);
 }
 
+// Gere tous les dollars recus en ligne de commande
 void	handle_dollar(t_data *data, t_list *list)
 {
 	char	*res;

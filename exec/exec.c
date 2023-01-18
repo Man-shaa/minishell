@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 18:52:36 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:46:48 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	execution(t_data *data)
 	return (1);
 }
 
+// Attends la fin d'execution de chaque process child et recupere la valeur
+// de retour de chaque commande effectuee
 void	wait_all_child(t_data *data, int n)
 {
 	int	i;

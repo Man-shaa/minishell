@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:06:08 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 17:50:43 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:25:14 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ char	*find_path_in_env(char **envp)
 	return (NULL);
 }
 
+// Si access fonctionne, strdup le chemin dans cmd->cmd_path
+// Return 1 si access a fonctionne, sinon 0;
 int	is_absolute_path(t_data *data, t_cmd *cmd)
 {
 	if (!is_path(data, cmd->cmd))
