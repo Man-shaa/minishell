@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:39:45 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/16 20:21:37 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/18 15:57:29 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@ int	is_option_n(char *str)
 int	echo_each_arg(char **args, int i)
 {
 	int		j;
+	int		boule;
 	char	**one;
 
 	while (args[i])
 	{
+		boule = 0;
 		one = ft_split_normal(args[i], ' ');
 		if (!one)
 			return (1);
@@ -43,13 +45,14 @@ int	echo_each_arg(char **args, int i)
 		while (one[j])
 		{
 			ft_putstr(one[j]);
+			boule = 1;
 			j++;
 			if (one[j])
 				write(STDOUT_FILENO, " ", 1);
 		}
 		i++;
 		free_tab(one);
-		if (args[i])
+		if (args[i] && boule == 1)
 			write(STDOUT_FILENO, " ", 1);
 	}
 	return (0);
