@@ -8,6 +8,4 @@ HEREDOC
 
 FORK builtin
 
-Verifier les SIGNAUX
-
-cmd->opt NULL pour echo
+Verifier les SIGNAUX (?)

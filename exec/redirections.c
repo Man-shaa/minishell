@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/18 18:18:35 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/20 13:58:49 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,23 @@ int	handle_pipe_redir(t_cmd *cmd, t_proc *proc)
 	return (1);
 }
 
+int	handle_token_redir2(t_proc *proc, char *token, int type)
+{
+	if (type == APPEND)
+	{
+		proc->fd_out = open(token, O_WRONLY | O_CREAT | O_APPEND, 0644);
+		if (proc->fd_out < 0)
+			return (err_msg("open: No such file or directory", NULL, NULL, 0));
+		if (dup2(proc->fd_out, STDOUT_FILENO) == -1)
+			return (close(proc->fd_out), 0);
+		close(proc->fd_out);
+	}
+	else if (type == HEREDOC)
+		if (!create_heredoc(proc->fd_in, token))
+			return (0);
+	return (1);
+}
+
 // Open le token et dup2 fd_in/out en fonction du type < > >>
 // Return 1 si tout s'est bien passe, sinon 0
 int	handle_token_redir(t_proc *proc, char *token, int type)
@@ -68,7 +85,8 @@ int	handle_token_redir(t_proc *proc, char *token, int type)
 		proc->fd_in = open(token, O_RDONLY, 0644);
 		if (proc->fd_in < 0)
 			return (err_msg("open: No such file or directory", NULL, NULL, 0));
-		dup2(proc->fd_in, STDIN_FILENO); // PROTECTIONSSSSSSSSSSSSS
+		if (dup2(proc->fd_in, STDIN_FILENO) == -1)
+			return (close(proc->fd_in), 0);
 		close(proc->fd_in);
 	}
 	else if (type == OUT)
@@ -76,18 +94,11 @@ int	handle_token_redir(t_proc *proc, char *token, int type)
 		proc->fd_out = open(token, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if (proc->fd_out < 0)
 			return (err_msg("open: No such file or directory", NULL, NULL, 0));
-		dup2(proc->fd_out, STDOUT_FILENO);
+		if (dup2(proc->fd_out, STDOUT_FILENO) == -1)
+			return (close(proc->fd_out), 0);
 		close(proc->fd_out);
 	}
-	else if (type == APPEND)
-	{
-		proc->fd_out = open(token, O_WRONLY | O_CREAT | O_APPEND, 0644);
-		if (proc->fd_out < 0)
-			return (err_msg("open: No such file or directory", NULL, NULL, 0));
-		dup2(proc->fd_out, STDOUT_FILENO);
-		close(proc->fd_out);
-	}
-	return (1);
+	return (handle_token_redir2(proc, token, type));
 }
 
 // S'occupe des redirections pipe et < > >>

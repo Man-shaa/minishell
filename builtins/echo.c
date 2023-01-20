@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:39:45 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/18 18:32:35 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/20 12:04:13 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,16 +90,13 @@ char	**ft_split_echo(char	*str, char set)
 	if (!str)
 		return (NULL);
 	tab = ft_calloc(word_count_echo(str, set) + 1, sizeof(char *));
-	printf("word_count : [%d]\n", word_count_echo(str, set));
 	if (!tab)
 		return (ft_free(tab), NULL);
 	while (j < word_count_echo(str, set))
 	{
-		printf("char_count (%d) : [%d]\n", j, char_count_echo(str, set, j));
 		tab[j] = ft_calloc(char_count_echo(str, set, j) + 1, 1);
 		if (!tab[j])
 			return (free_tab_split(tab, j), NULL);
-		printf("putword (%d) : [%s]\n", j, putword_echo(str, tab[j], set, j));
 		tab[j] = putword_echo(str, tab[j], set, j);
 		j++;
 	}

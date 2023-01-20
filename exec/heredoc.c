@@ -6,32 +6,39 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 15:08:17 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/30 21:09:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/20 14:00:15 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	create_heredoc(char *delim)
+int	create_heredoc(int fd, char *delim)
 {
 	int		i;
-	int		fd;
 	char	*str;
 
 	i = 0;
-	fd = open(".heredoc", O_CREAT | O_TRUNC | O_WRONLY, 0644);
+	fd = open("/tmp/.heredoc_manuo", O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	if (fd == -1)
-		return (err_msg("Open failed !", NULL, NULL, 0));
+		return (err_msg("Open heredoc failed !", NULL, NULL, 0));
 	while (1)
 	{
 		str = readline(">");
-		if (ft_strcmp(str, delim))
+		if (is_same(str, delim))
+		{
+			ft_free(str);
 			break ;
+		}
 		write(fd, str, ft_strlen(str));
 		write(fd, "\n", 1);
+		ft_free(str);
 	}
 	close(fd);
-	fd = open(".heredoc", O_RDONLY);
+	fd = open("/tmp/.heredoc_manuo", O_RDONLY);
+	if (fd == -1)
+		return (err_msg("Second open heredoc failed !", NULL, NULL, 0));
+	if (dup2(fd, STDIN_FILENO) == -1)
+		return (close(fd), err_msg("Dup2 heredoc failed", NULL, NULL, 0), 0);
 	close(fd);
-	return (fd);
+	return (1);
 }

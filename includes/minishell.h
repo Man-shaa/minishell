@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/18 18:31:22 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/20 13:34:31 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-# define WORD	1
-# define IN		2 // <	lire dans 
-# define OUT	3 // >	ecrire dans
-# define DELIM	4 // <<	heredoc
-# define APPEND	5 // >>	redirection sortie en mode append
-# define PIPE	6 // |	ET
+# define WORD		1
+# define IN			2 // <	lire dans 
+# define OUT		3 // >	ecrire dans
+# define HEREDOC	4 // <<	heredoc
+# define APPEND		5 // >>	redirection sortie en mode append
+# define PIPE		6 // |	ET
 
 typedef struct s_proc
 {
@@ -164,7 +164,7 @@ int		send_cmd(t_data *data, t_cmd *cmd);
 int		execution(t_data *data);
 
 // heredoc.c
-int		create_heredoc(char *delim);
+int		create_heredoc(int fd, char *delim);
 
 // pipe.c
 int		create_pipes(t_proc *proc);
