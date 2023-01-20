@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/18 17:06:51 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:15:48 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 void	reset_data(t_data *data, char *str)
 {
 	ft_free(str);
-	str = NULL;
 	if (data->list)
 	{
 		free_list(data->list);
@@ -70,7 +69,7 @@ void	get_prompt(char **envp)
 			return (printf("problem: split unsuccesfull\n"), get_prompt(envp));
 		if (!parsing(data))
 		{
-			free_data(data);
+			free_data_proc(data);
 			get_prompt(envp);
 		}
 		if (!get_cmd_struct(data))

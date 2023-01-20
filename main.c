@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/20 13:57:01 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:28:02 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 // "> out" fait plus rien
 
 // Manuo ✖✖ <izeixn wc -l >>> out ????
+
+// minishell: unexpected token or redirection invalid free seulement
+// quand une premiere commande a ete effectuee auparavant (free_proc)
+
+// CTRL-C dans un heredoc fonctionne pas (handle-signal() ?)
 
 int	main(int ac, char **av, char **envp)
 {

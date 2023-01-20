@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:32:11 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/16 19:46:36 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:02:19 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	redir_type(char *str)
 	if (str[0] == '|')
 		return (PIPE);
 	if (str[0] == '<' && str[1] && str[1] == '<')
-		return (DELIM);
+		return (HEREDOC);
 	if (str[0] == '>' && str[1] && str[1] == '>')
 		return (APPEND);
 	if (str[0] == '<')
