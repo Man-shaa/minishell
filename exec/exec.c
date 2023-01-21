@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/20 17:29:35 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/21 16:11:59 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 	data->proc->pid[cmd->index] = fork();
 	if (data->proc->pid[cmd->index] == 0)
 	{
-		if (!redir(data, cmd))
+		if (redir(data, cmd, 1))
 		{
 			close_pipes(data->proc);
 			free_data(data);
@@ -69,7 +69,11 @@ int	send_cmd(t_data *data, t_cmd *cmd)
 	signal(SIGQUIT, handle_sigquit);
 	if (!cmd->cmd || !cmd->cmd[0] || is_same(cmd->cmd, "..")
 		|| is_same(cmd->cmd, "."))
+	{
+		if (cmd->token && cmd->token[0])
+			return (redir(data, cmd, 0));
 		return (error_cmd(cmd->opt));
+	}
 	else if (is_builtin(cmd->cmd))
 		return (exec_builtin(data, cmd->cmd, cmd->opt));
 	else if (is_cmd(data, cmd->cmd, data->env_path))

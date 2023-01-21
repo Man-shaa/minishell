@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/20 17:34:41 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/21 16:12:05 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,8 +174,8 @@ void	close_pipes(t_proc *proc);
 // redirections.c
 int		is_token(t_cmd *cmd, int type);
 int		handle_pipe_redir(t_cmd *cmd, t_proc *proc);
-int		handle_token_redir(t_proc *proc, char *token, int type);
-int		redir(t_data *data, t_cmd *cmd);
+int		handle_token_redir(t_proc *proc, char *token, int type, int m);
+int		redir(t_data *data, t_cmd *cmd, int m);
 
 // ********************************* FREE *********************************
 
