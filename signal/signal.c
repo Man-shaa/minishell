@@ -6,9 +6,11 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:34:48 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/21 17:58:18 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:39:22 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+extern int	g_return_val;
 
 #include "../includes/minishell.h"
 
@@ -38,6 +40,7 @@ void	handle_sighere(int sig_int)
 {
 	(void)sig_int;
 	printf("\n");
+	g_return_val = -42;
 	close(0);
 }
 

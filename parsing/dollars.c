@@ -3,25 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   dollars.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:24:48 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/18 16:24:01 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:15:59 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+extern int	g_return_val;
+
 // Replace $? par lla valeur de retour
 // Return la chaine de caractere modifiee;
-char	*replace_ret_val(t_data *data, char *str, int index)
+char	*replace_ret_val(char *str, int index)
 {
 	char	*res;
 	char	*before;
 	char	*after;
 	char	*ret;
 
-	ret = ft_itoa(data->return_val);
+	ret = ft_itoa(g_return_val);
 	if (!ret)
 		return (str);
 	before = ft_strdup_until(str, index);
@@ -117,7 +119,7 @@ void	handle_dollar(t_data *data, t_list *list)
 			if (list->dollar[dollar_count] == 1)
 			{
 				if (list->str[i + 1] == '?')
-					res = replace_ret_val(data, list->str, i);
+					res = replace_ret_val(list->str, i);
 				else
 					res = replace_dollar(data->envp, list->str, &i);
 				ft_free(list->str);

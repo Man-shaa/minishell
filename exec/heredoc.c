@@ -6,11 +6,13 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 15:08:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/30 13:08:55 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:43:24 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+extern int	g_return_val;
 
 int	create_heredoc(int fd, char *delim)
 {
@@ -24,6 +26,11 @@ int	create_heredoc(int fd, char *delim)
 		return (err_msg("Open heredoc failed !", NULL, NULL, 0));
 	while (1 && fd)
 	{
+		if (g_return_val == -42)
+		{
+			ft_free(str);
+			break ;
+		}
 		str = readline(">");
 		if (is_same(str, delim))
 		{

@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   create_data.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 20:16:13 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/16 22:25:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:13:24 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+extern int	g_return_val;
 
 // Malloc et initialise a NULL la struct t_data
 // Return pointeur sur data si la creation a reussie, sinon NULL
@@ -21,7 +23,7 @@ t_data	*create_data(char **envp)
 	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
 		return (NULL);
-	data->return_val = 0;
+	g_return_val = 0;
 	data->env_path = NULL;
 	data->cmd = NULL;
 	data->list = NULL;

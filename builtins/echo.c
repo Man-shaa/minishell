@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:39:45 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/20 12:04:13 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/30 17:24:53 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+extern int	g_return_val;
 
 // Return 1 si l'option -n est trouvee dans str, sinon 0
 int	is_option_n(char *str)
@@ -61,8 +63,8 @@ int	echo_each_arg(char **args, int i)
 }
 
 // Affiche tous les arguments encoyes a la fonction (args) et mets a jour
-// data->return_val
-void	ft_echo(t_data *data, char **args)
+// g_return_val
+void	ft_echo(char **args)
 {
 	int		i;
 	int		boule;
@@ -74,7 +76,7 @@ void	ft_echo(t_data *data, char **args)
 		i++;
 		boule = 1;
 	}
-	data->return_val = echo_each_arg(args, i);
+	g_return_val = echo_each_arg(args, i);
 	if (boule == 0)
 		write(STDOUT_FILENO, "\n", 1);
 }

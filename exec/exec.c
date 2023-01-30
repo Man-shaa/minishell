@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/21 16:11:59 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/30 19:00:24 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+extern int	g_return_val;
 
 // Attends la fin d'execution de chaque process child et recupere la valeur
 // de retour de chaque commande effectuee
@@ -28,7 +30,7 @@ void	wait_all_child(t_data *data, int n)
 		if (data->proc->pid[i] != -1)
 		{
 			waitpid(data->proc->pid[i], &status, 0);
-			data->return_val = WEXITSTATUS(status);
+			g_return_val = WEXITSTATUS(status);
 		}
 		i++;
 	}
@@ -41,7 +43,8 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 	char	**env_tab;
 	int		ret;
 
-	if (!cmd->cmd_path)
+	ret = 0;
+	if (!is_builtin(cmd->cmd) && !cmd->cmd_path)
 		return (err_msg("env not found, need an absolute path", 0, 0, 1), 1);
 	data->proc->pid[cmd->index] = fork();
 	if (data->proc->pid[cmd->index] == 0)
@@ -53,13 +56,18 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 			exit(1);
 		}
 		env_tab = get_env_tab(data->envp);
-		execve(cmd->cmd_path, cmd->opt, env_tab);
-		ret = error_cmd(cmd->opt);
+		if (is_builtin(cmd->cmd))
+			exec_builtin(data, cmd->cmd, cmd->opt);
+		else if (is_cmd(data, cmd->cmd, data->env_path))
+		{
+			execve(cmd->cmd_path, cmd->opt, env_tab);
+			ret = error_cmd(cmd->opt);
+		}
 		free_tab(env_tab);
 		free_data(data);
 		exit(ret);
 	}
-	return (data->return_val);
+	return (g_return_val);
 }
 
 // Envoies la commande a la fonction de builtins ou d'exec bin
@@ -74,9 +82,9 @@ int	send_cmd(t_data *data, t_cmd *cmd)
 			return (redir(data, cmd, 0));
 		return (error_cmd(cmd->opt));
 	}
-	else if (is_builtin(cmd->cmd))
+	else if (data->proc->n_pipes == 0 && is_builtin(cmd->cmd))
 		return (exec_builtin(data, cmd->cmd, cmd->opt));
-	else if (is_cmd(data, cmd->cmd, data->env_path))
+	else if (is_builtin(cmd->cmd) || is_cmd(data, cmd->cmd, data->env_path))
 		return (exec_binary(data, cmd));
 	return (1);
 }
@@ -93,7 +101,7 @@ int	execution(t_data *data)
 		return (0);
 	while (cmd)
 	{
-		data->return_val = send_cmd(data, cmd);
+		g_return_val = send_cmd(data, cmd);
 		cmd = cmd->next;
 	}
 	close_pipes(data->proc);

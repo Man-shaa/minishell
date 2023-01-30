@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/21 17:52:03 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:36:02 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,4 +129,4 @@ int	redir(t_data *data, t_cmd *cmd, int m)
 		if (!handle_pipe_redir(cmd, data->proc))
 			return (err_msg("Dup2 failed", NULL, NULL, 1));
 	return (0);
-	}
+}

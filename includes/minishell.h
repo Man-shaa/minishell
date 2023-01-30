@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/30 13:09:13 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:16:41 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,7 @@ typedef struct s_data
 	t_envp	*envp;
 	t_proc	*proc;
 	char	*env_path;
-	int		return_val;
 }				t_data;
-
-// int	g_return_val;
 
 // *************************** BUILTINS ***************************
 
@@ -93,7 +90,7 @@ int		ft_cd(t_data *data, char **args);
 // echo.c
 int		is_option_n(char *str);
 int		echo_each_arg(char **args, int i);
-void	ft_echo(t_data *data, char **args);
+void	ft_echo(char **args);
 char	**ft_split_echo(char	*str, char set);
 
 // env.c
@@ -202,7 +199,7 @@ void	add_to_history(char **av);
 // ******************************* PARSING ********************************
 
 // dollars.c
-char	*replace_ret_val(t_data *data, char *str, int index);
+char	*replace_ret_val(char *str, int index);
 char	*replace_dollar(t_envp *envp, char *big_str, int *index);
 char	*new_str(char *big_str, char *res, int *index);
 void	handle_dollar(t_data *data, t_list *list);

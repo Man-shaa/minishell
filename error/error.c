@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:19:29 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/17 17:42:23 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:58:12 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	err_msg(char *start, char *str, char *end, int ret)
 // Affiche le message d'erreur correspondant a l'erreur
 // Return la valeur de retour selon l'erreur 
 int	error_cmd(char **cmd)
-{
+{	
 	int	fd;
 	DIR	*dir;
 	int	ret;

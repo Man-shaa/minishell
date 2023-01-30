@@ -6,9 +6,11 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/30 13:08:39 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:36:41 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+int	g_return_val;
 
 #include "includes/minishell.h"
 
@@ -28,6 +30,7 @@
 int	main(int ac, char **av, char **envp)
 {
 	(void)av;
+	g_return_val = 0;
 	if (ac != 1)
 		return (err_msg("Tuto : ./minishell", NULL, NULL, 1));
 	handle_signal();
