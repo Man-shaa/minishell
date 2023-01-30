@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/30 13:08:07 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:08:39 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 // quand une premiere commande a ete effectuee auparavant (free_proc)
 
 // CTRL-C dans un heredoc fonctionne pas (handle-signal() ?)
+
+// unset PATH -> ls fonctionne quand meme sans 
 
 int	main(int ac, char **av, char **envp)
 {

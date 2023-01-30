@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/21 16:35:11 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:08:50 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	reset_data(t_data *data, char *str)
 		free_int_tab(data->proc->pipe_fd, data->proc->n_pipes);
 		ft_free(data->proc->pid);
 	}
+	// data->env_path = search_node(data->envp, "PATH")->tab[1];
+	// data->env_path = find_path_in_env(envp);
 }
 
 // Affiche un prompt different selon la valeur de retour precedente 
