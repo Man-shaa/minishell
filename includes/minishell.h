@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/21 15:43:23 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:02:33 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ typedef struct s_data
 	char	*env_path;
 	int		return_val;
 }				t_data;
+
+// int	g_return_val;
 
 // *************************** BUILTINS ***************************
 
@@ -244,6 +246,7 @@ void	print_tab_index(int *tab, int n);
 void	handle_sigquit(int sig_quit);
 void	handle_sigsegv(int sig_segv);
 void	handle_sigint(int sig_int);
+void	handle_sighere(int sig_int);
 void	handle_signal(void);
 
 // ******************************** SPLIT **********************************

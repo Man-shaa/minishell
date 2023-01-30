@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 15:08:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/20 15:27:02 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/21 18:21:23 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ int	create_heredoc(int fd, char *delim)
 	int		i;
 	char	*str;
 
-	i = 0;
+	i = 0; 
+	signal(SIGINT, handle_sighere);
 	fd = open("/tmp/.heredoc_manuo", O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	if (fd == -1)
 		return (err_msg("Open heredoc failed !", NULL, NULL, 0));
-	while (1)
+	while (1 && fd)
 	{
 		str = readline(">");
 		if (is_same(str, delim))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:34:48 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/20 15:18:50 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:58:18 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ void	handle_sigint(int sig_int)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
+}
+
+void	handle_sighere(int sig_int)
+{
+	(void)sig_int;
+	printf("\n");
+	close(0);
 }
 
 //	gere les signaux ctrl-\(SIGQUIT) & ctrl-C(SIGINT)

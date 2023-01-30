@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/21 15:51:24 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:52:03 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	handle_token_redir2(t_proc *proc, char *token, int type, int m)
 	}
 	else if (type == HEREDOC)
 		if (!create_heredoc(proc->fd_in, token))
-			return (0);
+			return (handle_signal(), 0);
 	return (1);
 }
 
