@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/01 16:53:30 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/01 18:57:25 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,7 @@ void	fill_dollar(t_list *tmp, int *i, int *index);
 
 // parsing.c
 int		check_dup(t_data *data);
+int		check_redir(char *str, int *i);
 int		check_quotes(char *str, int i);
 int		parsing(t_data *data);
 

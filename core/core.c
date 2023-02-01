@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/01 16:40:42 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/01 18:49:22 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	get_prompt(char **envp)
 		if (!str)
 			return ;
 		if (!check_quotes(str, 0))
-			return (ft_putstr("quote is not closed\n"), get_prompt(envp));
+			return (get_prompt(envp));
 		if (!ft_split(str, data))
 			return (printf("problem: split unsuccesfull\n"), get_prompt(envp));
 		if (!parsing(data))

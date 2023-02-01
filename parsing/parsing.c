@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:15:26 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/18 18:22:03 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/01 18:58:40 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,20 @@ int	check_dup(t_data *data)
 	return (1);
 }
 
+int	check_redir(char *str, int *i)
+{
+	if (str[(*i)] == '>' || str[(*i)] == '<')
+	{
+		if (str[(*i) + 1] == str[(*i)])
+		{
+			(*i)++;
+			if (str[(*i) + 1] == str[(*i)])
+				return (0);
+		}
+	}
+	return (1);
+}
+
 int	check_quotes(char *str, int i)
 {
 	if (!str)
@@ -44,7 +58,7 @@ int	check_quotes(char *str, int i)
 			while (str[i] && str[i] != '"')
 				i++;
 			if (str[i] == '\0')
-				return (0);
+				return (err_msg("quote is not closed", NULL, NULL, 0), 0);
 		}
 		if (str[i] == 39)
 		{
@@ -52,8 +66,10 @@ int	check_quotes(char *str, int i)
 			while (str[i] && str[i] != 39)
 				i++;
 			if (str[i] == '\0')
-				return (0);
+				return (err_msg("quote is not closed", NULL, NULL, 0), 0);
 		}
+		if (!check_redir(str, &i))
+			return (err_msg("syntax error", NULL, NULL, 0), 0);
 		i++;
 	}
 	return (1);
