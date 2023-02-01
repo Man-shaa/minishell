@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:06:08 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/18 17:17:35 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:22:32 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int	find_cmd_path(t_data *data, t_cmd *cmd, char *env_path)
 		return (0);
 	if (is_absolute_path(data, cmd))
 		return (1);
+	if (!data->env_path)
+		return (0);
 	all_paths = ft_split_normal(env_path, ':');
 	if (!all_paths)
 		return (0);
@@ -90,7 +92,7 @@ int	find_cmd_path(t_data *data, t_cmd *cmd, char *env_path)
 	return (err_msg("No such file or directory", NULL, NULL, 0));
 }
 
-// Return 1 si str est uen commande (access), sinon 0
+// Return 1 si str est une commande (access), sinon 0
 int	is_cmd(t_data *data, char *str, char *env_path)
 {
 	int		i;
@@ -101,7 +103,7 @@ int	is_cmd(t_data *data, char *str, char *env_path)
 	i = 0;
 	if (!str || !str[0])
 		return (0);
-	if (is_builtin(str) || !is_path(data, str))
+	if (is_builtin(str) || !is_path(data, str) || (is_path(data, str) && !data->env_path))
 		return (1);
 	all_paths = ft_split_normal(env_path, ':');
 	if (!all_paths)

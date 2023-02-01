@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 15:08:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/30 13:43:24 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:06:47 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	create_heredoc(int fd, char *delim)
 		if (g_return_val == -42)
 		{
 			ft_free(str);
-			break ;
+			close(fd);
+			return (0);
 		}
 		str = readline(">");
 		if (is_same(str, delim))

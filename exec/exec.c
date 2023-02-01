@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/30 19:00:24 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:33:56 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 	int		ret;
 
 	ret = 0;
-	if (!is_builtin(cmd->cmd) && !cmd->cmd_path)
+	if (!is_builtin(cmd->cmd) && !cmd->cmd_path && cmd->type && cmd->type[0] != HEREDOC)
 		return (err_msg("env not found, need an absolute path", 0, 0, 1), 1);
 	data->proc->pid[cmd->index] = fork();
 	if (data->proc->pid[cmd->index] == 0)
 	{
-		if (redir(data, cmd, 1))
+		if (redir(data, cmd, 1	))
 		{
 			close_pipes(data->proc);
 			free_data(data);
@@ -60,6 +60,13 @@ int	exec_binary(t_data *data, t_cmd *cmd)
 			exec_builtin(data, cmd->cmd, cmd->opt);
 		else if (is_cmd(data, cmd->cmd, data->env_path))
 		{
+			if (!cmd->cmd_path)
+			{
+				ret = (error_cmd(cmd->opt));
+				free_tab(env_tab);
+				free_data(data);
+				exit (ret);
+			}
 			execve(cmd->cmd_path, cmd->opt, env_tab);
 			ret = error_cmd(cmd->opt);
 		}
@@ -78,15 +85,17 @@ int	send_cmd(t_data *data, t_cmd *cmd)
 	if (!cmd->cmd || !cmd->cmd[0] || is_same(cmd->cmd, "..")
 		|| is_same(cmd->cmd, "."))
 	{
-		if (cmd->token && cmd->token[0])
+		if (cmd->token && cmd->token[0] && cmd->type[0] != HEREDOC)
 			return (redir(data, cmd, 0));
+		else if (cmd->type[0] == HEREDOC)
+			return (exec_binary(data, cmd));
 		return (error_cmd(cmd->opt));
 	}
 	else if (data->proc->n_pipes == 0 && is_builtin(cmd->cmd))
 		return (exec_builtin(data, cmd->cmd, cmd->opt));
 	else if (is_builtin(cmd->cmd) || is_cmd(data, cmd->cmd, data->env_path))
 		return (exec_binary(data, cmd));
-	return (1);
+	return (error_cmd(cmd->opt), 1);
 }
 
 // Cree les pipes et s'occupe des redirections avant d'envoyer la commande

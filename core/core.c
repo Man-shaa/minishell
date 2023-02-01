@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/30 14:10:00 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:17:33 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ extern int	g_return_val;
 // Reset les donnees necessaire a chaque nouveau prompt
 void	reset_data(t_data *data, char *str)
 {
+	t_envp	*tmp;
+
 	ft_free(str);
 	if (data->list)
 	{
@@ -33,8 +35,11 @@ void	reset_data(t_data *data, char *str)
 		free_int_tab(data->proc->pipe_fd, data->proc->n_pipes);
 		ft_free(data->proc->pid);
 	}
-	// data->env_path = search_node(data->envp, "PATH")->tab[1];
-	// data->env_path = find_path_in_env(envp);
+	tmp = search_node(data->envp, "PATH");
+	if (tmp)
+		data->env_path = tmp->tab[1];
+	else
+		data->env_path = NULL;
 }
 
 // Affiche un prompt different selon la valeur de retour precedente 
