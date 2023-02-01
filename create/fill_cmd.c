@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:03:31 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/20 17:32:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:47:38 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j)
 			handle_cmd(data, cmd, tmp, j);
 		else
 		{
-			// if (!tmp->str)
-			// 	cmd->opt[(*j)] = ft_strndup("", 0);
-			// else
-				cmd->opt[(*j)] = tmp->str;
+			cmd->opt[(*j)] = tmp->str;
 			(*j)++;
 		}
 		tmp = tmp->next;

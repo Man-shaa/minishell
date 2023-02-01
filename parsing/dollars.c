@@ -6,13 +6,11 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 19:24:48 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/30 13:15:59 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:41:39 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-extern int	g_return_val;
 
 // Replace $? par lla valeur de retour
 // Return la chaine de caractere modifiee;

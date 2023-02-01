@@ -6,13 +6,11 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:48:44 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/30 13:26:04 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:41:16 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-extern int	g_return_val;
 
 // Return 1 si str est un builtin, sinon 0
 int	is_builtin(char *str)

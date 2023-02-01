@@ -6,13 +6,11 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:39:45 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/30 17:24:53 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:41:19 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-extern int	g_return_val;
 
 // Return 1 si l'option -n est trouvee dans str, sinon 0
 int	is_option_n(char *str)

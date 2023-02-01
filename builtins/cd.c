@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 05:07:52 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/20 15:30:17 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:46:12 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_cd(char **args)
 		i++;
 	if (i > 1)
 		return (err_msg("minishell: more than 1 relative or absolute path",
-			NULL, NULL, 0), 0);
+				NULL, NULL, 0), 0);
 	if (!is_a_dir(args[0]))
 		return (err_msg("minishell: ", args[0], ": is not a directory", 0));
 	return (1);
