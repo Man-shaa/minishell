@@ -6,13 +6,11 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/01 16:51:01 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:53:04 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-extern int	g_return_val;
 
 // Attends la fin d'execution de chaque process child et recupere la valeur
 // de retour de chaque commande effectuee

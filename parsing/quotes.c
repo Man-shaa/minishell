@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:32:56 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/18 18:18:03 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:46:25 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	handle_dollar_quote(t_data *data)
 		if (count_dollars(tmp->str))
 			handle_dollar(data, tmp);
 		tmp->str = remove_quotes(tmp->str);
-		// printf ("TMP->STR : [%s]\n", tmp->str);
 		tmp = tmp->next;
 	}
 	return (1);

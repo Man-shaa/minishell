@@ -6,13 +6,11 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 20:16:13 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/30 13:13:24 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:42:04 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-extern int	g_return_val;
 
 // Malloc et initialise a NULL la struct t_data
 // Return pointeur sur data si la creation a reussie, sinon NULL

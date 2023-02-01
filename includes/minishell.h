@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/01 16:49:39 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:53:30 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define HERE	4 // <<	heredoc
 # define APPEND		5 // >>	redirection sortie en mode append
 # define PIPE		6 // |	ET
+
+extern int	g_return_val;
 
 typedef struct s_proc
 {

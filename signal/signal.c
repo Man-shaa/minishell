@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:34:48 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/01 16:03:30 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:41:42 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-extern int	g_return_val;
 
 #include "../includes/minishell.h"
 

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:06:08 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/01 16:52:32 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:53:34 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,8 @@ int	is_cmd(t_data *data, char *str, char *env_path)
 	i = 0;
 	if (!str || !str[0])
 		return (0);
-	if (is_builtin(str) || !is_path(data, str) || (is_path(data, str) && !data->env_path))
+	if (is_builtin(str) || !is_path(data, str)
+		|| (is_path(data, str) && !data->env_path))
 		return (1);
 	all_paths = ft_split_normal(env_path, ':');
 	if (!all_paths)
@@ -118,6 +119,5 @@ int	is_cmd(t_data *data, char *str, char *env_path)
 		ft_free(path);
 		i++;
 	}
-	free_tab(all_paths);
-	return (0);
+	return (free_tab(all_paths), 0);
 }
