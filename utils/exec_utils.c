@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:06:08 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/01 16:53:34 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:54:16 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	find_cmd_path(t_data *data, t_cmd *cmd, char *env_path)
 	i = 0;
 	if (is_absolute_path(data, cmd))
 		return (1);
-	if (!data->env_path)
+	if (!data->env_path || !cmd->cmd)
 		return (0);
 	all_paths = ft_split_normal(env_path, ':');
 	if (!all_paths)
