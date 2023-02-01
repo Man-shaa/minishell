@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/01 16:40:30 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/01 18:58:57 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 int	g_return_val;
 
-// here_doc Pioritaire quelque soit sa position dans readline ??
+// Plusieurs here_doc dans un pipe ou 2 dans 2 pipe separes
 
 // Manuo ✖✖ <izeixn wc -l >>> out ????
 
 // minishell: unexpected token or redirection invalid free seulement
 // quand une premiere commande a ete effectuee auparavant (free_proc)
-
-// unset PATH -> ls fonctionne quand meme sans 
 
 int	main(int ac, char **av, char **envp)
 {
