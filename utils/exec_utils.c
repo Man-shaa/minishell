@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:06:08 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/01 16:22:32 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:52:32 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ char	*find_path_in_env(char **envp)
 // Return 1 si access a fonctionne, sinon 0
 int	is_absolute_path(t_data *data, t_cmd *cmd)
 {
+	if (!cmd)
+		return (0);
 	if (!is_path(data, cmd->cmd))
 	{
 		if (!cmd->cmd_path)
@@ -69,8 +71,6 @@ int	find_cmd_path(t_data *data, t_cmd *cmd, char *env_path)
 	char	*path;
 
 	i = 0;
-	if (!cmd->cmd)
-		return (0);
 	if (is_absolute_path(data, cmd))
 		return (1);
 	if (!data->env_path)

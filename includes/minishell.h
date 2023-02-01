@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/30 13:16:41 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:49:39 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define WORD		1
 # define IN			2 // <	lire dans 
 # define OUT		3 // >	ecrire dans
-# define HEREDOC	4 // <<	heredoc
+# define HERE	4 // <<	heredoc
 # define APPEND		5 // >>	redirection sortie en mode append
 # define PIPE		6 // |	ET
 

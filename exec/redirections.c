@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/30 15:36:02 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:49:39 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ int	handle_pipe_redir(t_cmd *cmd, t_proc *proc)
 	}
 	else if (cmd->index == proc->n_pipes)
 	{
-		if (!is_token(cmd, IN) && !is_token(cmd, HEREDOC))
+		if (!is_token(cmd, IN) && !is_token(cmd, HERE))
 			if (dup2(proc->pipe_fd[cmd->index - 1][0], STDIN_FILENO) == -1)
 				return (0);
 	}
 	else
 	{
-		if (!is_token(cmd, IN) && !is_token(cmd, HEREDOC))
+		if (!is_token(cmd, IN) && !is_token(cmd, HERE))
 			if (dup2(proc->pipe_fd[cmd->index - 1][0], STDIN_FILENO) == -1)
 				return (0);
 		if (!is_token(cmd, OUT))
@@ -73,7 +73,7 @@ int	handle_token_redir2(t_proc *proc, char *token, int type, int m)
 			close(proc->fd_out);
 		}
 	}
-	else if (type == HEREDOC)
+	else if (type == HERE)
 		if (!create_heredoc(proc->fd_in, token))
 			return (handle_signal(), 0);
 	return (1);

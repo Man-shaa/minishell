@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/01 16:33:56 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:51:01 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,40 +36,43 @@ void	wait_all_child(t_data *data, int n)
 	}
 }
 
+void	execve_binary(t_data *data, t_cmd *cmd, char **env_tab, int ret)
+{
+	if (!cmd->cmd_path)
+	{
+		ret = (error_cmd(cmd->opt));
+		free_tab(env_tab);
+		free_data(data);
+		exit (ret);
+	}
+	execve(cmd->cmd_path, cmd->opt, env_tab);
+	ret = error_cmd(cmd->opt);
+}
+
 // Execute les commandes (non builtins)
 // Ne return rien si l'execution a reussie ou la valeur d'erreur
-int	exec_binary(t_data *data, t_cmd *cmd)
+int	exec_binary(t_data *data, t_cmd *c)
 {
 	char	**env_tab;
 	int		ret;
 
 	ret = 0;
-	if (!is_builtin(cmd->cmd) && !cmd->cmd_path && cmd->type && cmd->type[0] != HEREDOC)
+	if (!is_builtin(c->cmd) && !c->cmd_path && c->type && c->type[0] != HERE)
 		return (err_msg("env not found, need an absolute path", 0, 0, 1), 1);
-	data->proc->pid[cmd->index] = fork();
-	if (data->proc->pid[cmd->index] == 0)
+	data->proc->pid[c->index] = fork();
+	if (data->proc->pid[c->index] == 0)
 	{
-		if (redir(data, cmd, 1	))
+		if (redir(data, c, 1))
 		{
 			close_pipes(data->proc);
 			free_data(data);
 			exit(1);
 		}
 		env_tab = get_env_tab(data->envp);
-		if (is_builtin(cmd->cmd))
-			exec_builtin(data, cmd->cmd, cmd->opt);
-		else if (is_cmd(data, cmd->cmd, data->env_path))
-		{
-			if (!cmd->cmd_path)
-			{
-				ret = (error_cmd(cmd->opt));
-				free_tab(env_tab);
-				free_data(data);
-				exit (ret);
-			}
-			execve(cmd->cmd_path, cmd->opt, env_tab);
-			ret = error_cmd(cmd->opt);
-		}
+		if (is_builtin(c->cmd))
+			exec_builtin(data, c->cmd, c->opt);
+		else if (is_cmd(data, c->cmd, data->env_path))
+			execve_binary(data, c, env_tab, ret);
 		free_tab(env_tab);
 		free_data(data);
 		exit(ret);
@@ -85,9 +88,9 @@ int	send_cmd(t_data *data, t_cmd *cmd)
 	if (!cmd->cmd || !cmd->cmd[0] || is_same(cmd->cmd, "..")
 		|| is_same(cmd->cmd, "."))
 	{
-		if (cmd->token && cmd->token[0] && cmd->type[0] != HEREDOC)
+		if (cmd->token && cmd->token[0] && cmd->type[0] != HERE)
 			return (redir(data, cmd, 0));
-		else if (cmd->type[0] == HEREDOC)
+		else if (cmd->type[0] == HERE)
 			return (exec_binary(data, cmd));
 		return (error_cmd(cmd->opt));
 	}
