@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/01 18:57:25 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:58:30 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 # include <fcntl.h>
 
 # define WORD		1
-# define IN			2 // <	lire dans 
+# define IN			2 // <	lire dans
 # define OUT		3 // >	ecrire dans
-# define HERE	4 // <<	heredoc
+# define HERE		4 // <<	heredoc
 # define APPEND		5 // >>	redirection sortie en mode append
-# define PIPE		6 // |	ET
+# define PIPE		6 // | ET
 
 extern int	g_return_val;
 
@@ -165,7 +165,9 @@ int		send_cmd(t_data *data, t_cmd *cmd);
 int		execution(t_data *data);
 
 // heredoc.c
-int		create_heredoc(int fd, char *delim);
+int		is_last_heredoc(t_data *data, t_cmd *cmd, int cmd_pos);
+int		fill_heredoc(char *str, char *delim, int fd);
+int		create_heredoc(t_data *data, t_cmd *cmd, int fd, int cmd_pos);
 
 // pipe.c
 int		create_pipes(t_proc *proc);
@@ -175,7 +177,8 @@ void	close_pipes(t_proc *proc);
 // redirections.c
 int		is_token(t_cmd *cmd, int type);
 int		handle_pipe_redir(t_cmd *cmd, t_proc *proc);
-int		handle_token_redir(t_proc *proc, char *token, int type, int m);
+int		handle_token_redir2(t_data *data, t_cmd *cmd, int cmd_pos, int m);
+int		handle_token_redir(t_data *data, t_cmd *cmd, int cmd_pos, int m);
 int		redir(t_data *data, t_cmd *cmd, int m);
 
 // ********************************* FREE *********************************
