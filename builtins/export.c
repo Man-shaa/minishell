@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:43 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/18 18:14:40 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/05 18:05:40 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	ft_export(t_data *data, char **args)
 	{
 		if (!args[i] || !args[i][0] || args[i][0] == '='
 			|| !is_valid_name(args[i]))
-			err_msg("export: `", args[i], "': not a valid identifier", 1);
+			g_return_val = err_msg("export: `", args[i], "': not a valid identifier", 1);
 		else
 		{
 			if (already_exist(data->envp, args[i]))
@@ -105,5 +105,5 @@ int	ft_export(t_data *data, char **args)
 		}
 		i++;
 	}
-	return (0);
+	return (g_return_val);
 }
