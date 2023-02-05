@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/03 12:40:26 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/05 17:48:47 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ char	*get_readline(t_data *data, char *str)
 	{
 		rl_clear_history();
 		free_data_proc(data);
+		write(STDERR_FILENO, "exit\n", 5);
 		exit(127);
 	}
 	add_history(str);
@@ -81,7 +82,6 @@ void	get_prompt(char **envp)
 		}
 		if (!get_cmd_struct(data))
 			return (printf("problem: t_cmd\n"), free_data(data));
-		print_struct_cmd(data);
 		if (!execution(data))
 			return (printf("problem: execution\n"), free_data(data));
 		reset_data(data, str);

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 06:20:44 by msharifi          #+#    #+#             */
-/*   Updated: 2022/12/21 18:18:24 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/05 17:55:03 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,18 @@
 // Return 0 si tout s'set bien passe, 127 si il y a une erreur
 int	print_env(t_envp *envp, char **args)
 {
+	int	i;
+
+	i = 0;
 	if (args && args[0])
 	{
-		err_msg("env: '", args[0], "' No such file or directory", 127);
-		return (127);
+		while (args[i] && is_same(args[i], "env"))
+			i++;
+		if (args[i])
+		{
+			err_msg("env: '", args[0], "' No such file or directory", 127);
+			return (127);
+		}
 	}
 	while (envp)
 	{
