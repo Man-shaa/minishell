@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 06:20:44 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/05 17:55:03 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/05 17:57:30 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	print_env(t_envp *envp, char **args)
 			i++;
 		if (args[i])
 		{
-			err_msg("env: '", args[0], "' No such file or directory", 127);
-			return (127);
+			g_return_val = err_msg("env: '", args[0], "' No such file or directory", 127);
+			return (g_return_val);
 		}
 	}
 	while (envp)
