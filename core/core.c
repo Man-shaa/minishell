@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/01 19:02:32 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/01 19:22:50 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ char	*get_readline(t_data *data, char *str)
 	{
 		rl_clear_history();
 		free_data_proc(data);
+		ft_putstr("exit\n");
 		exit(127);
 	}
 	add_history(str);
