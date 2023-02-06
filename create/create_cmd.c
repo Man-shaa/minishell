@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:53:43 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/06 19:11:56 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/06 19:36:20 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	get_cmd_struct(t_data *data)
 	{
 		g_return_val = 2;
 		return (err_msg("syntax error near unexpected token `newline'",
-			NULL, NULL, 0), free_data(data), 0);
+			NULL, NULL, 0), free_data_proc(data), 0);
 	}
 	data->proc->pid = ft_calloc(pipe_count(data->cmd) + 1, sizeof(pid_t));
 	while (i < pipe_count(data->cmd) + 1)
