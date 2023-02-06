@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/03 12:58:30 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/06 19:57:00 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ int		redir(t_data *data, t_cmd *cmd, int m);
 // ********************************* FREE *********************************
 
 // free_2.c
+void	free_tab_n(char **tab, int n);
 void	ft_free(void *addr);
 void	free_int_tab(int **tab, int last);
 void	free_proc(t_proc *proc);
@@ -297,6 +298,7 @@ t_cmd	*ft_cmdlast(t_cmd *cmd);
 int		pipe_count(t_cmd *cmd);
 
 // cmd_utils.c
+int		count_redir(t_data *data, int n);
 int		count_tokens(t_data *data, int n);
 int		words_to_pipe(t_data *data, int n);
 int		command_or_builtin(char *str, int *cappuccino);

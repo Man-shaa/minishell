@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   free_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 19:06:10 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/20 15:20:40 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/06 19:59:35 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+//free un **tab  jusqu'a n
+void	free_tab_n(char **tab, int n)
+{
+	int	i;
+
+	i = 0;
+	if (!tab)
+		return ;
+	while (i < n)
+	{
+		ft_free(tab[i]);
+		i++;
+	}
+	ft_free(tab);
+}
 
 void	ft_free(void *addr)
 {
