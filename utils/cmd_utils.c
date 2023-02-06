@@ -6,11 +6,35 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 02:39:44 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/06 18:32:07 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/06 19:42:22 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+// Return le compteur de token dans une commande avec n pour l'index du pipe
+int	count_redir(t_data *data, int n)
+{
+	t_list	*tmp;
+	int		count;
+	int		index;
+
+	tmp = data->list;
+	count = 0;
+	index = 0;
+	if (tmp->type != 1 && !tmp->next)
+		return (1);
+	while (tmp)
+	{
+		if (tmp && (tmp->type != WORD && tmp->type != PIPE) && index == n)
+			count++;
+		else if (tmp->type == PIPE)
+			index++;
+		if (tmp)
+			tmp = tmp->next;
+	}
+	return (count);
+}
 
 // Return le compteur de token dans une commande avec n pour l'index du pipe
 int	count_tokens(t_data *data, int n)
