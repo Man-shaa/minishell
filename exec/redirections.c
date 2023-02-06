@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/01 16:49:39 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/03 13:56:00 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,55 +59,55 @@ int	handle_pipe_redir(t_cmd *cmd, t_proc *proc)
 	return (1);
 }
 
-int	handle_token_redir2(t_proc *proc, char *token, int type, int m)
+int	handle_token_redir2(t_data *data, t_cmd *cmd, int cmd_pos, int m)
 {
-	if (type == APPEND)
+	if (cmd->type[cmd_pos] == APPEND)
 	{
-		proc->fd_out = open(token, O_WRONLY | O_CREAT | O_APPEND, 0644);
-		if (proc->fd_out < 0)
+		data->proc->fd_out = open(cmd->token[cmd_pos], O_WRONLY | O_CREAT | O_APPEND, 0644);
+		if (data->proc->fd_out < 0)
 			return (err_msg("open: No such file or directory", NULL, NULL, 0));
 		if (m == 1)
 		{
-			if (dup2(proc->fd_out, STDOUT_FILENO) == -1)
-				return (close(proc->fd_out), 0);
-			close(proc->fd_out);
+			if (dup2(data->proc->fd_out, STDOUT_FILENO) == -1)
+				return (close(data->proc->fd_out), 0);
+			close(data->proc->fd_out);
 		}
 	}
-	else if (type == HERE)
-		if (!create_heredoc(proc->fd_in, token))
+	else if (cmd->type[cmd_pos] == HERE)
+		if (!create_heredoc(data, cmd, data->proc->fd_in, cmd_pos))
 			return (handle_signal(), 0);
 	return (1);
 }
 
 // Open le token et dup2 fd_in/out en fonction du type < > >>
 // Return 0 si tout s'est bien passe, sinon 1
-int	handle_token_redir(t_proc *proc, char *token, int type, int m)
+int	handle_token_redir(t_data *data, t_cmd *cmd, int cmd_pos, int m)
 {
-	if (type == IN)
+	if (cmd->type[cmd_pos] == IN)
 	{
-		proc->fd_in = open(token, O_RDONLY, 0644);
-		if (proc->fd_in < 0)
+		data->proc->fd_in = open(cmd->token[cmd_pos], O_RDONLY, 0644);
+		if (data->proc->fd_in < 0)
 			return (err_msg("open: No such file or directory", NULL, NULL, 0));
 		if (m == 1)
 		{
-			if (dup2(proc->fd_in, STDIN_FILENO) == -1)
-				return (close(proc->fd_in), 0);
-			close(proc->fd_in);
+			if (dup2(data->proc->fd_in, STDIN_FILENO) == -1)
+				return (close(data->proc->fd_in), 0);
+			close(data->proc->fd_in);
 		}
 	}
-	else if (type == OUT)
+	else if (cmd->type[cmd_pos] == OUT)
 	{
-		proc->fd_out = open(token, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		if (proc->fd_out < 0)
+		data->proc->fd_out = open(cmd->token[cmd_pos], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		if (data->proc->fd_out < 0)
 			return (err_msg("open: No such file or directory", NULL, NULL, 0));
 		if (m == 1)
 		{
-			if (dup2(proc->fd_out, STDOUT_FILENO) == -1)
-				return (close(proc->fd_out), 0);
-			close(proc->fd_out);
+			if (dup2(data->proc->fd_out, STDOUT_FILENO) == -1)
+				return (close(data->proc->fd_out), 0);
+			close(data->proc->fd_out);
 		}
 	}
-	return (handle_token_redir2(proc, token, type, m));
+	return (handle_token_redir2(data, cmd, cmd_pos, m));
 }
 
 // S'occupe des redirections pipe et < > >>
@@ -121,7 +121,7 @@ int	redir(t_data *data, t_cmd *cmd, int m)
 		return (0);
 	while (cmd->token[i])
 	{
-		if (!handle_token_redir(data->proc, cmd->token[i], cmd->type[i], m))
+		if (!handle_token_redir(data, cmd, i, m))
 			return (1);
 		i++;
 	}

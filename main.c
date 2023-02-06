@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/01 18:58:57 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/03 19:19:38 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 int	g_return_val;
 
-// Plusieurs here_doc dans un pipe ou 2 dans 2 pipe separes
-
-// Manuo ✖✖ <izeixn wc -l >>> out ????
-
-// minishell: unexpected token or redirection invalid free seulement
-// quand une premiere commande a ete effectuee auparavant (free_proc)
+// Plusieurs here_doc dans 2 pipe separes
 
 int	main(int ac, char **av, char **envp)
 {
