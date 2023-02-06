@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/05 18:00:59 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/06 14:52:45 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	g_return_val;
 
 // "export Hola=bonjour" PUIS "export Hola" Hola doit plus avoir "bonjour" :(
 // qq part dans replace_value je pense
+
+// CRASH ">echo>" 
 
 int	main(int ac, char **av, char **envp)
 {
