@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 02:39:44 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/06 19:42:22 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/06 20:26:42 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	words_to_pipe(t_data *data, int n)
 			index++;
 		tmp = tmp->next;
 	}
-	if (count == -1)
+	if (count <= -1)
 		return (0);
 	return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:53:43 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/06 20:04:10 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/06 20:27:12 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,10 @@
 // Calloc les char** et int* de data->cmd, return t_cmd
 t_cmd	*set_up_cmd(t_data *data, int *i)
 {
-	int		words;
 	t_cmd	*cmd;
 
-	words = words_to_pipe(data, (*i));
-	if (words < 0)
-		return (0);
 	cmd = ft_cmdnew(*i);
-	cmd->opt = ft_calloc(words + 1, sizeof(char *));
+	cmd->opt = ft_calloc(words_to_pipe(data, (*i)) + 1, sizeof(char *));
 	if (!cmd->opt)
 		return (NULL);
 	cmd->opt[words_to_pipe(data, (*i))] = 0;
