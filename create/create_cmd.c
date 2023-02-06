@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:53:43 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/01 16:47:51 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/06 16:16:22 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,14 @@
 // Calloc les char** et int* de data->cmd, return t_cmd
 t_cmd	*set_up_cmd(t_data *data, int *i)
 {
+	int		words;
 	t_cmd	*cmd;
 
+	words = words_to_pipe(data, (*i)) + 1;
+	if (words <= 0)
+		return (0);
 	cmd = ft_cmdnew(*i);
-	cmd->opt = ft_calloc(words_to_pipe(data, (*i)) + 1, sizeof(char *));
+	cmd->opt = ft_calloc(words, sizeof(char *));
 	if (!cmd->opt)
 		return (NULL);
 	cmd->opt[words_to_pipe(data, (*i))] = 0;
@@ -42,7 +46,11 @@ int	get_cmd_struct(t_data *data)
 	cmd = NULL;
 	i = 0;
 	if (!start_cmd_struct(data, tmp, cmd))
-		return (0);
+	{
+		g_return_val = 2;
+		return (err_msg("syntax error near unexpected token `newline'",
+			NULL, NULL, 0), free_data(data), 0);
+	}
 	data->proc->pid = ft_calloc(pipe_count(data->cmd) + 1, sizeof(pid_t));
 	while (i < pipe_count(data->cmd) + 1)
 	{

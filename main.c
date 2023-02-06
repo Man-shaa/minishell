@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/03 19:19:38 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/06 14:52:45 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,17 @@
 int	g_return_val;
 
 // Plusieurs here_doc dans 2 pipe separes
+
+// valeur de retour de CTRL-\ pas bon (0 au lieu de 131)
+
+// echo "$9HOME" OU "echo $:$=" essaye d'expand alors qu'il faut pas
+
+// "|" conditional jump
+
+// "export Hola=bonjour" PUIS "export Hola" Hola doit plus avoir "bonjour" :(
+// qq part dans replace_value je pense
+
+// CRASH ">echo>" 
 
 int	main(int ac, char **av, char **envp)
 {
