@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:53:43 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/08 18:37:01 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/08 19:03:23 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int	start_cmd_struct(t_data *data, t_list *tmp, t_cmd *cmd)
 			tmp = fill_cmd_tokens(cmd, tmp, &k);
 		}
 		add_back(data, cmd);
-		// print_struct_cmd(data);
 		i++;
 		if (tmp)
 			tmp = tmp->next;
