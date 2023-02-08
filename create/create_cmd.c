@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:53:43 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/08 17:19:46 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/08 18:12:43 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	start_cmd_struct(t_data *data, t_list *tmp, t_cmd *cmd)
 			tmp = fill_cmd_tokens(cmd, tmp, &k);
 		}
 		add_back(data, cmd);
-		print_struct_cmd(data);
+		// print_struct_cmd(data);
 		i++;
 		if (tmp)
 			tmp = tmp->next;
