@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:53:43 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/06 20:27:12 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/08 16:16:05 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_cmd	*set_up_cmd(t_data *data, int *i)
 	if (!cmd->token)
 		return (NULL);
 	cmd->token[count_tokens(data, (*i))] = 0;
-	cmd->type = ft_calloc(count_redir(data, (*i)), sizeof(int));
+	cmd->type = ft_calloc(count_redir(data, (*i)) + 1, sizeof(int));
 	if (count_tokens(data, (*i)) != count_redir(data, (*i)))
 		return (free_cmd(cmd), NULL);
 	return (cmd);
@@ -46,7 +46,7 @@ int	get_cmd_struct(t_data *data)
 	{
 		g_return_val = 2;
 		return (err_msg("syntax error near unexpected token `newline'",
-			NULL, NULL, 0), free_data(data), 0);
+			NULL, NULL, 0), free_data_proc(data), 0);
 	}
 	data->proc->pid = ft_calloc(pipe_count(data->cmd) + 1, sizeof(pid_t));
 	while (i < pipe_count(data->cmd) + 1)

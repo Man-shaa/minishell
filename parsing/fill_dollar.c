@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:43:56 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/18 18:21:48 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/06 20:06:33 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	fill_dollar_dq(t_list *tmp, int *i, int *index)
 				(*i)++;
 				tmp->dollar[(*index)++] = 0;
 			}
-			else if (!tmp->str[(*i) + 1] || tmp->str[(*i) + 1] == '"')
+			else if (!tmp->str[(*i) + 1] || tmp->str[(*i) + 1] == '"'
+				|| !ft_isalpha(tmp->str[(*i) + 1]))
 				tmp->dollar[(*index)++] = 0;
 			else
 				tmp->dollar[(*index)++] = 1;

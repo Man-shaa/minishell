@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/03 13:56:00 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/06 20:36:09 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int	handle_token_redir2(t_data *data, t_cmd *cmd, int cmd_pos, int m)
 				return (close(data->proc->fd_out), 0);
 			close(data->proc->fd_out);
 		}
+		else
+			close(data->proc->fd_out);
 	}
 	else if (cmd->type[cmd_pos] == HERE)
 		if (!create_heredoc(data, cmd, data->proc->fd_in, cmd_pos))
@@ -94,6 +96,8 @@ int	handle_token_redir(t_data *data, t_cmd *cmd, int cmd_pos, int m)
 				return (close(data->proc->fd_in), 0);
 			close(data->proc->fd_in);
 		}
+		else
+			close(data->proc->fd_out);
 	}
 	else if (cmd->type[cmd_pos] == OUT)
 	{
@@ -106,6 +110,8 @@ int	handle_token_redir(t_data *data, t_cmd *cmd, int cmd_pos, int m)
 				return (close(data->proc->fd_out), 0);
 			close(data->proc->fd_out);
 		}
+		else
+			close(data->proc->fd_out);
 	}
 	return (handle_token_redir2(data, cmd, cmd_pos, m));
 }
