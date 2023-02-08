@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:53:43 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/06 20:06:56 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/06 20:42:36 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_cmd	*set_up_cmd(t_data *data, int *i)
 	if (!cmd->token)
 		return (NULL);
 	cmd->token[count_tokens(data, (*i))] = 0;
-	cmd->type = ft_calloc(count_redir(data, (*i)), sizeof(int));
+	cmd->type = ft_calloc(count_redir(data, (*i)) + 1, sizeof(int));
 	if (count_tokens(data, (*i)) != count_redir(data, (*i)))
 		return (free_cmd(cmd), NULL);
 	return (cmd);
