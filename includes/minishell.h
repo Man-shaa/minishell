@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/08 16:15:50 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/08 16:37:04 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct s_data
 
 // builtins.c
 int		is_builtin(char *str);
-int		exec_builtin(t_data *data, char *cmd, char **args);
+int		exec_builtin(t_data *data, t_cmd *cmd, char **args);
 
 // cd.c
 int		is_a_dir(char *str);
