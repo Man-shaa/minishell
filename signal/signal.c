@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:34:48 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/01 16:41:42 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/08 16:18:21 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	handle_sigsegv(int sig_segv)
 void	handle_sigint(int sig_int)
 {
 	(void)sig_int;
+	g_return_val = 130;
 	ft_putstr("\n");
 	rl_on_new_line();
 	rl_replace_line("", 0);
