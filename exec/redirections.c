@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/06 20:36:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/08 16:36:00 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ int	handle_token_redir(t_data *data, t_cmd *cmd, int cmd_pos, int m)
 
 // S'occupe des redirections pipe et < > >>
 // Return 0 si tout s'est bien passe, sinon 1
+// Si [m] == 1, dup2
 int	redir(t_data *data, t_cmd *cmd, int m)
 {
 	int	i;

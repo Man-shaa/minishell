@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/06 20:33:36 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/08 16:42:45 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	exec_binary(t_data *data, t_cmd *c)
 		}
 		env_tab = get_env_tab(data->envp);
 		if (is_builtin(c->cmd))
-			exec_builtin(data, c->cmd, c->opt);
+			exec_builtin(data, c, c->opt);
 		else if (is_cmd(data, c->cmd, data->env_path))
 			execve_binary(data, c, env_tab, ret);
 		free_tab(env_tab);
@@ -93,7 +93,7 @@ int	send_cmd(t_data *data, t_cmd *cmd)
 		return (error_cmd(cmd->opt));
 	}
 	else if (data->proc->n_pipes == 0 && is_builtin(cmd->cmd))
-		return (exec_builtin(data, cmd->cmd, cmd->opt));
+		return (exec_builtin(data, cmd, cmd->opt));
 	else if (is_builtin(cmd->cmd) || is_cmd(data, cmd->cmd, data->env_path))
 		return (exec_binary(data, cmd));
 	return (error_cmd(cmd->opt), 1);
