@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:04:26 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/06 20:24:04 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/08 16:59:58 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_exit(t_data *data, char **args)
 
 	if (!args)
 		return_val = 0;
-	else if (args[0])
+	else if (args[0] && args[1])
 	{
 		return_val = err_msg("minishell: exit: too many arguments", NULL, NULL,
 				1);
