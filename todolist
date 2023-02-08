@@ -8,8 +8,5 @@ HEREDOC
 
 FORK builtin
 
-Verifier les SIGNAUX (?)
-
-
 | -> probleme
 redir (les builtins)
