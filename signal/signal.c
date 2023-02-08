@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:34:48 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/08 18:01:02 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/08 19:00:29 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	handle_sigquit(int sig_quit)
 {
 	(void)sig_quit;
+	g_return_val = 131;
 	ft_putstr("Quit (core dumped)\n");
 }
 

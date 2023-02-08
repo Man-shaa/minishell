@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/08 18:27:18 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/08 19:01:07 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	wait_all_child(t_data *data, int n)
 	}
 }
 
-void	execve_binary(t_data *data, t_cmd *cmd, int ret)
+int	execve_binary(t_data *data, t_cmd *cmd, int ret)
 {
 	char	**env_tab;
 
@@ -47,7 +47,8 @@ void	execve_binary(t_data *data, t_cmd *cmd, int ret)
 		exit (ret);
 	}
 	execve(cmd->cmd_path, cmd->opt, env_tab);
-	ret = error_cmd(cmd->opt);
+	free_tab(env_tab);
+	return (error_cmd(cmd->opt));
 }
 
 // Execute les commandes (non builtins)
@@ -69,9 +70,9 @@ int	exec_binary(t_data *data, t_cmd *c)
 			exit(1);
 		}
 		if (is_builtin(c->cmd))
-			exec_builtin(data, c, c->opt);
+			g_return_val = exec_builtin(data, c, c->opt);
 		else if (is_cmd(data, c->cmd, data->env_path))
-			execve_binary(data, c, ret);
+			g_return_val = execve_binary(data, c, ret);
 		free_data(data);
 		exit(ret);
 	}
@@ -96,7 +97,7 @@ int	send_cmd(t_data *data, t_cmd *cmd)
 		return (exec_builtin(data, cmd, cmd->opt));
 	else if (is_builtin(cmd->cmd) || is_cmd(data, cmd->cmd, data->env_path))
 		return (exec_binary(data, cmd));
-	return (error_cmd(cmd->opt), 1);
+	return (error_cmd(cmd->opt));
 }
 
 // Cree les pipes et s'occupe des redirections avant d'envoyer la commande
