@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_data.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 20:16:13 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/01 16:42:04 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/08 18:45:24 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ t_data	*create_data(char **envp)
 	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
 		return (NULL);
-	g_return_val = 0;
 	data->env_path = NULL;
 	data->cmd = NULL;
 	data->list = NULL;
 	data->envp = NULL;
+	data->proc = NULL;
 	if (!create_env(data, envp))
 		return (free_data(data), NULL);
 	data->proc = create_proc();

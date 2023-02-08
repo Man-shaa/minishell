@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:15:26 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/01 18:58:40 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/08 18:46:31 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	check_quotes(char *str, int i)
 			while (str[i] && str[i] != '"')
 				i++;
 			if (str[i] == '\0')
-				return (err_msg("quote is not closed", NULL, NULL, 0), 0);
+				return (err_msg("quote is not closed", NULL, NULL, 99));
 		}
 		if (str[i] == 39)
 		{
@@ -66,13 +66,13 @@ int	check_quotes(char *str, int i)
 			while (str[i] && str[i] != 39)
 				i++;
 			if (str[i] == '\0')
-				return (err_msg("quote is not closed", NULL, NULL, 0), 0);
+				return (err_msg("quote is not closed", NULL, NULL, 99));
 		}
 		if (!check_redir(str, &i))
-			return (err_msg("syntax error", NULL, NULL, 0), 0);
+			return (err_msg("syntax error", NULL, NULL, 0), 2);
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 int	parsing(t_data *data)
