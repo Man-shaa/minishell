@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/08 16:55:28 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/08 17:11:38 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	get_prompt(char **envp)
 		}
 		if (!get_cmd_struct(data))
 			get_prompt(envp);
-		print_struct_cmd(data);
 		if (!execution(data))
 			return (printf("problem: execution\n"), free_data(data));
 		reset_data(data, str);

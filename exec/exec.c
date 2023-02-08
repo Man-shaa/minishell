@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/08 16:42:45 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/08 17:24:07 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ void	wait_all_child(t_data *data, int n)
 	}
 }
 
-void	execve_binary(t_data *data, t_cmd *cmd, char **env_tab, int ret)
+void	execve_binary(t_data *data, t_cmd *cmd, int ret)
 {
+	char	**env_tab;
+
+	env_tab = get_env_tab(data->envp);
 	if (!cmd->cmd_path)
 	{
 		ret = (error_cmd(cmd->opt));
@@ -51,7 +54,6 @@ void	execve_binary(t_data *data, t_cmd *cmd, char **env_tab, int ret)
 // Ne return rien si l'execution a reussie ou la valeur d'erreur
 int	exec_binary(t_data *data, t_cmd *c)
 {
-	char	**env_tab;
 	int		ret;
 
 	ret = 0;
@@ -66,12 +68,10 @@ int	exec_binary(t_data *data, t_cmd *c)
 			free_data(data);
 			exit(1);
 		}
-		env_tab = get_env_tab(data->envp);
 		if (is_builtin(c->cmd))
 			exec_builtin(data, c, c->opt);
 		else if (is_cmd(data, c->cmd, data->env_path))
-			execve_binary(data, c, env_tab, ret);
-		free_tab(env_tab);
+			execve_binary(data, c, ret);
 		free_data(data);
 		exit(ret);
 	}

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:48:44 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/08 16:53:20 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/08 17:11:27 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,10 @@ int	is_builtin(char *str)
 	return (0);
 }
 
-// Compare str avec les builtins et si str en est un,
-// envoies a la fonction correspondante pour l'executer
-int	exec_builtin(t_data *data, t_cmd *cmd, char **args)
+int	send_builtin_fork(t_data *data, t_cmd *cmd, char **args)
 {
-	int	ret_exit;
 	int	pid;
 
-	if (is_same(cmd->cmd, "exit") && args)
-	{
-		ret_exit = ft_exit(data, args);
-		if (ret_exit != -1)
-			exit(ret_exit);
-		g_return_val = 1;
-	}
 	pid = fork();
 	if (pid == -1)
 		return (1);
@@ -69,6 +59,24 @@ int	exec_builtin(t_data *data, t_cmd *cmd, char **args)
 		exit(g_return_val);
 	}
 	waitpid(pid, NULL, 0);
+	return (0);
+}
+
+// Compare str avec les builtins et si str en est un,
+// envoies a la fonction correspondante pour l'executer
+int	exec_builtin(t_data *data, t_cmd *cmd, char **args)
+{
+	int	ret_exit;
+
+	if (is_same(cmd->cmd, "exit") && args)
+	{
+		ret_exit = ft_exit(data, args);
+		if (ret_exit != -1)
+			exit(ret_exit);
+		g_return_val = 1;
+	}
+	if (send_builtin_fork(data, cmd, args))
+		return (1);
 	if (is_same(cmd->cmd, "export"))
 		g_return_val = ft_export(data, args);
 	else if (is_same(cmd->cmd, "cd"))
