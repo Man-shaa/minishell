@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:03:31 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/06 19:11:13 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/08 17:28:18 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,13 @@ t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j)
 	{
 		if (is_cmd(data, tmp->str, data->env_path) && cmd->cmd == NULL)
 			handle_cmd(data, cmd, tmp, j);
-		else
+		else if (cmd->cmd == NULL && (*j) == 0)
+		{
+			cmd->cmd = ft_strndup(tmp->str, 0);
+			cmd->opt[(*j)] = tmp->str;
+			(*j)++;
+		}
+		else 
 		{
 			cmd->opt[(*j)] = tmp->str;
 			(*j)++;
