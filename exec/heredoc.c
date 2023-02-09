@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 15:08:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/09 14:02:13 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/09 18:00:35 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	create_heredoc(t_data *data, t_cmd *cmd, int fd, int cmd_pos)
 	if (is_last_heredoc(data, cmd, cmd_pos) == 1)
 	{
 		if (dup2(fd, STDIN_FILENO) == -1)
-			return (close(fd), err_msg("Dup2 heredoc failed", NULL, NULL, 0), 0);
+			return (close(fd), err_msg("Dup2 heredoc failed", 0, NULL, 0), 0);
 	}
 	close(fd);
 	return (1);

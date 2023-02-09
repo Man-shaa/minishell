@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:03:31 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/08 18:15:26 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/09 18:01:10 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j)
 			cmd->opt[(*j)] = tmp->str;
 			(*j)++;
 		}
-		else 
+		else
 		{
 			cmd->opt[(*j)] = tmp->str;
 			(*j)++;

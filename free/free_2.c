@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 19:06:10 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/08 18:36:11 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/09 18:00:48 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_free(void *addr)
 	addr = NULL;
 }
 
-// Free tab jussqu'a last
+// Free tab jusqu'a last
 void	free_int_tab(int **tab, int last)
 {
 	int	i;
@@ -75,5 +75,4 @@ void	free_data_proc(t_data *data)
 	if (data->proc)
 		ft_free(data->proc);
 	ft_free(data);
-	// rl_clear_history();
 }

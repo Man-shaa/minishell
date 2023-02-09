@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:15:26 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/09 15:21:03 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/09 17:56:34 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int check_pipe(t_data *data)
+int	check_pipe(t_data *data)
 {
 	t_list	*tmp;
 

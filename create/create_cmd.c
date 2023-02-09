@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:53:43 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/09 15:35:27 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/09 18:01:18 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	get_cmd_struct(t_data *data)
 	{
 		g_return_val = 2;
 		return (err_msg("syntax error near unexpected token `newline'",
-			NULL, NULL, 0), free_data_proc(data), 2);
+				NULL, NULL, 0), free_data_proc(data), 2);
 	}
 	data->proc->pid = ft_calloc(pipe_count(data->cmd) + 1, sizeof(pid_t));
 	while (i < pipe_count(data->cmd) + 1)
