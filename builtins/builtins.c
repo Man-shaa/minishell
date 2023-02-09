@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:48:44 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/09 17:55:48 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/09 18:15:35 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,14 @@ int	exec_builtin(t_data *data, t_cmd *cmd, char **args)
 	}
 	if (send_builtin_fork(data, cmd, args))
 		return (1);
-	if (is_same(cmd->cmd, "export"))
-		g_return_val = ft_export(data, args);
-	else if (is_same(cmd->cmd, "cd"))
-		g_return_val = ft_cd(data, args);
-	else if (is_same(cmd->cmd, "unset"))
-		g_return_val = ft_unset(data, args);
+	if (data->proc->n_pipes == 0)
+	{
+		if (is_same(cmd->cmd, "export"))
+			g_return_val = ft_export(data, args);
+		else if (is_same(cmd->cmd, "cd"))
+			g_return_val = ft_cd(data, args);
+		else if (is_same(cmd->cmd, "unset"))
+			g_return_val = ft_unset(data, args);
+	}
 	return (g_return_val);
 }
