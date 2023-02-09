@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/09 14:13:50 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/09 15:30:15 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ void	get_prompt(char **envp)
 		str = get_readline(data, str);
 		if (!str)
 			return ;
-		// g_return_val = check_quotes(str, 0);
-		// printf("Ret : %d\n\n", g_return_val);
 		if (check_quotes(str, 0))
 			return (free_data_proc(data), get_prompt(envp));
 		if (!ft_split(str, data))
