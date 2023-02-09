@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:15:26 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/09 14:13:32 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/09 15:21:03 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int check_pipe(t_data *data)
+{
+	t_list	*tmp;
+
+	tmp = data->list;
+	if (tmp->type == 6)
+		return (0);
+	return (1);
+}
 
 int	check_dup(t_data *data)
 {
@@ -86,6 +96,9 @@ int	check_quotes(char *str, int i)
 
 int	parsing(t_data *data)
 {
+	if (!check_pipe(data))
+		return (err_msg("minishell: syntax error near unexpected token `|'",
+				NULL, NULL, 0));
 	if (!check_dup(data))
 		return (err_msg("minishell: unexpected token or redirection",
 				NULL, NULL, 0));
