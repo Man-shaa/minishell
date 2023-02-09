@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:39:45 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/01 16:41:19 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/09 14:32:02 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	echo_each_arg(char **args, int i)
 
 // Affiche tous les arguments encoyes a la fonction (args) et mets a jour
 // g_return_val
-void	ft_echo(char **args)
+int	ft_echo(char **args)
 {
 	int		i;
 	int		boule;
@@ -77,6 +77,7 @@ void	ft_echo(char **args)
 	g_return_val = echo_each_arg(args, i);
 	if (boule == 0)
 		write(STDOUT_FILENO, "\n", 1);
+	return (0);
 }
 
 char	**ft_split_echo(char	*str, char set)

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 15:08:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/03 14:10:08 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/09 14:02:13 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,6 @@ int	fill_heredoc(char *str, char *delim, int fd)
 		write(fd, "\n", 1);
 		ft_free(str);
 	}
-	// FILE	*fdread = fopen("/tmp/.heredoc_manuo", "r");
-	// char	c;
-	// printf("\nDEBUT LECTURE FGETC\n");
-	// while ((c = fgetc(fdread)) != EOF)
-	// 	printf("%c", c);
-	// fclose(fdread);
-	// printf("\nFIN LECTURE FGETC\n");
 	return (1);
 }
 

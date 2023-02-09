@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:48:44 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/08 18:33:54 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/09 14:27:34 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,18 @@ int	send_builtin_fork(t_data *data, t_cmd *cmd, char **args)
 		else if (is_same(cmd->cmd, "export") && args)
 			g_return_val = ft_export(data, args);
 		else if (is_same(cmd->cmd, "echo") && args)
-			ft_echo(args);
+			g_return_val = ft_echo(args);
 		else if (is_same(cmd->cmd, "env") && args)
 			g_return_val = print_env(data->envp, args);
 		else if (is_same(cmd->cmd, "pwd"))
 			g_return_val = print_pwd();
 		else if (is_same(cmd->cmd, "unset") && args && args[0])
-			ft_unset(data, args);
+			g_return_val = ft_unset(data, args);
 		free_data(data);
 		exit(g_return_val);
 	}
 	waitpid(pid, &status, 0);
+	g_return_val = WEXITSTATUS(status);
 	return (WEXITSTATUS(status));
 }
 
@@ -82,6 +83,6 @@ int	exec_builtin(t_data *data, t_cmd *cmd, char **args)
 	else if (is_same(cmd->cmd, "cd"))
 		g_return_val = ft_cd(data, args);
 	else if (is_same(cmd->cmd, "unset"))
-		ft_unset(data, args);
+		g_return_val = ft_unset(data, args);
 	return (g_return_val);
 }

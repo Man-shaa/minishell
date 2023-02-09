@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:59 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/09 17:48:54 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/09 14:28:31 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // Retire les node du tableau de string args dans t_envp s'ils existent,
 // sinon ne fait rien
-void	ft_unset(t_data *data, char **args)
+int	ft_unset(t_data *data, char **args)
 {
 	int		i;
 	t_envp	*before;
@@ -22,7 +22,7 @@ void	ft_unset(t_data *data, char **args)
 
 	i = 0;
 	if (!args || !args[0])
-		return ;
+		return (0);
 	while (args[i])
 	{
 		before = data->envp;
@@ -40,4 +40,5 @@ void	ft_unset(t_data *data, char **args)
 		}
 		i++;
 	}
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/08 18:00:57 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/09 14:27:40 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int		ft_cd(t_data *data, char **args);
 // echo.c
 int		is_option_n(char *str);
 int		echo_each_arg(char **args, int i);
-void	ft_echo(char **args);
+int		ft_echo(char **args);
 char	**ft_split_echo(char	*str, char set);
 
 // env.c
@@ -113,7 +113,7 @@ void	replace_oldpwd_my_env(t_envp *envp);
 void	replace_pwd_my_env(t_envp *envp);
 
 // unset.c
-void	ft_unset(t_data *data, char **args);
+int		ft_unset(t_data *data, char **args);
 
 // ******************************** CORE **********************************
 

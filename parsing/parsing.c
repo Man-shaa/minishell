@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:15:26 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/08 18:46:31 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/09 14:13:32 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ int	check_quotes(char *str, int i)
 			while (str[i] && str[i] != '"')
 				i++;
 			if (str[i] == '\0')
+			{
+				g_return_val = 99;
 				return (err_msg("quote is not closed", NULL, NULL, 99));
+			}
 		}
 		if (str[i] == 39)
 		{
@@ -66,10 +69,16 @@ int	check_quotes(char *str, int i)
 			while (str[i] && str[i] != 39)
 				i++;
 			if (str[i] == '\0')
+			{
+				g_return_val = 99;
 				return (err_msg("quote is not closed", NULL, NULL, 99));
+			}
 		}
 		if (!check_redir(str, &i))
+		{
+			g_return_val = 2;
 			return (err_msg("syntax error", NULL, NULL, 0), 2);
+		}
 		i++;
 	}
 	return (0);
