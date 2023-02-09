@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:53:43 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/08 19:03:23 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/09 15:35:27 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	get_cmd_struct(t_data *data)
 		data->proc->pid[i] = -1;
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 // Return 1 si la creation de data->cmd abouti
