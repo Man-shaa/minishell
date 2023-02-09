@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:15:26 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/09 17:56:34 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/09 18:02:37 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	check_pipe(t_data *data)
 	t_list	*tmp;
 
 	tmp = data->list;
-	if (tmp->type == 6)
+	if (tmp && tmp->type == 6)
 		return (0);
 	return (1);
 }
