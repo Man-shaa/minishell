@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:15:26 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/09 18:02:37 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/09 18:36:27 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,17 @@ int	check_quotes(char *str, int i)
 int	parsing(t_data *data)
 {
 	if (!check_pipe(data))
+	{
+		g_return_val = 02;
 		return (err_msg("minishell: syntax error near unexpected token `|'",
 				NULL, NULL, 0));
+	}
 	if (!check_dup(data))
+	{
+		g_return_val = 02;
 		return (err_msg("minishell: unexpected token or redirection",
 				NULL, NULL, 0));
+	}
 	if (!handle_dollar_quote(data))
 		return (err_msg("minishell: malloc failed", NULL, NULL, 0));
 	return (1);

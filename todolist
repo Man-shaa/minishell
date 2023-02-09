@@ -4,9 +4,14 @@ je pense qu'il y a un probleme avec les instances de prompt:
 
 faut faire attention au premiers test de lexcel
 
-HEREDOC
+HEREDOCs
 
 FORK builtin
 
 | -> probleme
 redir (les builtins)
+
+$> ls -la | grep "." -> LEAKS et val retour
+grep > truc march pas 
+
+cd .. | echo truc
