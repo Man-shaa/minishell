@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:03:31 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/09 18:01:10 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/10 16:38:12 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list	*fill_cmd_struct(t_data *data, t_cmd *cmd, t_list *tmp, int *j)
 {
 	if (tmp->type == 1)
 	{
-		if (is_cmd(data, tmp->str, data->env_path) && cmd->cmd == NULL)
+		if (is_cmd(data, cmd, tmp->str, data->env_path) && cmd->cmd == NULL)
 			handle_cmd(data, cmd, tmp, j);
 		else if (cmd->cmd == NULL && (*j) == 0)
 		{
