@@ -1,17 +1,8 @@
-je pense qu'il y a un probleme avec les instances de prompt:
-	desfois quand tu ctrl-C ca ecrit xManuoxxManuox (genre 2 3 4 fois)	
-	(par exemple sleep 20, puis ctrl C)
-
-faut faire attention au premiers test de lexcel
-
 HEREDOCs
 
-FORK builtin
-
-| -> probleme
-redir (les builtins)
-
 $> ls -la | grep "." -> LEAKS et val retour
+
 grep > truc march pas 
 
 cd .. | echo truc
+
