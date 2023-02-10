@@ -6,47 +6,11 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/10 18:02:47 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/10 19:18:09 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-// Compare type et chaque cmd->type en parcourant cmd->token
-// Return 1 si cmd->type == type, sinon 0
-int	is_token(t_cmd *cmd, int type)
-{
-	int	i;
-
-	i = 0;
-	if (!cmd->token)
-		return (0);
-	while (cmd->token[i])
-	{
-		if (cmd->type[i] == type)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-// Return 1 si la commande avant cmd->index == index est une redirection out
-// Sinon return 0
-int	is_last_cmd_token_out(t_data *data, int index)
-{
-	t_cmd	*prev;
-
-	prev = data->cmd;
-	if (index == 0)
-		return (0);
-	while (prev && prev->index != index - 1)
-		prev = prev->next;
-	if (!prev)
-		return (0);
-	if (is_token(prev, OUT))
-		return (1);
-	return (0);
-}
 
 // dup2 l'entree et sortie des pipes avec STDIN/OUT_FILENO
 // Return 1 si tout s'est bien passe, sinon 0
@@ -60,7 +24,8 @@ int	handle_pipe_redir(t_data *data, t_cmd *cmd, t_proc *proc)
 	}
 	else if (cmd->index == proc->n_pipes)
 	{
-		if (!is_token(cmd, IN) && !is_last_cmd_token_out(data, cmd->index) && !is_token(cmd, HERE))
+		if (!is_token(cmd, IN) && !is_last_cmd_token_out(data, cmd->index)
+			&& !is_token(cmd, HERE))
 			if (dup2(proc->pipe_fd[cmd->index - 1][0], STDIN_FILENO) == -1)
 				return (0);
 	}
@@ -89,10 +54,8 @@ int	handle_token_redir2(t_data *data, t_cmd *cmd, int cmd_pos, int m)
 		{
 			if (dup2(data->proc->fd_out, STDOUT_FILENO) == -1)
 				return (close(data->proc->fd_out), 1);
-			close(data->proc->fd_out);
 		}
-		else
-			close(data->proc->fd_out);
+		close(data->proc->fd_out);
 	}
 	else if (cmd->type[cmd_pos] == HERE)
 		if (!create_heredoc(data, cmd, data->proc->fd_in, cmd_pos))
@@ -110,11 +73,8 @@ int	handle_token_redir(t_data *data, t_cmd *cmd, int cmd_pos, int m)
 		if (data->proc->fd_in < 0)
 			return (err_msg("open: No such file or directory", NULL, NULL, 0));
 		if (m == 1)
-		{
 			if (dup2(data->proc->fd_in, STDIN_FILENO) == -1)
 				return (close(data->proc->fd_in), 1);
-			close(data->proc->fd_in);
-		}
 		close(data->proc->fd_in);
 	}
 	else if (cmd->type[cmd_pos] == OUT)
@@ -124,11 +84,8 @@ int	handle_token_redir(t_data *data, t_cmd *cmd, int cmd_pos, int m)
 		if (data->proc->fd_out < 0)
 			return (err_msg("open: No such file or directory", NULL, NULL, 0));
 		if (m == 1)
-		{
 			if (dup2(data->proc->fd_out, STDOUT_FILENO) == -1)
 				return (close(data->proc->fd_out), 1);
-			close(data->proc->fd_out);
-		}
 		close(data->proc->fd_out);
 	}
 	return (handle_token_redir2(data, cmd, cmd_pos, m));

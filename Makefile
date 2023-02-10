@@ -76,6 +76,7 @@ SRCS		=	main.c \
 				${UTILS_DIR}env_list_utils.c \
 				${UTILS_DIR}exec_utils.c \
 				${UTILS_DIR}export_utils.c \
+				${UTILS_DIR}redirections_utils.c \
 				${UTILS_DIR}split_echo.c \
 				${UTILS_DIR}split_env.c \
 				${UTILS_DIR}split_normal.c \

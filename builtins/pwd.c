@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/09 15:30:37 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/10 18:13:34 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	print_pwd(void)
 
 	buf = getcwd(NULL, 0);
 	ft_putstr(buf);
-	write(STDIN_FILENO, "\n", 1);
+	write(STDOUT_FILENO, "\n", 1);
 	ft_free(buf);
 	return (0);
 }

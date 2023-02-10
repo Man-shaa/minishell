@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/10 17:52:50 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/10 19:20:16 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,6 @@ int		create_pipes_array(t_data *data);
 void	close_pipes(t_proc *proc);
 
 // redirections.c
-int		is_token(t_cmd *cmd, int type);
 int		handle_pipe_redir(t_data *data, t_cmd *cmd, t_proc *proc);
 int		handle_token_redir2(t_data *data, t_cmd *cmd, int cmd_pos, int m);
 int		handle_token_redir(t_data *data, t_cmd *cmd, int cmd_pos, int m);
@@ -217,7 +216,7 @@ void	fill_dollar_sq(t_list *tmp, int *i, int *index);
 void	fill_dollar(t_list *tmp, int *i, int *index);
 
 // parsing.c
-int 	check_pipe(t_data *data);
+int		check_pipe(t_data *data);
 int		check_redir(char *str, int *i);
 int		check_dup(t_data *data);
 int		check_quotes(char *str, int i);
@@ -325,6 +324,10 @@ char	*find_path_in_env(char **envp);
 int		is_absolute_path(t_cmd *cmd);
 int		find_cmd_path(t_data *data, t_cmd *cmd, char *env_path);
 int		is_cmd(t_data *data, t_cmd *cmd, char *str, char *env_path);
+
+// redirection
+int		is_token(t_cmd *cmd, int type);
+int		is_last_cmd_token_out(t_data *data, int index);
 
 // split_echo.c
 int		word_count_echo(char *str, char set);
