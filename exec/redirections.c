@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/09 18:29:01 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:32:43 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	handle_token_redir(t_data *data, t_cmd *cmd, int cmd_pos, int m)
 				return (close(data->proc->fd_in), 1);
 			close(data->proc->fd_in);
 		}
-		close(data->proc->fd_out);
+		close(data->proc->fd_in);
 	}
 	else if (cmd->type[cmd_pos] == OUT)
 	{
