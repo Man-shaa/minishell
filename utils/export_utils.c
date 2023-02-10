@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 17:49:30 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/10 20:24:41 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/10 20:26:06 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ int	is_valid_name(char *str)
 // Return 1 si tout s'est bien passe, sinon 0 (probleme de malloc strdup)
 int	replace_value(t_envp *node, char *value)
 {
-	printf("replace value\n");
 	if (!value)
 		return (1);
 	ft_free(node->tab[1]);
