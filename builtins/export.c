@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:43 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/10 18:39:14 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/10 20:23:59 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	already_exist(t_envp *envp, char *str)
 	{
 		if (is_same(travel->tab[0], tab[0]))
 		{
+			printf("is_same\n\n");
 			if (concat(travel, tab))
 				return (free_tab(tab), 1);
 			if (!replace_value(travel, tab[1]))
