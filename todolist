@@ -4,5 +4,15 @@ $> ls -la | grep "." -> LEAKS et val retour
 
 grep > truc march pas 
 
-cd .. | echo truc
+
+pwd > bonjour
+cat bonjour
+// manque le retour a la ligne
+
+> bonjour | echo hola
+cat bonjour
+// cree bien bonjour mais affiche dup2 failed
+
+prout hola > bonjour
+// ya bien cmd not found, mais ne cree pas le fichier bonjour
 
