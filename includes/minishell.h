@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/10 16:37:54 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/10 16:42:25 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,6 +248,8 @@ void	print_tab_index(int *tab, int n);
 // ******************************** SIGNAL *********************************
 
 // signal.c
+void	handle_exec(int sig_int);
+void	handle_sigint_exec(void);
 void	handle_sigquit(int sig_quit);
 void	handle_sigsegv(int sig_segv);
 void	handle_sigint(int sig_int);

@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:34:48 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/08 19:00:29 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/10 14:59:11 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,18 @@ void	handle_sigsegv(int sig_segv)
 	(void)sig_segv;
 	err_msg(NULL, "exit", NULL, 1);
 	exit(1);
+}
+
+void	handle_sigint_exec(void)
+{
+	signal(SIGINT, handle_exec);
+}
+
+void	handle_exec(int sig_int)
+{
+	(void)sig_int;
+	g_return_val = 130;
+	ft_putstr("\n");
 }
 
 void	handle_sigint(int sig_int)
