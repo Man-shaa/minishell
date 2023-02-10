@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/10 17:32:43 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:39:29 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int	handle_pipe_redir(t_cmd *cmd, t_proc *proc)
 	{
 		if (!is_token(cmd, OUT))
 			if (dup2(proc->pipe_fd[0][1], STDOUT_FILENO) == -1)
+			{
+				printf("dup2 dans handle_pipe_redir, token OUT\n\n");
 				return (0);
+			}
 	}
 	else if (cmd->index == proc->n_pipes)
 	{
@@ -55,7 +58,6 @@ int	handle_pipe_redir(t_cmd *cmd, t_proc *proc)
 			if (dup2(proc->pipe_fd[cmd->index][1], STDOUT_FILENO) == -1)
 				return (0);
 	}
-	close_pipes(proc);
 	return (1);
 }
 
