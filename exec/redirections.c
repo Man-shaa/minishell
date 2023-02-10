@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/10 17:39:29 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/10 18:02:47 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,37 @@ int	is_token(t_cmd *cmd, int type)
 	return (0);
 }
 
+// Return 1 si la commande avant cmd->index == index est une redirection out
+// Sinon return 0
+int	is_last_cmd_token_out(t_data *data, int index)
+{
+	t_cmd	*prev;
+
+	prev = data->cmd;
+	if (index == 0)
+		return (0);
+	while (prev && prev->index != index - 1)
+		prev = prev->next;
+	if (!prev)
+		return (0);
+	if (is_token(prev, OUT))
+		return (1);
+	return (0);
+}
+
 // dup2 l'entree et sortie des pipes avec STDIN/OUT_FILENO
 // Return 1 si tout s'est bien passe, sinon 0
-int	handle_pipe_redir(t_cmd *cmd, t_proc *proc)
+int	handle_pipe_redir(t_data *data, t_cmd *cmd, t_proc *proc)
 {
 	if (cmd->index == 0)
 	{
 		if (!is_token(cmd, OUT))
 			if (dup2(proc->pipe_fd[0][1], STDOUT_FILENO) == -1)
-			{
-				printf("dup2 dans handle_pipe_redir, token OUT\n\n");
 				return (0);
-			}
 	}
 	else if (cmd->index == proc->n_pipes)
 	{
-		if (!is_token(cmd, IN) && !is_token(cmd, HERE))
+		if (!is_token(cmd, IN) && !is_last_cmd_token_out(data, cmd->index) && !is_token(cmd, HERE))
 			if (dup2(proc->pipe_fd[cmd->index - 1][0], STDIN_FILENO) == -1)
 				return (0);
 	}
@@ -58,6 +73,7 @@ int	handle_pipe_redir(t_cmd *cmd, t_proc *proc)
 			if (dup2(proc->pipe_fd[cmd->index][1], STDOUT_FILENO) == -1)
 				return (0);
 	}
+	close_pipes(proc);
 	return (1);
 }
 
@@ -135,7 +151,7 @@ int	redir(t_data *data, t_cmd *cmd, int m)
 		i++;
 	}
 	if (data->proc->n_pipes > 0)
-		if (!handle_pipe_redir(cmd, data->proc))
+		if (!handle_pipe_redir(data, cmd, data->proc))
 			return (err_msg("Dup2 failed", NULL, NULL, 1));
 	return (0);
 }
