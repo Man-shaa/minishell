@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/09 15:30:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/10 15:05:41 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int	execution(t_data *data)
 	cmd = data->cmd;
 	if (!create_pipes_array(data))
 		return (0);
+	handle_sigint_exec();
 	while (cmd)
 	{
 		g_return_val = send_cmd(data, cmd);
