@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:06:08 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/10 16:04:51 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/10 16:59:45 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 // Test l'acces a av
 // Return 0 si le chemin est absolu ou l'acces a reussi, sinon return 1
-int	is_path(t_data *data, char *av)
+int	is_path(t_cmd *cmd, char *av)
 {
 	if (!ft_strchr(av, '/'))
 		return (0);
 	else if (access(av, F_OK | X_OK) == 0)
 	{
-		if (data->cmd)
-			data->cmd->cmd_path = ft_strndup(av, 0);
+		if (cmd && !cmd->cmd_path)
+			cmd->cmd_path = ft_strndup(av, 0);
 		return (0);
 	}
 	return (1);
@@ -49,11 +49,11 @@ char	*find_path_in_env(char **envp)
 
 // Si access fonctionne, strdup le chemin dans cmd->cmd_path
 // Return 1 si access a fonctionne, sinon 0
-int	is_absolute_path(t_data *data, t_cmd *cmd)
+int	is_absolute_path(t_cmd *cmd)
 {
 	if (!cmd)
 		return (0);
-	if (!is_path(data, cmd->cmd))
+	if (!is_path(cmd, cmd->cmd))
 	{
 		if (!cmd->cmd_path)
 			cmd->cmd_path = ft_strndup(cmd->cmd, 0);
@@ -71,7 +71,7 @@ int	find_cmd_path(t_data *data, t_cmd *cmd, char *env_path)
 	char	*path;
 
 	i = 0;
-	if (is_absolute_path(data, cmd))
+	if (is_absolute_path(cmd))
 		return (1);
 	if (!data->env_path || !cmd->cmd)
 		return (0);
@@ -93,7 +93,7 @@ int	find_cmd_path(t_data *data, t_cmd *cmd, char *env_path)
 }
 
 // Return 1 si str est une commande (access), sinon 0
-int	is_cmd(t_data *data, char *str, char *env_path)
+int	is_cmd(t_data *data, t_cmd *cmd, char *str, char *env_path)
 {
 	int		i;
 	char	**all_paths;
@@ -103,8 +103,8 @@ int	is_cmd(t_data *data, char *str, char *env_path)
 	i = 0;
 	if (!str || !str[0])
 		return (0);
-	if (is_builtin(str) || !is_path(data, str)
-		|| (is_path(data, str) && !data->env_path))
+	if (is_builtin(str) || !is_path(cmd, str)
+		|| (is_path(cmd, str) && !data->env_path))
 		return (1);
 	all_paths = ft_split_normal(env_path, ':');
 	if (!all_paths)

@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/10 15:13:02 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/10 16:59:34 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	exec_binary(t_data *data, t_cmd *c)
 		}
 		if (is_builtin(c->cmd))
 			g_return_val = exec_builtin(data, c, c->opt);
-		else if (is_cmd(data, c->cmd, data->env_path))
+		else if (is_cmd(data, c, c->cmd, data->env_path))
 			g_return_val = execve_binary(data, c, ret);
 		free_data(data);
 		exit(ret);
@@ -95,7 +95,7 @@ int	send_cmd(t_data *data, t_cmd *cmd)
 	}
 	else if (is_builtin(cmd->cmd))
 		return (exec_builtin(data, cmd, cmd->opt));
-	else if (is_builtin(cmd->cmd) || is_cmd(data, cmd->cmd, data->env_path))
+	else if (is_builtin(cmd->cmd) || is_cmd(data, cmd, cmd->cmd, data->env_path))
 		return (exec_binary(data, cmd));
 	return (error_cmd(cmd->opt));
 }

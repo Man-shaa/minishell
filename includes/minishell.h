@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/10 14:59:35 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/10 16:42:25 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -320,11 +320,11 @@ char	**fill_env_tab(t_envp *envp, char **env_tab);
 char	**get_env_tab(t_envp *envp);
 
 // exec_utils.c
-int		is_path(t_data *data, char *av);
+int		is_path(t_cmd *cmd, char *av);
 char	*find_path_in_env(char **envp);
-int		is_absolute_path(t_data *data, t_cmd *cmd);
+int		is_absolute_path(t_cmd *cmd);
 int		find_cmd_path(t_data *data, t_cmd *cmd, char *env_path);
-int		is_cmd(t_data *data, char *str, char *env_path);
+int		is_cmd(t_data *data, t_cmd *cmd, char *str, char *env_path);
 
 // split_echo.c
 int		word_count_echo(char *str, char set);
