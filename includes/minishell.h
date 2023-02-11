@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/10 19:20:16 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/11 21:14:11 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,11 +195,6 @@ void	free_list(t_list *list);
 void	free_envp(t_envp *envp);
 void	free_cmd(t_cmd *cmd);
 void	free_data(t_data *data);
-
-// ******************************* HISTORY ********************************
-
-// history.c
-void	add_to_history(char **av);
 
 // ******************************* PARSING ********************************
 

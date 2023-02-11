@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:48:44 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/10 15:05:23 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/11 17:58:16 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	exec_builtin(t_data *data, t_cmd *cmd, char **args)
 		return (1);
 	if (data->proc->n_pipes == 0)
 	{
-		if (is_same(cmd->cmd, "export"))
+		if (is_same(cmd->cmd, "export") && args && args[0])
 			g_return_val = ft_export(data, args);
 		else if (is_same(cmd->cmd, "cd"))
 			g_return_val = ft_cd(data, args);

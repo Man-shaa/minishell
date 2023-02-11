@@ -1,5 +1,7 @@
 NAME		=	minishell
 
+OBJS_DIR	=	objs
+
 BUILTS_DIR	=	builtins/
 
 CORE_DIR	=	core/
@@ -11,8 +13,6 @@ ERROR_DIR	=	error/
 EXEC_DIR	=	exec/
 
 FREE_DIR	=	free/
-
-HISTORY_DIR	=	history/
 
 PARSING_DIR	=	parsing/
 
@@ -54,8 +54,6 @@ SRCS		=	main.c \
 				${FREE_DIR}free_2.c \
 				${FREE_DIR}free.c \
 				\
-				${HISTORY_DIR}history.c \
-				\
 				${SPLIT_DIR}split.c \
 				${SPLIT_DIR}split_utils.c \
 				${SPLIT_DIR}split_index.c \
@@ -85,7 +83,7 @@ SRCS		=	main.c \
 				${UTILS_DIR}str_utils.c \
 				${UTILS_DIR}utils.c
 
-OBJS		=	${SRCS:.c=.o}
+OBJS		=	${SRCS:%.c=${OBJS_DIR}/%.o}
 
 CC			=	clang
 
@@ -103,10 +101,28 @@ CFLAGS		=	-Wall -Werror -Wextra -g3
 $(NAME):	${OBJS}
 		${CC} ${CFLAGS} ${OBJS} -o ${NAME} -lreadline
 
+$(OBJS_DIR)/%.o: %.c $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJS_DIR) :
+	mkdir -p $@
+	mkdir -p objs/print/
+	mkdir -p objs/builtins/
+	mkdir -p objs/core/
+	mkdir -p objs/create/
+	mkdir -p objs/error/
+	mkdir -p objs/exec/
+	mkdir -p objs/free/
+	mkdir -p objs/history/
+	mkdir -p objs/parsing/
+	mkdir -p objs//
+	mkdir -p objs/print/
+
 all:		${NAME}
 
 clean:		
 		${RM} ${OBJS}
+		${RM} ${OBJS_DIR}
 
 fclean:		clean
 		${RM} ${NAME}
