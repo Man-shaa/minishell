@@ -105,19 +105,19 @@ $(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJS_DIR) :
-	mkdir -p $@
-	mkdir -p objs/print/
-	mkdir -p objs/builtins/
-	mkdir -p objs/core/
-	mkdir -p objs/create/
-	mkdir -p objs/error/
-	mkdir -p objs/exec/
-	mkdir -p objs/free/
-	mkdir -p objs/history/
-	mkdir -p objs/parsing/
-	mkdir -p objs/signal/
-	mkdir -p objs/split/
-	mkdir -p objs/utils/
+	@ mkdir -p $@
+	@ mkdir -p objs/print/
+	@ mkdir -p objs/builtins/
+	@ mkdir -p objs/core/
+	@ mkdir -p objs/create/
+	@ mkdir -p objs/error/
+	@ mkdir -p objs/exec/
+	@ mkdir -p objs/free/
+	@ mkdir -p objs/history/
+	@ mkdir -p objs/parsing/
+	@ mkdir -p objs/signal/
+	@ mkdir -p objs/split/
+	@ mkdir -p objs/utils/
 
 all:		${NAME}
 
