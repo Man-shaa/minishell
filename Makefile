@@ -101,7 +101,7 @@ CFLAGS		=	-Wall -Werror -Wextra -g3
 $(NAME):	${OBJS}
 		${CC} ${CFLAGS} ${OBJS} -o ${NAME} -lreadline
 
-$(OBJS_DIR)/%.o: %.c $(OBJS_DIR)
+$(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJS_DIR) :
@@ -115,13 +115,14 @@ $(OBJS_DIR) :
 	mkdir -p objs/free/
 	mkdir -p objs/history/
 	mkdir -p objs/parsing/
-	mkdir -p objs//
-	mkdir -p objs/print/
+	mkdir -p objs/signal/
+	mkdir -p objs/split/
+	mkdir -p objs/utils/
 
 all:		${NAME}
 
 clean:		
-		${RM} ${OBJS}
+		# ${RM} ${OBJS}
 		${RM} ${OBJS_DIR}
 
 fclean:		clean
