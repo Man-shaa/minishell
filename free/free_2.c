@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 19:06:10 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/09 18:00:48 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/14 15:38:57 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	free_proc(t_proc *proc)
 {
 	if (proc->pid)
 		ft_free(proc->pid);
+	if (proc->fd_heredoc)
+		ft_free(proc->fd_heredoc);
 	if (proc->pipe_fd)
 		free_int_tab(proc->pipe_fd, proc->n_pipes);
 	ft_free(proc);
