@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/16 14:37:28 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/16 16:56:56 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,7 @@ void	close_pipes(t_proc *proc);
 
 // redirections.c
 int		handle_pipe_redir(t_data *data, t_cmd *cmd, t_proc *proc);
+int		handle_token_redir3(int cmd_pos);
 int		handle_token_redir2(t_data *data, t_cmd *cmd, int cmd_pos, int m);
 int		handle_token_redir(t_data *data, t_cmd *cmd, int cmd_pos, int m);
 int		redir(t_data *data, t_cmd *cmd, int m);

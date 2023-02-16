@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/14 15:42:32 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/16 16:56:36 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,25 @@ int	handle_pipe_redir(t_data *data, t_cmd *cmd, t_proc *proc)
 	return (1);
 }
 
-int	handle_token_redir2(t_data *data, t_cmd *cmd, int cmd_pos, int m)
+int	handle_token_redir3(int cmd_pos)
 {
+	int		fd;
+	char	*filename;
 	char	*cmd_number;
 
+	cmd_number = ft_itoa(cmd_pos);
+	filename = ft_strjoin("/tmp/.heredoc_manuo", cmd_number);
+	fd = open(filename, O_RDONLY);
+	ft_free(cmd_number);
+	ft_free(filename);
+	if (dup2(fd, STDIN_FILENO) == -1)
+		return (err_msg("Dup2 heredoc failed", 0, NULL, 0), 0);
+	close(fd);
+	return (1);
+}
+
+int	handle_token_redir2(t_data *data, t_cmd *cmd, int cmd_pos, int m)
+{
 	if (cmd->type[cmd_pos] == APPEND)
 	{
 		data->proc->fd_out = open(cmd->token[cmd_pos],
@@ -60,17 +75,7 @@ int	handle_token_redir2(t_data *data, t_cmd *cmd, int cmd_pos, int m)
 		close(data->proc->fd_out);
 	}
 	else if (is_last_heredoc(data, cmd, cmd_pos))
-	{
-		// printf("cmd_pos : %d\ncmd->index : %d	|	TOT : %d\n\n", cmd_pos, cmd->index, cmd_pos + cmd->index);
-		cmd_number = ft_itoa(cmd_pos);
-		char	*filename = ft_strjoin("/tmp/.heredoc_manuo", cmd_number);
-		int	fd = open(filename, O_RDONLY);
-		ft_free(cmd_number);
-		ft_free(filename);
-		if (dup2(fd, STDIN_FILENO) == -1)
-			return (err_msg("Dup2 heredoc failed", 0, NULL, 0), 0);
-		close(fd);
-	}
+		return (handle_token_redir3(cmd_pos));
 	return (1);
 }
 
