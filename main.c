@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/10 16:27:59 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/13 17:04:10 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,29 @@ int	g_return_val;
 
 // "exit 99999999999999999999999999999" compare avec bash
 
-int	main(int ac, char **av, char **envp)
+// int	main(int ac, char **av, char **envp)
+// {
+// 	(void)av;
+// 	g_return_val = 0;
+// 	if (ac != 1)
+// 		return (err_msg("Tuto (derien) : ./minishell", NULL, NULL, 1));
+// 	handle_signal();
+// 	get_prompt(envp);
+// 	return (0);
+// }
+
+int	main(int ac, char **av)
 {
-	(void)av;
-	g_return_val = 0;
-	if (ac != 1)
-		return (err_msg("Tuto (derien) : ./minishell", NULL, NULL, 1));
-	handle_signal();
-	get_prompt(envp);
+	char	**tab;
+	int		i;
+
+	tab = NULL;
+	i = 0;
+	if (ac != 2)
+		return (printf("./minishell \"eof\"\n"), 1);
+	tab = heredok(av[1]);
+	while (i < ft_tablen(tab))
+		printf("%s\n", tab[i++]);
+	free(tab);
 	return (0);
 }

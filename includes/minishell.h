@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/11 21:14:11 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:53:53 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,13 @@ void	wait_all_child(t_data *data, int n);
 int		exec_binary(t_data *data, t_cmd *cmd);
 int		send_cmd(t_data *data, t_cmd *cmd);
 int		execution(t_data *data);
+
+// heredoc_mat.c
+char	*ft_strcpy(char *str);
+int		ft_vrai_strcmp(char *s1, char *s2);
+int		ft_tablen(char **tab);
+char	**tabjoin(char **tab, char *str);
+char	**heredok(char *eof);
 
 // heredoc.c
 int		is_last_heredoc(t_data *data, t_cmd *cmd, int cmd_pos);
