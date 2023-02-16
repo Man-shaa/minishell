@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/14 15:47:01 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/16 20:35:50 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ int	execution(t_data *data)
 		g_return_val = send_cmd(data, cmd);
 		cmd = cmd->next;
 	}
-	wait_all_child(data, data->proc->n_pipes + 1);
 	close_pipes(data->proc);
+	wait_all_child(data, data->proc->n_pipes + 1);
 	handle_signal();
 	return (1);
 }
