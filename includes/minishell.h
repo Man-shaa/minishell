@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/13 16:53:53 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:37:28 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_proc
 	int		fd_in;
 	int		fd_out;
 	int		**pipe_fd;
+	int		*fd_heredoc;
+	int		n_heredoc;
 	int		n_pipes;
 	pid_t	*pid;
 }				t_proc;
@@ -163,6 +165,11 @@ void	wait_all_child(t_data *data, int n);
 int		exec_binary(t_data *data, t_cmd *cmd);
 int		send_cmd(t_data *data, t_cmd *cmd);
 int		execution(t_data *data);
+
+// heredoc_manu.c
+int		count_all_heredoc(t_data *data);
+int		print_all_heredoc(t_data *data);
+
 
 // heredoc_mat.c
 char	*ft_strcpy(char *str);

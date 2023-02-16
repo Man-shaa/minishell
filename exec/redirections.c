@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/10 19:18:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/14 15:42:32 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	handle_pipe_redir(t_data *data, t_cmd *cmd, t_proc *proc)
 
 int	handle_token_redir2(t_data *data, t_cmd *cmd, int cmd_pos, int m)
 {
+	char	*cmd_number;
+
 	if (cmd->type[cmd_pos] == APPEND)
 	{
 		data->proc->fd_out = open(cmd->token[cmd_pos],
@@ -57,9 +59,18 @@ int	handle_token_redir2(t_data *data, t_cmd *cmd, int cmd_pos, int m)
 		}
 		close(data->proc->fd_out);
 	}
-	else if (cmd->type[cmd_pos] == HERE)
-		if (!create_heredoc(data, cmd, data->proc->fd_in, cmd_pos))
-			return (handle_signal(), 0);
+	else if (is_last_heredoc(data, cmd, cmd_pos))
+	{
+		// printf("cmd_pos : %d\ncmd->index : %d	|	TOT : %d\n\n", cmd_pos, cmd->index, cmd_pos + cmd->index);
+		cmd_number = ft_itoa(cmd_pos);
+		char	*filename = ft_strjoin("/tmp/.heredoc_manuo", cmd_number);
+		int	fd = open(filename, O_RDONLY);
+		ft_free(cmd_number);
+		ft_free(filename);
+		if (dup2(fd, STDIN_FILENO) == -1)
+			return (err_msg("Dup2 heredoc failed", 0, NULL, 0), 0);
+		close(fd);
+	}
 	return (1);
 }
 
