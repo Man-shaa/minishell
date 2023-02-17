@@ -47,7 +47,6 @@ SRCS		=	main.c \
 				${ERROR_DIR}error.c \
 				\
 				${EXEC_DIR}exec.c \
-				${EXEC_DIR}heredoc_mat.c \
 				${EXEC_DIR}heredoc.c \
 				${EXEC_DIR}heredoc_manu.c \
 				${EXEC_DIR}pipe.c \
@@ -69,6 +68,7 @@ SRCS		=	main.c \
 				${PARSING_DIR}quotes_utils.c \
 				${PARSING_DIR}quotes.c \
 				\
+				${SIGNAL_DIR}signal_2.c \
 				${SIGNAL_DIR}signal.c \
 				\
 				${UTILS_DIR}cmd_utils_two.c \
