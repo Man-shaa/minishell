@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:48:44 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/11 17:58:16 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/17 19:18:12 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	exec_builtin(t_data *data, t_cmd *cmd, char **args)
 {
 	if (is_same(cmd->cmd, "exit") && args && data->proc->n_pipes == 0)
 	{
+		// printf("tour dans exec_builtin->exit\n\n");
 		g_return_val = ft_exit(data, args);
 		if (g_return_val != -1)
 			exit(g_return_val);

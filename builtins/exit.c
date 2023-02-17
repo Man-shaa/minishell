@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:04:26 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/09 17:56:01 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/17 19:34:43 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,13 @@ void	handle_exit_option(char **args, int *return_val)
 	i = 0;
 	while (args[0][i])
 	{
-		if (args[0][0] == '-' || args[0][0] == '+')
+		// printf("	[%s]\n", args[0]);
+		if ((args[0][i] == '-' || args[0][i] == '+') && i == 0)
+		{
+			// printf("dans -/+ : (%d) : %c\n", i, args[0][i]);
 			i++;
+		}
+		// printf("Boucle de base : (%d) : %c\n", i, args[0][i]);
 		if (args[0][i] < '0' || args[0][i] > '9')
 		{
 			*return_val = err_msg("minishell: exit: ", args[0],
@@ -41,7 +46,7 @@ int	ft_exit(t_data *data, char **args)
 	return_val = 0;
 	if (!args)
 		return_val = 0;
-	else if (args[0] && args[1])
+	if (args[0] && args[1])
 		return (err_msg("minishell: exit: too many arguments", NULL, NULL, -1));
 	else if (args[0])
 		handle_exit_option(args, &return_val);

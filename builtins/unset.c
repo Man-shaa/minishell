@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:59 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/09 14:28:31 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/17 19:34:36 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	ft_unset(t_data *data, char **args)
 		return (0);
 	while (args[i])
 	{
+		if (!is_valid_name(args[i]))
+			return (err_msg("unset: `", args[i], "': not a valid identifier", 1));
 		before = data->envp;
 		node = search_node(data->envp, args[i]);
 		if (node)
