@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/17 17:27:52 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/17 20:57:32 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,6 @@ int	execution(t_data *data)
 	if (!create_pipes_array(data))
 		return (0);
 	handle_sigint_exec();
-	if (count_all_heredoc(data) == -1)
-		return (0);
 	print_all_heredoc(data);
 	while (cmd)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/16 16:56:36 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/17 21:16:41 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,23 @@ int	handle_pipe_redir(t_data *data, t_cmd *cmd, t_proc *proc)
 	{
 		if (!is_token(cmd, OUT))
 			if (dup2(proc->pipe_fd[0][1], STDOUT_FILENO) == -1)
-				return (0);
+				return (err_msg("dup2 first pipe failed", NULL, NULL, 0));
 	}
 	else if (cmd->index == proc->n_pipes)
 	{
 		if (!is_token(cmd, IN) && !is_last_cmd_token_out(data, cmd->index)
 			&& !is_token(cmd, HERE))
 			if (dup2(proc->pipe_fd[cmd->index - 1][0], STDIN_FILENO) == -1)
-				return (0);
+				return (err_msg("dup2 last pipe failed", NULL, NULL, 0));
 	}
 	else
 	{
 		if (!is_token(cmd, IN) && !is_token(cmd, HERE))
 			if (dup2(proc->pipe_fd[cmd->index - 1][0], STDIN_FILENO) == -1)
-				return (0);
+				return (err_msg("dup2 pipe failed", NULL, NULL, 0));
 		if (!is_token(cmd, OUT))
 			if (dup2(proc->pipe_fd[cmd->index][1], STDOUT_FILENO) == -1)
-				return (0);
+				return (err_msg("dup2 pipe failed", NULL, NULL, 0));
 	}
 	close_pipes(proc);
 	return (1);
@@ -74,7 +74,7 @@ int	handle_token_redir2(t_data *data, t_cmd *cmd, int cmd_pos, int m)
 		}
 		close(data->proc->fd_out);
 	}
-	else if (is_last_heredoc(data, cmd, cmd_pos))
+	else if (data->proc->n_heredoc && is_last_heredoc(data, cmd, cmd_pos))
 		return (handle_token_redir3(cmd_pos));
 	return (1);
 }
