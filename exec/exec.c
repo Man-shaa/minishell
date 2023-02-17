@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/16 14:55:14 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/17 17:27:52 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ int	execution(t_data *data)
 		g_return_val = send_cmd(data, cmd);
 		cmd = cmd->next;
 	}
-	wait_all_child(data, data->proc->n_pipes + 1);
 	close_pipes(data->proc);
+	wait_all_child(data, data->proc->n_pipes + 1);
 	handle_signal();
 	return (1);
 }
