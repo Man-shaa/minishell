@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/17 18:38:53 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/17 18:53:04 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,6 +233,7 @@ char	*remove_quotes(char *str);
 // quotes.c
 int		count_dollars(char *str);
 int		handle_dollar_quote(t_data *data);
+int		check_quotes_ret(char *str);
 
 // ******************************** PRINT *********************************
 

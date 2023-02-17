@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:32:56 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/01 16:46:25 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/17 18:52:57 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,22 @@ int	handle_dollar_quote(t_data *data)
 		tmp = tmp->next;
 	}
 	return (1);
+}
+
+int	check_quotes_ret(char *str)
+{
+	int	ret;
+
+	ret = check_quotes(str, 0);
+	if (ret == 99)
+	{
+		g_return_val = 99;
+		return (99);
+	}
+	else if (ret == 2)
+	{
+		g_return_val = 2;
+		return (2);
+	}
+	return (0);
 }
