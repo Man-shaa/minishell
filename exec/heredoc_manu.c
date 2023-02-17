@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_manu.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:20:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/14 15:47:19 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/17 18:40:30 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,8 @@ int	print_all_heredoc(t_data *data)
 		{
 			if (cmd->type[i] == HERE)
 			{
-				if (!create_heredoc_manu(cmd, i, data->proc->fd_heredoc[i + cmd->index]))
+				if (!create_heredoc_manu(cmd, i,
+						data->proc->fd_heredoc[i + cmd->index]))
 					return (0);
 			}
 			i++;

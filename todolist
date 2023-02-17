@@ -4,4 +4,6 @@ prout hola > bonjour
 ABC=hola
 // devrait ne rien afficher
 
+> out
+// Dup2 failed
 

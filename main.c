@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/16 14:38:14 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/17 18:33:24 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,3 @@ int	main(int ac, char **av, char **envp)
 	get_prompt(envp);
 	return (0);
 }
-
-// int	main(int ac, char **av)
-// {
-// 	char	**tab;
-// 	int		i;
-
-// 	tab = NULL;
-// 	i = 0;
-// 	if (ac != 2)
-// 		return (printf("./minishell \"eof\"\n"), 1);
-// 	tab = heredok(av[1]);
-// 	while (i < ft_tablen(tab))
-// 		printf("%s\n", tab[i++]);
-// 	free(tab);
-// 	return (0);
-// }

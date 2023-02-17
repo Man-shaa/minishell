@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/16 16:56:56 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/17 18:38:53 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,14 +170,6 @@ int		execution(t_data *data);
 int		count_all_heredoc(t_data *data);
 int		print_all_heredoc(t_data *data);
 
-
-// heredoc_mat.c
-char	*ft_strcpy(char *str);
-int		ft_vrai_strcmp(char *s1, char *s2);
-int		ft_tablen(char **tab);
-char	**tabjoin(char **tab, char *str);
-char	**heredok(char *eof);
-
 // heredoc.c
 int		is_last_heredoc(t_data *data, t_cmd *cmd, int cmd_pos);
 int		fill_heredoc(char *str, char *delim, int fd);
@@ -256,9 +248,11 @@ void	print_tab_index(int *tab, int n);
 
 // ******************************** SIGNAL *********************************
 
-// signal.c
+// signal_2.c
 void	handle_exec(int sig_int);
 void	handle_sigint_exec(void);
+
+// signal.c
 void	handle_sigquit(int sig_quit);
 void	handle_sigsegv(int sig_segv);
 void	handle_sigint(int sig_int);
