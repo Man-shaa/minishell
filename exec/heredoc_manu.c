@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_manu.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:20:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/17 18:40:30 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/17 20:58:35 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ int	print_all_heredoc(t_data *data)
 
 	i = 0;
 	cmd = data->cmd;
+	if (!count_all_heredoc(data))
+		return (1);
 	while (cmd)
 	{
 		i = 0;
