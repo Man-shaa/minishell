@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/17 21:09:08 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/17 21:16:41 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,36 +19,24 @@ int	handle_pipe_redir(t_data *data, t_cmd *cmd, t_proc *proc)
 	if (cmd->index == 0)
 	{
 		if (!is_token(cmd, OUT))
-		{
-			printf("1ere cmd dup2 OUT\n\n");
 			if (dup2(proc->pipe_fd[0][1], STDOUT_FILENO) == -1)
 				return (err_msg("dup2 first pipe failed", NULL, NULL, 0));
-		}
 	}
 	else if (cmd->index == proc->n_pipes)
 	{
 		if (!is_token(cmd, IN) && !is_last_cmd_token_out(data, cmd->index)
 			&& !is_token(cmd, HERE))
-		{
-			printf("derniere cmd dup2 IN\n\n");
 			if (dup2(proc->pipe_fd[cmd->index - 1][0], STDIN_FILENO) == -1)
 				return (err_msg("dup2 last pipe failed", NULL, NULL, 0));
-		}
 	}
 	else
 	{
 		if (!is_token(cmd, IN) && !is_token(cmd, HERE))
 			if (dup2(proc->pipe_fd[cmd->index - 1][0], STDIN_FILENO) == -1)
-		{
-			printf("cmd au milieu dup2 IN\n\n");
 				return (err_msg("dup2 pipe failed", NULL, NULL, 0));
-		}
 		if (!is_token(cmd, OUT))
-		{
-			printf("cmd au milieu dup2 OUT\n\n");
 			if (dup2(proc->pipe_fd[cmd->index][1], STDOUT_FILENO) == -1)
 				return (err_msg("dup2 pipe failed", NULL, NULL, 0));
-		}
 	}
 	close_pipes(proc);
 	return (1);
