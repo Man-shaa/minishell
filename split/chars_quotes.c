@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:50:32 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/01/17 17:50:55 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/17 23:05:37 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	count_chars_double_inner(char *str, int *i, int *count, int n)
 			chars++;
 	}
 	if (str[*i] == '"')
-		return (chars += count_chars_double_inner(str, i, count, n));
+		return (chars += count_chars_double(str, i, count, n));
 	else if (str[*i] == 39)
 		return (chars += count_chars_single(str, i, count, n));
 	else
@@ -98,7 +98,7 @@ int	count_chars_single_inner(char *str, int *i, int *count, int n)
 			chars++;
 	}
 	if (str[*i] == 39)
-		return (chars += count_chars_single_inner(str, i, count, n));
+		return (chars += count_chars_single(str, i, count, n));
 	else if (str[*i] == '"')
 		return (chars += count_chars_double(str, i, count, n));
 	else
