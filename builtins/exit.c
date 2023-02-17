@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:04:26 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/17 19:34:43 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/17 22:54:51 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,8 @@ void	handle_exit_option(char **args, int *return_val)
 	i = 0;
 	while (args[0][i])
 	{
-		// printf("	[%s]\n", args[0]);
 		if ((args[0][i] == '-' || args[0][i] == '+') && i == 0)
-		{
-			// printf("dans -/+ : (%d) : %c\n", i, args[0][i]);
 			i++;
-		}
-		// printf("Boucle de base : (%d) : %c\n", i, args[0][i]);
 		if (args[0][i] < '0' || args[0][i] > '9')
 		{
 			*return_val = err_msg("minishell: exit: ", args[0],

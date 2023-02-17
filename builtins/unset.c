@@ -6,19 +6,37 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:59 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/17 19:34:36 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/17 22:57:15 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	unset_option(t_data *data, char *arg)
+{
+	t_envp	*before;
+	t_envp	*node;
+
+	before = data->envp;
+	node = search_node(data->envp, arg);
+	if (node)
+	{
+		while (before->next && !ft_strcmp(before->next->tab[0], arg))
+			before = before->next;
+		if (!before->next)
+			data->envp = node->next;
+		else
+			before->next = node->next;
+		free_tab(node->tab);
+		ft_free(node);
+	}
+}
 
 // Retire les node du tableau de string args dans t_envp s'ils existent,
 // sinon ne fait rien
 int	ft_unset(t_data *data, char **args)
 {
 	int		i;
-	t_envp	*before;
-	t_envp	*node;
 
 	i = 0;
 	if (!args || !args[0])
@@ -26,20 +44,9 @@ int	ft_unset(t_data *data, char **args)
 	while (args[i])
 	{
 		if (!is_valid_name(args[i]))
-			return (err_msg("unset: `", args[i], "': not a valid identifier", 1));
-		before = data->envp;
-		node = search_node(data->envp, args[i]);
-		if (node)
-		{
-			while (before->next && !ft_strcmp(before->next->tab[0], args[i]))
-				before = before->next;
-			if (!before->next)
-				data->envp = node->next;
-			else
-				before->next = node->next;
-			free_tab(node->tab);
-			ft_free(node);
-		}
+			return (err_msg("unset: `", args[i],
+				"': not a valid identifier", 1));
+		unset_option(data, args[i]);
 		i++;
 	}
 	return (0);
