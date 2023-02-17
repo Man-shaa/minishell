@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/17 21:16:41 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/17 22:54:32 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ int	handle_token_redir2(t_data *data, t_cmd *cmd, int cmd_pos, int m)
 		data->proc->fd_out = open(cmd->token[cmd_pos],
 				O_WRONLY | O_CREAT | O_APPEND, 0644);
 		if (data->proc->fd_out < 0)
-			return (err_msg("open: No such file or directory", NULL, NULL, 0));
+			return (err_msg("minishell: ", cmd->token[cmd_pos],
+				": No such file or directory", 0));
 		if (m == 1)
 		{
 			if (dup2(data->proc->fd_out, STDOUT_FILENO) == -1)
@@ -87,7 +88,8 @@ int	handle_token_redir(t_data *data, t_cmd *cmd, int cmd_pos, int m)
 	{
 		data->proc->fd_in = open(cmd->token[cmd_pos], O_RDONLY, 0644);
 		if (data->proc->fd_in < 0)
-			return (err_msg("open: No such file or directory", NULL, NULL, 0));
+			return (err_msg("minishell: ", cmd->token[cmd_pos],
+				": No such file or directory", 0));
 		if (m == 1)
 			if (dup2(data->proc->fd_in, STDIN_FILENO) == -1)
 				return (close(data->proc->fd_in), 1);
@@ -98,7 +100,8 @@ int	handle_token_redir(t_data *data, t_cmd *cmd, int cmd_pos, int m)
 		data->proc->fd_out = open(cmd->token[cmd_pos],
 				O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if (data->proc->fd_out < 0)
-			return (err_msg("open: No such file or directory", NULL, NULL, 0));
+			return (err_msg("minishell: ", cmd->token[cmd_pos],
+				": No such file or directory", 0));
 		if (m == 1)
 			if (dup2(data->proc->fd_out, STDOUT_FILENO) == -1)
 				return (close(data->proc->fd_out), 1);
