@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:59 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/17 22:57:15 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/18 21:42:47 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_unset(t_data *data, char **args)
 	{
 		if (!is_valid_name(args[i]))
 			return (err_msg("unset: `", args[i],
-				"': not a valid identifier", 1));
+					"': not a valid identifier", 1));
 		unset_option(data, args[i]);
 		i++;
 	}
