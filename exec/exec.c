@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/18 21:15:46 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/18 21:17:30 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ int	execution(t_data *data)
 	t_cmd	*cmd;
 
 	cmd = data->cmd;
-	printf("par la\n\n");
 	if (!create_pipes_array(data))
 		return (0);
 	handle_sigint_exec();
