@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:59 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/18 21:44:44 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/18 21:45:37 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@ int	ft_unset(t_data *data, char **args)
 		return (0);
 	while (args[i])
 	{
-		if (!is_valid_name(args[i]))
-			return (err_msg("unset: `", args[i],
-					"': not a valid identifier", 1));
 		unset_option(data, args[i]);
 		i++;
 	}
