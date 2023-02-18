@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:20:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/17 20:58:35 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:34:05 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	fill_heredoc_manu(char *delim, int fd)
 {
 	char	*str;
 
+	printf("\n\n\n%s\n\n\n", delim);
 	while (1 && fd)
 	{
 		if (g_return_val == -42)
