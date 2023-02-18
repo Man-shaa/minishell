@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:43 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/18 20:29:54 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/18 21:31:02 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,11 @@ int	ft_export(t_data *data, char **args)
 		else
 		{
 			if (already_exist(data->envp, args[i]))
-				return (0);
-			if (concat_inexist(data, args[i]))
-				return (0);
-			if (!add_last_env(data, args[i]))
-				return (1);
+				g_return_val = 0;
+			else if (concat_inexist(data, args[i]))
+				g_return_val = 1;
+			else if (!add_last_env(data, args[i]))
+				g_return_val = 1;
 		}
 		i++;
 	}
