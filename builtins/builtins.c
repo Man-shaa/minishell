@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:48:44 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/17 22:08:36 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:27:11 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,7 @@ int	exec_builtin(t_data *data, t_cmd *cmd, char **args)
 			exit(g_return_val);
 		g_return_val = 1;
 	}
-	if (send_builtin_fork(data, cmd, args))
-		return (1);
+	send_builtin_fork(data, cmd, args);
 	if (data->proc->n_pipes == 0)
 	{
 		if (is_same(cmd->cmd, "export") && args && args[0])
