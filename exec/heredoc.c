@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:20:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 20:26:14 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/20 20:26:51 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	fill_heredoc(t_envp *envp, char *delim, int fd)
 			close(fd);
 			return (close(f_stdin), 0);
 		}
-		if (is_same(str, delim))
+		if (is_same(str, delim) || !str)
 			return (ft_free(str), close(f_stdin), close(fd), 1);
 		if (str)
 			str = expand_heredoc(envp, str);
