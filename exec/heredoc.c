@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:20:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 20:09:33 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/20 20:11:57 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ char	*expand_heredoc(t_envp *envp, char *str)
 
 	i = 0;
 	printf("START str : [%s]\n\n", str);
-	// if (!str)
-	// 	return (str);
+	if (!str)
+		return (NULL);
 	while (str[i])
 	{
 		if (str[i] == '$')
