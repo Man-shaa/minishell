@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:20:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 18:16:00 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/20 20:09:33 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,13 @@ char	*expand_heredoc(t_envp *envp, char *str)
 		{
 			if (str[i + 1] == '?')
 				new = replace_ret_val(str, i);
+			else if (str[i + 1] == '$')
+			{
+				new = ft_strndup(str, 0);
+				i++;
+			}
+			else if (!str[i + 1])
+				new = ft_strndup(str, 0);
 			else
 				new = replace_dollar(envp, str, &i);
 			ft_free(str);
