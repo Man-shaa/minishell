@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 05:07:52 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 23:08:04 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/20 23:09:26 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	check_cd(char **args, int m)
 int	ft_cd(t_data *data, char **args, int m)
 {
 	g_return_val = check_cd(args, m);
-	printf("%d\n\n\n", g_return_val);
 	if (g_return_val)
 		return (1);
 	chdir(args[0]);
