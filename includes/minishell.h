@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 20:55:08 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/20 21:36:28 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int		ft_exit(t_data *data, char **args);
 int		add_last_env(t_data *data, char *arg);
 int		already_exist(t_envp *envp, char *str);
 void	print_export(t_envp *envp);
-int		ft_export(t_data *data, char **args);
+int		ft_export(t_data *data, char **args, int i);
 
 // pwd.c
 int		print_pwd(void);

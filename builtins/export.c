@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:02:43 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/18 21:31:02 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/20 21:37:15 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	print_export(t_envp *envp)
 // Ajoute un node (s'il est valide) a la fin de envp s'il n'existe pas
 // Sinon modifie directement la variable avec la nouvelle valeur
 // Return 0 si tout s'est bien passe, sinon 1
-int	ft_export(t_data *data, char **args)
+int	ft_export(t_data *data, char **args, int m)
 {
 	int		i;
 
@@ -91,7 +91,7 @@ int	ft_export(t_data *data, char **args)
 		return (print_export(data->envp), 0);
 	while (args[i])
 	{
-		if (g_return_val != 1 && (!args[i] || !args[i][0] || args[i][0] == '='
+		if (m == 1 && (!args[i] || !args[i][0] || args[i][0] == '='
 			|| !is_valid_name(args[i])))
 			g_return_val = err_msg("export: `", args[i],
 					"': not a valid identifier", 1);
