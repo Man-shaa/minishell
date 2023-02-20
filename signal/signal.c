@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:34:48 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/20 16:56:23 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:34:05 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	handle_sighere(int sig_segv)
 	(void)sig_segv;
 	printf("\n");
 	g_return_val = -42;
-	// close(0);
+	close(0);
 }
 
 //	gere les signaux ctrl-\(SIGQUIT) & ctrl-C(SIGINT)

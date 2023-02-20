@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:20:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 16:56:14 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:31:55 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	fill_heredoc_manu(char *delim, int fd)
 	char	*str;
 
 	f_stdin = dup(STDIN_FILENO);
+	signal(SIGINT, handle_sighere);
 	while (1 && g_return_val != -42)
 	{
 		str = readline(">");
