@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 18:35:42 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/20 18:55:20 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,8 +170,8 @@ int		execution(t_data *data);
 int		is_last_heredoc(t_data *data, t_cmd *cmd, int cmd_pos);
 int		count_all_heredoc(t_data *data);
 char	*expand_heredoc(t_envp *envp, char *str);
-int		fill_heredoc_manu(t_envp *envp, char *delim, int fd);
-int		create_heredoc_manu(t_cmd *cmd, t_envp *envp, int cmd_pos, int fd);
+int		fill_heredoc(t_envp *envp, char *delim, int fd);
+int		create_heredoc(t_cmd *cmd, t_envp *envp, int cmd_pos, int fd);
 int		print_all_heredoc(t_data *data, t_envp *envp);
 
 // pipe.c

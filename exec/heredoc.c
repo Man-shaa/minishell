@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:20:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 18:52:46 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/20 18:55:16 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,30 @@ int	count_all_heredoc(t_data *data)
 
 char	*expand_heredoc(t_envp *envp, char *str)
 {
-	(void)envp;
-	// char	*new;
-	// char	*d_expand;
-	// t_envp	*env;
-	// int		i;
-	// int		d_pos;
+	char	*new;
+	int		i;
 
-	// i = 0;
-	// while (str[i])
-	// return (new);
+	i = 0;
+	printf("START str : [%s]\n\n", str);
+	// if (!str)
+	// 	return (str);
+	while (str[i])
+	{
+		if (str[i] == '$')
+		{
+			if (str[i + 1] == '?')
+				new = replace_ret_val(str, i);
+			else
+				new = replace_dollar(envp, str, &i);
+			ft_free(str);
+			str = new;
+		}
+		i++;
+	}
 	return (str);
 }
 
-int	fill_heredoc_manu(t_envp *envp, char *delim, int fd)
+int	fill_heredoc(t_envp *envp, char *delim, int fd)
 {
 	int	f_stdin;
 	char	*str;
@@ -96,10 +106,10 @@ int	fill_heredoc_manu(t_envp *envp, char *delim, int fd)
 		{
 			ft_free(str);
 			close(f_stdin);
-			break ;
+			close(fd);
+			return (1);
 		}
-		(void)envp;
-		// str = expand_heredoc(envp, str);
+		str = expand_heredoc(envp, str);
 		write(fd, str, ft_strlen(str));
 		write(fd, "\n", 1);
 		ft_free(str);
@@ -107,7 +117,7 @@ int	fill_heredoc_manu(t_envp *envp, char *delim, int fd)
 	return (1);
 }
 
-int	create_heredoc_manu(t_cmd *cmd, t_envp *envp, int cmd_pos, int fd)
+int	create_heredoc(t_cmd *cmd, t_envp *envp, int cmd_pos, int fd)
 {
 	int		i;
 	char	*str;
@@ -123,9 +133,8 @@ int	create_heredoc_manu(t_cmd *cmd, t_envp *envp, int cmd_pos, int fd)
 	ft_free(filename);
 	if (fd == -1)
 		return (err_msg("Open heredoc failed !", NULL, NULL, 0));
-	if (!fill_heredoc_manu(envp, cmd->token[cmd_pos], fd))
+	if (!fill_heredoc(envp, cmd->token[cmd_pos], fd))
 		return (0);
-	close(fd);
 	return (1);
 }
 
@@ -146,7 +155,7 @@ int	print_all_heredoc(t_data *data, t_envp *envp)
 		{
 			if (cmd->type[i] == HERE)
 			{
-				if (!create_heredoc_manu(cmd, envp, i,
+				if (!create_heredoc(cmd, envp, i,
 						data->proc->fd_heredoc[i + cmd->index]))
 					return (0);
 			}
