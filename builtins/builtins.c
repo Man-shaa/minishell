@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:48:44 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 21:36:11 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/20 22:55:08 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	is_builtin(char *str)
 void	send_to_individual_builtin(t_data *data, t_cmd *cmd, char **args)
 {
 	if (is_same(cmd->cmd, "cd") && args)
-		g_return_val = ft_cd(data, args);
+		g_return_val = ft_cd(data, args, 0);
 	else if (is_same(cmd->cmd, "export") && args)
 		g_return_val = ft_export(data, args, 0);
 	else if (is_same(cmd->cmd, "echo") && args)
@@ -84,7 +84,7 @@ int	exec_builtin(t_data *data, t_cmd *cmd, char **args)
 		if (is_same(cmd->cmd, "export") && args && args[0])
 			g_return_val = ft_export(data, args, 1);
 		else if (is_same(cmd->cmd, "cd"))
-			g_return_val = ft_cd(data, args);
+			g_return_val = ft_cd(data, args, 1);
 		else if (is_same(cmd->cmd, "unset"))
 			g_return_val = ft_unset(data, args);
 	}

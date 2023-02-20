@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 22:20:40 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/20 22:56:31 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ int		exec_builtin(t_data *data, t_cmd *cmd, char **args);
 
 // cd.c
 int		is_a_dir(char *str);
-int		check_cd(char **args);
-int		ft_cd(t_data *data, char **args);
+int		check_cd(char **args, int m);
+int		ft_cd(t_data *data, char **args, int m);
 
 // echo.c
 int		is_option_n(char *str);
