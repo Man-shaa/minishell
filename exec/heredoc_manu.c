@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:20:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/18 23:43:14 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:56:14 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,52 @@ int	count_all_heredoc(t_data *data)
 	return (count);
 }
 
+// meme principe que parsing/parsing.c->handle_dollar()
+
+// char	*expand_heredoc(char *str)
+// {
+// 	char	*new;
+// 	char	*d_expand;
+// 	t_envp	*env;
+// 	int		i;
+// 	int		d_pos;
+
+// 	i = 0;
+// 	while (str[i] && str[i] != '$')
+// 		i++;
+// 	new = ft_strndup(str, i);
+// 	i++;
+// 	d_pos = i;
+// 	while (!is_sep(str[i]))
+// 		i++;
+// 	d_expand = ft_strndup(&str[j], i - j);
+// 	env = search_node()
+// 	return (new);
+// }
+
 int	fill_heredoc_manu(char *delim, int fd)
 {
+	int	f_stdin;
 	char	*str;
-	
-	signal(SIGINT, handle_sighere);
-	while (1 && fd)
+
+	f_stdin = dup(STDIN_FILENO);
+	while (1 && g_return_val != -42)
 	{
+		str = readline(">");
 		if (g_return_val == -42)
 		{
 			ft_free(str);
 			close(fd);
+			dup2(f_stdin, STDIN_FILENO);
+			close(f_stdin);
 			return (0);
 		}
-		str = readline(">");
 		if (is_same(str, delim))
 		{
 			ft_free(str);
 			break ;
 		}
+		// str = expand_heredoc(str);
 		write(fd, str, ft_strlen(str));
 		write(fd, "\n", 1);
 		ft_free(str);

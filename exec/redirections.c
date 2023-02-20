@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/18 21:42:31 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:13:24 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	handle_token_redir3(int cmd_pos)
 	cmd_number = ft_itoa(cmd_pos);
 	filename = ft_strjoin("/tmp/.heredoc_manuo", cmd_number);
 	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		return (1);
 	ft_free(cmd_number);
 	ft_free(filename);
 	if (dup2(fd, STDIN_FILENO) == -1)
