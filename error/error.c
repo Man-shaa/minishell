@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:19:29 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/09 14:02:38 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/20 20:49:14 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	error_cmd(char **cmd)
 	DIR	*dir;
 	int	ret;
 
-	ret = 0;
+	ret = 1;
 	if (!cmd || !cmd[0])
 		return (err_msg("minishell: ", NULL, ": command not found", 127));
 	if (ft_strchr(cmd[0], '/'))

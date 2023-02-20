@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 20:26:33 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/20 20:55:08 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ int		error_cmd(char **cmd);
 
 // exec.c
 void	wait_all_child(t_data *data, int n);
+int		execve_binary(t_data *data, t_cmd *cmd);
 int		exec_binary(t_data *data, t_cmd *cmd);
 int		send_cmd(t_data *data, t_cmd *cmd);
 int		execution(t_data *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 20:36:12 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/20 20:54:46 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ void	wait_all_child(t_data *data, int n)
 	}
 }
 
-int	execve_binary(t_data *data, t_cmd *cmd, int ret)
+int	execve_binary(t_data *data, t_cmd *cmd)
 {
 	char	**env_tab;
 
 	env_tab = get_env_tab(data->envp);
 	if (!cmd->cmd_path)
 	{
-		ret = (error_cmd(cmd->opt));
+		g_return_val = error_cmd(cmd->opt);
 		free_tab(env_tab);
 		free_data(data);
-		exit (ret);
+		exit (g_return_val);
 	}
 	execve(cmd->cmd_path, cmd->opt, env_tab);
 	free_tab(env_tab);
@@ -72,9 +72,9 @@ int	exec_binary(t_data *data, t_cmd *c)
 		if (is_builtin(c->cmd))
 			g_return_val = exec_builtin(data, c, c->opt);
 		else if (is_cmd(data, c, c->cmd, data->env_path))
-			g_return_val = execve_binary(data, c, ret);
+			g_return_val = execve_binary(data, c);
 		free_data(data);
-		exit(ret);
+		exit(g_return_val);
 	}
 	return (g_return_val);
 }
