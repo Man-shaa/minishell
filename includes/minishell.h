@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 20:19:17 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/20 20:26:33 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,8 +167,6 @@ int		send_cmd(t_data *data, t_cmd *cmd);
 int		execution(t_data *data);
 
 // heredoc.c
-int		is_last_heredoc(t_data *data, t_cmd *cmd, int cmd_pos);
-int		count_all_heredoc(t_data *data);
 char	*expand_heredoc(t_envp *envp, char *str);
 int		fill_heredoc(t_envp *envp, char *delim, int fd);
 int		create_heredoc(t_cmd *cmd, t_envp *envp, int cmd_pos, int fd);
@@ -315,6 +313,10 @@ int		concat_inexist(t_data *data, char *str);
 int		concat(t_envp *node, char **tab);
 int		is_valid_name(char *str);
 int		replace_value(t_envp *node, char *value);
+
+// heredoc_utils.c
+int		is_last_heredoc(t_data *data, t_cmd *cmd, int cmd_pos);
+int		count_all_heredoc(t_data *data);
 
 // env_list_utils.c
 t_envp	*search_node(t_envp *envp, char *str);
