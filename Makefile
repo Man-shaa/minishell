@@ -48,7 +48,6 @@ SRCS		=	main.c \
 				\
 				${EXEC_DIR}exec.c \
 				${EXEC_DIR}heredoc.c \
-				${EXEC_DIR}heredoc_manu.c \
 				${EXEC_DIR}pipe.c \
 				${EXEC_DIR}redirections.c \
 				\

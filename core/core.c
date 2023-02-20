@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/20 16:55:35 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:43:05 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	reset_data(t_data *data, char *str)
 	if (data->proc)
 	{
 		free_int_tab(data->proc->pipe_fd, data->proc->n_pipes);
+		if (data->proc->n_heredoc > 0)
+			ft_free(data->proc->fd_heredoc);
 		ft_free(data->proc->pid);
 	}
 	tmp = search_node(data->envp, "PATH");
