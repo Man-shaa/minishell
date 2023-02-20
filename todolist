@@ -1,9 +1,0 @@
-prout hola > bonjour
-// ya bien cmd not found, mais ne cree pas le fichier bonjour
-
-ABC=hola
-// devrait ne rien afficher
-
-> out
-// Dup2 failed
-

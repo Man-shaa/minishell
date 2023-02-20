@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:20:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 20:26:51 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/20 20:36:21 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,6 @@ int	print_all_heredoc(t_data *data, t_envp *envp)
 		}
 		cmd = cmd->next;
 	}
-	// handle_signal();
+	handle_signal();
 	return (1);
 }

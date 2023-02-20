@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 20:25:45 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/20 20:36:12 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	execution(t_data *data)
 		return (0);
 	print_all_heredoc(data, data->envp);
 	handle_sigint_exec();
-	while (cmd) 
+	while (cmd)
 	{
 		g_return_val = send_cmd(data, cmd);
 		cmd = cmd->next;
