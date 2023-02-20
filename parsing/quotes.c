@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:32:56 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/20 17:03:19 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:24:48 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int	handle_dollar_quote(t_data *data)
 			return (0);
 		if (count_dollars(tmp->str))
 			handle_dollar(data, tmp);
-		tmp->str = remove_quotes(tmp->str);
 		if (tmp->type == HERE && tmp->next)
 			tmp = tmp->next;
+		tmp->str = remove_quotes(tmp->str);
 		tmp = tmp->next;
 	}
 	return (1);
