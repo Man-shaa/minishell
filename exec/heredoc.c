@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:20:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 17:33:50 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/20 18:52:46 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ int	print_all_heredoc(t_data *data, t_envp *envp)
 	cmd = data->cmd;
 	if (!count_all_heredoc(data))
 		return (1);
-	signal(SIGINT, handle_sighere);
+	handle_heredoc();
 	while (cmd)
 	{
 		i = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 17:26:02 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/20 18:35:42 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,6 +249,9 @@ void	print_tab_index(int *tab, int n);
 // ******************************** SIGNAL *********************************
 
 // signal_2.c
+void	handle_sighere(int sig_int);
+void	handle_sigsegvhere(int sig_segv);
+void	handle_heredoc(void);
 void	handle_exec(int sig_int);
 void	handle_sigint_exec(void);
 
@@ -256,7 +259,6 @@ void	handle_sigint_exec(void);
 void	handle_sigquit(int sig_quit);
 void	handle_sigsegv(int sig_segv);
 void	handle_sigint(int sig_int);
-void	handle_sighere(int sig_int);
 void	handle_signal(void);
 
 // ******************************** SPLIT **********************************
