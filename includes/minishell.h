@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 21:36:28 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/20 22:20:40 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -332,9 +332,10 @@ int		is_absolute_path(t_cmd *cmd);
 int		find_cmd_path(t_data *data, t_cmd *cmd, char *env_path);
 int		is_cmd(t_data *data, t_cmd *cmd, char *str, char *env_path);
 
-// redirection
+// redirections_utils.c
 int		is_token(t_cmd *cmd, int type);
 int		is_last_cmd_token_out(t_data *data, int index);
+void	create_files(t_data *data, t_cmd *cmd);
 
 // split_echo.c
 int		word_count_echo(char *str, char set);

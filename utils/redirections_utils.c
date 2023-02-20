@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 19:18:27 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/10 19:18:38 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/20 22:20:15 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,20 @@ int	is_last_cmd_token_out(t_data *data, int index)
 	if (is_token(prev, OUT))
 		return (1);
 	return (0);
+}
+
+// cree les fichiers si commande existante mais invalide, sans dup2
+void	create_files(t_data *data, t_cmd *cmd)
+{
+	int	i;
+
+	i = 0;
+	if (count_tokens(data, cmd->index) > 0)
+	{
+		while (cmd->token && cmd->token[i])
+		{
+			handle_token_redir(data, cmd, i, 0);
+			i++;
+		}
+	}
 }

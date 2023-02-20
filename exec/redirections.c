@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 16:13:24 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/20 22:09:28 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,7 @@ int	redir(t_data *data, t_cmd *cmd, int m)
 	int	i;
 
 	i = 0;
-	if (!cmd->token)
-		return (0);
-	while (cmd->token[i])
+	while (cmd->token && cmd->token[i])
 	{
 		if (!handle_token_redir(data, cmd, i, m))
 			return (1);
