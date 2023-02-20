@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:20:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/18 23:39:33 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:14:24 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,21 @@ int	count_all_heredoc(t_data *data)
 
 int	fill_heredoc_manu(char *delim, int fd)
 {
+	int	f_stdin;
 	char	*str;
 
-	while (1 && fd)
+	f_stdin = dup(STDIN_FILENO);
+	while (1 && g_return_val != -42)
 	{
+		str = readline(">");
 		if (g_return_val == -42)
 		{
 			ft_free(str);
 			close(fd);
+			dup2(f_stdin, STDIN_FILENO);
+			close(f_stdin);
 			return (0);
 		}
-		str = readline(">");
 		if (is_same(str, delim))
 		{
 			ft_free(str);

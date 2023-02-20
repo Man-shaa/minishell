@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/18 21:17:30 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:15:17 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	execution(t_data *data)
 		return (0);
 	handle_sigint_exec();
 	print_all_heredoc(data);
-	while (cmd)
+	while (cmd) 
 	{
 		g_return_val = send_cmd(data, cmd);
 		cmd = cmd->next;
