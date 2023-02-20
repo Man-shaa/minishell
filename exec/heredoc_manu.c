@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_manu.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:20:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/18 20:34:05 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/18 23:43:14 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int	count_all_heredoc(t_data *data)
 int	fill_heredoc_manu(char *delim, int fd)
 {
 	char	*str;
-
-	printf("\n\n\n%s\n\n\n", delim);
+	
+	signal(SIGINT, handle_sighere);
 	while (1 && fd)
 	{
 		if (g_return_val == -42)
@@ -76,7 +76,6 @@ int	create_heredoc_manu(t_cmd *cmd, int cmd_pos, int fd)
 
 	str = NULL;
 	i = 0;
-	signal(SIGINT, handle_sighere);
 	cmd_number = ft_itoa(cmd_pos);
 	filename = ft_strjoin("/tmp/.heredoc_manuo", cmd_number);
 	ft_free(cmd_number);
