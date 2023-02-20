@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/17 18:53:04 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:26:02 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,14 +166,13 @@ int		exec_binary(t_data *data, t_cmd *cmd);
 int		send_cmd(t_data *data, t_cmd *cmd);
 int		execution(t_data *data);
 
-// heredoc_manu.c
-int		count_all_heredoc(t_data *data);
-int		print_all_heredoc(t_data *data);
-
 // heredoc.c
 int		is_last_heredoc(t_data *data, t_cmd *cmd, int cmd_pos);
-int		fill_heredoc(char *str, char *delim, int fd);
-int		create_heredoc(t_data *data, t_cmd *cmd, int fd, int cmd_pos);
+int		count_all_heredoc(t_data *data);
+char	*expand_heredoc(t_envp *envp, char *str);
+int		fill_heredoc_manu(t_envp *envp, char *delim, int fd);
+int		create_heredoc_manu(t_cmd *cmd, t_envp *envp, int cmd_pos, int fd);
+int		print_all_heredoc(t_data *data, t_envp *envp);
 
 // pipe.c
 int		create_pipes(t_proc *proc);

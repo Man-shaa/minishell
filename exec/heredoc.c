@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 15:08:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/16 14:36:49 by mfroissa         ###   ########.fr       */
+/*   Created: 2023/02/13 16:20:17 by msharifi          #+#    #+#             */
+/*   Updated: 2023/02/20 17:33:50 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,77 @@ int	is_last_heredoc(t_data *data, t_cmd *cmd, int cmd_pos)
 	return (1);
 }
 
-int	fill_heredoc(char *str, char *delim, int fd)
+int	count_all_heredoc(t_data *data)
 {
-	while (1 && fd)
+	int		count;
+	t_cmd	*cmd;
+	int		i;
+
+	count = 0;
+	cmd = data->cmd;
+	while (cmd)
 	{
+		i = 0;
+		while (cmd->type && cmd->token[i])
+		{
+			if (cmd->type[i] == HERE)
+				count++;
+			i++;
+		}
+		cmd = cmd->next;
+	}
+	data->proc->n_heredoc = count;
+	if (data->proc->n_heredoc > 0)
+	{
+		data->proc->fd_heredoc = ft_calloc(count, sizeof(int));
+		if (!data->proc->fd_heredoc)
+			return (-1);
+	}
+	return (count);
+}
+
+// meme principe que parsing/parsing.c->handle_dollar()
+
+char	*expand_heredoc(t_envp *envp, char *str)
+{
+	(void)envp;
+	// char	*new;
+	// char	*d_expand;
+	// t_envp	*env;
+	// int		i;
+	// int		d_pos;
+
+	// i = 0;
+	// while (str[i])
+	// return (new);
+	return (str);
+}
+
+int	fill_heredoc_manu(t_envp *envp, char *delim, int fd)
+{
+	int	f_stdin;
+	char	*str;
+
+	f_stdin = dup(STDIN_FILENO);
+	while (1 && g_return_val != -42)
+	{
+		str = readline(">");
 		if (g_return_val == -42)
 		{
 			ft_free(str);
 			close(fd);
+			dup2(f_stdin, STDIN_FILENO);
+			close(f_stdin);
 			return (0);
 		}
-		str = readline(">");
 		if (is_same(str, delim))
 		{
 			ft_free(str);
+			close(f_stdin);
 			break ;
 		}
+		(void)envp;
+		// str = expand_heredoc(envp, str);
 		write(fd, str, ft_strlen(str));
 		write(fd, "\n", 1);
 		ft_free(str);
@@ -52,28 +107,52 @@ int	fill_heredoc(char *str, char *delim, int fd)
 	return (1);
 }
 
-int	create_heredoc(t_data *data, t_cmd *cmd, int fd, int cmd_pos)
+int	create_heredoc_manu(t_cmd *cmd, t_envp *envp, int cmd_pos, int fd)
 {
 	int		i;
 	char	*str;
+	char	*filename;
+	char	*cmd_number;
 
 	str = NULL;
 	i = 0;
-	signal(SIGINT, handle_sighere);
-	fd = open("/tmp/.heredoc_manuo", O_CREAT | O_TRUNC | O_WRONLY, 0644);
+	cmd_number = ft_itoa(cmd_pos);
+	filename = ft_strjoin("/tmp/.heredoc_manuo", cmd_number);
+	ft_free(cmd_number);
+	fd = open(filename, O_CREAT | O_TRUNC | O_WRONLY, 0644);
+	ft_free(filename);
 	if (fd == -1)
 		return (err_msg("Open heredoc failed !", NULL, NULL, 0));
-	if (!fill_heredoc(str, cmd->token[cmd_pos], fd))
+	if (!fill_heredoc_manu(envp, cmd->token[cmd_pos], fd))
 		return (0);
 	close(fd);
-	fd = open("/tmp/.heredoc_manuo", O_RDONLY);
-	if (fd == -1)
-		return (err_msg("Second open heredoc failed !", NULL, NULL, 0));
-	if (is_last_heredoc(data, cmd, cmd_pos) == 1)
+	return (1);
+}
+
+int	print_all_heredoc(t_data *data, t_envp *envp)
+{
+	t_cmd	*cmd;
+	int		i;
+
+	i = 0;
+	cmd = data->cmd;
+	if (!count_all_heredoc(data))
+		return (1);
+	signal(SIGINT, handle_sighere);
+	while (cmd)
 	{
-		if (dup2(fd, STDIN_FILENO) == -1)
-			return (close(fd), err_msg("Dup2 heredoc failed", 0, NULL, 0), 0);
+		i = 0;
+		while (cmd->token && cmd->token[i])
+		{
+			if (cmd->type[i] == HERE)
+			{
+				if (!create_heredoc_manu(cmd, envp, i,
+						data->proc->fd_heredoc[i + cmd->index]))
+					return (0);
+			}
+			i++;
+		}
+		cmd = cmd->next;
 	}
-	close(fd);
 	return (1);
 }
