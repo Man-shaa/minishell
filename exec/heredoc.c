@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:20:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 20:14:39 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/20 20:18:57 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int	fill_heredoc(t_envp *envp, char *delim, int fd)
 			close(f_stdin);
 			return (0);
 		}
-		if (is_same(str, delim))
+		if (is_same(str, delim) || !str)
 		{
 			ft_free(str);
 			close(f_stdin);
@@ -154,7 +154,7 @@ int	print_all_heredoc(t_data *data, t_envp *envp)
 	cmd = data->cmd;
 	if (!count_all_heredoc(data))
 		return (1);
-	handle_heredoc();
+	signal(SIGINT, handle_sighere);
 	while (cmd)
 	{
 		i = 0;
@@ -170,5 +170,6 @@ int	print_all_heredoc(t_data *data, t_envp *envp)
 		}
 		cmd = cmd->next;
 	}
+	// handle_signal();
 	return (1);
 }

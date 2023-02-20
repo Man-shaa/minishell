@@ -6,7 +6,7 @@
 /*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 18:55:20 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/20 20:19:17 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,8 +250,6 @@ void	print_tab_index(int *tab, int n);
 
 // signal_2.c
 void	handle_sighere(int sig_int);
-void	handle_sigsegvhere(int sig_segv);
-void	handle_heredoc(void);
 void	handle_exec(int sig_int);
 void	handle_sigint_exec(void);
 
