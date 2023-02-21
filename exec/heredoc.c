@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:20:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 20:36:21 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/02/21 23:47:33 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,28 +68,52 @@ int	fill_heredoc(t_envp *envp, char *delim, int fd)
 	return (1);
 }
 
-int	create_heredoc(t_cmd *cmd, t_envp *envp, int cmd_pos, int fd)
+int	which_heredoc(t_data *data, t_cmd *cmd, int cmd_pos)
+{
+	t_cmd	*tmp;
+	int	here_pos;
+	int	j;
+
+	here_pos = cmd_pos;
+	tmp = data->cmd;
+	while (tmp && tmp != cmd)
+	{
+		j = 0;
+		while (tmp->token && tmp->token[j])
+		{
+			if (tmp->type[j] == HERE)
+				here_pos++;
+			j++;
+		}
+		tmp = tmp->next;
+	}
+	return (here_pos);
+}
+
+int	create_heredoc(t_cmd *cmd, t_data *data, int cmd_pos)
 {
 	int		i;
 	char	*str;
 	char	*filename;
 	char	*cmd_number;
+	int		here_pos;
 
 	str = NULL;
 	i = 0;
-	cmd_number = ft_itoa(cmd_pos);
+	here_pos = which_heredoc(data, cmd, cmd_pos);
+	cmd_number = ft_itoa(here_pos);
 	filename = ft_strjoin("/tmp/.heredoc_manuo", cmd_number);
 	ft_free(cmd_number);
-	fd = open(filename, O_CREAT | O_TRUNC | O_WRONLY, 0644);
+	data->proc->fd_heredoc[here_pos] = open(filename, O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	ft_free(filename);
-	if (fd == -1)
+	if (data->proc->fd_heredoc[here_pos] == -1)
 		return (err_msg("Open heredoc failed !", NULL, NULL, 0));
-	if (!fill_heredoc(envp, cmd->token[cmd_pos], fd))
+	if (!fill_heredoc(data->envp, cmd->token[cmd_pos], data->proc->fd_heredoc[here_pos]))
 		return (0);
 	return (1);
 }
 
-int	print_all_heredoc(t_data *data, t_envp *envp)
+int	print_all_heredoc(t_data *data)
 {
 	t_cmd	*cmd;
 	int		i;
@@ -106,8 +130,7 @@ int	print_all_heredoc(t_data *data, t_envp *envp)
 		{
 			if (cmd->type[i] == HERE)
 			{
-				if (!create_heredoc(cmd, envp, i,
-						data->proc->fd_heredoc[i + cmd->index]))
+				if (!create_heredoc(cmd, data, i))
 					return (0);
 			}
 			i++;

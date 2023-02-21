@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/21 22:38:56 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/21 23:33:17 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	execution(t_data *data)
 	cmd = data->cmd;
 	if (!create_pipes_array(data))
 		return (0);
-	print_all_heredoc(data, data->envp);
+	print_all_heredoc(data);
 	handle_sigint_exec();
 	while (cmd)
 	{
