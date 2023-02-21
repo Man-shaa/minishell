@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:39:45 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 20:20:47 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:03:10 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ int	echo_each_arg(char **args, int i)
 			ft_putstr(one[j]);
 			boule = 1;
 			j++;
-			if (one[j])
-				write(STDOUT_FILENO, " ", 1);
 		}
 		i++;
 		free_tab(one);
