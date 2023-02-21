@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 22:56:31 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/21 17:51:22 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ typedef struct s_data
 
 // builtins.c
 int		is_builtin(char *str);
+void	send_to_individual_builtin(t_data *data, t_cmd *cmd, char **args);
+int		send_builtin_fork(t_data *data, t_cmd *cmd, char **args);
 int		exec_builtin(t_data *data, t_cmd *cmd, char **args);
 
 // cd.c
@@ -115,6 +117,7 @@ void	replace_oldpwd_my_env(t_envp *envp);
 void	replace_pwd_my_env(t_envp *envp);
 
 // unset.c
+void	unset_option(t_data *data, char *arg);
 int		ft_unset(t_data *data, char **args);
 
 // ******************************** CORE **********************************
@@ -260,15 +263,16 @@ void	handle_signal(void);
 
 // ******************************** SPLIT **********************************
 
-// split.c
-int		count_words(char *str);
-int		count_chars(char *str, int n);
-char	*ft_putwords(char *str, int n, char *mot);
-int		ft_split(char *str, t_data *data);
+// chars_quotes.c
+int		count_chars_double(char *str, int *i, int *count, int n);
+int		count_chars_double_inner(char *str, int *i, int *count, int n);
+int		count_chars_single(char *str, int *i, int *count, int n);
+int		count_chars_single_inner(char *str, int *i, int *count, int n);
 
-// split_utils.c
-int		is_in_charset(char c);
-int		is_end_of_string(char c);
+// chars_utils.c
+int		count_chars_cmd(char *str, int *i, int *count, int n);
+int		count_chars_redir(char *str, int *i, int *count, int n);
+int		count_chars_pipe(int *i, int *count, int n);
 
 // split_index.c
 int		get_index(char *str, int n);
@@ -276,23 +280,22 @@ int		get_index_exp(char *str, int *count, int *i, int n);
 void	get_index_dq(char *str, int *count, int *i);
 void	get_index_sq(char *str, int *count, int *i);
 
+// split_utils.c
+int		is_in_charset(char c);
+int		is_end_of_string(char c);
+
+// split.c
+int		count_words(char *str);
+int		count_chars(char *str, int n);
+char	*ft_putwords(char *str, int n, char *mot);
+int		ft_split(char *str, t_data *data);
+
 // words_utils.c
 int		count_words_cmd(char *str, int *i);
 int		count_words_redir(char *str, int *i);
 int		count_words_pipe(int *i);
 int		count_words_quote(char *str, int *i, int *count);
 int		count_words_single(char *str, int *i, int *count);
-
-// chars_utils.c
-int		count_chars_cmd(char *str, int *i, int *count, int n);
-int		count_chars_redir(char *str, int *i, int *count, int n);
-int		count_chars_pipe(int *i, int *count, int n);
-
-// chars_quotes.c
-int		count_chars_double(char *str, int *i, int *count, int n);
-int		count_chars_double_inner(char *str, int *i, int *count, int n);
-int		count_chars_single(char *str, int *i, int *count, int n);
-int		count_chars_single_inner(char *str, int *i, int *count, int n);
 
 // ******************************** UTILS *********************************
 
@@ -308,20 +311,10 @@ int		count_tokens(t_data *data, int n);
 int		words_to_pipe(t_data *data, int n);
 int		command_or_builtin(char *str, int *cappuccino);
 
-// export_utis.c
-int		is_concat(char *str);
-int		concat_inexist(t_data *data, char *str);
-int		concat(t_envp *node, char **tab);
-int		is_valid_name(char *str);
-int		replace_value(t_envp *node, char *value);
-
-// heredoc_utils.c
-int		is_last_heredoc(t_data *data, t_cmd *cmd, int cmd_pos);
-int		count_all_heredoc(t_data *data);
-
 // env_list_utils.c
 t_envp	*search_node(t_envp *envp, char *str);
 t_envp	*ft_lstnew_env(char *str);
+void	ft_env_copy(char *dest, char *s1, char *s2);
 char	**fill_env_tab(t_envp *envp, char **env_tab);
 char	**get_env_tab(t_envp *envp);
 
@@ -331,6 +324,17 @@ char	*find_path_in_env(char **envp);
 int		is_absolute_path(t_cmd *cmd);
 int		find_cmd_path(t_data *data, t_cmd *cmd, char *env_path);
 int		is_cmd(t_data *data, t_cmd *cmd, char *str, char *env_path);
+
+// export_utils.c
+int		is_concat(char *str);
+int		concat_inexist(t_data *data, char *str);
+int		concat(t_envp *node, char **tab);
+int		is_valid_name(char *str);
+int		replace_value(t_envp *node, char *value);
+
+// heredoc_utils.c
+int		is_last_heredoc(t_data *data, t_cmd *cmd, int cmd_pos);
+int		count_all_heredoc(t_data *data);
 
 // redirections_utils.c
 int		is_token(t_cmd *cmd, int type);
@@ -345,6 +349,7 @@ char	*put_word_pos(char *str, int i, char *tab, char set);
 char	*putword_echo(char *str, char *tab, char set, int pos);
 
 // split_env.c
+int		first_sep(char *str, char sep);
 int		char_count_env(char *str, char set, int pos);
 void	ft_putword_env(char *str, char *tab, char set, int pos);
 char	**ft_split_env(char	*str, char set);
