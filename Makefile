@@ -123,8 +123,7 @@ $(OBJS_DIR) :
 
 all:		${NAME}
 
-clean:		
-		# ${RM} ${OBJS}
+clean:
 		${RM} ${OBJS_DIR}
 
 fclean:		clean
