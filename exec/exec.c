@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/21 15:09:53 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/21 22:38:56 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	send_cmd(t_data *data, t_cmd *cmd)
 		|| is_same(cmd->cmd, "."))
 	{
 		if (cmd->token && cmd->token[0] && cmd->type[0] != HERE)
-			return (redir(data, cmd, 0));
+			return (create_files(data, cmd), 0);
 		else if (cmd->type && cmd->type[0] == HERE)
 			return (exec_binary(data, cmd));
 		return (error_cmd(cmd->opt));
