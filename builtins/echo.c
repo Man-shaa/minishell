@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:39:45 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/21 16:04:26 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/21 21:41:29 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,13 @@ int	is_option_n(char *str)
 {
 	int	i;
 
-	i = 1;
-	if (!str)
+	i = 0;
+	if (str[i] != '-')
 		return (0);
-	if (str[0] != '-')
-		return (0);
+	i++;
 	while (str[i] && str[i] == 'n')
 		i++;
-	if (!str[i])
+	if (!str[i] && i != 1)
 		return (1);
 	return (0);
 }
