@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/21 23:33:17 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/02/22 14:10:45 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	wait_all_child(t_data *data, int n)
 		if (data->proc->pid[i] != -1)
 		{
 			waitpid(data->proc->pid[i], &status, 0);
-			g_return_val = WEXITSTATUS(status);
+			if (WIFEXITED(status))
+				g_return_val = WEXITSTATUS(status);
 		}
 		i++;
 	}
