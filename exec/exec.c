@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/22 14:10:45 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:12:16 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	wait_all_child(t_data *data, int n)
 	}
 }
 
+// Creation tab env + execve
 int	execve_binary(t_data *data, t_cmd *cmd)
 {
 	char	**env_tab;

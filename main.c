@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/21 22:06:30 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/15 18:05:20 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	g_return_val;
 
-// valeur de retour de CTRL-\ pas bon (0 au lieu de 131)
+// export "ls -l"
 
-// echo "$9HOME" OU "echo $:$=" essaye d'expand alors qu'il faut pas
+// env | env |
 
-// echo yo > bonjour fd 1 open
+// export a=
 
 int	main(int ac, char **av, char **envp)
 {

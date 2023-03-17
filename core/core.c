@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:27:33 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/21 17:54:18 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:34:08 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ void	reset_data(t_data *data, char *str)
 // Affiche un prompt different selon la valeur de retour precedente 
 char	*get_readline(t_data *data, char *str)
 {
-	str = readline("Manuo ✖✖ ");
+	if (!g_return_val)
+		str = readline("Manuo ✖✖ ");
+	else
+		str = readline("✖✖ Manuo ✖✖ ");
 	if (!str)
 	{
 		rl_clear_history();
