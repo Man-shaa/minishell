@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2023/03/20 13:05:59 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/20 13:49:36 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,9 @@
 
 int	g_return_val;
 
-// export "ls -l"
-
-// env | env |
-
-// export a=
-
 // ls<<eof CTRL-C dans heredoc devrait pas faire le ls, (signaux hredoc)
 
 // >double ls < dsfghj | cat infile existe pas, cat devrait pas s'executer
-
-// exit a55 45
 
 // . et .. pas le meme retour d'erreur
 
