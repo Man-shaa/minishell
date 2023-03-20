@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/03/15 14:12:16 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:20:50 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	wait_all_child(t_data *data, int n)
 	i = 0;
 	if (!data->proc->pid)
 		return ;
-	while (i < n)
+	while (i < n && g_return_val != -126)
 	{
 		if (data->proc->pid[i] != -1)
 		{
@@ -116,7 +116,7 @@ int	execution(t_data *data)
 		return (0);
 	print_all_heredoc(data);
 	handle_sigint_exec();
-	while (cmd)
+	while (cmd && g_return_val != -126)
 	{
 		g_return_val = send_cmd(data, cmd);
 		cmd = cmd->next;
