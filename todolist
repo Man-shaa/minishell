@@ -1,6 +1,0 @@
-ls << eof
-ctrl C
-// doit quitter le herdoc et ne pas executer la commande meme s'il est est dans dautres pipes
-// (btw genouf condjump sur echo yo | ls < eof | echo truc)
-
-
