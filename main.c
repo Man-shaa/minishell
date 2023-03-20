@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2023/03/20 16:58:08 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/20 20:26:57 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,7 @@
 
 int	g_return_val;
 
-//chmod 00- perm denied, cmd exec pas, ret val devrait etre 1 askip
-
-// cat | euf 93w874w - ctrl c, echo $? verif bashg
-
-// touch test, chmod 00 test, pwd > test, ne doit pas pwd
-
-// exit | exti 3 51 manque err_msg, cas particulier
+// cat | euf 93w874w - ctrl c, echo $? verif bash
 
 int	main(int ac, char **av, char **envp)
 {

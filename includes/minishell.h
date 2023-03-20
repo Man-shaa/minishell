@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/03/20 18:00:55 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:19:37 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int		print_env(t_envp *envp, char **args);
 // exit.c
 void	handle_exit_option(char **args, int *return_val);
 int		check_exit_numeric(char **args, int *return_val);
-int		ft_exit(t_data *data, char **args);
+int		ft_exit(t_data *data, char **args, int m);
 
 // export.c
 int		add_last_env(t_data *data, char *arg);

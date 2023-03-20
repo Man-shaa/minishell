@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:48:44 by msharifi          #+#    #+#             */
-/*   Updated: 2023/03/20 18:15:28 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/20 20:00:33 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	send_to_individual_builtin(t_data *data, t_cmd *cmd, char **args, int m)
 		g_return_val = print_pwd();
 	else if (is_same(cmd->cmd, "unset") && args && args[0])
 		g_return_val = ft_unset(data, args);
-	// else if (is_same(cmd->cmd, "exit") && args && args[0])
-	// 	g_return_val = ft_exit(data, args);
 }
 
 int	send_builtin_fork(t_data *data, t_cmd *cmd, char **args, int m)
@@ -60,7 +58,12 @@ int	send_builtin_fork(t_data *data, t_cmd *cmd, char **args, int m)
 		return (1);
 	if (pid == 0)
 	{
-		redir(data, cmd, 1);
+		if (redir(data, cmd, 1))
+		{
+			close_pipes(data->proc);
+			free_data(data);
+			exit(1);
+		}
 		send_to_individual_builtin(data, cmd, args, m);
 		free_data(data);
 		exit(g_return_val);
@@ -77,21 +80,14 @@ int	exec_builtin(t_data *data, t_cmd *cmd, char **args)
 	int	m;
 
 	m = 1;
-	if (is_same(cmd->cmd, "exit") && args && data->proc->n_pipes == 0)
+	if (is_same(cmd->cmd, "exit") && args)
 	{
-		g_return_val = ft_exit(data, args);
-		if (g_return_val != -1)
+		m = data->proc->n_pipes;
+		g_return_val = ft_exit(data, args, m);
+		if (g_return_val != -1 && m == 0)
 			exit(g_return_val);
-		g_return_val = 1;
-	}
-	else if (is_same(cmd->cmd, "exit") && args && data->proc->n_pipes != 0)
-	{
-		if (args[0] && check_exit_numeric(args, &g_return_val))
-			err_msg("minishell: exit: ", args[0], ": numeric argument required", -1);
-		else if (args[0] && args[1])
-			return (err_msg("minishell: exit: too many arguments", NULL, NULL, 1));
-		if (g_return_val != 2 && args[0])
-			g_return_val = ft_atoi(args[0]);
+		if (g_return_val == -1)
+			g_return_val = 1;
 	}
 	if (data->proc->n_pipes == 0)
 	{
