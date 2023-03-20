@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/21 23:41:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:00:55 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,9 @@ typedef struct s_data
 
 // builtins.c
 int		is_builtin(char *str);
-void	send_to_individual_builtin(t_data *data, t_cmd *cmd, char **args);
-int		send_builtin_fork(t_data *data, t_cmd *cmd, char **args);
+void	send_to_individual_builtin(t_data *data,
+			t_cmd *cmd, char **args, int m);
+int		send_builtin_fork(t_data *data, t_cmd *cmd, char **args, int m);
 int		exec_builtin(t_data *data, t_cmd *cmd, char **args);
 
 // cd.c
@@ -103,6 +104,8 @@ char	**ft_split_echo(char	*str, char set);
 int		print_env(t_envp *envp, char **args);
 
 // exit.c
+void	handle_exit_option(char **args, int *return_val);
+int		check_exit_numeric(char **args, int *return_val);
 int		ft_exit(t_data *data, char **args);
 
 // export.c

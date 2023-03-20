@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:13:03 by msharifi          #+#    #+#             */
-/*   Updated: 2023/03/20 14:20:50 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:45:33 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,12 @@ int	send_cmd(t_data *data, t_cmd *cmd)
 	if (!cmd->cmd || !cmd->cmd[0] || is_same(cmd->cmd, "..")
 		|| is_same(cmd->cmd, "."))
 	{
+		if (is_same(cmd->cmd, "."))
+		{
+			g_return_val = err_msg("bash: .: filename argument required",
+					0, 0, 2);
+			return (g_return_val);
+		}
 		if (cmd->token && cmd->token[0] && cmd->type[0] != HERE)
 			return (create_files(data, cmd), 0);
 		else if (cmd->type && cmd->type[0] == HERE)

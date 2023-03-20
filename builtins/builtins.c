@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:48:44 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/20 23:05:54 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:15:28 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	is_builtin(char *str)
 	return (0);
 }
 
-void	send_to_individual_builtin(t_data *data, t_cmd *cmd, char **args)
+void	send_to_individual_builtin(t_data *data, t_cmd *cmd, char **args, int m)
 {
 	if (is_same(cmd->cmd, "cd") && args)
-		g_return_val = ft_cd(data, args, 0);
+		g_return_val = ft_cd(data, args, m);
 	else if (is_same(cmd->cmd, "export") && args)
-		g_return_val = ft_export(data, args, 0);
+		g_return_val = ft_export(data, args, m);
 	else if (is_same(cmd->cmd, "echo") && args)
 		g_return_val = ft_echo(args);
 	else if (is_same(cmd->cmd, "env") && args)
@@ -46,9 +46,11 @@ void	send_to_individual_builtin(t_data *data, t_cmd *cmd, char **args)
 		g_return_val = print_pwd();
 	else if (is_same(cmd->cmd, "unset") && args && args[0])
 		g_return_val = ft_unset(data, args);
+	// else if (is_same(cmd->cmd, "exit") && args && args[0])
+	// 	g_return_val = ft_exit(data, args);
 }
 
-int	send_builtin_fork(t_data *data, t_cmd *cmd, char **args)
+int	send_builtin_fork(t_data *data, t_cmd *cmd, char **args, int m)
 {
 	int	pid;
 	int	status;
@@ -59,12 +61,12 @@ int	send_builtin_fork(t_data *data, t_cmd *cmd, char **args)
 	if (pid == 0)
 	{
 		redir(data, cmd, 1);
-		send_to_individual_builtin(data, cmd, args);
+		send_to_individual_builtin(data, cmd, args, m);
 		free_data(data);
 		exit(g_return_val);
 	}
 	waitpid(pid, &status, 0);
-	g_return_val = WEXITSTATUS(status);
+	g_return_val = WEXITSTATUS(status); // WIFEXITED() ?
 	return (WEXITSTATUS(status));
 }
 
@@ -72,12 +74,24 @@ int	send_builtin_fork(t_data *data, t_cmd *cmd, char **args)
 // envoies a la fonction correspondante pour l'executer
 int	exec_builtin(t_data *data, t_cmd *cmd, char **args)
 {
+	int	m;
+
+	m = 1;
 	if (is_same(cmd->cmd, "exit") && args && data->proc->n_pipes == 0)
 	{
 		g_return_val = ft_exit(data, args);
 		if (g_return_val != -1)
 			exit(g_return_val);
 		g_return_val = 1;
+	}
+	else if (is_same(cmd->cmd, "exit") && args && data->proc->n_pipes != 0)
+	{
+		if (args[0] && check_exit_numeric(args, &g_return_val))
+			err_msg("minishell: exit: ", args[0], ": numeric argument required", -1);
+		else if (args[0] && args[1])
+			return (err_msg("minishell: exit: too many arguments", NULL, NULL, 1));
+		if (g_return_val != 2 && args[0])
+			g_return_val = ft_atoi(args[0]);
 	}
 	if (data->proc->n_pipes == 0)
 	{
@@ -87,7 +101,8 @@ int	exec_builtin(t_data *data, t_cmd *cmd, char **args)
 			g_return_val = ft_cd(data, args, 1);
 		else if (is_same(cmd->cmd, "unset"))
 			g_return_val = ft_unset(data, args);
+		m = 0;
 	}
-	send_builtin_fork(data, cmd, args);
+	send_builtin_fork(data, cmd, args, m);
 	return (g_return_val);
 }

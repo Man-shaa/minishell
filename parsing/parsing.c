@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:15:26 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/03/20 12:57:29 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:48:57 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ int	check_pipe(t_data *data)
 	tmp = data->list;
 	if (tmp && tmp->type == 6)
 		return (err_msg("minishell: syntax error near unexpected token `|'",
-			NULL, NULL, 0));
+				NULL, NULL, 0));
 	if (tmp && tmp->type == 2 && !tmp->next)
 		return (err_msg("minishell: syntax error near unexpected token `<'",
-			NULL, NULL, 0));
+				NULL, NULL, 0));
 	if (tmp && tmp->type == 3 && !tmp->next)
 		return (err_msg("minishell: syntax error near unexpected token `>'",
-			NULL, NULL, 0));
+				NULL, NULL, 0));
 	if (tmp && tmp->type == 4 && !tmp->next)
 		return (err_msg("minishell: syntax error near unexpected token `<<'",
-			NULL, NULL, 0));
+				NULL, NULL, 0));
 	if (tmp && tmp->type == 5 && !tmp->next)
 		return (err_msg("minishell: syntax error near unexpected token `>>'",
-			NULL, NULL, 0));
+				NULL, NULL, 0));
 	return (1);
 }
 

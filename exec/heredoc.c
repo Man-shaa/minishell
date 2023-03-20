@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:20:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/03/20 14:37:02 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:43:10 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	fill_heredoc(t_envp *envp, char *delim, int fd)
 	while (1 && g_return_val != -126)
 	{
 		str = readline(">");
-		if (!str)
+		if (!str && g_return_val != -126)
 			err_msg("minishell: warning: here-document at line 1 delimited by end-of-file (wanted `", delim, "')", 2);
 		if (g_return_val == -126)
 		{
@@ -108,11 +108,13 @@ int	create_heredoc(t_cmd *cmd, t_data *data, int cmd_pos)
 	cmd_number = ft_itoa(here_pos);
 	filename = ft_strjoin("/tmp/.heredoc_manuo", cmd_number);
 	ft_free(cmd_number);
-	data->proc->fd_heredoc[here_pos] = open(filename, O_CREAT | O_TRUNC | O_WRONLY, 0644);
+	data->proc->fd_heredoc[here_pos] = open(filename, O_CREAT
+			| O_TRUNC | O_WRONLY, 0644);
 	ft_free(filename);
 	if (data->proc->fd_heredoc[here_pos] == -1)
 		return (err_msg("Open heredoc failed !", NULL, NULL, 0));
-	if (!fill_heredoc(data->envp, cmd->token[cmd_pos], data->proc->fd_heredoc[here_pos]))
+	if (!fill_heredoc(data->envp, cmd->token[cmd_pos],
+			data->proc->fd_heredoc[here_pos]))
 		return (0);
 	return (1);
 }

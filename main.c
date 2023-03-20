@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2023/03/20 13:49:36 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:58:08 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	g_return_val;
 
-// ls<<eof CTRL-C dans heredoc devrait pas faire le ls, (signaux hredoc)
+//chmod 00- perm denied, cmd exec pas, ret val devrait etre 1 askip
 
-// >double ls < dsfghj | cat infile existe pas, cat devrait pas s'executer
+// cat | euf 93w874w - ctrl c, echo $? verif bashg
 
-// . et .. pas le meme retour d'erreur
+// touch test, chmod 00 test, pwd > test, ne doit pas pwd
 
-// Retour CRTL-C CRTL-D 
+// exit | exti 3 51 manque err_msg, cas particulier
 
 int	main(int ac, char **av, char **envp)
 {

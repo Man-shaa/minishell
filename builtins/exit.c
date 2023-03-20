@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:04:26 by msharifi          #+#    #+#             */
-/*   Updated: 2023/03/20 13:26:45 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:02:33 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	handle_exit_option(char **args, int *return_val)
 	{
 		if ((args[0][i] == '-' || args[0][i] == '+') && i == 0)
 			i++;
-		if (args[0][i] < '0' || args[0][i] > '9')
+		if ((args[0][i] < '0' || args[0][i] > '9'))
 		{
 			*return_val = err_msg("minishell: exit: ", args[0],
 					": numeric argument required", 2);
@@ -62,7 +62,8 @@ int	ft_exit(t_data *data, char **args)
 	if (!args)
 		return_val = 0;
 	if (args[0] && check_exit_numeric(args, &return_val))
-		err_msg("minishell: exit: ", args[0], ": numeric argument required", -1);
+		err_msg("minishell: exit: ",
+			args[0], ": numeric argument required", -1);
 	else if (args[0] && args[1])
 		return (err_msg("minishell: exit: too many arguments", NULL, NULL, -1));
 	else if (args[0])
