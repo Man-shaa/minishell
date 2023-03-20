@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:39:51 by msharifi          #+#    #+#             */
-/*   Updated: 2023/03/15 18:05:18 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/20 12:24:37 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // Return 1 si tout s'est bien passe, sinon 0
 int	handle_pipe_redir(t_data *data, t_cmd *cmd, t_proc *proc)
 {
+	(void)data;
 	if (cmd->index == 0)
 	{
 		if (!is_token(cmd, OUT))
@@ -24,8 +25,7 @@ int	handle_pipe_redir(t_data *data, t_cmd *cmd, t_proc *proc)
 	}
 	else if (cmd->index == proc->n_pipes)
 	{
-		if (!is_token(cmd, IN) && !is_last_cmd_token_out(data, cmd->index)
-			&& !is_token(cmd, HERE))
+		if (!is_token(cmd, IN) && !is_token(cmd, HERE))
 			if (dup2(proc->pipe_fd[cmd->index - 1][0], STDIN_FILENO) == -1)
 				return (err_msg("dup2 last pipe failed", NULL, NULL, 0));
 	}

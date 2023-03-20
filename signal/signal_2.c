@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:37:46 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/20 20:19:11 by mfroissa         ###   ########.fr       */
+/*   Updated: 2023/03/17 19:22:02 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	handle_sighere(int sig_segv)
 {
 	(void)sig_segv;
 	printf("\n");
-	g_return_val = -42;
+	g_return_val = -126;
 	close(0);
 }
 
