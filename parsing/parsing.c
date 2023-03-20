@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:15:26 by mfroissa          #+#    #+#             */
-/*   Updated: 2023/02/17 18:52:44 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/20 12:23:38 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,20 @@ int	check_pipe(t_data *data)
 
 	tmp = data->list;
 	if (tmp && tmp->type == 6)
-		return (0);
+		return (err_msg("minishell: syntax error near unexpected token `|'",
+				NULL, NULL, 0));
+	else if (tmp && tmp->type == 2 && !tmp->next)
+		return (err_msg("minishell: syntax error near unexpected token `<'",
+				NULL, NULL, 0));
+	else if (tmp && tmp->type == 3 && !tmp->next)
+		return (err_msg("minishell: syntax error near unexpected token `>'",
+				NULL, NULL, 0));
+	else if (tmp && tmp->type == 4 && !tmp->next)
+		return (err_msg("minishell: syntax error near unexpected token `<<'",
+				NULL, NULL, 0));
+	else if (tmp && tmp->type == 5 && !tmp->next)
+		return (err_msg("minishell: syntax error near unexpected token `>>'",
+				NULL, NULL, 0));
 	return (1);
 }
 
@@ -90,8 +103,7 @@ int	parsing(t_data *data)
 	if (!check_pipe(data))
 	{
 		g_return_val = 02;
-		return (err_msg("minishell: syntax error near unexpected token `|'",
-				NULL, NULL, 0));
+		return (0);
 	}
 	if (!check_dup(data))
 	{
