@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:44:22 by msharifi          #+#    #+#             */
-/*   Updated: 2023/03/20 13:04:52 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/20 13:05:59 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	g_return_val;
 // env | env |
 
 // export a=
-
-// << manque message d'erreur 
 
 // ls<<eof CTRL-C dans heredoc devrait pas faire le ls, (signaux hredoc)
 
