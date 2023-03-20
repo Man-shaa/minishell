@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:20:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/03/15 17:43:12 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/17 19:22:20 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int	fill_heredoc(t_envp *envp, char *delim, int fd)
 	char	*str;
 
 	f_stdin = dup(STDIN_FILENO);
-	while (1 && g_return_val != -42)
+	while (1 && g_return_val != -126)
 	{
 		str = readline(">");
-		if (g_return_val == -42)
+		if (g_return_val == -126)
 		{
 			ft_free(str);
 			dup2(f_stdin, STDIN_FILENO);
@@ -71,8 +71,8 @@ int	fill_heredoc(t_envp *envp, char *delim, int fd)
 int	which_heredoc(t_data *data, t_cmd *cmd, int cmd_pos)
 {
 	t_cmd	*tmp;
-	int	here_pos;
-	int	j;
+	int		here_pos;
+	int		j;
 
 	here_pos = cmd_pos;
 	if (data->proc->n_heredoc == 1)
