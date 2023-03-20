@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroissa <mfroissa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:20:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/03/15 17:43:12 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/20 11:55:44 by mfroissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,6 @@ int	create_heredoc(t_cmd *cmd, t_data *data, int cmd_pos)
 	str = NULL;
 	i = 0;
 	here_pos = which_heredoc(data, cmd, cmd_pos);
-	printf("cmd_pos : %d\n", cmd_pos);
-	printf("here_pos : %d\n", here_pos);
 	cmd_number = ft_itoa(here_pos);
 	filename = ft_strjoin("/tmp/.heredoc_manuo", cmd_number);
 	ft_free(cmd_number);
