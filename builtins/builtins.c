@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:48:44 by msharifi          #+#    #+#             */
-/*   Updated: 2023/03/20 20:00:33 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:33:30 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	send_builtin_fork(t_data *data, t_cmd *cmd, char **args, int m)
 		exit(g_return_val);
 	}
 	waitpid(pid, &status, 0);
-	g_return_val = WEXITSTATUS(status); // WIFEXITED() ?
+	g_return_val = WEXITSTATUS(status);
 	return (WEXITSTATUS(status));
 }
 

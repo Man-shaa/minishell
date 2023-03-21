@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:20:17 by msharifi          #+#    #+#             */
-/*   Updated: 2023/03/20 16:43:10 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:35:03 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	fill_heredoc(t_envp *envp, char *delim, int fd)
 	{
 		str = readline(">");
 		if (!str && g_return_val != -126)
-			err_msg("minishell: warning: here-document at line 1 delimited by end-of-file (wanted `", delim, "')", 2);
+			err_msg("minishell: warning: here-document at \
+line 1 delimited by end-of-file (wanted `", delim, "')", 2);
 		if (g_return_val == -126)
 		{
 			ft_free(str);

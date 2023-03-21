@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 06:20:44 by msharifi          #+#    #+#             */
-/*   Updated: 2023/02/09 17:54:49 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/21 13:57:14 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	print_env(t_envp *envp, char **args)
 	}
 	while (envp)
 	{
-		if (envp->tab[1] && envp->tab[1][0] != '\0')
+		if (envp->tab[1])
 		{
 			printf("%s=", envp->tab[0]);
 			printf("%s\n", envp->tab[1]);

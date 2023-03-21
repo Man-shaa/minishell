@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:31:25 by msharifi          #+#    #+#             */
-/*   Updated: 2023/03/20 18:19:37 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:26:37 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -343,7 +343,7 @@ int		count_all_heredoc(t_data *data);
 // redirections_utils.c
 int		is_token(t_cmd *cmd, int type);
 int		is_last_cmd_token_out(t_data *data, int index);
-void	create_files(t_data *data, t_cmd *cmd);
+int		create_files(t_data *data, t_cmd *cmd);
 
 // split_echo.c
 int		word_count_echo(char *str, char set);
